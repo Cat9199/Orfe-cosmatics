@@ -1,0 +1,233 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+<section class="hero-section d-flex align-items-center">
+      <div class="container-fluid">
+            <div class="row">
+                  <div class="hero-content align-items-center">
+                        <h1 class="display-1">Shop</h1>
+                        <div class="breadcrumbs">
+                              <span class="item">
+                                    <a href="index.html">Home /</a>
+                              </span>
+                              <span class="item">Shop</span>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</section>
+
+<section class="product-grid py-5">
+      <div class="container-fluid">
+            <div class="row flex-row-reverse g-md-5">
+                  <main class="col-md-9 col-sm-12">
+                        <div class="filter-shop d-flex justify-content-between">
+                              <div class="showing-product">
+                                    <p>Showing 1–9 of {{ products|length }} results</p>
+                              </div>
+                              <div class="sort-by pb-3">
+                                    <select id="input-sort" class="form-control bg-transparent"
+                                          onchange="applyFilters()">
+                                          <option value="">Default sorting</option>
+                                          <option value="name-asc">Name (A - Z)</option>
+                                          <option value="name-desc">Name (Z - A)</option>
+                                          <option value="price-asc">Price (Low-High)</option>
+                                          <option value="price-desc">Price (High-Low)</option>
+                                          <option value="rating-asc">Rating (Highest)</option>
+                                          <option value="rating-desc">Rating (Lowest)</option>
+                                          <option value="model-asc">Model (A - Z)</option>
+                                          <option value="model-desc">Model (Z - A)</option>
+                                    </select>
+                              </div>
+                        </div>
+
+                        <div id="product-list" class="product-content d-flex justify-content-between flex-wrap mt-3">
+                              {% for product in products %}
+                              <div class="col-lg-4 col-md-6 mb-5 product-item link-effect">
+                                    <div class="image-holder position-relative me-2">
+                                          <a href="/{{ product.id }}"></a>
+                                          <img src="{{ product.image }}" alt="{{ product.name }}"
+                                                class="product-image img-fluid w-100 h-100"
+                                                style="max-height: 300px; object-fit: cover;">
+                                          </a>
+                                          <div class="product-content">
+                                                <h5 class="text-capitalize fs-5 mt-3">
+                                                      <a href="/{{ product.id }}">{{
+                                                            product.name }}</a>
+                                                </h5>
+                                                <a href="/{{ product.id }}" class="text-decoration-none"
+                                                      data-after="Add to cart">
+                                                      <span>{{ product.price }} L.E</span>
+                                                </a>
+                                          </div>
+                                    </div>
+                              </div>
+                              {% endfor %}
+                        </div>
+
+                        <nav aria-label="Page navigation" class="d-flex justify-content-center mt-5">
+                              <ul class="pagination">
+                                    <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Previous">
+                                                <svg class="arrow-left" width="18" height="20">
+                                                      <use xlink:href="#arrow-left"></use>
+                                                </svg>
+                                          </a>
+                                    </li>
+                                    <!-- Pagination logic can be added here -->
+                                    <li class="page-item active" aria-current="page">
+                                          <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                          <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                          <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                          <a class="page-link" href="#">4</a>
+                                    </li>
+                                    <li class="page-item">
+                                          <a class="page-link" href="#">5</a>
+                                    </li>
+                                    <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Next">
+                                                <svg class="arrow-right" width="18" height="20">
+                                                      <use xlink:href="#arrow-right"></use>
+                                                </svg>
+                                          </a>
+                                    </li>
+                              </ul>
+                        </nav>
+                  </main>
+
+                  <aside class="col-md-3 col-sm-12">
+                        <div class="sidebar">
+                              <div class="widget-menu">
+                                    <div class="widget-search-bar">
+                                          <form role="search" method="get" class="d-flex">
+                                                <input class="search-field ps-3 bg-transparent" placeholder="Search"
+                                                      type="search" id="search-query" onchange="applyFilters()">
+                                                <div
+                                                      class="search-icon bg-primary d-flex justify-content-center align-items-center">
+                                                      <a href="#">
+                                                            <svg class="search text-light" width="20" height="20">
+                                                                  <use xlink:href="#search"></use>
+                                                            </svg>
+                                                      </a>
+                                                </div>
+                                          </form>
+                                    </div>
+                              </div>
+                              <div class="widget-product-categories mt-3">
+                                    <h5 class="widget-title text-decoration-underline">Categories</h5>
+                                    <ul class="product-categories list-unstyled text-hover">
+                                          {% for category in categories %}
+                                          <li class="cat-item">
+                                                <a href="#" class="category-filter" data-category="{{ category.id }}">{{
+                                                      category.name }}</a>
+                                          </li>
+                                          {% endfor %}
+                                    </ul>
+                              </div>
+
+                              <div class="widget-price-filter pt-3">
+                                    <h5 class="widget-title text-decoration-underline">Filter By Price</h5>
+                                    <ul class="list-unstyled">
+                                          <li class="price-filter">
+                                                <a href="#" onclick="applyPriceFilter('0-50')">0.00 L.E - 50.00 L.E</a>
+                                          </li>
+                                          <li class="price-filter">
+                                                <a href="#" onclick="applyPriceFilter('50-100')">50.00 L.E - 100.00
+                                                      L.E</a>
+                                          </li>
+                                          <li class="price-filter">
+                                                <a href="#" onclick="applyPriceFilter('100-150')">100.00 L.E - 150.00
+                                                      L.E</a>
+                                          </li>
+                                          <li class="price-filter">
+                                                <a href="#" onclick="applyPriceFilter('150-200')">150.00 L.E - 200.00
+                                                      L.E</a>
+                                          </li>
+                                          <li class="price-filter">
+                                                <a href="#" onclick="applyPriceFilter('200+')">200.00 L.E+</a>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </aside>
+            </div>
+      </div>
+</section>
+
+<script>
+      // This function will apply the selected filters (price, category, and sorting)
+      function applyFilters() {
+            const sort = document.getElementById('input-sort').value;
+            const searchQuery = document.getElementById('search-query').value;
+            const categoryId = document.querySelector('.category-filter.active')?.getAttribute('data-category');
+            const priceRange = document.querySelector('.price-filter.active')?.getAttribute('data-price');
+
+            const filters = {
+                  sort: sort,
+                  search: searchQuery,
+                  category: categoryId,
+                  price: priceRange
+            };
+
+            // Make an AJAX request to fetch the filtered products
+            fetch(`/api/products?filters=${JSON.stringify(filters)}`)
+                  .then(response => response.json())
+                  .then(data => {
+                        updateProductList(data.products);
+                  })
+                  .catch(error => {
+                        console.error('Error fetching products:', error);
+                  });
+      }
+
+      // Function to update the product list
+      function updateProductList(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear existing products
+
+            products.forEach(product => {
+                  const productHtml = `
+                        <div class="col-lg-4 col-md-6 mb-5 product-item link-effect">
+                              <div class="image-holder position-relative me-2">
+                                    <a href="/${product.id}"></a>
+                                    <img src="${product.image}" alt="${product.name}" class="product-image img-fluid w-100 h-100" style="max-height: 300px; object-fit: cover;">
+                              </div>
+                              <div class="product-content">
+                                    <h5 class="text-capitalize fs-5 mt-3">
+                                          <a href="/${product.id}">${product.name}</a>
+                                    </h5>
+                                    <span>${product.price} L.E</span>
+                              </div>
+                        </div>`;
+                  productList.innerHTML += productHtml;
+            });
+      }
+
+      function updateShowingText(productCount) {
+            const showingText = document.querySelector('.showing-product p');
+            showingText.textContent = `Showing 1–9 of ${productCount} results`;
+      }
+
+      // Event listener for sorting options
+      document.getElementById('input-sort').addEventListener('change', applyFilters);
+
+      // Event listener for category filter
+      document.getElementById('category-filter').addEventListener('change', applyFilters);
+
+      // Event listener for price filter
+      document.querySelectorAll('.price-filter a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  const priceRange = e.target.textContent;
+                  document.getElementById('price-filter').value = priceRange;
+                  applyFilters();
+            });
+      });
+</script>
+{% endblock %}

@@ -1,0 +1,368 @@
+<!-- import base jinja 2 template -->
+{% extends "shop/base.html" %}
+{% block content %}
+
+<section id="billboard" class="overflow-hidden">
+  <div class="swiper main-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="banner-item align-content-center"
+                style="background-image: url(static/images/banner-image1.jpg); background-repeat: no-repeat; background-position: right; height: 850px;">
+                <div class="banner-content padding-large ">
+                  <h2 class="display-2 text-capitalize text-dark pb-2">Radiant Skin Serum</h2>
+                  <p>Discover the ultimate glow with Orfe’s Radiant Skin Serum. Infused with natural ingredients, this
+                    serum will
+                    hydrate, brighten, and restore your skin’s youthful appearance. Embrace smoother, glowing skin
+                    with
+                    every use.</p>
+                  <a href="/shop" class="btn btn-medium btn-arrow position-relative mt-3">
+                    <span class="text-capitalize">Shop Now</span>
+                    <svg class="arrow-right position-absolute" width="18" height="20">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="banner-item align-content-center"
+                style="background-image: url(static/images/banner-image2.jpg); background-repeat: no-repeat; background-position: right; height: 850px;">
+                <div class="banner-content padding-large">
+                  <h2 class="display-2 text-capitalize text-dark pb-2">Nourishing Lip Balm</h2>
+                  <p>Say goodbye to dry lips with Orfe’s Nourishing Lip Balm. Packed with essential oils and vitamins,
+                    it will
+                    keep your lips soft, hydrated, and smooth all day long. Perfect for every season.</p>
+                  <a href="/shop" class="btn btn-medium btn-arrow position-relative mt-3">
+                    <span class="text-capitalize">Shop Now</span>
+                    <svg class="arrow-right position-absolute" width="18" height="20">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="banner-item align-content-center"
+                style="background-image: url(static/images/banner-image3.jpg); background-repeat: no-repeat; background-position: right; height: 850px;">
+                <div class="banner-content padding-large">
+                  <h2 class="display-2 text-capitalize text-dark pb-2">Soothing Face Mask</h2>
+                  <p>Relax and rejuvenate with Orfe’s Soothing Face Mask. Crafted to calm irritated skin and restore
+                    moisture,
+                    this mask provides a spa-like experience at home. Perfect for tired, stressed skin.</p>
+                  <a href="/shop" class="btn btn-medium btn-arrow position-relative mt-3">
+                    <span class="text-capitalize">Shop Now</span>
+                    <svg class="arrow-right position-absolute" width="18" height="20">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination position-absolute"></div>
+</section>
+
+<section id="banner" class="padding-large">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 banner-content-1 position-relative">
+        <div>
+          <img src="static/images/product-item4.jpg" class="img-fluid" alt="img">
+        </div>
+        <div class="banner-content-text position-absolute">
+          <h2 class="display-5">Modern Collection</h2>
+          <a href="/shop" class="btn btn-medium btn-arrow outline-dark position-relative mt-3">
+            <span class="text-capitalize fs-6">Shop Now</span>
+            <svg class="arrow-right position-absolute" width="18" height="20">
+              <use xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 banner-content-2 position-relative">
+        <div>
+          <img src="static/images/product-item8.jpg" class="img-fluid" alt="img">
+        </div>
+        <div class="banner-content-text position-absolute">
+          <h2 class="display-5">Classic Collection</h2>
+          <a href="/shop" class="btn btn-medium btn-arrow outline-dark position-relative mt-3">
+            <span class="text-capitalize fs-6">Shop Now</span>
+            <svg class="arrow-right position-absolute" width="18" height="20">
+              <use xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 banner-content-3 position-relative">
+        <div>
+          <img src="static/images/product-item5.jpg" class="img-fluid" alt="img">
+        </div>
+        <div class="banner-content-text position-absolute">
+          <h2 class="display-5">Timeless Collection</h2>
+          <a href="/shop" class="btn btn-medium btn-arrow outline-dark position-relative mt-3">
+            <span class="text-capitalize fs-6">Shop Now</span>
+            <svg class="arrow-right position-absolute" width="18" height="20">
+              <use xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-us" class="padding-large pt-0">
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-between g-5">
+      <div class="col-md-6 offset-md-3">
+        <div class="detail">
+          <div class="display-header text-center">
+            <h2 class="display-2 text-capitalize text-dark pb-2">About Us</h2>
+            <p class="pb-3">Ac varius lectus tellus tellus quisque tristique aenean. Volutpat velit nulla eu iaculis
+              risus in urna. Eu morbi vel purus velit dui vel egestas purus sed. Eget turpis tincidunt faucibus montes
+              arcu in nullam tortor orci. Nulla tellus sed purus vestibulum sagittis pretium donec nec mattis ollis
+              porta sit ut.</p>
+            <a href="/shop" class="btn btn-medium btn-arrow outline-dark position-relative mt-3">
+              <span class="text-capitalize">About us</span>
+              <svg class="arrow-right position-absolute" width="18" height="20">
+                <use xlink:href="#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured-products" class="product-store position-relative">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="display-header pb-3 d-flex justify-content-between flex-wrap col-md-12">
+        <h2 class="display-2 text-dark text-capitalize">Our Featured Products</h2>
+        <a href="/shop" class="btn btn-medium btn-arrow btn-normal position-relative">
+          <span class="text-capitalize">Shop All</span>
+          <svg class="arrow-right position-absolute" width="18" height="20">
+            <use xlink:href="#arrow-right"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div id="featured-swiper" class="product-swiper col-md-12">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {% for product in last_products %}
+
+            <div class="swiper-slide">
+              <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                <div class="image-holder">
+                  <a href="/{{ product.id }}"></a>
+                  <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image img-fluid w-100 h-100"
+                    style="max-height: 300px; object-fit: cover;">
+                  </a>
+                </div>
+                <div class="cart-concern">
+                  <h3 class="card-title text-capitalize pt-3 text-primary">
+                    <a href="/{{ product.id  }}" class="text-primary">{{ product.name }}</a>
+                  </h3>
+                  <div class="cart-info">
+                    <a class="pseudo-text-effect" href="#" data-after="ADD TO CART">
+                      <span>{{ product.price }} L.E</span>
+                      {% if product.discount %}
+                      <span class="text-danger ms-2">{{ product.discount }} L.E</span>
+                      {% endif %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+        <div class="swiper-pagination text-center mt-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="position-relative padding-large">
+  <div class="container">
+    <div class="row">
+      <div class="review-content position-relative">
+        <div
+          class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center justify-content-center">
+          <svg class="icon-arrow" width="25" height="25">
+            <use xlink:href="#arrow-left" />
+          </svg>
+        </div>
+        <div class="swiper testimonial-swiper">
+          <div class="quotation text-center">
+            <svg class="quote">
+              <use xlink:href="#quote" />
+            </svg>
+          </div>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide text-center d-flex justify-content-center">
+              <div class="review-item col-md-10">
+                <i class="icon icon-review"></i>
+                <blockquote class="fs-4">“Tempus oncu enim pellen tesque este pretium in neque, elit morbi sagittis
+                  lorem habi mattis Pellen tesque pretium feugiat vel morbi suspen dise sagittis lorem habi tasse
+                  morbi.”</blockquote>
+                <div class="author-detail">
+                  <div class="name text-primary text-capitalize pt-2">Hana Kimusaki</div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide text-center d-flex justify-content-center">
+              <div class="review-item col-md-10">
+                <i class="icon icon-review"></i>
+                <blockquote class="fs-4">“A blog is a digital publication that can complement a website or exist
+                  independently. A blog may include articles, short posts, listicles, infographics, videos, and other
+                  digital content.”</blockquote>
+                <div class="author-detail">
+                  <div class="name text-primary text-capitalize pt-2">Jennie Rose</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center justify-content-center">
+          <svg class="icon-arrow" width="25" height="25">
+            <use xlink:href="#arrow-right" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination text-center position-absolute"></div>
+</section>
+
+<section id="trending-products" class="product-store">
+  <div class="container-fluid">
+    <div class="row overflow-hidden">
+      <div class="display-header pb-3 d-flex justify-content-between col-md-12">
+        <h2 class="display-2 text-dark text-capitalize">Trending products</h2>
+        <a href="/shop" class="btn btn-medium btn-arrow btn-normal position-relative">
+          <span class="text-capitalize">Shop all</span>
+          <svg class="arrow-right position-absolute" width="18" height="20">
+            <use xlink:href="#arrow-right"></use>
+          </svg>
+        </a>
+      </div>
+      <div id="trending-swiper" class="product-swiper col-md-12">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {% for product in most_viewed %}
+
+            <div class="swiper-slide">
+              <div class="product-card image-zoom-effect link-effect d-flex flex-wrap">
+                <div class="image-holder">
+                  <a href="/{{ product.id }}"></a>
+                  <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image img-fluid w-100 h-100"
+                    style="max-height: 300px; object-fit: cover;">
+                  </a>
+                </div>
+                <div class="cart-concern">
+                  <h3 class="card-title text-capitalize pt-3 text-primary">
+                    <a href="/{{ product.id  }}" class="text-primary">{{ product.name }}</a>
+                  </h3>
+                  <div class="cart-info">
+                    <a class="pseudo-text-effect" href="#" data-after="ADD TO CART">
+                      <span>{{ product.price }} L.E</span>
+                      {% if product.discount %}
+                      <span class="text-danger ms-2">{{ product.discount }} L.E</span>
+                      {% endif %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+          <div class="swiper-pagination text-center mt-5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="company-services" class="py-5 border-top border-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex align-items-center">
+          <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+            <svg class="shipping-fast">
+              <use xlink:href="#shipping-fast" />
+            </svg>
+          </div>
+          <div class="icon-box-content ps-3">
+            <h3 class="card-title text-capitalize text-dark mb-0">Quick delivery</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex align-items-center">
+          <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+            <svg class="shopping-cart">
+              <use xlink:href="#shopping-cart" />
+            </svg>
+          </div>
+          <div class="icon-box-content ps-3">
+            <h3 class="card-title text-capitalize text-dark mb-0">Pick up in store</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex align-items-center">
+          <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+            <svg class="gift">
+              <use xlink:href="#gift" />
+            </svg>
+          </div>
+          <div class="icon-box-content ps-3">
+            <h3 class="card-title text-capitalize text-dark mb-0">Special Packaging</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex align-items-center">
+          <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+            <svg class="return">
+              <use xlink:href="#return" />
+            </svg>
+          </div>
+          <div class="icon-box-content ps-3">
+            <h3 class="card-title text-capitalize text-dark mb-0">Return & refund policy</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
