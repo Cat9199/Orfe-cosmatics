@@ -1,0 +1,77 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">تفاصيل الطلب رقم: {{ order.id }}</h1>
+
+  <!-- معلومات الطلب والعميل -->
+  <div class="bg-white shadow rounded-lg p-6 mb-6">
+    <h2 class="text-xl font-semibold mb-4">معلومات العميل والطلب</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <p class="mb-2"><span class="font-medium">الاسم:</span> {{ order.name }}</p>
+        <p class="mb-2"><span class="font-medium">البريد الإلكتروني:</span> {{ order.email }}</p>
+        <p class="mb-2"><span class="font-medium">الهاتف:</span> {{ order.phone }}</p>
+        <p class="mb-2"><span class="font-medium">العنوان:</span> {{ order.address }}</p>
+      </div>
+      <div>
+        <p class="mb-2"><span class="font-medium">المدينة:</span> {{ order.city }}</p>
+        <p class="mb-2">
+          <span class="font-medium">طريقة الدفع:</span>
+          {% if order.payment_method == 'cash_on_delivery' %}
+          الدفع عند الاستلام
+          {% elif order.payment_method == 'vodafone_cash' %}
+          فودافون كاش
+          {% else %}
+          غير معروف
+          {% endif %}
+        </p>
+        <p class="mb-2">
+          <span class="font-medium">حالة الشحن:</span>
+          <span class="px-2 py-1 rounded-full
+            {% if order.shipping_status == 'pending' %}bg-yellow-200 text-yellow-800
+            {% elif order.shipping_status == 'shipped' %}bg-green-200 text-green-800
+            {% elif order.shipping_status == 'delivered' %}bg-blue-200 text-blue-800
+            {% else %}bg-gray-200 text-gray-800{% endif %}">
+            {{ order.shipping_status }}
+          </span>
+        </p>
+        <p class="mb-2"><span class="font-medium">المبلغ:</span> {{ order.cod_amount }} L.E</p>
+        <p class="mb-2"><span class="font-medium">تاريخ الطلب:</span> {{ order.created_at }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- تفاصيل عناصر الطلب -->
+  <div class="bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-semibold mb-4">عناصر الطلب</h2>
+    {% if order_items %}
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3 px-6">رقم المنتج</th>
+            <th scope="col" class="py-3 px-6">اسم المنتج</th>
+            <th scope="col" class="py-3 px-6">الكمية</th>
+            <th scope="col" class="py-3 px-6">السعر</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order_items %}
+          <tr>
+            <td>{{ item.order_item.product_id }}</td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.order_item.quantity }}</td>
+            <td>{{ item.product.price }}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-gray-600">لا توجد عناصر في هذا الطلب.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

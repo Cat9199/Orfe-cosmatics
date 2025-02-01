@@ -1,0 +1,230 @@
+{% extends "shop/base.html" %}
+{% block content %}
+
+<section class="hero-section d-flex align-items-center py-4" style="background: #f7f7f7;">
+      <div class="container">
+            <div class="row">
+                  <div class="col text-center">
+                        <h1 class="display-4">Checkout</h1>
+                        <nav aria-label="breadcrumb">
+                              <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{{ url_for('shop.home') }}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url_for('shop.cart') }}">Cart</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                              </ol>
+                        </nav>
+                  </div>
+            </div>
+      </div>
+</section>
+
+<section class="py-5">
+      <div class="container">
+            <form id="checkoutForm" action="{{ url_for('shop.place_order') }}" method="POST">
+                  <div class="row">
+                        <!-- Shipping & Payment Details -->
+                        <div class="col-lg-8 mb-4">
+                              <div class="card p-4 shadow-sm">
+                                    <h4 class="mb-4">Shipping Information</h4>
+                                    <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                                <label for="name" class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" required>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                                <label for="email" class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                      required>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                                <label for="phone" class="form-label">Phone Number</label>
+                                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                                <label for="address" class="form-label">Shipping Address</label>
+                                                <textarea class="form-control" id="address" name="address" rows="2"
+                                                      required></textarea>
+                                          </div>
+                                          <div class="col-md-4 mb-3">
+                                                <label for="city" class="form-label">المدينة</label>
+                                                <select class="form-select" id="city" name="city" required>
+                                                      <option value="">اختر المدينة</option>
+                                                      {% for city in cities %}
+                                                      <option value="{{ city._id }}">{{ city.nameAr }}</option>
+                                                      {% endfor %}
+                                                </select>
+                                          </div>
+                                          <div class="col-md-4 mb-3">
+                                                <label for="zone" class="form-label">المنطقة</label>
+                                                <select class="form-select" id="zone" name="zone_id" required disabled>
+                                                      <option value="">اختر المنطقة</option>
+                                                </select>
+                                          </div>
+                                          <div class="col-md-4 mb-3">
+                                                <label for="district" class="form-label">الحي</label>
+                                                <select class="form-select" id="district" name="district_id" required
+                                                      disabled>
+                                                      <option value="">اختر الحي</option>
+                                                </select>
+                                          </div>
+                                    </div>
+                                    <input type="hidden" name="total" value="{{ total }}">
+
+                                    <hr class="my-4">
+                                    <h4 class="mb-3">Payment Method</h4>
+                                    <div class="row">
+                                          <!-- الدفع عند الاستلام -->
+                                          <div class="col-md-4 mb-3">
+                                                <div class="card shadow-sm p-3 text-center">
+                                                      <img src="{{ url_for('static', filename='images/cashOnD.png') }}"
+                                                            alt="Cash on Delivery" class="img-fluid mb-2" width="60">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="cash_on_delivery"
+                                                                  value="cash_on_delivery" required checked>
+                                                            <label class="form-check-label fw-bold"
+                                                                  for="cash_on_delivery">الدفع عند الاستلام</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- فودافون كاش + واتساب -->
+                                          <div class="col-md-4 mb-3" onclick="handlePaymentButtonClick(event)">
+                                                <div class="card shadow-sm p-3 text-center">
+                                                      <img src="{{ url_for('static', filename='images/vodafone.png') }}"
+                                                            alt="Vodafone Cash" class="img-fluid mb-2" width="60">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="vodafone_cash"
+                                                                  value="vodafone_cash" required>
+                                                            <label class="form-check-label fw-bold"
+                                                                  for="vodafone_cash">فودافون كاش + واتساب</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- الدفع بالفيزا (قريبًا) -->
+                                          <div class="col-md-4 mb-3">
+                                                <div class="card shadow-sm p-3 text-center opacity-50">
+                                                      <img src="{{ url_for('static', filename='images/visa.png') }}"
+                                                            alt="Visa" class="img-fluid mb-2" width="60">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="visa" value="visa" disabled>
+                                                            <label class="form-check-label fw-bold" for="visa">الدفع
+                                                                  بالفيزا (قريبًا)</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+
+                              </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="col-lg-4">
+                              <div class="card p-4 bg-light shadow-sm">
+                                    <h4 class="text-dark pb-3 border-bottom">Order Summary</h4>
+                                    <div class="order-items my-4">
+                                          {% for item in cart_items %}
+                                          <div class="d-flex justify-content-between mb-2">
+                                                <div>
+                                                      <h6 class="mb-0">{{ item.product.name }}</h6>
+                                                      <small class="text-muted">Qty: {{ item.quantity }}</small>
+                                                </div>
+                                                <span class="text-dark">{{ "%.2f"|format(item.product.price *
+                                                      item.quantity) }} L.E</span>
+                                          </div>
+                                          {% endfor %}
+                                    </div>
+                                    <table class="table">
+                                          <tbody>
+                                                <tr class="subtotal">
+                                                      <th>Subtotal</th>
+                                                      <td class="text-end">{{ "%.2f"|format(total) }} L.E</td>
+                                                </tr>
+                                                <tr class="shipping">
+                                                      <th>Shipping</th>
+                                                      <td class="text-end text-muted">Calculated at checkout</td>
+                                                </tr>
+                                                <tr class="total border-top">
+                                                      <th>Total</th>
+                                                      <td class="text-end fw-bold">{{ "%.2f"|format(total) }} L.E</td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                                    <!-- زر الدفع الموحد -->
+                                    <button id="paymentButton" type="submit" class="btn btn-success w-100 mt-3">
+                                          تأكيد الطلب والدفع
+                                    </button>
+                                    <a href="{{ url_for('shop.cart') }}" class="btn btn-outline-dark w-100 mt-2">Return
+                                          to Cart</a>
+                              </div>
+                        </div>
+                  </div>
+            </form>
+      </div>
+</section>
+
+<!-- جافاسكربت لتفعيل زر الدفع الموحد -->
+<script>
+      // عند تغيير المدينة، جلب المناطق
+      document.getElementById('city').addEventListener('change', async function () {
+            const cityId = this.value;
+            const zoneSelect = document.getElementById('zone');
+            zoneSelect.disabled = false;
+            const response = await fetch(`/api/zones?city_id=${cityId}`);
+            const zones = await response.json();
+            zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
+            zones.forEach(zone => {
+                  const option = document.createElement('option');
+                  option.value = zone._id;
+                  option.textContent = zone.nameAr;
+                  zoneSelect.appendChild(option);
+            });
+      });
+
+      // عند تغيير المنطقة، جلب الأحياء
+      document.getElementById('zone').addEventListener('change', async function () {
+            const cityId = document.getElementById('city').value;
+            const districtSelect = document.getElementById('district');
+            districtSelect.disabled = false;
+            const response = await fetch(`/api/districts?city_id=${cityId}`);
+            const districts = await response.json();
+            districtSelect.innerHTML = '<option value="">اختر الحي</option>';
+            districts.forEach(district => {
+                  const option = document.createElement('option');
+                  option.value = district.districtId;
+                  option.textContent = district.districtOtherName;
+                  districtSelect.appendChild(option);
+            });
+      });
+
+      // حدث الضغط على زر الدفع الموحد
+      function handlePaymentButtonClick(event) {
+            // احصل على طريقة الدفع المحددة
+            const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+            if (selectedMethod === "vodafone_cash") {
+                  // منع الإرسال الافتراضي للنموذج
+                  event.preventDefault();
+                  // هنا يتم تجميع تفاصيل الطلب لإرسالها عبر واتساب (يمكنك تعديل النص حسب الحاجة)
+                  const orderDetails = "تفاصيل الطلب:\n" +
+                        "الاسم: " + document.getElementById("name").value + "\n" +
+                        "المجموع: {{ '%.2f'|format(total) }} L.E\n" +
+                        "يرجى تحويل المبلغ إلى رقم فودافون كاش.";
+                  // رقم الواتساب: عدل الرقم ليناسبك
+                  const whatsappUrl = "https://wa.me/1234567890?text=" + encodeURIComponent(orderDetails);
+                  // فتح نافذة واتساب
+                  window.open(whatsappUrl, "_blank");
+                  // بعد فتح واتساب يمكنك إرسال النموذج (قد تحتاج لضبط التوقيت حسب الحاجة)
+                  setTimeout(() => {
+                        document.getElementById("checkoutForm").submit();
+                  }, 1000);
+            }
+            // بالنسبة للدفع عند الاستلام، سيقوم النموذج بالإرسال مباشرة
+
+      }
+
+</script>
+
+{% endblock %}
