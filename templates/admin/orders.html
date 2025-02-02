@@ -33,7 +33,9 @@
                                     {% elif order.payment_method == 'vodafone_cash' %}
                                     <img src="{{ url_for('static', filename='images/vodafone.png') }}"
                                           alt="Vodafone Cash" class="w-8 h-8 inline-block">
-                                    {% elif order.payment_method == 'fawry' %}
+                                    {% elif order.payment_method == 'visa' %}
+                                    <img src="{{ url_for('static', filename='images/visa.png') }}" alt="Visa"
+                                          class="w-8 h-8 inline-block">
                                     {% else %}
                                     غير معروف
                                     {% endif %}
@@ -48,7 +50,7 @@
                                     </span>
                               </td>
                               <td class="py-4 px-6 flex flex-wrap gap-2 justify-center">
-                                    <a href="{{ url_for('admin.order', order_id=order.id) }}"
+                                    <a href="{{ url_for('admin.order_detail', order_id=order.id) }}"
                                           class="flex items-center justify-center px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                           <i class="fas fa-eye mr-1"></i> عرض التفاصيل
                                     </a>

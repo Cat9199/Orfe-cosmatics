@@ -1,0 +1,22 @@
+<!-- order_detail.html page -->
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+      <h1>تفاصيل الطلب</h1>
+      <div class="row">
+            <div class="col-md-6">
+                  <h3>معلومات الطلب</h3>
+                  <p>رقم الطلب: {{ order.id }}</p>
+                  <p>الحالة: {{ order.status }}</p>
+                  <p>المبلغ: {{ order.total_price }} L.E</p>
+            </div>
+            <div class="col-md-6">
+                  <h3>معلومات الدفع</h3>
+                  <p>طريقة الدفع: {{ order.payment_method }}</p>
+                  <p>الحالة: {{ order.payment_status }}</p>
+            </div>
+      </div>
+</div>
+{% endblock %}

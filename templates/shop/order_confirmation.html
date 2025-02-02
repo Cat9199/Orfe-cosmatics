@@ -1,0 +1,58 @@
+<!-- order_confirmation.html page -->
+{% extends "shop/base.html" %}
+
+{% block content %}
+<div class="container my-5">
+      <div class="alert alert-success">
+            <h4 class="alert-heading">تم استلام طلبك بنجاح!</h4>
+            <p>شكراً لشرائك معنا. تم استلام طلبك بنجاح.</p>
+            <hr>
+            <p class="mb-0">رقم الطلب: {{ order.id }}</p>
+            <p>يمكنك تتبع حالة الطلب في صفحة <a href="{{ url_for('shop.order_detail', order_id=order.id) }}">تفاصيل
+                        الطلب</a></p>
+      </div>
+      <div class="order-details mt-4">
+            <h5>تفاصيل الطلب:</h5>
+            <ul class="list-group">
+                  {% for item in order_items %}
+                  <li class="list-group-item d-flex align-items-center">
+                        <img src="{{ item.product.image }}" alt="{{ item.product.name }}" class="img-thumbnail mr-3"
+                              style="max-width: 100px; border-radius: 8px;">
+                        <div>
+                              <strong>المنتج:</strong> {{ item.product.name }}<br>
+                              <strong>الكمية:</strong> {{ item.quantity }}<br>
+                              <strong>السعر:</strong> {{ item.product.price }}<br>
+                        </div>
+                  </li>
+                  {% endfor %}
+            </ul>
+      </div>
+</div>
+
+<style>
+      .alert {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+      }
+
+      .order-details h5 {
+            color: #343a40;
+            font-weight: bold;
+      }
+
+      .list-group-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 15px;
+            background-color: #f8f9fa;
+      }
+
+      .list-group-item img {
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #fff;
+      }
+</style>
+{% endblock %}

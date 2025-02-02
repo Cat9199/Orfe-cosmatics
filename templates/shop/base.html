@@ -23,6 +23,34 @@
 
       <!-- Scripts -->
       <script src="static/js/modernizr.js" defer></script>
+      <!-- Meta Data -->
+      <meta name="description"
+            content="Orfe Shop - Your ultimate destination for premium cosmetics. Discover beauty that enhances your confidence and brings out the best in you.">
+      <meta name="keywords" content="Orfe, cosmetics, beauty, skincare, makeup, premium beauty products">
+      <meta name="author" content="Orfe Cosmetics">
+      <meta name="robots" content="index, follow">
+      <meta name="theme-color" content="#ffffff">
+      <!-- faveicon -->
+      <link rel="icon" href="static/images/main-logo.ico" type="image/x-icon">
+      <!-- Open Graph Meta Tags for Social Sharing -->
+      <meta property="og:title" content="Orfe Shop - Premium Cosmetics">
+      <meta property="og:description"
+            content="Discover high-quality beauty products designed to enhance your confidence and bring out the best in you.">
+      <meta property="og:image" content="https://i.top4top.io/p_33209yqsf1.png">
+      <meta property="og:url" content="https://orfe-cosmetics.com">
+      <meta property="og:type" content="website">
+
+      <!-- Twitter Card Meta Tags -->
+      <meta name="twitter:card" content="https://i.top4top.io/p_33209yqsf1.png">
+      <meta name="twitter:title" content="Orfe Shop - Premium Cosmetics">
+      <meta name="twitter:description"
+            content="Shop premium beauty products at Orfe Cosmetics and elevate your look with top-quality skincare and makeup.">
+      <meta name="twitter:image" content="https://i.top4top.io/p_33209yqsf1.png">
+
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="https://i.top4top.io/p_33209yqsf1.png">
+      <link rel="apple-touch-icon" href="https://i.top4top.io/p_33209yqsf1.png">
+
 </head>
 
 <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true">
@@ -72,9 +100,38 @@
                   </div>
             </nav>
       </header>
-
+      <div class="container mt-4">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <script>
+                  setTimeout(function () {
+                        var alert = document.querySelector('.alert-{{ category }}');
+                        if (alert) {
+                              alert.classList.remove('show');
+                              alert.classList.add('fade');
+                              setTimeout(function () {
+                                    alert.remove();
+                              }, 500);
+                        }
+                  }, 5000);
+            </script>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+      </div>
       <!-- Page Content -->
       {% block content %}{% endblock %}
+      <!-- make a watsapp bubel in the left of the screen  -->
+      <a href="https://wa.me/201030553029" class="whatsapp" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 1000; font-size: 24px; color: #fff; 
+          background-color: #25D366; width: 50px; height: 50px; display: flex; align-items: center; 
+          justify-content: center; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            <i class="bx bxl-whatsapp"></i>
+      </a>
 
       <!-- Footer -->
       <footer id="footer" class="padding-large">
@@ -104,19 +161,19 @@
                         <div class="col-lg-2 col-sm-6 pb-3">
                               <h5 class="widget-title pb-2">Follow Us</h5>
                               <ul class="list-unstyled">
-                                    <li><a href="#">Facebook</a></li>
-                                    <li><a href="#">Instagram</a></li>
-                                    <li><a href="#">Pinterest</a></li>
-                                    <li><a href="#">Twitter</a></li>
-                                    <li><a href="#">YouTube</a></li>
+                                    <li><a href="https://www.facebook.com/share/15cWndCGap/?mibextid=wwXIfr">Facebook</a>
+                                    </li>
+                                    <li><a href="https://www.instagram.com/orfeee0?igsh=MXdybnNqbTdrZDNicw==">Instagram</a>
+                                    </li>
+                                    <li><a href="https://www.tiktok.com/@orfeee0?_t=ZS-8tYLp3QdQ9q&_r=1">TikTok</a></li>
                               </ul>
                         </div>
 
                         <!-- Contact -->
                         <div class="col-lg-3 col-sm-6">
                               <h5 class="widget-title pb-2">Contact Us</h5>
-                              <p><a href="tel:+12345678910">+1 234 567 8910</a></p>
-                              <p><a href="mailto:info@orfe.com">info@orfe.com</a></p>
+                              <p><a href="tel:+201030553029">+201030553029</a></p>
+                              <p><a href="mailto:info@orfe-cosmetics.com">info@orfe-cosmetics.com</a></p>
                         </div>
                   </div>
             </div>

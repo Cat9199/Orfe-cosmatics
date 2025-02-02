@@ -44,9 +44,9 @@
 
                               <!-- Price -->
                               <div class="product-price mb-4">
-                                    <span class="fs-3">${{ product.price }}</span>
+                                    <span class="fs-3">L.E{{ product.price }}</span>
                                     {% if product.discount %}
-                                    <del class="text-muted">${{ product.original_price }}</del>
+                                    <del class="text-muted">L.E{{ product.original_price }}</del>
                                     {% endif %}
                               </div>
 
@@ -98,10 +98,17 @@
                                                 </script>
 
                                                 <!-- Add to Cart Button -->
-                                                <button type="submit" id="add-to-cart"
-                                                      class="btn btn-primary btn-lg w-100 w-sm-auto">
-                                                      <span>Add to Cart</span>
-                                                </button>
+                                                <div class="d-flex flex-column flex-sm-row w-100">
+                                                      <button type="submit" name="add-to-cart"
+                                                            class="btn btn-primary btn-lg w-100 w-sm-auto mb-3 mb-sm-0">
+                                                            <span>Add to Cart</span>
+                                                      </button>
+                                                      <button type="submit" name="add-to-cart-checkout"
+                                                            class="btn btn-secondary btn-lg w-100 w-sm-auto ms-sm-3">
+                                                            <span>Add to Cart & Checkout</span>
+                                                      </button>
+
+                                                </div>
 
 
                                           </div>

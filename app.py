@@ -1,16 +1,18 @@
-from flask import Flask, request, jsonify , render_template , redirect , url_for , flash , session , blueprints ,session
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session , send_from_directory , Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 import json
+import requests
+from uuid import uuid4
+from werkzeug.utils import secure_filename
 from models.bosta import BostaService
 
-from werkzeug.utils import secure_filename
-bosta_service = BostaService()
-# this is a shop for cosmatics prand with name orfe
-app = Flask(__name__ , template_folder='templates' , static_folder='static')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
 app.config['SECRET_KEY'] = 'secret-key'
+app.config['FAWATERAK_API_KEY'] = 'a9e5325766195d9e5cb7a340da036646609e8c83690fb3678a'  # Add Fawaterak config
+app.config['FAWATERAK_API_URL'] = 'https://staging.fawaterk.com/api/v2/createInvoiceLink'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = False
@@ -24,6 +26,8 @@ UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = SQLAlchemy(app)
+bosta_service = BostaService()
+
 
 # products and  Category and Card and Order and OrderItem and adintiol images and adintiol data to prodect amd promo code
 class Admins(db.Model):
@@ -101,6 +105,10 @@ class Order(db.Model):
     payment_method = db.Column(db.String(50), nullable=False)
     package_size = db.Column(db.String(20), default='SMALL')
     package_type = db.Column(db.String(20), default='Parcel')
+    invoice_key = db.Column(db.String(100), nullable=True)  # Add Fawaterak fields
+    invoice_id = db.Column(db.String(50), nullable=True)
+    invoice_url = db.Column(db.String(200), nullable=True)
+    payment_status = db.Column(db.String(20), default='pending', nullable=True)
 
 class OrderItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -126,8 +134,10 @@ class Logs(db.Model):
     action = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  
 
-shop = blueprints.Blueprint('shop', __name__)
-admin = blueprints.Blueprint('admin', __name__)
+# create blueprints
+
+shop = Blueprint('shop', __name__)
+admin = Blueprint('admin', __name__)
 
 # check if user have session or not and if not create new session for him time 365 day and save it in db
 def check_session():
@@ -268,7 +278,13 @@ def add_to_cart(product_id):
     db.session.add(cart_item)
     db.session.commit()
     flash('تمت إضافة المنتج إلى السلة بنجاح!', 'success')
-    return redirect(url_for('shop.cart'))
+    
+    # Redirect to cart if "Add to Cart & Checkout" is clicked
+    if 'add-to-cart-checkout' in request.form:
+        return redirect(url_for('shop.cart'))
+    
+    return redirect(url_for('shop.product', product_id=product_id))
+
 @shop.route('/cart/update/<int:item_id>', methods=['POST'])
 def update_cart(item_id):
     user = Gusts.query.filter_by(session=session['session']).first()
@@ -318,70 +334,250 @@ def checkout():
                          total=total,
                          cities=cities)
 from uuid import uuid4
-@shop.route('/checkout/place_order', methods=['POST'])
-def place_order():
-    try:
-        # التحقق من وجود الحقول المطلوبة
-        required_fields = ['name', 'email', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
-        for field in required_fields:
-            if field not in request.form:
-                flash(f'الحقل {field} مطلوب', 'danger')
+def handle_fawaterak_payment(order):
+    customer_name = order.name.strip().split(maxsplit=1)
+    first_name = customer_name[0]
+    last_name = customer_name[1] if len(customer_name) > 1 else 'N/A'
+
+    if not all([first_name, last_name, order.phone]):
+        flash('البيانات الأساسية للعميل غير مكتملة', 'danger')
+        return redirect(url_for('shop.checkout'))
+
+    cart_items = []
+    cart_total = 0.0
+
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    for item in order_items:
+        product = Product.query.get(item.product_id)
+        if product:
+            try:
+                price = float(product.price)
+                quantity = int(item.quantity)
+            except (ValueError, TypeError):
+                flash('خطأ في بيانات المنتج', 'danger')
                 return redirect(url_for('shop.checkout'))
 
-        user = Gusts.query.filter_by(session=session['session']).first()
-        cart_items = Cart.query.filter_by(user_id=user.id).all()
+            cart_items.append({
+                "name": product.name[:255],
+                "price": str(round(price, 2)),
+                "quantity": str(quantity)
+            })
+            cart_total += price * quantity
 
-        if not cart_items:
-            flash('سلة التسوق فارغة', 'danger')
-            return redirect(url_for('shop.cart'))
+    if not cart_items:
+        flash('سلة التسوق فارغة', 'danger')
+        return redirect(url_for('shop.checkout'))
 
-        # التحقق من طريقة الدفع
-        payment_method = request.form['payment_method']
-        if payment_method not in ['cash_on_delivery', 'vodafone_cash']:
-            flash('طريقة الدفع المختارة غير متاحة', 'danger')
+    payload = {
+        "cartTotal": str(round(cart_total, 2)),
+        "currency": "EGP",
+        "customer": {
+            "first_name": first_name[:50],
+            "last_name": last_name[:50],
+            "email": order.email or "no-email@example.com",
+            "phone": ''.join(filter(str.isdigit, order.phone))[:15],
+            "address": order.address[:100] if order.address else "N/A"
+        },
+        "redirectionUrls": {
+            "successUrl": url_for('shop.payment_success', order_id=order.id, _external=True),
+            "failUrl": url_for('shop.payment_fail', order_id=order.id, _external=True),
+            "pendingUrl": url_for('shop.payment_pending', order_id=order.id, _external=True),
+            "webhookUrl": url_for('shop.payment_webhook', _external=True)
+        },
+        "cartItems": cart_items,
+        "sendEmail": False,
+        "sendSMS": False
+    }
+
+    headers = {
+        'Authorization': f'Bearer {app.config["FAWATERAK_API_KEY"]}',
+        'Content-Type': 'application/json'
+    }
+
+    app.logger.debug("Fawaterak Payload:")
+    app.logger.debug(json.dumps(payload, indent=2))
+
+    response = requests.post(
+        app.config['FAWATERAK_API_URL'],
+        headers=headers,
+        json=payload,
+        timeout=10
+    )
+
+    print(response.text)
+    if not response.ok:
+        app.logger.error(f"Fawaterak API Error: {response.status_code} - {response.text}")
+        response.raise_for_status()
+
+    fawaterak_data = response.json()
+    if fawaterak_data.get('status') != 'success':
+        app.logger.error(f"Fawaterak API Error: {fawaterak_data}")
+        flash('فشل في إنشاء فاتورة الدفع', 'danger')
+        return redirect(url_for('shop.checkout'))
+
+    order.invoice_key = fawaterak_data['data']['invoiceKey']
+    order.invoice_id = fawaterak_data['data']['invoiceId']
+    order.invoice_url = fawaterak_data['data']['url']
+    db.session.commit()
+
+    return redirect(fawaterak_data['data']['url'])
+
+
+@shop.route('/checkout/place_order', methods=['POST'])
+def place_order():
+    required_fields = ['name', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
+    for field in required_fields:
+        if field not in request.form:
+            flash(f'الحقل {field} مطلوب', 'danger')
             return redirect(url_for('shop.checkout'))
 
-        # إنشاء مرجع فريد للطلب
-        business_ref = str(uuid4())[:8]
+    user = Gusts.query.filter_by(session=session['session']).first()
+    cart_items = Cart.query.filter_by(user_id=user.id).all()
 
-        # إنشاء سجل الطلب
-        new_order = Order(
-            user_id=user.id,
-            name=request.form['name'],
-            email=request.form['email'],
-            phone=request.form['phone'],
-            address=request.form['address'],
-            city=request.form['city'],
-            zone_id=request.form['zone_id'],
-            district_id=request.form['district_id'],
-            business_reference=business_ref,
-            cod_amount=float(request.form['total']),
-            payment_method=payment_method,  # حفظ طريقة الدفع
-            status='pending'
+    if not cart_items:
+        flash('سلة التسوق فارغة', 'danger')
+        return redirect(url_for('shop.cart'))
+
+    payment_method = request.form['payment_method']
+    if payment_method not in ['cash_on_delivery', 'vodafone_cash', 'visa']:
+        flash('طريقة الدفع المختارة غير متاحة', 'danger')
+        return redirect(url_for('shop.checkout'))
+
+    order = Order(
+        user_id=user.id,
+        name=request.form['name'],
+        email=request.form['email'],
+        phone=request.form['phone'],
+        address=request.form['address'],
+        city=request.form['city'],
+        zone_id=request.form['zone_id'],
+        district_id=request.form['district_id'],
+        cod_amount=float(request.form['total']),
+        payment_method=payment_method,
+        status='pending'
+    )
+    db.session.add(order)
+    db.session.commit()
+
+    for cart_item in cart_items:
+        order_item = OrderItem(
+            order_id=order.id,
+            product_id=cart_item.product_id,
+            quantity=cart_item.quantity
         )
+        db.session.add(order_item)
+        db.session.delete(cart_item)
 
-        db.session.add(new_order)
-        db.session.commit()
+    db.session.commit()
 
-        # إنشاء عناصر الطلب
-        for cart_item in cart_items:
-            order_item = OrderItem(
-                order_id=new_order.id,
-                product_id=cart_item.product_id,
-                quantity=cart_item.quantity
-            )
-            db.session.add(order_item)
-            db.session.delete(cart_item)
+    if payment_method == 'visa':
+        return handle_fawaterak_payment(order)
 
-        db.session.commit()
+    business_ref = str(uuid4())[:8]
+    email = request.form['email'] if request.form['email'] else "test@gmail.com"
 
-        flash('تم إنشاء الطلب بنجاح!', 'success')
-        return redirect(url_for('shop.order_confirmation', order_id=new_order.id))
+    new_order = Order(
+        user_id=user.id,
+        name=request.form['name'],
+        email=email,
+        phone=request.form['phone'],
+        address=request.form['address'],
+        city=request.form['city'],
+        zone_id=request.form['zone_id'],
+        district_id=request.form['district_id'],
+        business_reference=business_ref,
+        cod_amount=float(request.form['total']),
+        payment_method=payment_method,
+        status='pending'
+    )
+
+    db.session.add(new_order)
+    db.session.commit()
+
+    for cart_item in cart_items:
+        order_item = OrderItem(
+            order_id=new_order.id,
+            product_id=cart_item.product_id,
+            quantity=cart_item.quantity
+        )
+        db.session.add(order_item)
+        db.session.delete(cart_item)
+
+    db.session.commit()
+
+    flash('تم إنشاء الطلب بنجاح!', 'success')
+    return redirect(url_for('shop.order_confirmation', order_id=new_order.id))
+
+# order_confirmation
+@shop.route('/order_confirmation')
+def order_confirmation():
+    # get gusts session
+    user = Gusts.query.filter_by(session=session['session']).first()
+    # get order by user id
+    order = Order.query.filter_by(user_id=user.id).first()
+    # get order items by order id
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    for item in order_items:
+        product = Product.query.get(item.product_id)
+        item.product = product
+    return render_template('shop/order_confirmation.html', order=order, order_items=order_items)
+
+# order_detail
+@shop.route('/order_detail/<int:order_id>')
+def order_detail(order_id):
+    order = Order.query.get_or_404(order_id)
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    return render_template('shop/order_detail.html', order=order, order_items=order_items)
+    
+@shop.route('/payment/success/<int:order_id>')
+def payment_success(order_id):
+    order = Order.query.get_or_404(order_id)
+    order.payment_status = 'paid'
+    db.session.commit()
+
+    user = Gusts.query.filter_by(session=session['session']).first()
+    Cart.query.filter_by(user_id=user.id).delete()
+    db.session.commit()
+
+    return render_template('shop/payment_success.html', order=order)
+
+
+@shop.route('/payment/fail/<int:order_id>')
+def payment_fail(order_id):
+    order = Order.query.get_or_404(order_id)
+    order.payment_status = 'failed'
+    db.session.commit()
+    return render_template('shop/payment_fail.html', order=order)
+
+
+@shop.route('/payment/pending/<int:order_id>')
+def payment_pending(order_id):
+    order = Order.query.get_or_404(order_id)
+    order.payment_status = 'pending'
+    db.session.commit()
+    return render_template('shop/payment_pending.html', order=order)
+
+
+@shop.route('/payment/webhook', methods=['POST'])
+def payment_webhook():
+    try:
+        data = request.get_json()
+        invoice_key = data.get('invoiceKey')
+        status = data.get('status')
+
+        order = Order.query.filter_by(invoice_key=invoice_key).first()
+        if order:
+            order.payment_status = status
+            if status == 'paid':
+                user = Gusts.query.get(order.user_id)
+                Cart.query.filter_by(user_id=user.id).delete()
+            db.session.commit()
+            return jsonify({'status': 'success'}), 200
+
+        return jsonify({'status': 'error', 'message': 'Order not found'}), 404
 
     except Exception as e:
-        db.session.rollback()
-        flash(f'حدث خطأ: {str(e)}', 'danger')
-        return redirect(url_for('shop.checkout'))
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 @shop.route('/api/cities')
 def get_cities():
@@ -418,12 +614,27 @@ def cart():
     total = sum(item.Product.price * item.Cart.quantity for item in cart_query_result)
     cart_items = [
         {
-            'product': item.Product,  # Product object from the join
+            'id': item.Cart.id,
+            'product': item.Product, 
             'quantity': item.Cart.quantity
         } for item in cart_query_result
     ]
     return render_template('shop/cart.html', cart_items=cart_items, total=total)
-
+# chang-quantity/plus/1
+@shop.route('/cart/change-quantity/<action>/<int:item_id>')
+def change_quantity(action, item_id):
+    user = Gusts.query.filter_by(session=session['session']).first()
+    cart_item = Cart.query.filter_by(id=item_id, user_id=user.id).first_or_404()
+    
+    if action == 'plus':
+        cart_item.quantity += 1
+    elif action == 'minus':
+        cart_item.quantity -= 1
+        if cart_item.quantity < 1:
+            cart_item.quantity = 1
+    
+    db.session.commit()
+    return redirect(url_for('shop.cart'))
 @admin.route('/')
 def home():
     categories = Category.query.all()
@@ -638,4 +849,4 @@ def internal_server_error(e):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=False)
+    app.run(debug=True)

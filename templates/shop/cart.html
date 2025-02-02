@@ -1,116 +1,61 @@
 {% extends "shop/base.html" %}
 {% block content %}
-
-<section class="hero-section d-flex align-items-center ">
-      <div class="container-fluid">
-            <div class="row">
-                  <div class="hero-content align-items-center">
-                        <h1 class="display-1">Cart</h1>
-                        <div class="breadcrumbs">
-                              <span class="item">
-                                    <a href="{{ url_for('shop.home') }}">Home /</a>
-                              </span>
-                              <span class="item">
-                                    <a href="{{ url_for('shop.list') }}">Shop /</a>
-                              </span>
-                              <span class="item">Cart</span>
-                        </div>
-                  </div>
+<section class="hero-section d-flex align-items-center text-center">
+      <div class="container">
+            <h1 class="display-4">Cart</h1>
+            <div class="breadcrumbs">
+                  <a href="{{ url_for('shop.home') }}">Home</a> /
+                  <a href="{{ url_for('shop.list') }}">Shop</a> /
+                  <span>Cart</span>
             </div>
       </div>
 </section>
 
 <section class="py-5">
-      <div class="container-fluid">
+      <div class="container">
             <div class="row">
-                  <div class="col-lg-8 col-md-12 mb-5">
+                  <div class="col-lg-8 col-md-12 mb-4">
                         <div class="cart-table">
                               {% if cart_items %}
-                              <div class="cart-header">
-                                    <div class="d-flex justify-content-between">
-                                          <h6
-                                                class="cart-title text-capitalize text-muted col-lg-4 col-md-4 col-sm-4 pb-3">
-                                                Product</h6>
-                                          <h6
-                                                class="cart-title text-capitalize text-muted col-lg-4 col-md-4 col-sm-4 pb-3">
-                                                Quantity</h6>
-                                          <h6
-                                                class="cart-title text-capitalize text-muted col-lg-4 col-md-4 col-sm-4 pb-3">
-                                                Subtotal</h6>
-                                    </div>
+                              <div class="cart-header d-none d-md-flex justify-content-between pb-3 text-muted">
+                                    <span class="col-md-4">Product</span>
+                                    <span class="col-md-4 text-center">Quantity</span>
+                                    <span class="col-md-4 text-end">Subtotal</span>
                               </div>
 
                               {% for item in cart_items %}
-                              <div class="cart-item border-top border-bottom py-5" data-item-id="{{ item.id }}">
+                              <div class="cart-item border-top py-4">
                                     <div class="row align-items-center">
-                                          <div class="col-lg-4 col-md-3 col-sm-3">
-                                                <!-- Product Image and Details -->
-                                                <div class="product-details d-flex align-items-center">
-                                                      <div class="product-image me-3">
-                                                            <img src="{{  item.product.image }}"
-                                                                  alt="{{ item.product.name }}"
-                                                                  class="img-fluid  rounded">
-                                                      </div>
-                                                      <div class="product-title">
-                                                            <h6 class="text-dark">{{ item.product.name }}</h6>
-                                                            <span class="text-muted
-                                                                  text-capitalize">{{ item.product.category.name
-                                                                  }}</span>
-
-
-                                                      </div>
-                                                </div>
+                                          <div class="col-4 text-center">
+                                                <img src="{{ item.product.image }}" class="img-fluid rounded"
+                                                      style="max-width: 80px;">
                                           </div>
-                                          <div class="col-lg-7 col-md-7 col-sm-7">
-                                                <!-- Quantity and Price -->
-                                                <div class="row d-flex align-items-center">
-                                                      <div class="col-lg-6 col-md-6 col-sm-6">
-                                                            <div class="input-group product-qty me-3"
-                                                                  style="max-width: 150px;">
-                                                                  <select id="quantity-{{ item.id }}"
-                                                                        class="form-select text-center">
-                                                                        {% for i in range(1,
-                                                                        item.product.stock + 1) %}
-                                                                        <option value="{{ i }}" {% if i==item.quantity
-                                                                              %}selected{% endif %}>
-                                                                              {{ i }}
-                                                                        </option>
-                                                                        {% endfor %}
-                                                                  </select>
-                                                            </div>
-                                                      </div>
-                                                      <div class="col-lg-6 col-md-6 col-sm-6">
-                                                            <div class="total-price py-3">
-                                                                  <span class="money text-dark fw-bold"
-                                                                        id="subtotal-{{ item.id }}">
-                                                                        {{
-                                                                        "%.2f"|format(item.product.price
-                                                                        *
-                                                                        item.quantity) }} L.E
-                                                                  </span>
-                                                            </div>
-                                                      </div>
+                                          <div class="col-8">
+                                                <h6 class="text-dark mb-1">{{ item.product.name }}</h6>
+                                                <span class="text-muted">{{ item.product.category.name }}</span>
+                                                <div class="d-flex align-items-center mt-2">
+                                                      <button class="btn btn-outline-secondary btn-sm"
+                                                            onclick="location.href='/cart/change-quantity/minus/{{ item.id }}'">-</button>
+                                                      <input type="number" class="form-control text-center mx-2"
+                                                            style="max-width: 50px;" value="{{ item.quantity }}" min="1"
+                                                            max="{{ item.product.stock }}">
+                                                      <button class="btn btn-outline-secondary btn-sm"
+                                                            onclick="location.href='/cart/change-quantity/plus/{{ item.id }}'">+</button>
                                                 </div>
-                                          </div>
-                                          <div class="col-lg-1 col-md-2 col-sm-1">
-                                                <div class="cart-remove">
-                                                      <a href="" class="text-danger"
-                                                            onclick="return confirm('Are you sure?')">
-                                                            <i class="bi bi-trash fs-5"></i>
-                                                      </a>
-                                                </div>
+                                                <div class="text-dark fw-bold mt-2">{{ "%.2f"|format(item.product.price
+                                                      * item.quantity) }} L.E</div>
+                                                <a href="/cart/remove/{{ item.id }}"
+                                                      class="text-danger d-block mt-2">Remove</a>
                                           </div>
                                     </div>
                               </div>
-
                               {% endfor %}
 
                               {% else %}
-                              <div class="empty-cart text-center py-5">
+                              <div class="text-center py-5">
                                     <i class="bi bi-cart-x display-1 text-muted"></i>
                                     <h3 class="my-4">Your cart is empty</h3>
-                                    <a href="{{ url_for('shop.list') }}" class="btn btn-primary px-5">Start
-                                          Shopping</a>
+                                    <a href="{{ url_for('shop.list') }}" class="btn btn-primary">Start Shopping</a>
                               </div>
                               {% endif %}
                         </div>
@@ -118,45 +63,26 @@
 
                   {% if cart_items %}
                   <div class="col-lg-4 col-md-12">
-                        <div class="cart-totals bg-light p-4 rounded-3 shadow-sm">
+                        <div class="bg-light p-4 rounded-3 shadow-sm">
                               <h4 class="text-dark pb-3 border-bottom">Cart Total</h4>
-                              <div class="total-price py-4">
-                                    <table class="table">
-                                          <tbody>
-                                                <tr class="subtotal pt-2 pb-2">
-                                                      <th>Subtotal</th>
-                                                      <td class="text-end">
-                                                            <span class="price-amount text-dark fw-bold"
-                                                                  id="cart-subtotal">
-                                                                  {{ "%.2f"|format(total) }} L.E
-                                                            </span>
-                                                      </td>
-                                                </tr>
-                                                <tr class="shipping pt-2 pb-2">
-                                                      <th>Shipping</th>
-                                                      <td class="text-end text-muted" onclick="">Calculated at
-                                                            checkout
-                                                      </td>
-                                                </tr>
-                                                <tr class="total pt-2 pb-2 border-top">
-                                                      <th>Total</th>
-                                                      <td class="text-end">
-                                                            <span class="price-amount text-dark fw-bold"
-                                                                  id="cart-total">
-                                                                  {{ "%.2f"|format(total) }} L.E
-                                                            </span>
-                                                      </td>
-                                                </tr>
-                                          </tbody>
-                                    </table>
-                              </div>
-                              <div class="button-wrap">
-                                    <a href="{{ url_for('shop.list') }}"
-                                          class="btn btn-outline-dark w-100 mb-3">Continue
-                                          Shopping</a>
-                                    <a href="{{ url_for('shop.checkout') }}" class="btn btn-dark w-100">Proceed to
-                                          Checkout</a>
-                              </div>
+                              <table class="table">
+                                    <tr>
+                                          <th>Subtotal</th>
+                                          <td class="text-end fw-bold">{{ "%.2f"|format(total) }} L.E</td>
+                                    </tr>
+                                    <tr>
+                                          <th>Shipping</th>
+                                          <td class="text-end text-muted">Calculated at checkout</td>
+                                    </tr>
+                                    <tr class="border-top">
+                                          <th>Total</th>
+                                          <td class="text-end fw-bold">{{ "%.2f"|format(total) }} L.E</td>
+                                    </tr>
+                              </table>
+                              <a href="{{ url_for('shop.list') }}" class="btn btn-outline-dark w-100 mb-3">Continue
+                                    Shopping</a>
+                              <a href="{{ url_for('shop.checkout') }}" class="btn btn-dark w-100">Proceed to
+                                    Checkout</a>
                         </div>
                   </div>
                   {% endif %}
@@ -164,101 +90,5 @@
       </div>
 </section>
 
-<script>
-      document.addEventListener('DOMContentLoaded', function () {
 
-            // Function to update the quantity and total price
-            function updateQuantity(itemId, delta) {
-                  const quantityInput = document.getElementById(`quantity-${itemId}`);
-                  if (!quantityInput) {
-                        console.error(`Quantity input for item with ID ${itemId} not found.`);
-                        return;
-                  }
-
-                  const currentQuantity = parseInt(quantityInput.value);
-                  const newQuantity = currentQuantity + delta;
-
-                  if (newQuantity >= 1) {
-                        quantityInput.value = newQuantity;
-
-                        // Send request to backend to update cart
-                        fetch(`/cart/update/${itemId}`, {
-                              method: 'POST',
-                              headers: {
-                                    'Content-Type': 'application/json',
-                              },
-                              body: JSON.stringify({ quantity: newQuantity })
-                        })
-                              .then(response => response.json())
-                              .then(data => {
-                                    if (data.success) {
-                                          // Update subtotal for this item
-                                          const subtotalElement = document.getElementById(`subtotal-${itemId}`);
-                                          if (subtotalElement) {
-                                                subtotalElement.textContent = `${data.new_total.toFixed(2)} L.E`;
-                                          }
-
-                                          // Update total cart price
-                                          const totalElement = document.getElementById('cart-total');
-                                          if (totalElement) {
-                                                totalElement.textContent = `${data.new_subtotal.toFixed(2)} L.E`;
-                                          }
-                                    } else {
-                                          alert(data.message);
-                                    }
-                              })
-                              .catch(error => {
-                                    console.error('Error:', error);
-                                    alert('حدث خطأ يرجى المحاولة لاحقًا');
-                              });
-                  }
-            }
-
-            // Adding event listeners for quantity change buttons
-            document.querySelectorAll('.product-qty button').forEach(button => {
-                  button.addEventListener('click', function () {
-                        // Extract itemId from the closest .cart-item data-item-id attribute
-                        const itemId = this.closest('.cart-item').dataset.itemId;
-
-                        // Determine action based on button text (decrease or increase)
-                        const action = this.getAttribute('data-action');
-                        const delta = (action === 'increase') ? 1 : -1;
-
-                        updateQuantity(itemId, delta);
-                  });
-            });
-
-            // Handling removal of an item from the cart
-            document.querySelectorAll('.cart-remove a').forEach(link => {
-                  link.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        const itemId = this.closest('.cart-item').dataset.itemId;
-
-                        if (confirm('Are you sure you want to remove this item?')) {
-                              fetch(`/cart/remove/${itemId}`)
-                                    .then(response => {
-                                          if (response.ok) {
-                                                // Remove item from the DOM
-                                                this.closest('.cart-item').remove();
-
-                                                // Update the total price
-                                                const totalElement = document.getElementById('cart-total');
-                                                const newTotal = parseFloat(totalElement.textContent) - parseFloat(document.getElementById(`subtotal-${itemId}`).textContent);
-                                                totalElement.textContent = `${newTotal.toFixed(2)} L.E`;
-                                          } else {
-                                                alert('Failed to remove item.');
-                                          }
-                                    })
-                                    .catch(error => {
-                                          console.error('Error:', error);
-                                          alert('حدث خطأ يرجى المحاولة لاحقًا');
-                                    });
-                        }
-                  });
-            });
-
-      });
-
-
-</script>
 {% endblock %}

@@ -29,7 +29,6 @@ class BostaService:
             url = f"{self.base_url}/cities/{city_id}/districts"
             headers = {"Authorization": self.api_key}
             response = requests.get(url, headers=headers)
-            print(response.json())
             response.raise_for_status()
             return response.json().get('data', [])
       

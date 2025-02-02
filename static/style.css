@@ -26,7 +26,7 @@ CSS STRUCTURE:
   --accent-color: #0d0d0d;
   --bs-gray-100: #f3f3f3;
   --bs-gray-200: #e7e5e2;
-  --bs-primary: #bc5758;
+  --bs-primary: #292f2b;
   --bs-secondary: #f6f5f2;
   --bs-primary-rgb: 112, 66, 4;
   --bs-body-bg-rgb: 253, 254, 255;
@@ -34,8 +34,8 @@ CSS STRUCTURE:
   --bs-dark: #000;
   --bs-dark-rgb: 38, 38, 38;
   --navbar-color-color: #131814;
-  --swiper-theme-color: #bc5758 !important;
-  --swiper-pagination-color: #bc5758 !important;
+  --swiper-theme-color: #292f2b !important;
+  --swiper-pagination-color: #292f2b !important;
 }
 
 /* on mobile devices below 600px
