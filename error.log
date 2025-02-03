@@ -1,0 +1,88 @@
+[2025-02-02 11:15:24 +0000] [1362424] [INFO] Starting gunicorn 21.2.0
+[2025-02-02 11:15:24 +0000] [1362424] [INFO] Listening at: http://127.0.0.1:1305 (1362424)
+[2025-02-02 11:15:24 +0000] [1362424] [INFO] Using worker: sync
+[2025-02-02 11:15:24 +0000] [1362425] [INFO] Booting worker with pid: 1362425
+[2025-02-02 11:15:24 +0000] [1362426] [INFO] Booting worker with pid: 1362426
+[2025-02-02 11:15:24 +0000] [1362427] [INFO] Booting worker with pid: 1362427
+[2025-02-02 11:15:24 +0000] [1362428] [INFO] Booting worker with pid: 1362428
+[2025-02-02 11:15:24 +0000] [1362429] [INFO] Booting worker with pid: 1362429
+[2025-02-02 11:15:24 +0000] [1362431] [INFO] Booting worker with pid: 1362431
+[2025-02-02 15:36:09 +0000] [1362425] [INFO] Worker exiting (pid: 1362425)
+[2025-02-02 15:36:09 +0000] [1362426] [INFO] Worker exiting (pid: 1362426)
+[2025-02-02 15:36:09 +0000] [1362424] [INFO] Handling signal: term
+[2025-02-02 15:36:09 +0000] [1362427] [INFO] Worker exiting (pid: 1362427)
+[2025-02-02 15:36:09 +0000] [1362429] [INFO] Worker exiting (pid: 1362429)
+[2025-02-02 15:36:09 +0000] [1362431] [INFO] Worker exiting (pid: 1362431)
+[2025-02-02 15:36:09 +0000] [1362428] [INFO] Worker exiting (pid: 1362428)
+[2025-02-02 15:36:09 +0000] [1362424] [ERROR] Worker (pid:1362426) was sent SIGTERM!
+[2025-02-02 15:36:09 +0000] [1362424] [INFO] Shutting down: Master
+[2025-02-02 15:36:11 +0000] [1404859] [INFO] Starting gunicorn 21.2.0
+[2025-02-02 15:36:11 +0000] [1404859] [INFO] Listening at: http://127.0.0.1:1305 (1404859)
+[2025-02-02 15:36:11 +0000] [1404859] [INFO] Using worker: sync
+[2025-02-02 15:36:11 +0000] [1404860] [INFO] Booting worker with pid: 1404860
+[2025-02-02 15:36:11 +0000] [1404861] [INFO] Booting worker with pid: 1404861
+[2025-02-02 15:36:11 +0000] [1404862] [INFO] Booting worker with pid: 1404862
+[2025-02-02 15:36:11 +0000] [1404863] [INFO] Booting worker with pid: 1404863
+[2025-02-02 15:36:11 +0000] [1404864] [INFO] Booting worker with pid: 1404864
+[2025-02-02 15:36:11 +0000] [1404865] [INFO] Booting worker with pid: 1404865
+[2025-02-03 08:26:53,743] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 207, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-03 08:26:53 +0000] [1404861] [ERROR] Socket error processing request.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 207, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/sync.py", line 193, in handle_request
+    util.reraise(*sys.exc_info())
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 641, in reraise
+    raise value
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 823, in handle_exception
+    server_error = self.ensure_sync(handler)(server_error)
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 848, in internal_server_error
+    return render_template("500.html"), 500
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 500.html
