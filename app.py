@@ -11,8 +11,8 @@ from models.bosta import BostaService
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
 app.config['SECRET_KEY'] = 'secret-key'
-app.config['FAWATERAK_API_KEY'] = 'a9e5325766195d9e5cb7a340da036646609e8c83690fb3678a'  # Add Fawaterak config
-app.config['FAWATERAK_API_URL'] = 'https://staging.fawaterk.com/api/v2/createInvoiceLink'
+app.config['FAWATERAK_API_KEY'] = 'a9e5325766195d9e5cb7a340da036646609e8c83690fb3678a'
+app.config['FAWATERAK_API_URL'] = 'https://app.fawaterk.com/api/v2/createInvoiceLink'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = False
@@ -116,6 +116,7 @@ class OrderItem(db.Model):
     product_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    
 class PromoCode(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(100), nullable=False)
@@ -523,12 +524,18 @@ def order_confirmation():
     return render_template('shop/order_confirmation.html', order=order, order_items=order_items)
 
 # order_detail
-@shop.route('/order_detail/<int:order_id>')
-def order_detail(order_id):
-    order = Order.query.get_or_404(order_id)
+@shop.route('/order_detail')
+def order_detail():
+    # get gusts session
+    user = Gusts.query.filter_by(session=session['session']).first()
+    # get order by user id
+    order = Order.query.filter_by(user_id=user.id).first()
+    # get order items by order id
     order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    for item in order_items:
+        product = Product.query.get(item.product_id)
+        item.product = product
     return render_template('shop/order_detail.html', order=order, order_items=order_items)
-    
 @shop.route('/payment/success/<int:order_id>')
 def payment_success(order_id):
     order = Order.query.get_or_404(order_id)
