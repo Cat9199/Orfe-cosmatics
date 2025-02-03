@@ -116,7 +116,7 @@ class OrderItem(db.Model):
     product_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    
+
 class PromoCode(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(100), nullable=False)
@@ -642,89 +642,136 @@ def change_quantity(action, item_id):
     
     db.session.commit()
     return redirect(url_for('shop.cart'))
+# admin log in
+@admin.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        is_admin_created = Admins.query.first()
+        if not is_admin_created:
+            new_admin = Admins(
+                name='Admin',
+                email="orfecosmetics@gmail.com",
+                password="Orfe196196",
+            )
+            db.session.add(new_admin)
+            db.session.commit()
+            flash('تم إنشاء حساب المشرف بنجاح!', 'success')
+        email = request.form['username']
+        password = request.form['password']
+        admin = Admins.query.filter_by(email=email, password=password).first()
+        if admin:
+            session['admin'] = admin.id
+            admin.last_login = datetime.utcnow()
+            db.session.commit()
+            return redirect("/admin")
+        flash('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'danger')
+    return render_template('admin/login.html')
+
+from functools import wraps
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'admin' not in session:
+            return redirect(url_for('admin.login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+@admin.route('/logout')
+def logout():
+    session.pop('admin')
+    return redirect(url_for('admin.login'))
+
 @admin.route('/')
+@admin_required
 def home():
     categories = Category.query.all()
     return render_template('admin/index.html', categories=categories)
 
 @admin.route('/add_product', methods=['POST'])
+@admin_required
 def add_product():
     try:
-      name = request.form['name']
-      description = request.form['description']
-      price = float(request.form['price'])
-      discount = float(request.form.get('discount', 0))  # Optional
-      stock = int(request.form['quantity'])
-      category_id = int(request.form['category'])
+        name = request.form['name']
+        description = request.form['description']
+        price = float(request.form['price'])
+        discount = float(request.form.get('discount', 0))  # Optional
+        stock = int(request.form['quantity'])
+        category_id = int(request.form['category'])
 
-      # Handle Main Product Image
-      image_file = request.files['image']
-      if image_file and image_file.filename != '':
-        filename = secure_filename(image_file.filename)
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        image_file.save(image_path)
-      else:
-        flash('الصورة الرئيسية مطلوبة!', 'error')
+        # Handle Main Product Image
+        image_file = request.files['image']
+        if image_file and image_file.filename != '':
+            filename = secure_filename(image_file.filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image_file.save(image_path)
+        else:
+            flash('الصورة الرئيسية مطلوبة!', 'error')
+            return redirect(request.referrer)
+
+        # Create Product
+        new_product = Product(
+            name=name,
+            description=description,
+            price=price,
+            discount=discount,
+            stock=stock,
+            image=image_path,
+            category_id=category_id
+        )
+        db.session.add(new_product)
+        db.session.commit()
+
+        # Handle Additional Images
+        additional_images = request.files.getlist('additional_images')
+        for file in additional_images:
+            if file and file.filename != '':
+                filename = secure_filename(file.filename)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(image_path)
+
+                # Add image to AdditionalImage table
+                additional_image = AdditionalImage(
+                    image=image_path,
+                    product_id=new_product.id
+                )
+                db.session.add(additional_image)
+
+        db.session.commit()
+        flash('تمت إضافة المنتج بنجاح!', 'success')
+        return redirect(url_for('dashboard'))  # Update with your actual dashboard route
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+        flash('حدث خطأ أثناء إضافة المنتج!', 'error')
         return redirect(request.referrer)
 
-      # Create Product
-      new_product = Product(
-        name=name,
-        description=description,
-        price=price,
-        discount=discount,
-        stock=stock,
-        image=image_path,
-        category_id=category_id
-      )
-      db.session.add(new_product)
-      db.session.commit()
-
-      # Handle Additional Images
-      additional_images = request.files.getlist('additional_images')
-      for file in additional_images:
-        if file and file.filename != '':
-            filename = secure_filename(file.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(image_path)
-
-            # Add image to AdditionalImage table
-            additional_image = AdditionalImage(
-              image=image_path,
-              product_id=new_product.id
-            )
-            db.session.add(additional_image)
-
-      db.session.commit()
-      flash('تمت إضافة المنتج بنجاح!', 'success')
-      return redirect(url_for('dashboard'))  # Update with your actual dashboard route
-
-    except Exception as e:
-      db.session.rollback()
-      print(f"Error: {e}")
-      flash('حدث خطأ أثناء إضافة المنتج!', 'error')
-      return redirect(request.referrer)
 @admin.route('/add_category', methods=['POST'])
+@admin_required
 def add_category():
     try:
-      name = request.form['name']
-      new_category = Category(name=name)
-      db.session.add(new_category)
-      db.session.commit()
-      flash('تمت إضافة القسم بنجاح!', 'success')
-      return redirect(request.referrer)
+        name = request.form['name']
+        new_category = Category(name=name)
+        db.session.add(new_category)
+        db.session.commit()
+        flash('تمت إضافة القسم بنجاح!', 'success')
+        return redirect(request.referrer)
 
     except Exception as e:
-      db.session.rollback()
-      print(f"Error: {e}")
-      flash('حدث خطأ أثناء إضافة القسم!', 'error')
-      return redirect(request.referrer)
+        db.session.rollback()
+        print(f"Error: {e}")
+        flash('حدث خطأ أثناء إضافة القسم!', 'error')
+        return redirect(request.referrer)
+
 @admin.route('/products')
+@admin_required
 def products():
     products = Product.query.all()
     categories = Category.query.all()
     return render_template('admin/products.html', products=products, categories=categories)
+
 @admin.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
+@admin_required
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
     additional_images = AdditionalImage.query.filter_by(product_id=product_id).all()
@@ -738,7 +785,9 @@ def delete_product(product_id):
     db.session.commit()
     flash('تم حذف المنتج بنجاح!', 'success')
     return redirect(url_for('admin.products'))
+
 @admin.route('/edit_product/<int:product_id>', methods=['POST'])
+@admin_required
 def edit_product(product_id):
     product = Product.query.get_or_404(product_id)
     try:
@@ -771,41 +820,49 @@ def edit_product(product_id):
         flash('حدث خطأ أثناء تعديل المنتج!', 'error')
     return redirect(url_for('admin.products'))
 
-# categories
 @admin.route('/categories', methods=['GET', 'POST'])
+@admin_required
 def categories():
     categories = Category.query.all()
     return render_template('admin/categories.html', categories=categories)
+
 @admin.route('/delete_category/<int:category_id>', methods=['POST'])
+@admin_required
 def delete_category(category_id):
     category = Category.query.get_or_404(category_id)
     db.session.delete(category)
     db.session.commit()
     flash('تم حذف القسم بنجاح!', 'success')
     return redirect(url_for('admin.categories'))
+
 @admin.route('/edit_category/<int:category_id>', methods=['POST'])
+@admin_required
 def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
     try:
-      if 'name' in request.form and request.form['name']:
-        category.name = request.form['name']
-      db.session.commit()
-      flash('تم تعديل القسم بنجاح!', 'success')
+        if 'name' in request.form and request.form['name']:
+            category.name = request.form['name']
+        db.session.commit()
+        flash('تم تعديل القسم بنجاح!', 'success')
     except Exception as e:
-      db.session.rollback()
-      print(f"Error: {e}")
-      flash('حدث خطأ أثناء تعديل القسم!', 'error')
+        db.session.rollback()
+        print(f"Error: {e}")
+        flash('حدث خطأ أثناء تعديل القسم!', 'error')
     return redirect(url_for('admin.categories'))
-# admin shipping
+
 @admin.route('/shipping')
+@admin_required
 def shipping():
     return render_template('admin/shipping.html')
+
 @admin.route('/orders')
+@admin_required
 def orders():
     orders = Order.query.all()
     return render_template('admin/orders.html', orders=orders)
 
 @admin.route('/order/<int:order_id>')
+@admin_required
 def order_detail(order_id):
     # Get the order record or return a 404 if not found
     order = Order.query.get_or_404(order_id)
@@ -851,8 +908,7 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    # Optionally, add: db.session.rollback() if you are using SQLAlchemy
-    return render_template("500.html"), 500
+    return render_template("shop/500.html"), 500
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
