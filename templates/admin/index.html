@@ -1,78 +1,170 @@
-{% extends 'admin/base.html' %} {% block content %}
-<div class="container mx-auto px-4 py-5">
-      <!-- Cards Section -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-            <!-- Each card has a unique color and icon -->
-            <div class="bg-blue-500 text-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center">
-                  <i class="bx bx-package text-3xl"></i>
-                  <h2 class="text-xl font-semibold mt-3">مجموع المنتجات</h2>
-                  <p class="text-lg">1</p>
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+      <!-- Quick Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Products -->
+            <div class="bg-white rounded-xl shadow-sm p-6 flex items-center gap-4">
+                  <div class="p-3 bg-rose-100 text-rose-600 rounded-lg">
+                        <i class='bx bx-package text-2xl'></i>
+                  </div>
+                  <div>
+                        <div class="text-gray-500">إجمالي المنتجات</div>
+                        <div class="text-2xl font-bold">{{ products_count }}</div>
+                  </div>
             </div>
-            <div class="bg-green-500 text-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center">
-                  <i class="bx bx-cart text-3xl"></i>
-                  <h2 class="text-xl font-semibold mt-3">مجموع الطلبات</h2>
-                  <p class="text-lg">1</p>
+
+            <!-- Total Orders -->
+            <div class="bg-white rounded-xl shadow-sm p-6 flex items-center gap-4">
+                  <div class="p-3 bg-blue-100 text-blue-600 rounded-lg">
+                        <i class='bx bx-cart text-2xl'></i>
+                  </div>
+                  <div>
+                        <div class="text-gray-500">إجمالي الطلبات</div>
+                        <div class="text-2xl font-bold">{{ orders_count }}</div>
+                  </div>
             </div>
-            <div class="bg-yellow-500 text-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center">
-                  <i class="bx bx-dollar text-3xl"></i>
-                  <h2 class="text-xl font-semibold mt-3">إجمالي الإيرادات</h2>
-                  <p class="text-lg">1</p>
+
+            <!-- Total Revenue -->
+            <div class="bg-white rounded-xl shadow-sm p-6 flex items-center gap-4">
+                  <div class="p-3 bg-green-100 text-green-600 rounded-lg">
+                        <i class='bx bx-dollar text-2xl'></i>
+                  </div>
+                  <div>
+                        <div class="text-gray-500">إجمالي الإيرادات</div>
+                        <div class="text-2xl font-bold">{{ total_revenue|currency }}</div>
+                  </div>
             </div>
-            <div class="bg-red-500 text-white rounded-lg shadow-lg p-4 flex flex-col items-center justify-center">
-                  <i class="bx bx-user text-3xl"></i>
-                  <h2 class="text-xl font-semibold mt-3">عدد العملاء</h2>
-                  <p class="text-lg">1</p>
+
+            <!-- Total Customers -->
+            <div class="bg-white rounded-xl shadow-sm p-6 flex items-center gap-4">
+                  <div class="p-3 bg-purple-100 text-purple-600 rounded-lg">
+                        <i class='bx bx-user text-2xl'></i>
+                  </div>
+                  <div>
+                        <div class="text-gray-500">عدد العملاء</div>
+                        <div class="text-2xl font-bold">{{ customers_count }}</div>
+                  </div>
             </div>
       </div>
 
-      <!-- Table Section -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-            <table class="w-full table-auto border-collapse">
-                  <thead>
-                        <tr class="bg-gray-200 text-gray-600">
-                              <th class="px-4 py-2 text-xs font-semibold border">العنوان</th>
-                              <th class="px-4 py-2 text-xs font-semibold border">الفئة</th>
-                              <th class="px-4 py-2 text-xs font-semibold border">التاريخ</th>
-                              <th class="px-4 py-2 text-xs font-semibold border">المشاهدات</th>
-                              <th class="px-4 py-2 text-xs font-semibold border">الحالة</th>
-                              <th class="px-4 py-2 text-xs font-semibold border">التحكم</th>
-                        </tr>
-                  </thead>
-                  <tbody>
-                        {% for post in latest_table_posts %}
-                        <tr class="whitespace-no-wrap text-gray-800">
-                              <td class="px-4 py-2 text-sm border">{{ post.title }}</td>
-                              <td class="px-4 py-2 text-sm border">{{ post.category }}</td>
-                              <td class="px-4 py-2 text-sm border">{{ post.created_at.strftime('%Y-%m-%d') }}</td>
-                              <td class="px-4 py-2 text-sm border">{{ post.views }}</td>
-                              <td class="px-4 py-2 text-sm border">{{ post.status }}</td>
+      <!-- Recent Orders Section -->
+      <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-xl font-bold">أحدث الطلبات</h2>
+                  <a href="/admin/orders" class="text-rose-600 hover:text-rose-800">
+                        عرض الكل <i class='bx bx-chevron-left'></i>
+                  </a>
+            </div>
 
+            <div class="overflow-x-auto">
+                  <table class="w-full">
+                        <thead class="bg-gray-50">
+                              <tr class="text-sm text-gray-500">
+                                    <th class="px-4 py-3 text-right">رقم الطلب</th>
+                                    <th class="px-4 py-3 text-center">العميل</th>
+                                    <th class="px-4 py-3 text-center">القيمة</th>
+                                    <th class="px-4 py-3 text-center">الحالة</th>
+                                    <th class="px-4 py-3 text-center">التاريخ</th>
+                                    <th class="px-4 py-3 text-center">الإجراءات</th>
+                              </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                              {% for order in recent_orders %}
+                              <tr class="text-sm hover:bg-gray-50 transition-colors">
+                                    <td class="px-4 py-3 text-right">#{{ order.id }}</td>
+                                    <td class="px-4 py-3 text-center">{{ order.name }}</td>
+                                    <td class="px-4 py-3 text-center">{{ order.cod_amount|currency }}</td>
+                                    <td class="px-4 py-3 text-center">
+                                          <span class="px-2 py-1 rounded-full text-sm 
+                                {% if order.status == 'completed' %}bg-green-100 text-green-700
+                                {% elif order.status == 'pending' %}bg-yellow-100 text-yellow-700
+                                {% else %}bg-red-100 text-red-700{% endif %}">
+                                                {{ order.status }}
+                                          </span>
+                                    </td>
+                                    <td class="px-4 py-3 text-center">{{ order.created_at|date_format }}</td>
+                                    <td class="px-4 py-3 text-center">
+                                          <a href="/admin/order/{{ order.id }}"
+                                                class="text-rose-600 hover:text-rose-800 p-1">
+                                                <i class='bx bx-show'></i>
+                                          </a>
+                                    </td>
+                              </tr>
+                              {% endfor %}
+                        </tbody>
+                  </table>
+            </div>
+      </div>
 
-                              <td class="px-4 py-2 text-sm border text-center">
-                                    <div class="flex justify-center space-x-2">
-                                          <a href="{{ url_for('admin.post', id=post.id) }}"
-                                                class="text-green-500 hover:text-green-700 transition duration-300 flex items-center space-x-1">
-                                                <i class="bx bx-show"></i>
-                                                <span>عرض</span>
-                                          </a>
-                                          <a href="{{ url_for('admin.edit_post', id=post.id) }}"
-                                                class="text-blue-500 hover:text-blue-700 transition duration-300 flex items-center space-x-1">
-                                                <i class="bx bx-edit"></i>
-                                                <span>تعديل</span>
-                                          </a>
-                                          <a href="{{ url_for('admin.delete_post', id=post.id) }}"
-                                                onclick="return confirm('هل أنت متأكد من حذف المقالة؟')"
-                                                class="text-red-500 hover:text-red-700 transition duration-300 flex items-center space-x-1">
-                                                <i class="bx bx-trash"></i>
-                                                <span>حذف</span>
-                                          </a>
-                                    </div>
-                              </td>
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Orders Chart -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                  <h3 class="text-lg font-bold mb-4">إحصائيات الطلبات</h3>
+                  <canvas id="ordersChart" class="w-full h-64"></canvas>
+            </div>
 
-                        </tr>
-                        {% endfor %}
-                  </tbody>
-            </table>
+            <!-- Revenue Chart -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                  <h3 class="text-lg font-bold mb-4">الإيرادات الشهرية</h3>
+                  <canvas id="revenueChart" class="w-full h-64"></canvas>
+            </div>
       </div>
 </div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+      // Orders Chart
+      const ordersCtx = document.getElementById('ordersChart').getContext('2d');
+      new Chart(ordersCtx, {
+            type: 'line',
+            data: {
+                  labels: {{ orders_chart.labels | tojson }},
+            datasets: [{
+                  label: 'الطلبات',
+                  data: {{ orders_chart.data | tojson }},
+            borderColor: '#f43f5e',
+            backgroundColor: '#f43f5e10',
+            fill: true
+            }]
+        },
+            options: {
+            responsive: true,
+            plugins: {
+                  legend: { display: false }
+            },
+            scales: {
+                  y: { beginAtZero: true }
+            }
+      }
+    });
+
+      // Revenue Chart
+      const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+      new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                  labels: {{ revenue_chart.labels | tojson }},
+            datasets: [{
+                  label: 'الإيرادات',
+                  data: {{ revenue_chart.data | tojson }},
+            backgroundColor: '#10b981',
+            borderColor: '#10b981',
+            borderWidth: 1
+            }]
+        },
+            options: {
+            responsive: true,
+            plugins: {
+                  legend: { display: false }
+            },
+            scales: {
+                  y: { beginAtZero: true }
+            }
+      }
+    });
+</script>
 {% endblock %}

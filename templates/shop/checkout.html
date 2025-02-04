@@ -51,7 +51,7 @@
                                                 <select class="form-select" id="city" name="city" required>
                                                       <option value="">اختر المدينة</option>
                                                       {% for city in cities %}
-                                                      <option value="{{ city._id }}">{{ city.nameAr }}</option>
+                                                      <option value="{{ city.city_id }}">{{ city.name }}</option>
                                                       {% endfor %}
                                                 </select>
                                           </div>
@@ -175,12 +175,13 @@
             const zoneSelect = document.getElementById('zone');
             zoneSelect.disabled = false;
             const response = await fetch(`/api/zones?city_id=${cityId}`);
-            const zones = await response.json();
+            const data = await response.json();
+            const zones = data.zones;
             zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
             zones.forEach(zone => {
                   const option = document.createElement('option');
-                  option.value = zone._id;
-                  option.textContent = zone.nameAr;
+                  option.value = zone.name;
+                  option.textContent = zone.name;
                   zoneSelect.appendChild(option);
             });
       });
@@ -191,12 +192,13 @@
             const districtSelect = document.getElementById('district');
             districtSelect.disabled = false;
             const response = await fetch(`/api/districts?city_id=${cityId}`);
-            const districts = await response.json();
+            const data = await response.json();
+            const districts = data.districts;
             districtSelect.innerHTML = '<option value="">اختر الحي</option>';
             districts.forEach(district => {
                   const option = document.createElement('option');
-                  option.value = district.districtId;
-                  option.textContent = district.districtOtherName;
+                  option.value = district.name;
+                  option.textContent = district.name;
                   districtSelect.appendChild(option);
             });
       });

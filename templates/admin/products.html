@@ -2,132 +2,235 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-6">
-      <h1 class="text-2xl font-bold text-gray-800 mb-4">قائمة المنتجات</h1>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <h1 class="text-2xl font-bold text-rose-900">
+                  <i class="bx bx-package mr-2"></i>
+                  إدارة المنتجات
+            </h1>
 
-      <!-- Search and Filter Section -->
-      <div class="mb-4 flex justify-between items-center">
-            <!-- Search Bar -->
-            <input type="text" id="searchBar" placeholder="ابحث عن المنتج..." class="p-2 border rounded">
-
-            <!-- Sort by Price and Stock -->
-            <div class="flex items-center space-x-2 gap-2">
-                  <button onclick="sortTable('price', 'asc')"
-                        class="p-2 bg-rose-500 text-white rounded hover:bg-rose-600">
-                        السعر <i class="bx bx-arrow-to-bottom"></i>
-                  </button>
-                  <button onclick="sortTable('price', 'desc')"
-                        class="p-2 bg-rose-500 text-white rounded hover:bg-rose-600">
-                        السعر <i class="bx bx-arrow-to-top"></i>
-                  </button>
-                  <button onclick="sortTable('stock', 'asc')"
-                        class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                        الكمية <i class="bx bx-arrow-to-bottom"></i>
-                  </button>
-                  <button onclick="sortTable('stock', 'desc')"
-                        class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                        الكمية <i class="bx bx-arrow-to-top"></i>
-                  </button>
+            <div class="flex items-center gap-3">
+                  <div class="bg-rose-100 text-rose-900 px-4 py-2 rounded-lg">
+                        إجمالي المنتجات: {{ products|length }}
+                  </div>
+                  <a href="/admin/add_product"
+                        class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg flex items-center">
+                        <i class="bx bx-plus mr-2"></i>
+                        منتج جديد
+                  </a>
             </div>
       </div>
 
-      <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-right text-gray-500" id="productTable">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <!-- Search and Filter Section -->
+      <div class="bg-white rounded-lg shadow-sm p-4 mb-6 border">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- Search Input -->
+                  <div class="relative">
+                        <input type="text" id="searchInput"
+                              class="w-full pr-10 pl-4 py-2 border rounded-lg focus:ring-2 focus:ring-rose-500"
+                              placeholder="ابحث بالاسم أو التصنيف...">
+                        <i class="bx bx-search absolute right-3 top-3 text-gray-400"></i>
+                  </div>
+
+                  <!-- Sort Buttons -->
+                  <div class="flex flex-wrap gap-2">
+                        <button onclick="sortProducts('price', 'asc')"
+                              class="flex-1 bg-rose-100 text-rose-900 px-4 py-2 rounded-lg hover:bg-rose-200">
+                              <i class="bx bx-sort-up mr-1"></i>السعر
+                        </button>
+                        <button onclick="sortProducts('stock', 'desc')"
+                              class="flex-1 bg-rose-100 text-rose-900 px-4 py-2 rounded-lg hover:bg-rose-200">
+                              <i class="bx bx-sort-down mr-1"></i>المخزون
+                        </button>
+                  </div>
+            </div>
+      </div>
+
+      <!-- Products Table -->
+      <div class="bg-white rounded-lg shadow-sm border overflow-hidden">
+            <table class="w-full">
+                  <thead class="bg-gray-50 border-b">
                         <tr>
-                              <th scope="col" class="py-3 px-6">صورة المنتج</th>
-                              <th scope="col" class="py-3 px-6">اسم المنتج</th>
-                              <th scope="col" class="py-3 px-6">التصنيف</th>
-                              <th scope="col" class="py-3 px-6">السعر</th>
-                              <th scope="col" class="py-3 px-6">الخصم</th>
-                              <th scope="col" class="py-3 px-6">الكمية</th>
-                              <th scope="col" class="py-3 px-6">تاريخ الإضافة</th>
-                              <th scope="col" class="py-3 px-6">الإجراءات</th>
+                              <th class="px-6 py-4 text-right">المنتج</th>
+                              <th class="px-6 py-4 text-center">التصنيف</th>
+                              <th class="px-6 py-4 text-center">السعر</th>
+                              <th class="px-6 py-4 text-center">الحالة</th>
+                              <th class="px-6 py-4 text-center">الإجراءات</th>
                         </tr>
                   </thead>
-                  <tbody id="productBody">
+                  <tbody class="divide-y" id="productsBody">
                         {% for product in products %}
-
-                        <tr class="bg-white border-b">
-                              <td class="py-4 px-6">
-                                    <img src="/{{ product.image }}" alt="Product Image"
-                                          class="w-20 h-20 object-cover rounded">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                              <!-- Product Image & Name -->
+                              <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                          <div class="relative">
+                                                <img src="/{{ product.image }}"
+                                                      class="w-16 h-16 object-cover rounded-lg border"
+                                                      onerror="this.src='/static/images/placeholder-product.png'">
+                                                {% if product.discount > 0 %}
+                                                <span
+                                                      class="absolute -top-2 -right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">
+                                                      -{{ product.discount }}%
+                                                </span>
+                                                {% endif %}
+                                          </div>
+                                          <div>
+                                                <div class="font-medium text-gray-900">{{ product.name }}</div>
+                                                <div class="text-sm text-gray-500">
+                                                      {{ product.created_at }}
+                                                </div>
+                                          </div>
+                                    </div>
                               </td>
-                              <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{{ product.name }}</td>
-                              <td class="py-4 px-6">{{ product.category.name }}</td>
-                              <td class="py-4 px-6">{{ product.price }} ج.م</td>
-                              <td class="py-4 px-6">{{ product.discount }}%</td>
-                              <td class="py-4 px-6">{{ product.stock }}</td>
-                              <td class="py-4 px-6">{{ product.created_at.strftime('%Y-%m-%d') }}</td>
-                              <td class="text-center gap-2">
+
+                              <!-- Category -->
+                              <td class="px-6 py-4 text-center">
+                                    <span class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full text-sm">
+                                          {{ product.category.name }}
+                                    </span>
+                              </td>
+
+                              <!-- Price -->
+                              <td class="px-6 py-4 text-center">
+                                    <div class="flex flex-col">
+                                          {% if product.discount > 0 %}
+                                          <span class="text-red-500 line-through text-sm">
+                                                {{ product.price }}
+                                          </span>
+                                          <span class="text-green-600 font-medium">
+                                                {{ product.price|apply_discount(product.discount) }}
+                                          </span>
+                                          {% else %}
+                                          <span class="text-gray-900 font-medium">
+                                                {{ product.price }}
+                                          </span>
+                                          {% endif %}
+                                    </div>
+                              </td>
+
+                              <!-- Stock Status -->
+                              <td class="px-6 py-4 text-center">
+                                    {% if product.stock > 10 %}
+                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                          متوفر ({{ product.stock }})
+                                    </span>
+                                    {% elif product.stock > 0 %}
+                                    <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                                          كمية محدودة ({{ product.stock }})
+                                    </span>
+                                    {% else %}
+                                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
+                                          غير متوفر
+                                    </span>
+                                    {% endif %}
+                              </td>
+
+                              <!-- Actions -->
+                              <td class="px-6 py-4 text-center space-x-2">
                                     <!-- Edit Button -->
-                                    <button onclick="toggleEditForm('editForm{{ product.id }}')"
-                                          class="font-medium bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 px-2 py-2 m-2">
-                                          <i class="bx bx-edit"></i>
+                                    <button onclick="toggleEditForm('edit{{ product.id }}')"
+                                          class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50">
+                                          <i class="bx bx-edit text-xl"></i>
                                     </button>
-                                    <!-- view and delet -->
-                                    <a href="/product/{{ product.id }}"
-                                          class="font-medium bg-blue-500 text-white rounded-lg hover:bg-blue-600 px-2 py-2 m-2">
-                                          <i class="bx bx-show
-                                          "></i>
-                                    </a>
-                                    <a href="/admin/delete_product/{{ product.id }}"
-                                          class="font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 px-2 py-2 m-2">
-                                          <i class="bx bx-trash"></i>
+
+                                    <!-- View Button -->
+                                    <a href="/{{ product.id }}" target="_blank"
+                                          class="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50">
+                                          <i class="bx bx-show text-xl"></i>
                                     </a>
 
+                                    <!-- Delete Button -->
+                                    <button
+                                          onclick="confirmDelete('{{ product.name }}', '{{ url_for('admin.delete_product', product_id=product.id) }}')"
+                                          class="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50">
+                                          <i class="bx bx-trash text-xl"></i>
+                                    </button>
                               </td>
                         </tr>
 
-                        <!-- Hidden Edit Form for Each Product -->
-                        <tr id="editForm{{ product.id }}" class="hidden bg-gray-100">
-                              <td colspan="8" class="py-4 px-6">
-                                    <form method="POST" action="/admin/edit_product/{{ product.id }}" class="space-y-4">
-                                          <div>
-                                                <label for="name" class="block">اسم المنتج</label>
-                                                <input type="text" name="name" value="{{ product.name }}"
-                                                      class="w-full p-2 border rounded" required>
-                                          </div>
-                                          <div>
-                                                <label for="price" class="block">السعر</label>
-                                                <input type="number" name="price" value="{{ product.price }}"
-                                                      class="w-full p-2 border rounded" required>
-                                          </div>
-                                          <div>
-                                                <label for="stock" class="block">الكمية</label>
-                                                <input type="number" name="stock" value="{{ product.stock }}"
-                                                      class="w-full p-2 border rounded" required>
-                                          </div>
-                                          <div>
-                                                <label for="discount" class="block">الخصم</label>
-                                                <input type="number" name="discount" value="{{ product.discount }}"
-                                                      class="w-full p-2 border rounded" required>
-                                          </div>
-                                          <div>
-                                                <label for="category" class="block">التصنيف</label>
-                                                <select name="category" class="w-full p-2 border rounded">
-                                                      {% for category in categories %}
-                                                      <option value="{{ category.id }}" {% if
-                                                            category.id==product.category.id %} selected {% endif %}>
-                                                            {{ category.name }}</option>
-                                                      {% endfor %}
-                                                </select>
-                                          </div>
-                                          <div>
-                                                <label for="image" class="block">صورة المنتج</label>
-                                                <input type="file" name="image" class="w-full p-2 border rounded">
-                                          </div>
-                                          <div>
-                                                <label for="description" class="block">الوصف</label>
-                                                <textarea name="description" class="w-full p-2 border rounded"
-                                                      required>{{ product.description }}</textarea>
+                        <!-- Edit Form -->
+                        <tr id="edit{{ product.id }}" class="hidden bg-rose-50">
+                              <td colspan="5" class="px-6 py-4">
+                                    <form method="POST"
+                                          action="{{ url_for('admin.edit_product', product_id=product.id) }}"
+                                          enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                          <!-- Product Info -->
+                                          <div class="space-y-4">
+                                                <div>
+                                                      <label class="block mb-1">اسم المنتج</label>
+                                                      <input type="text" name="name" value="{{ product.name }}"
+                                                            class="w-full p-2 border rounded-lg" required>
+                                                </div>
+
+                                                <div>
+                                                      <label class="block mb-1">التصنيف</label>
+                                                      <select name="category"
+                                                            class="w-full p-2 border rounded-lg bg-white">
+                                                            {% for category in categories %}
+                                                            <option value="{{ category.id }}" {% if
+                                                                  category.id==product.category.id %}selected{% endif
+                                                                  %}>
+                                                                  {{ category.name }}
+                                                            </option>
+                                                            {% endfor %}
+                                                      </select>
+                                                </div>
+
+                                                <div>
+                                                      <label class="block mb-1">الوصف</label>
+                                                      <textarea name="description"
+                                                            class="w-full p-2 border rounded-lg h-32">{{ product.description }}</textarea>
+                                                </div>
                                           </div>
 
-                                          <div class="flex justify-end">
-                                                <button type="button"
-                                                      onclick="toggleEditForm('editForm{{ product.id }}')"
-                                                      class="bg-gray-500 text-white px-4 py-2 rounded">إغلاق</button>
-                                                <button type="submit"
-                                                      class="bg-blue-500 text-white px-4 py-2 rounded ml-2">تحديث</button>
+                                          <!-- Pricing & Stock -->
+                                          <div class="space-y-4">
+                                                <div class="grid grid-cols-2 gap-4">
+                                                      <div>
+                                                            <label class="block mb-1">السعر</label>
+                                                            <input type="number" step="0.01" name="price"
+                                                                  value="{{ product.price }}"
+                                                                  class="w-full p-2 border rounded-lg">
+                                                      </div>
+                                                      <div>
+                                                            <label class="block mb-1">الخصم (%)</label>
+                                                            <input type="number" name="discount"
+                                                                  value="{{ product.discount }}"
+                                                                  class="w-full p-2 border rounded-lg">
+                                                      </div>
+                                                </div>
+
+                                                <div>
+                                                      <label class="block mb-1">المخزون</label>
+                                                      <input type="number" name="stock" value="{{ product.stock }}"
+                                                            class="w-full p-2 border rounded-lg">
+                                                </div>
+
+                                                <div>
+                                                      <label class="block mb-1">صورة المنتج</label>
+                                                      <input type="file" name="image"
+                                                            class="w-full p-2 border rounded-lg">
+                                                      <div class="mt-2 text-sm text-gray-500">
+                                                            الصورة الحالية:
+                                                            <a href="/{{ product.image }}" target="_blank"
+                                                                  class="text-rose-600">
+                                                                  {{ product.image }}
+                                                            </a>
+                                                      </div>
+                                                </div>
+
+                                                <div class="flex justify-end gap-2 pt-4">
+                                                      <button type="button"
+                                                            onclick="toggleEditForm('edit{{ product.id }}')"
+                                                            class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                                                            إلغاء
+                                                      </button>
+                                                      <button type="submit"
+                                                            class="bg-rose-600 text-white px-4 py-2 rounded-lg hover:bg-rose-700">
+                                                            حفظ التغييرات
+                                                      </button>
+                                                </div>
                                           </div>
                                     </form>
                               </td>
@@ -137,46 +240,71 @@
             </table>
       </div>
 </div>
+
 <script>
-      // Search functionality for the table
-      document.getElementById("searchBar").addEventListener("input", function () {
-            const searchValue = this.value.toLowerCase();
-            const rows = document.querySelectorAll("#productTable tbody tr");
+      // Enhanced Search Functionality
+      document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#productsBody tr:not(.hidden)');
 
             rows.forEach(row => {
-                  const productName = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
-                  const categoryName = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
-                  if (productName.includes(searchValue) || categoryName.includes(searchValue)) {
-                        row.style.display = "";
+                  const productName = row.querySelector('td:first-child .font-medium').textContent.toLowerCase();
+                  const category = row.querySelector('td:nth-child(2) span').textContent.toLowerCase();
+
+                  if (productName.includes(searchTerm) || category.includes(searchTerm)) {
+                        row.style.display = '';
                   } else {
-                        row.style.display = "none";
+                        row.style.display = 'none';
                   }
             });
       });
 
-      // Sorting functionality
-      function sortTable(column, order) {
-            const rows = Array.from(document.querySelectorAll("#productTable tbody tr"));
-            const sortedRows = rows.sort((rowA, rowB) => {
-                  const valueA = column === "price" ? parseFloat(rowA.querySelector(`td:nth-child(4)`).textContent) : parseInt(rowA.querySelector(`td:nth-child(6)`).textContent);
-                  const valueB = column === "price" ? parseFloat(rowB.querySelector(`td:nth-child(4)`).textContent) : parseInt(rowB.querySelector(`td:nth-child(6)`).textContent);
+      // Sorting Functionality
+      function sortProducts(field, order) {
+            const rows = Array.from(document.querySelectorAll('#productsBody tr:not(.hidden)'));
 
-                  if (order === "asc") {
-                        return valueA - valueB;
+            rows.sort((a, b) => {
+                  let valueA, valueB;
+
+                  if (field === 'price') {
+                        valueA = parseFloat(a.querySelector('td:nth-child(3)').dataset.sortValue || 0);
+                        valueB = parseFloat(b.querySelector('td:nth-child(3)').dataset.sortValue || 0);
                   } else {
-                        return valueB - valueA;
+                        valueA = parseInt(a.querySelector('td:nth-child(4) span').textContent.match(/\d+/) || 0);
+                        valueB = parseInt(b.querySelector('td:nth-child(4) span').textContent.match(/\d+/) || 0);
                   }
+
+                  return order === 'asc' ? valueA - valueB : valueB - valueA;
             });
 
-            // Append sorted rows
-            const tbody = document.querySelector("#productTable tbody");
-            sortedRows.forEach(row => tbody.appendChild(row));
+            const tbody = document.getElementById('productsBody');
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
       }
 
-      // Toggle Edit Form
-      function toggleEditForm(formId) {
-            const form = document.getElementById(formId);
-            form.classList.toggle("hidden");
+      // Edit Form Toggle with Animation
+      function toggleEditForm(id) {
+            const form = document.getElementById(id);
+            form.classList.toggle('hidden');
+            form.style.transition = 'all 0.3s ease';
+      }
+
+      // Delete Confirmation
+      function confirmDelete(name, url) {
+            Swal.fire({
+                  title: `حذف ${name}؟`,
+                  text: "لن تتمكن من استعادة هذا المنتج!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#3085d6',
+                  confirmButtonText: 'نعم، احذف',
+                  cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        window.location.href = url;
+                  }
+            })
       }
 </script>
 {% endblock %}

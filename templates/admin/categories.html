@@ -2,15 +2,28 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-6">
-      <h1 class="text-2xl font-bold text-gray-800 mb-4">إدارة الأقسام</h1>
+      <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-rose-900">
+                  <i class="bx bx-category mr-2"></i>
+                  إدارة الأقسام
+            </h1>
+            <div class="bg-rose-100 text-rose-900 px-4 py-2 rounded-lg">
+                  عدد الأقسام: {{ categories|length }}
+            </div>
+      </div>
 
-      <!-- Display Flash Messages -->
+      <!-- Flash Messages -->
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-      <div class="mb-4">
+      <div class="mb-6 space-y-3">
             {% for category, message in messages %}
-            <div
-                  class="p-3 bg-{{ 'green' if category == 'success' else 'red' }}-200 text-{{ 'green' if category == 'success' else 'red' }}-800 rounded">
+            <div class="p-3 rounded-lg flex items-center border-l-4 
+            {% if category == 'success' %} 
+                bg-green-50 border-green-500 text-green-700
+            {% else %} 
+                bg-red-50 border-red-500 text-red-700
+            {% endif %}">
+                  <i class="bx bx-{% if category == 'success' %}check-circle{% else %}x-circle{% endif %} mx-2"></i>
                   {{ message }}
             </div>
             {% endfor %}
@@ -18,66 +31,75 @@
       {% endif %}
       {% endwith %}
 
-      <!-- Add Category Form -->
-      <form action="{{ url_for('admin.add_category') }}" method="POST" class="mb-4">
-            <div class="flex space-x-2">
-                  <input type="text" name="name" placeholder="اسم القسم" class="p-2 border rounded w-full" required>
-                  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">إضافة
-                        قسم</button>
-            </div>
-      </form>
+      <!-- Add Category Card -->
+      <div class="bg-white rounded-lg shadow-sm border mb-6 p-4">
+            <form action="{{ url_for('admin.add_category') }}" method="POST" class="flex gap-3">
+                  <input type="text" name="name" placeholder="أدخل اسم القسم الجديد"
+                        class="flex-1 p-3 border rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                  <button type="submit"
+                        class="bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-lg flex items-center">
+                        <i class="bx bx-plus mr-2"></i>
+                        إضافة قسم
+                  </button>
+            </form>
+      </div>
 
       <!-- Categories Table -->
-      <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-right text-gray-500">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <div class="bg-white rounded-lg shadow-sm border overflow-hidden">
+            <table class="w-full">
+                  <thead class="bg-gray-50 border-b">
                         <tr>
-                              <th scope="col" class="py-3 px-6">اسم القسم</th>
-                              <th scope="col" class="py-3 px-6">عدد المنتجات</th>
-                              <th scope="col" class="py-3 px-6">الإجراءات</th>
+                              <th class="px-6 py-4 text-right font-semibold text-gray-700">اسم القسم</th>
+                              <th class="px-6 py-4 text-center font-semibold text-gray-700">عدد المنتجات</th>
+                              <th class="px-6 py-4 text-center font-semibold text-gray-700">الإجراءات</th>
                         </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="divide-y">
                         {% for category in categories %}
-                        <tr class="bg-white border-b">
-                              <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{{ category.name }}</td>
-                              <td class="py-4 px-6 text-center">{{ category.products|length }}</td>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                              <td class="px-6 py-4 font-medium text-gray-900">
+                                    {{ category.name }}
+                              </td>
 
-                              <td class="py-4 px-6 text-center">
+                              <td class="px-6 py-4 text-center">
+                                    <span class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full text-sm">
+                                          {{ category.products|length }}
+                                    </span>
+                              </td>
+
+                              <td class="px-6 py-4 text-center space-x-2">
                                     <!-- Edit Button -->
-                                    <button onclick="toggleEditForm('editForm{{ category.id }}')"
-                                          class="font-medium bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 px-2 py-2 m-2">
-                                          <i class="bx bx-edit"></i>
+                                    <button onclick="toggleEditForm('edit{{ category.id }}')"
+                                          class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50">
+                                          <i class="bx bx-edit text-xl"></i>
                                     </button>
 
                                     <!-- Delete Button -->
-                                    <form action="{{ url_for('admin.delete_category', category_id=category.id) }}"
-                                          method="POST" class="inline-block">
-                                          <button type="submit"
-                                                class="font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 px-2 py-2 m-2">
-                                                <i class="bx bx-trash"></i>
-                                          </button>
-                                    </form>
+                                    <button
+                                          onclick="confirmDelete('{{ category.name }}', '{{ url_for('admin.delete_category', category_id=category.id) }}')"
+                                          class="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50">
+                                          <i class="bx bx-trash text-xl"></i>
+                                    </button>
                               </td>
                         </tr>
 
-                        <!-- Hidden Edit Form for Each Category -->
-                        <tr id="editForm{{ category.id }}" class="hidden bg-gray-100">
-                              <td colspan="2" class="py-4 px-6">
+                        <!-- Edit Form -->
+                        <tr id="edit{{ category.id }}" class="hidden bg-rose-50">
+                              <td colspan="3" class="px-6 py-4">
                                     <form method="POST"
                                           action="{{ url_for('admin.edit_category', category_id=category.id) }}"
-                                          class="space-y-4">
-                                          <div>
-                                                <label for="name" class="block">اسم القسم</label>
-                                                <input type="text" name="name" value="{{ category.name }}"
-                                                      class="w-full p-2 border rounded" required>
-                                          </div>
-                                          <div class="flex justify-end">
-                                                <button type="button"
-                                                      onclick="toggleEditForm('editForm{{ category.id }}')"
-                                                      class="bg-gray-500 text-white px-4 py-2 rounded">إغلاق</button>
+                                          class="flex gap-3 items-center">
+                                          <input type="text" name="name" value="{{ category.name }}"
+                                                class="flex-1 p-2 border rounded-lg bg-white focus:ring-rose-500">
+                                          <div class="space-x-2">
+                                                <button type="button" onclick="toggleEditForm('edit{{ category.id }}')"
+                                                      class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                                                      إلغاء
+                                                </button>
                                                 <button type="submit"
-                                                      class="bg-blue-500 text-white px-4 py-2 rounded ml-2">تحديث</button>
+                                                      class="bg-rose-600 text-white px-4 py-2 rounded-lg hover:bg-rose-700">
+                                                      حفظ التعديلات
+                                                </button>
                                           </div>
                                     </form>
                               </td>
@@ -89,11 +111,29 @@
 </div>
 
 <script>
-      // Toggle the visibility of the edit form for a specific category
-      function toggleEditForm(formId) {
-            const form = document.getElementById(formId);
-            // Toggle visibility by adding/removing 'hidden' class
+      // Toggle Edit Form with Animation
+      function toggleEditForm(id) {
+            const form = document.getElementById(id);
             form.classList.toggle('hidden');
+            form.style.transition = 'all 0.3s ease';
+      }
+
+      // Delete Confirmation
+      function confirmDelete(name, url) {
+            Swal.fire({
+                  title: `هل أنت متأكد من حذف "${name}"؟`,
+                  text: "لا يمكن التراجع عن هذا الإجراء!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#3085d6',
+                  confirmButtonText: 'نعم، احذف!',
+                  cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        window.location.href = url;
+                  }
+            })
       }
 </script>
 {% endblock %}

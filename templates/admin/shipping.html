@@ -2,13 +2,328 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-6">
-      <h1 class="text-2xl font-bold text-gray-800 mb-4">قائمة الشحنات</h1>
-      <div class="flex justify-end mb-4">
-            <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">إضافة شحنة</a>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <h1 class="text-2xl font-bold text-rose-900">
+                  <i class="bx bx-map mr-2"></i>
+                  إدارة الشحن والأسعار
+            </h1>
+
+            <div class="bg-rose-100 text-rose-900 px-4 py-2 rounded-lg">
+                  عدد المدن: {{ cities|length }}
+            </div>
       </div>
 
-      <div class="bg-white shadow-md rounded my-6 p-6">
-            <p class="text-gray-600">لا يوجد شحنات</p>
+      <!-- Add City Card -->
+      <div class="bg-white rounded-lg shadow-sm border mb-6 overflow-hidden">
+            <button onclick="toggleAddForm()"
+                  class="w-full p-4 text-right flex items-center justify-between bg-gray-50 hover:bg-gray-100">
+                  <span class="text-rose-900 font-medium">
+                        <i class="bx bx-plus-circle mr-2"></i>
+                        إضافة مدينة جديدة
+                  </span>
+                  <i class="bx bx-chevron-down text-xl"></i>
+            </button>
+
+            <div id="addCityForm" class="hidden p-4 border-t">
+                  <form method="POST" action="/admin/add_city" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                    <label class="block mb-2">اسم المدينة</label>
+                                    <input type="text" name="name"
+                                          class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-rose-500">
+                              </div>
+                              <div>
+                                    <label class="block mb-2">المعرف الفني (API ID)</label>
+                                    <input type="text" name="city_id"
+                                          class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-rose-500">
+                              </div>
+                        </div>
+                        <div class="flex justify-end gap-2">
+                              <button type="button" onclick="toggleAddForm()"
+                                    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                                    إلغاء
+                              </button>
+                              <button type="submit"
+                                    class="bg-rose-600 text-white px-4 py-2 rounded-lg hover:bg-rose-700">
+                                    حفظ المدينة
+                              </button>
+                        </div>
+                  </form>
+            </div>
+      </div>
+
+      <!-- Cities Table -->
+      <div class="bg-white rounded-lg shadow-sm border overflow-hidden">
+            <table class="w-full">
+                  <thead class="bg-gray-50 border-b">
+                        <tr>
+                              <th class="px-6 py-4 text-right">المدينة</th>
+                              <th class="px-6 py-4 text-center">المناطق</th>
+                              <th class="px-6 py-4 text-center">الأحياء</th>
+                              <th class="px-6 py-4 text-center">تكلفة الشحن</th>
+                              <th class="px-6 py-4 text-center">الإجراءات</th>
+                        </tr>
+                  </thead>
+                  <tbody class="divide-y">
+                        {% for city in cities %}
+                        <tr class="hover:bg-gray-50 transition-colors group">
+                              <!-- City Name -->
+                              <td class="px-6 py-4 font-medium text-gray-900">
+                                    <div class="flex items-center gap-3">
+                                          <i class="bx bx-map text-gray-400"></i>
+                                          {{ city.name }}
+                                          <span class="text-sm text-gray-500">({{ city.city_id }})</span>
+                                    </div>
+                              </td>
+
+                              <!-- Zones -->
+                              <td class="px-6 py-4 text-center">
+                                    <div class="inline-flex flex-col items-center">
+                                          <span class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full mb-2">
+                                                {{ city.zones|length }} منطقة
+                                          </span>
+                                          <div class="max-w-xs overflow-x-auto flex gap-1">
+                                                {% for zone in city.zones %}
+                                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm">
+                                                      {{ zone.name }}
+                                                </span>
+                                                {% endfor %}
+                                          </div>
+                                    </div>
+                              </td>
+
+                              <!-- Districts -->
+                              <td class="px-6 py-4 text-center">
+                                    <div class="inline-flex flex-col items-center">
+                                          <span class="bg-rose-100 text-rose-900 px-3 py-1 rounded-full mb-2">
+                                                {{ city.districts|length }} حي
+                                          </span>
+                                          <div class="max-w-xs overflow-x-auto flex gap-1">
+                                                {% for district in city.districts %}
+                                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm">
+                                                      {{ district.name }}
+                                                </span>
+                                                {% endfor %}
+                                          </div>
+                                    </div>
+                              </td>
+
+                              <!-- Shipping Cost -->
+                              <td class="px-6 py-4 text-center">
+                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                                          {{ city.price[0].price if city.price else '100' }} ج.م
+                                    </span>
+                              </td>
+
+                              <!-- Actions -->
+                              <td class="px-6 py-4 text-center space-x-1">
+                                    <button onclick="toggleEditForm('edit{{ city.id }}')"
+                                          class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50">
+                                          <i class="bx bx-edit text-xl"></i>
+                                    </button>
+                                    <button
+                                          onclick="confirmDelete('{{ city.name }}', '{{ url_for('admin.delete_city', id=city.id) }}')"
+                                          class="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50">
+                                          <i class="bx bx-trash text-xl"></i>
+                                    </button>
+                              </td>
+                        </tr>
+
+                        <!-- Edit Form -->
+                        <tr id="edit{{ city.id }}" class="hidden bg-rose-50">
+                              <td colspan="5" class="px-6 py-4">
+                                    <form method="POST" action="/admin/update_shipping_cost"
+                                          class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                          <input type="hidden" name="city_id" value="{{ city.id }}">
+
+                                          <!-- Shipping Cost -->
+                                          <div class="space-y-4">
+                                                <div class="bg-white p-4 rounded-lg border">
+                                                      <h3 class="text-lg font-medium mb-4 text-rose-900">
+                                                            <i class="bx bx-dollar-circle mr-2"></i>
+                                                            تكلفة الشحن
+                                                      </h3>
+                                                      <input type="number" name="price"
+                                                            value="{{ city.price[0].price if city.price else '100' }}"
+                                                            class="w-full p-2 border rounded-lg" step="0.01" required>
+                                                </div>
+                                          </div>
+
+                                          <!-- Zones & Districts Management -->
+                                          <div class="space-y-4">
+                                                <!-- Zones -->
+                                                <div class="bg-white p-4 rounded-lg border">
+                                                      <h3 class="text-lg font-medium mb-4 text-rose-900">
+                                                            <i class="bx bx-map-pin mr-2"></i>
+                                                            إدارة المناطق
+                                                      </h3>
+                                                      <div class="flex gap-2 mb-4">
+                                                            <input type="text" id="zoneName{{ city.id }}"
+                                                                  class="flex-1 p-2 border rounded-lg"
+                                                                  placeholder="اسم المنطقة الجديدة">
+                                                            <button type="button" onclick="addZone({{ city.id }})"
+                                                                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                                                  إضافة
+                                                            </button>
+                                                      </div>
+                                                      <div id="zonesList{{ city.id }}" class="space-y-2">
+                                                            {% for zone in city.zones %}
+                                                            <div
+                                                                  class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                                                                  <span class="text-sm">{{ zone.name }}</span>
+                                                                  <button type="button"
+                                                                        onclick="deleteZone({{ zone.id }})"
+                                                                        class="text-red-500 hover:text-red-700">
+                                                                        <i class="bx bx-trash"></i>
+                                                                  </button>
+                                                            </div>
+                                                            {% endfor %}
+                                                      </div>
+                                                </div>
+
+                                                <!-- Districts -->
+                                                <div class="bg-white p-4 rounded-lg border">
+                                                      <h3 class="text-lg font-medium mb-4 text-rose-900">
+                                                            <i class="bx bx-building-house mr-2"></i>
+                                                            إدارة الأحياء
+                                                      </h3>
+                                                      <div class="flex gap-2 mb-4">
+                                                            <input type="text" id="districtName{{ city.id }}"
+                                                                  class="flex-1 p-2 border rounded-lg"
+                                                                  placeholder="اسم الحي الجديد">
+                                                            <button type="button" onclick="addDistrict({{ city.id }})"
+                                                                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                                                  إضافة
+                                                            </button>
+                                                      </div>
+                                                      <div id="districtsList{{ city.id }}" class="space-y-2">
+                                                            {% for district in city.districts %}
+                                                            <div
+                                                                  class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                                                                  <span class="text-sm">{{ district.name }}</span>
+                                                                  <button type="button"
+                                                                        onclick="deleteDistrict({{ district.id }})"
+                                                                        class="text-red-500 hover:text-red-700">
+                                                                        <i class="bx bx-trash"></i>
+                                                                  </button>
+                                                            </div>
+                                                            {% endfor %}
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- Form Actions -->
+                                          <div class="md:col-span-2 flex justify-end gap-2 pt-4">
+                                                <button type="button" onclick="toggleEditForm('edit{{ city.id }}')"
+                                                      class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+                                                      إلغاء التعديلات
+                                                </button>
+                                                <button type="submit"
+                                                      class="bg-rose-600 text-white px-4 py-2 rounded-lg hover:bg-rose-700">
+                                                      حفظ التغييرات
+                                                </button>
+                                          </div>
+                                    </form>
+                              </td>
+                        </tr>
+                        {% endfor %}
+                  </tbody>
+            </table>
       </div>
 </div>
+
+<script>
+      // Toggle Forms
+      function toggleEditForm(id) {
+            const form = document.getElementById(id);
+            form.classList.toggle('hidden');
+            form.style.transition = 'all 0.3s ease';
+      }
+
+      function toggleAddForm() {
+            const form = document.getElementById('addCityForm');
+            form.classList.toggle('hidden');
+            const icon = document.querySelector('#addCityForm + button i');
+            icon.classList.toggle('bx-chevron-down');
+            icon.classList.toggle('bx-chevron-up');
+      }
+
+      // Delete Confirmation
+      function confirmDelete(name, url) {
+            Swal.fire({
+                  title: `حذف ${name}؟`,
+                  text: "سيتم حذف جميع البيانات المرتبطة بالمدينة!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#3085d6',
+                  confirmButtonText: 'نعم، احذف',
+                  cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        window.location.href = url;
+                  }
+            })
+      }
+
+      // AJAX Functions
+      async function handleAction(url, method, data) {
+            try {
+                  const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                              'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                  });
+
+                  if (!response.ok) throw new Error('Request failed');
+                  return await response.json();
+            } catch (error) {
+                  Swal.fire('خطأ', 'فشل في تنفيذ العملية', 'error');
+                  console.error('Error:', error);
+            }
+      }
+
+      async function addZone(cityId) {
+            const name = document.getElementById(`zoneName${cityId}`).value;
+            if (!name) return;
+
+            const result = await handleAction(
+                  `/admin/add_zone/${cityId}`,
+                  'POST',
+                  { name: name }
+            );
+
+            if (result) {
+                  document.getElementById(`zoneName${cityId}`).value = '';
+                  const zonesList = document.getElementById(`zonesList${cityId}`);
+                  const newZone = document.createElement('div');
+                  newZone.className = 'flex items-center justify-between bg-gray-50 p-2 rounded';
+                  newZone.innerHTML = `
+                <span class="text-sm">${result.zone.name}</span>
+                <button onclick="deleteZone(${result.zone.id})" 
+                        class="text-red-500 hover:text-red-700">
+                    <i class="bx bx-trash"></i>
+                </button>
+            `;
+                  zonesList.prepend(newZone);
+            }
+      }
+
+      async function deleteZone(zoneId) {
+            const result = await handleAction(
+                  `/admin/delete_zone/${zoneId}`,
+                  'DELETE'
+            );
+
+            if (result) {
+                  document.querySelector(`button[onclick="deleteZone(${zoneId})"]`)
+                        .closest('div').remove();
+            }
+      }
+
+      // Similar functions for addDistrict and deleteDistrict
+      // ...
+</script>
 {% endblock %}

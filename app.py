@@ -1,12 +1,18 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session , send_from_directory , Blueprint
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_ , DateTime , ForeignKey , Integer , String , Float , Text , Column
 from datetime import datetime
+from flask_migrate import Migrate
 import os
 import json
 import requests
 from uuid import uuid4
 from werkzeug.utils import secure_filename
 from models.bosta import BostaService
+from datetime import datetime
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
+
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
@@ -26,6 +32,7 @@ UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 bosta_service = BostaService()
 
 
@@ -43,7 +50,7 @@ class Gusts(db.Model):
     name = db.Column(db.String(100), nullable=True)
     phone = db.Column(db.String(100), nullable=True) 
     address = db.Column(db.String(100), nullable=True)
-    orders = db.relationship('Order', backref='gust', lazy=True)
+    orders = db.relationship('Order', backref='guest', lazy=True)
     carts = db.relationship('Cart', backref='gust', lazy=True)  # This should work now
     last_activity = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -87,9 +94,10 @@ class Cart(db.Model):
     
     # إضافة العلاقة مع Product
     product = db.relationship('Product', backref='carts', lazy=True)
+
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('gusts.id'), nullable=False)  # Add this line
+    user_id = db.Column(db.Integer, db.ForeignKey('gusts.id'), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(100), nullable=False)
@@ -105,11 +113,11 @@ class Order(db.Model):
     payment_method = db.Column(db.String(50), nullable=False)
     package_size = db.Column(db.String(20), default='SMALL')
     package_type = db.Column(db.String(20), default='Parcel')
-    invoice_key = db.Column(db.String(100), nullable=True)  # Add Fawaterak fields
+    invoice_key = db.Column(db.String(100), nullable=True)
     invoice_id = db.Column(db.String(50), nullable=True)
     invoice_url = db.Column(db.String(200), nullable=True)
     payment_status = db.Column(db.String(20), default='pending', nullable=True)
-
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  
 class OrderItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, nullable=False)
@@ -134,8 +142,56 @@ class Logs(db.Model):
     session = db.Column(db.String(100), nullable=True)
     action = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  
+# shiping and city and zone and district and prices
+class City(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    city_id = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    zones = db.relationship('Zone', backref='city', lazy=True, foreign_keys='Zone.city_id')
+    price = db.relationship('ShippingCost', backref='city', lazy=True, foreign_keys='ShippingCost.city_id')
+    districts = db.relationship('District', backref='city', lazy=True, foreign_keys='District.city_id')
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'city_id': self.city_id,
+            'zones': [zone.serialize() for zone in self.zones],
+            'districts': [district.serialize() for district in self.districts]
+        }
 
-# create blueprints
+class Zone(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('city.city_id'), nullable=False)
+    zone_id = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'zone_id': self.zone_id
+        }
+
+class District(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('city.city_id'), nullable=False)
+    district_id = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'district_id': self.district_id
+        }
+
+class ShippingCost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    city_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
 
 shop = Blueprint('shop', __name__)
 admin = Blueprint('admin', __name__)
@@ -168,7 +224,13 @@ def before_request():
     check_session()
     session.permanent = True
     session.modified = True
+@app.template_filter('currency')
+def currency_format(value):
+    return f"{value:,.2f} ج.م"
 
+@app.template_filter('date_format')
+def date_format(value):
+    return value.strftime('%Y-%m-%d %I:%M %p')
 @shop.route('/')
 def home():
 
@@ -328,7 +390,7 @@ def checkout():
         return redirect(url_for('shop.cart'))
 
     total = sum(item.product.price * item.quantity for item in cart_items)
-    cities = bosta_service.get_cities()
+    cities = City.query.all()
 
     return render_template('shop/checkout.html', 
                          cart_items=cart_items,
@@ -588,22 +650,22 @@ def payment_webhook():
 
 @shop.route('/api/cities')
 def get_cities():
-    cities = BostaServiceget_cities()
-    return jsonify(cities)
+    cities = City.query.all()
+    return jsonify(city=[city.serialize() for city in cities])
 
 # /api/zones?city_id=
 @shop.route('/api/zones')
 def get_zones():
     city_id = request.args.get('city_id')
-    zones = bosta_service.get_zones(city_id)
-    return jsonify(zones)
+    zones = Zone.query.filter_by(city_id=city_id).all()
+    return jsonify(zones=[zone.serialize() for zone in zones])
 
 # /api/districts?city_id=
 @shop.route('/api/districts')
 def get_districts():
     city_id = request.args.get('city_id')
-    zones = bosta_service.get_districts(city_id)
-    return jsonify(zones)
+    districts = District.query.filter_by(city_id=city_id).all()
+    return jsonify(districts=[district.serialize() for district in districts])
 
 @shop.route('/api/shipping-cost')
 def get_shipping_cost():    
@@ -666,8 +728,10 @@ def login():
             return redirect("/admin")
         flash('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'danger')
     return render_template('admin/login.html')
-
+# ...existing code...
 from functools import wraps
+from datetime import timedelta
+# ...existing code...
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -684,67 +748,138 @@ def logout():
 @admin.route('/')
 @admin_required
 def home():
-    categories = Category.query.all()
-    return render_template('admin/index.html', categories=categories)
+    products_count = Product.query.count()
+    orders_count = Order.query.count()
+    customers_count = Gusts.query.count()
+    total_revenue = db.session.query(db.func.sum(Order.cod_amount)).scalar() or 0
+    
+    recent_orders = Order.query.order_by(Order.id.desc()).limit(20).all()
+    
+    # Generate chart data
+    # Calculate orders chart data
+    orders_chart = {
+        'labels': [],
+        'data': []
+    }
+    for i in range(10):
+        date = datetime.utcnow() - timedelta(days=i)
+        orders_count = Order.query.filter(Order.created_at >= date).count()
+        orders_chart['labels'].append(date.strftime('%Y-%m-%d'))
+        orders_chart['data'].append(orders_count)
+
+    # Calculate revenue chart data
+    revenue_chart = {
+        'labels': [],
+        'data': []
+    }
+    for i in range(6):
+        date = datetime.utcnow() - timedelta(days=i*30)
+        revenue = db.session.query(db.func.sum(Order.cod_amount)).filter(Order.created_at >= date).scalar() or 0
+        revenue_chart['labels'].append(date.strftime('%B'))
+        revenue_chart['data'].append(revenue)
+    
+    return render_template('admin/index.html',
+                         products_count=products_count,
+                         orders_count=orders_count,
+                         customers_count=customers_count,
+                         total_revenue=total_revenue,
+                         recent_orders=recent_orders,
+                         orders_chart=orders_chart,
+                         revenue_chart=revenue_chart)
+
+
 
 @admin.route('/add_product', methods=['POST'])
 @admin_required
 def add_product():
     try:
-        name = request.form['name']
-        description = request.form['description']
-        price = float(request.form['price'])
-        discount = float(request.form.get('discount', 0))  # Optional
-        stock = int(request.form['quantity'])
-        category_id = int(request.form['category'])
-
-        # Handle Main Product Image
-        image_file = request.files['image']
-        if image_file and image_file.filename != '':
-            filename = secure_filename(image_file.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image_file.save(image_path)
-        else:
-            flash('الصورة الرئيسية مطلوبة!', 'error')
+        # التحقق من الحقول المطلوبة
+        if 'name' not in request.form or not request.form['name'].strip():
+            flash('اسم المنتج مطلوب', 'error')
+            return redirect(request.referrer)
+            
+        # معالجة البيانات الأساسية
+        name = request.form['name'].strip()
+        description = request.form.get('description', '').strip()
+        price = float(request.form.get('price', 0))
+        discount = float(request.form.get('discount', 0))
+        stock = int(request.form.get('quantity', 0))
+        category_id = int(request.form.get('category', 0))
+        
+        # التحقق من صحة البيانات
+        if price <= 0:
+            flash('السعر يجب أن يكون أكبر من صفر', 'error')
+            return redirect(request.referrer)
+            
+        if stock < 0:
+            flash('الكمية غير صالحة', 'error')
+            return redirect(request.referrer)
+            
+        if discount < 0 or discount > 100:
+            flash('نسبة الخصم يجب أن تكون بين 0 و 100', 'error')
             return redirect(request.referrer)
 
-        # Create Product
+        # معالجة الصورة الرئيسية
+        if 'image' not in request.files:
+            flash('الصورة الرئيسية مطلوبة', 'error')
+            return redirect(request.referrer)
+            
+        image_file = request.files['image']
+        if image_file.filename == '':
+            flash('لم يتم اختيار صورة رئيسية', 'error')
+            return redirect(request.referrer)
+            
+        if not allowed_file(image_file.filename):
+            flash('نوع الملف غير مسموح به للصورة الرئيسية', 'error')
+            return redirect(request.referrer)
+            
+        main_image_filename = save_uploaded_file(image_file)
+
+        # إنشاء المنتج
         new_product = Product(
             name=name,
             description=description,
             price=price,
             discount=discount,
             stock=stock,
-            image=image_path,
+            image=main_image_filename,
             category_id=category_id
         )
         db.session.add(new_product)
         db.session.commit()
 
-        # Handle Additional Images
+        # معالجة الصور الإضافية
         additional_images = request.files.getlist('additional_images')
         for file in additional_images:
-            if file and file.filename != '':
-                filename = secure_filename(file.filename)
-                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(image_path)
-
-                # Add image to AdditionalImage table
+            if file and allowed_file(file.filename):
+                filename = save_uploaded_file(file)
                 additional_image = AdditionalImage(
-                    image=image_path,
+                    image=filename,
                     product_id=new_product.id
                 )
                 db.session.add(additional_image)
 
         db.session.commit()
         flash('تمت إضافة المنتج بنجاح!', 'success')
-        return redirect(url_for('dashboard'))  # Update with your actual dashboard route
+        return redirect(url_for('admin.products'))
 
     except Exception as e:
         db.session.rollback()
-        print(f"Error: {e}")
-        flash('حدث خطأ أثناء إضافة المنتج!', 'error')
+        app.logger.error(f'Error adding product: {str(e)}')
+        flash('حدث خطأ أثناء إضافة المنتج، الرجاء المحاولة مرة أخرى', 'error')
         return redirect(request.referrer)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
+
+def save_uploaded_file(file):
+    if file and allowed_file(file.filename):
+        filename = secure_filename(f"{uuid4().hex}_{file.filename}")
+        save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(save_path)
+        return filename
+    return None
 
 @admin.route('/add_category', methods=['POST'])
 @admin_required
@@ -853,7 +988,27 @@ def edit_category(category_id):
 @admin.route('/shipping')
 @admin_required
 def shipping():
-    return render_template('admin/shipping.html')
+    # shipping price valedat and if city dosent have a chiping price he make it 100
+    
+    cities = City.query.all()
+    for city in cities:
+        if not city.price:
+            shipping_cost = ShippingCost(city_id=city.id, price=100)
+            db.session.add(shipping_cost)
+    db.session.commit()
+    cities = City.query.all()
+    return render_template('admin/shipping.html', cities=cities)
+# update shipping cost
+@admin.route('/update_shipping_cost', methods=['POST'])
+@admin_required
+def update_shipping_cost():
+    city_id = request.form['city_id']
+    price = float(request.form['price'])
+    city = City.query.get(city_id)
+    city.price[0].price = price
+    db.session.commit()
+    flash('تم تحديث تكلفة الشحن بنجاح!', 'success')
+    return redirect(url_for('admin.shipping'))
 
 @admin.route('/orders')
 @admin_required
@@ -883,6 +1038,8 @@ def order_detail(order_id):
         item_data = {
             'order_item': order_item,
             'product': {
+                'id': product.id if product else None,
+                'image': product.image if product else url_for('static', filename='images/default.jpg'),
                 'name': product.name if product else "غير معروف",
                 'price': product.price if product else "غير معروف"
             }
@@ -899,7 +1056,139 @@ def ship_order(order_id):
     order = Order.query.get_or_404(order_id)
     if order.shipping_status != 'pending':
         flash('تم شحن هذا الطلب بالفعل', 'error')
+# ... (بقية استيرادات الفلاسك والنماذج السابقة)
 
+@admin.route('/add_city', methods=['POST'])
+@admin_required
+def add_city():
+    try:
+        name = request.form['name']
+        city_id = request.form['city_id']
+        
+        # التحقق من عدم تكرار المدينة
+        existing_city = City.query.filter_by(city_id=city_id).first()
+        if existing_city:
+            flash('هذه المدينة مسجلة مسبقاً!', 'error')
+            return redirect(url_for('admin.shipping'))
+        
+        new_city = City(name=name, city_id=city_id)
+        db.session.add(new_city)
+        
+        # إضافة سعر شحن افتراضي
+        default_shipping = ShippingCost(city=new_city, price=100)
+        db.session.add(default_shipping)
+        
+        db.session.commit()
+        flash('تمت إضافة المدينة بنجاح!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding city: {e}")
+        flash('حدث خطأ أثناء إضافة المدينة', 'error')
+    return redirect(url_for('admin.shipping'))
+
+@admin.route('/delete_city/<int:id>')
+@admin_required
+def delete_city(id):
+    try:
+        city = City.query.get_or_404(id)
+        
+        # حذف كل ما يرتبط بالمدينة
+        ShippingCost.query.filter_by(city_id=id).delete()
+        Zone.query.filter_by(city_id=id).delete()
+        District.query.filter_by(city_id=id).delete()
+        
+        db.session.delete(city)
+        db.session.commit()
+        flash('تم حذف المدينة بنجاح!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error deleting city: {e}")
+        flash('حدث خطأ أثناء حذف المدينة', 'error')
+    return redirect(url_for('admin.shipping'))
+
+@admin.route('/add_zone/<int:city_id>', methods=['POST'])
+@admin_required
+def add_zone(city_id):
+    try:
+        data = request.get_json()
+        zone_name = data['name']
+        
+        city = City.query.get_or_404(city_id)
+        
+        # إنشاء معرف فريد للمنطقة
+        new_zone = Zone(
+            name=zone_name,
+            city_id=city.id,
+            zone_id=f"ZONE-{datetime.now().timestamp()}"
+        )
+        
+        db.session.add(new_zone)
+        db.session.commit()
+        return jsonify({
+            'status': 'success',
+            'zone': new_zone.serialize()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding zone: {e}")
+        return jsonify({'status': 'error', 'message': 'فشل في إضافة المنطقة'}), 500
+
+@admin.route('/delete_zone/<int:zone_id>', methods=['DELETE'])
+@admin_required
+def delete_zone(zone_id):
+    try:
+        zone = Zone.query.get_or_404(zone_id)
+        db.session.delete(zone)
+        db.session.commit()
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error deleting zone: {e}")
+        return jsonify({'status': 'error', 'message': 'فشل في حذف المنطقة'}), 500
+
+@admin.route('/add_district/<int:city_id>', methods=['POST'])
+@admin_required
+def add_district(city_id):
+    try:
+        data = request.get_json()
+        district_name = data['name']
+        
+        city = City.query.get_or_404(city_id)
+        
+        # إنشاء معرف فريد للحي
+        new_district = District(
+            name=district_name,
+            city_id=city.id,
+            district_id=f"DIST-{datetime.now().timestamp()}"
+        )
+        
+        db.session.add(new_district)
+        db.session.commit()
+        return jsonify({
+            'status': 'success',
+            'district': new_district.serialize()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding district: {e}")
+        return jsonify({'status': 'error', 'message': 'فشل في إضافة الحي'}), 500
+
+@admin.route('/delete_district/<int:district_id>', methods=['DELETE'])
+@admin_required
+def delete_district(district_id):
+    try:
+        district = District.query.get_or_404(district_id)
+        db.session.delete(district)
+        db.session.commit()
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error deleting district: {e}")
+        return jsonify({'status': 'error', 'message': 'فشل في حذف الحي'}), 500
+
+# ... (بقية الروتات)
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')
 @app.errorhandler(404)
@@ -909,7 +1198,9 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template("shop/500.html"), 500
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
     app.run(debug=True)
