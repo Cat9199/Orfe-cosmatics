@@ -110,10 +110,12 @@
                         <div class="card-body">
                               <dl class="row mb-0">
                                     <dt class="col-6">المجموع الجزئي:</dt>
-                                    <dd class="col-6 text-end">{{ order.cod_amount }} ج.م</dd>
+                                    <dd class="col-6 text-end">
+                                          {{ productsPrice }}
+                                          ج.م</dd>
 
                                     <dt class="col-6">الشحن:</dt>
-                                    <dd class="col-6 text-end">0.00 ج.م</dd>
+                                    <dd class="col-6 text-end">{{ shipping_cost.price }} ج.م</dd>
 
                                     <dt class="col-6">الخصم:</dt>
                                     <dd class="col-6 text-end">0.00 ج.م</dd>

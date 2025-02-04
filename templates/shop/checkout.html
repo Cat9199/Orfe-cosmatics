@@ -169,14 +169,16 @@
 
 <!-- جافاسكربت لتفعيل زر الدفع الموحد -->
 <script>
-      // عند تغيير المدينة، جلب المناطق
+      // عند تغيير المدينة، جلب المناطق وحساب تكلفة الشحن
       document.getElementById('city').addEventListener('change', async function () {
             const cityId = this.value;
             const zoneSelect = document.getElementById('zone');
             zoneSelect.disabled = false;
-            const response = await fetch(`/api/zones?city_id=${cityId}`);
-            const data = await response.json();
-            const zones = data.zones;
+
+            // جلب المناطق
+            const responseZones = await fetch(`/api/zones?city_id=${cityId}`);
+            const dataZones = await responseZones.json();
+            const zones = dataZones.zones;
             zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
             zones.forEach(zone => {
                   const option = document.createElement('option');
@@ -184,6 +186,25 @@
                   option.textContent = zone.name;
                   zoneSelect.appendChild(option);
             });
+
+            // جلب تكلفة الشحن
+            const responseShipping = await fetch(`/api/shipping-cost?city_id=${cityId}`);
+            const dataShipping = await responseShipping.json();
+            const shippingCost = dataShipping.cost;
+
+            // تحديث تكلفة الشحن في النموذج
+            const shippingCostElement = document.querySelector('.shipping td');
+            if (shippingCostElement) {
+                  shippingCostElement.textContent = shippingCost + ' L.E';
+            }
+
+            // تحديث الإجمالي مع تكلفة الشحن الجديدة
+            const totalCostElement = document.querySelector('.total td');
+            const currentTotal = parseFloat("{{ total }}"); // assuming total is passed as a variable to the template
+            const newTotal = currentTotal + shippingCost;
+            if (totalCostElement) {
+                  totalCostElement.textContent = newTotal.toFixed(2) + ' L.E';
+            }
       });
 
       // عند تغيير المنطقة، جلب الأحياء
@@ -225,9 +246,8 @@
                   }, 1000);
             }
             // بالنسبة للدفع عند الاستلام، سيقوم النموذج بالإرسال مباشرة
-
       }
-
 </script>
+
 
 {% endblock %}
