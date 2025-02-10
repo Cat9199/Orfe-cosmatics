@@ -50,16 +50,11 @@
                                     {% endif %}
                               </div>
 
-                              <!-- Description -->
-                              <p class="mb-4">{{ product.description }}</p>
+                              <p class="mb-4">{{ product.description | safe }}</p>
 
-                              <!-- Stock & Actions -->
                               <div class="product-action mt-4">
 
-                                    <!-- Stock Information -->
-
                                     <form action="/cart/add/{{ product.id }}" method="post">
-                                          <!-- Quantity Selector and Buttons -->
                                           <div
                                                 class="product-quantity d-flex flex-column flex-sm-row align-items-center mb-4">
 

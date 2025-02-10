@@ -88,12 +88,11 @@
                                                       </div>
                                                 </div>
                                           </div>
-
                                           <!-- فودافون كاش + واتساب -->
-                                          <div class="col-md-4 mb-3" onclick="handlePaymentButtonClick(event)">
+                                          <div class="col-md-4 mb-3">
                                                 <div class="card shadow-sm p-3 text-center">
-                                                      <img src="{{ url_for('static', filename='images/vodafone.png') }}"
-                                                            alt="Vodafone Cash" class="img-fluid mb-2" width="60">
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/pay5png"
+                                                            alt="Vodafone Cash" class="img-fluid mb-2" width="100">
                                                       <div class="form-check">
                                                             <input class="form-check-input" type="radio"
                                                                   name="payment_method" id="vodafone_cash"
@@ -107,13 +106,57 @@
                                           <!-- الدفع بالفيزا (قريبًا) -->
                                           <div class="col-md-4 mb-3">
                                                 <div class="card shadow-sm p-3 text-center">
-                                                      <img src="{{ url_for('static', filename='images/visa.png') }}"
-                                                            alt="Visa" class="img-fluid mb-2" width="60">
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/Visa_mastercardpng"
+                                                            alt="Visa" class="img-fluid mb-2" width="100">
                                                       <div class="form-check">
                                                             <input class="form-check-input" type="radio"
                                                                   name="payment_method" id="visa" value="visa" required>
                                                             <label class="form-check-label fw-bold" for="visa">الدفع
                                                                   بالفيزا</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- فوري -->
+                                          <div class="col-md-4 mb-3">
+                                                <div class="card shadow-sm p-3 text-center">
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/fawrypng"
+                                                            alt="Fawry" class="img-fluid mb-2" width="100">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="fawry" value="visa"
+                                                                  required>
+                                                            <label class="form-check-label fw-bold"
+                                                                  for="fawry">فوري</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- أمان -->
+                                          <div class="col-md-4 mb-3">
+                                                <div class="card shadow-sm p-3 text-center">
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/Amanpng"
+                                                            alt="Aman" class="img-fluid mb-2" width="100">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="aman" value="visa" required>
+                                                            <label class="form-check-label fw-bold"
+                                                                  for="aman">أمان</label>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- بساطة -->
+                                          <div class="col-md-4 mb-3">
+                                                <div class="card shadow-sm p-3 text-center">
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/basata.png"
+                                                            alt="Basata" class="img-fluid mb-2" width="100">
+                                                      <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                  name="payment_method" id="basata" value="visa"
+                                                                  required>
+                                                            <label class="form-check-label fw-bold"
+                                                                  for="basata">بساطة</label>
                                                       </div>
                                                 </div>
                                           </div>
@@ -167,8 +210,24 @@
       </div>
 </section>
 
-<!-- جافاسكربت لتفعيل زر الدفع الموحد -->
 <script>
+      //validation for all input and make the button disapel until all input is filled
+      const form = document.getElementById('checkoutForm');
+      const inputs = form.querySelectorAll('input, select, textarea');
+      const paymentButton = document.getElementById('paymentButton');
+      paymentButton.disabled = true;
+
+      inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                  let valid = true;
+                  inputs.forEach(input => {
+                        if (input.type !== 'email' && !input.value) {
+                              valid = false;
+                        }
+                  });
+                  paymentButton.disabled = !valid;
+            });
+      });
       // عند تغيير المدينة، جلب المناطق وحساب تكلفة الشحن
       document.getElementById('city').addEventListener('change', async function () {
             const cityId = this.value;

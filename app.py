@@ -398,6 +398,8 @@ def checkout():
                          total=total,
                          cities=cities)
 from uuid import uuid4
+
+
 def handle_fawaterak_payment(order):
     customer_name = order.name.strip().split(maxsplit=1)
     first_name = customer_name[0]
@@ -407,10 +409,26 @@ def handle_fawaterak_payment(order):
         flash('البيانات الأساسية للعميل غير مكتملة', 'danger')
         return redirect(url_for('shop.checkout'))
 
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+    
+    if not shipping_cost:
+        flash('تكلفة الشحن غير متوفرة لهذه المدينة', 'danger')
+        return redirect(url_for('shop.checkout'))
+
     cart_items = []
     cart_total = 0.0
 
-    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+    # Add shipping cost to cart items and total
+    shipping_price = float(shipping_cost.price)
+    cart_items.append({
+        "name": "Shipping Cost",
+        "price": str(round(shipping_price, 2)),
+        "quantity": "1"
+    })
+    cart_total += shipping_price
+
+    # Add product items to cart items and total
     for item in order_items:
         product = Product.query.get(item.product_id)
         if product:
@@ -426,12 +444,13 @@ def handle_fawaterak_payment(order):
                 "price": str(round(price, 2)),
                 "quantity": str(quantity)
             })
-            cart_total += price * quantity
+            cart_total += round(price * quantity, 2)
 
     if not cart_items:
         flash('سلة التسوق فارغة', 'danger')
         return redirect(url_for('shop.checkout'))
 
+    # Prepare the payload for Fawaterak
     payload = {
         "cartTotal": str(round(cart_total, 2)),
         "currency": "EGP",
@@ -461,31 +480,35 @@ def handle_fawaterak_payment(order):
     app.logger.debug("Fawaterak Payload:")
     app.logger.debug(json.dumps(payload, indent=2))
 
-    response = requests.post(
-        app.config['FAWATERAK_API_URL'],
-        headers=headers,
-        json=payload,
-        timeout=10
-    )
+    try:
+        response = requests.post(
+            app.config['FAWATERAK_API_URL'],
+            headers=headers,
+            json=payload,
+            timeout=10
+        )
 
-    print(response.text)
-    if not response.ok:
-        app.logger.error(f"Fawaterak API Error: {response.status_code} - {response.text}")
-        response.raise_for_status()
+        if not response.ok:
+            app.logger.error(f"Fawaterak API Error: {response.status_code} - {response.text}")
+            response.raise_for_status()
 
-    fawaterak_data = response.json()
-    if fawaterak_data.get('status') != 'success':
-        app.logger.error(f"Fawaterak API Error: {fawaterak_data}")
-        flash('فشل في إنشاء فاتورة الدفع', 'danger')
+        fawaterak_data = response.json()
+        if fawaterak_data.get('status') != 'success':
+            app.logger.error(f"Fawaterak API Error: {fawaterak_data}")
+            flash('فشل في إنشاء فاتورة الدفع', 'danger')
+            return redirect(url_for('shop.checkout'))
+
+        order.invoice_key = fawaterak_data['data']['invoiceKey']
+        order.invoice_id = fawaterak_data['data']['invoiceId']
+        order.invoice_url = fawaterak_data['data']['url']
+        db.session.commit()
+
+        return redirect(fawaterak_data['data']['url'])
+
+    except requests.exceptions.RequestException as e:
+        app.logger.error(f"Fawaterak API Request Failed: {e}")
+        flash('فشل في الاتصال بخدمة الدفع، الرجاء المحاولة مرة أخرى', 'danger')
         return redirect(url_for('shop.checkout'))
-
-    order.invoice_key = fawaterak_data['data']['invoiceKey']
-    order.invoice_id = fawaterak_data['data']['invoiceId']
-    order.invoice_url = fawaterak_data['data']['url']
-    db.session.commit()
-
-    return redirect(fawaterak_data['data']['url'])
-
 @shop.route('/checkout/place_order', methods=['POST'])
 def place_order():
         required_fields = ['name', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
@@ -496,7 +519,6 @@ def place_order():
 
         user = Gusts.query.filter_by(session=session['session']).first()
         cart_items = Cart.query.filter_by(user_id=user.id).all()
-
         if not cart_items:
             flash('سلة التسوق فارغة', 'danger')
             return redirect(url_for('shop.cart'))
@@ -527,11 +549,6 @@ def place_order():
             status='pending'
         )
 
-        if payment_method == 'visa':
-            db.session.add(order)
-            db.session.commit()
-            return handle_fawaterak_payment(order)
-
         db.session.add(order)
         db.session.commit()
 
@@ -545,6 +562,9 @@ def place_order():
             db.session.delete(cart_item)
 
         db.session.commit()
+
+        if payment_method == 'visa':
+            return handle_fawaterak_payment(order)
 
         flash('تم إنشاء الطلب بنجاح!', 'success')
         return redirect(url_for('shop.order_confirmation', order_id=order.id))
@@ -585,13 +605,10 @@ def payment_success(order_id):
     order = Order.query.get_or_404(order_id)
     order.payment_status = 'paid'
     db.session.commit()
-
     user = Gusts.query.filter_by(session=session['session']).first()
     Cart.query.filter_by(user_id=user.id).delete()
     db.session.commit()
-
     return render_template('shop/payment_success.html', order=order)
-
 
 @shop.route('/payment/fail/<int:order_id>')
 def payment_fail(order_id):
@@ -666,6 +683,7 @@ def cart():
     # Change the query to use correct relationship between Cart and Product
     cart_query_result = db.session.query(Cart, Product).join(Product).filter(Cart.user_id == user.id).all()
     total = sum(item.Product.price * item.Cart.quantity for item in cart_query_result)
+    all_last_orders = Order.query.filter_by(user_id=user.id).order_by(Order.id.desc()).limit(10).all()
     cart_items = [
         {
             'id': item.Cart.id,
@@ -673,7 +691,7 @@ def cart():
             'quantity': item.Cart.quantity
         } for item in cart_query_result
     ]
-    return render_template('shop/cart.html', cart_items=cart_items, total=total)
+    return render_template('shop/cart.html', cart_items=cart_items, total=total, all_last_orders=all_last_orders)
 # chang-quantity/plus/1
 @shop.route('/cart/change-quantity/<action>/<int:item_id>')
 def change_quantity(action, item_id):
@@ -1007,18 +1025,14 @@ def order_detail(order_id):
     # Get the order record or return a 404 if not found
     order = Order.query.get_or_404(order_id)
     
-    # Perform a left outer join between OrderItem and Product.
-    # This returns a list of tuples: (order_item, product) where product can be None.
     order_items_with_product = (
         db.session.query(OrderItem, Product)
         .outerjoin(Product, OrderItem.product_id == Product.id)
         .filter(OrderItem.order_id == order_id)
         .all()
     )
-
-    # Transform the joined data into a list of dictionaries.
-    # If product is None, default name and price to "غير معروف".
     order_items = []
+    products = Product.query.all()
     for order_item, product in order_items_with_product:
         item_data = {
             'order_item': order_item,
@@ -1031,7 +1045,56 @@ def order_detail(order_id):
         }
         order_items.append(item_data)
 
-    return render_template('admin/order.html', order=order, order_items=order_items)
+    return render_template('admin/order.html', order=order, order_items=order_items, products=products)
+# delete order
+@admin.route('/delete_order/<int:order_id>', methods=['POST'])
+@admin_required
+def delete_order(order_id):
+    order = Order.query.get_or_404(order_id)
+    db.session.delete(order)
+    db.session.commit()
+    flash('تم حذف الطلب بنجاح!', 'success')
+    return redirect(url_for('admin.orders'))
+# add item to order
+@admin.route('/add_item_to_order/<int:order_id>', methods=['POST'])
+@admin_required
+def add_item_to_order(order_id):
+    order = Order.query.get_or_404(order_id)
+    product_id = request.form['product_id']
+    quantity = int(request.form['quantity'])
+    
+    product = Product.query.get_or_404(product_id)
+    if quantity > product.stock:
+        flash('الكمية المطلوبة غير متوفرة في المخزون', 'error')
+        return redirect(url_for('admin.order_detail', order_id=order_id))
+    
+    order_item = OrderItem(order_id=order_id, product_id=product_id, quantity=quantity)
+    db.session.add(order_item)
+    order.cod_amount += product.price * quantity
+    
+    db.session.commit()
+    flash('تمت إضافة المنتج إلى الطلب بنجاح!', 'success')
+    return redirect(url_for('admin.order_detail', order_id=order_id))
+@admin.route('/delete_item_from_order/<int:order_id>/<int:item_id>', methods=['POST'])
+@admin_required
+def delete_item_from_order(order_id, item_id):
+    try:
+        order_item = OrderItem.query.get_or_404(item_id)
+        order = Order.query.get_or_404(order_id)
+        product = Product.query.get_or_404(order_item.product_id)
+        
+        order.cod_amount -= product.price * order_item.quantity
+        db.session.delete(order_item)
+        db.session.commit()
+        
+        flash('تم حذف المنتج من الطلب بنجاح!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f'Error deleting item from order: {str(e)}')
+        flash('حدث خطأ أثناء حذف المنتج من الطلب، الرجاء المحاولة مرة أخرى', 'error')
+    
+    return redirect(url_for('admin.order_detail', order_id=order_id))
+
 @admin.route('/payment-gateways')
 def payment_gateways():
     # يمكنك إضافة منطق إضافي هنا إذا لزم الأمر

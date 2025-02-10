@@ -89,6 +89,28 @@
             </div>
       </div>
 </section>
+<!-- last_orders -->
 
+<section class="py-5">
+      <div class="container">
+            <h2 class="text-center mb-4">Last Orders</h2>
+            <div class="row">
+                  {% for order in all_last_orders %}
+                  <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card shadow-sm border-0">
+                              <div class="card-body">
+                                    <h5 class="card-title">Order #{{ order.id }}</h5>
+                                    <p class="card-text text-muted">Total: {{ order.cod_amount
+                                          }} L.E</p>
+                                    <p class="card-text text-muted">Status: {{ order.status }}</p>
+                                    <a href="{{ url_for('shop.order_detail', order_id=order.id) }}"
+                                          class="btn btn-primary">View Order</a>
+                              </div>
+                        </div>
+                  </div>
+                  {% endfor %}
+            </div>
+      </div>
+</section>
 
 {% endblock %}
