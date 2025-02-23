@@ -1,5 +1,4 @@
 {% extends 'admin/base.html' %}
-
 {% block content %}
 <div class="container mx-auto px-4 py-6">
       <div class="flex justify-between items-center mb-6">
@@ -11,105 +10,159 @@
                   إجمالي الطلبات: {{ orders|length }}
             </div>
       </div>
-
-      <!-- Orders Table -->
-      <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
-            <table class="w-full">
-                  <thead class="bg-gray-50 border-b">
-                        <tr class="text-sm text-gray-500">
-                              <th class="px-6 py-4 text-right">رقم الطلب</th>
-                              <th class="px-6 py-4 text-center">العميل</th>
-                              <th class="px-6 py-4 text-center">الهاتف</th>
-                              <th class="px-6 py-4 text-center">المبلغ</th>
-                              <th class="px-6 py-4 text-center">طريقة الدفع</th>
-                              <th class="px-6 py-4 text-center">حالة الشحن</th>
-                              <th class="px-6 py-4 text-center">الإجراءات</th>
-                        </tr>
-                  </thead>
-                  <tbody class="divide-y">
-                        {% for order in orders %}
-                        <tr class="hover:bg-gray-50 transition-colors">
-                              <!-- Order ID -->
-                              <td class="px-6 py-4 font-medium text-gray-900">
-                                    #{{ order.id }}
-                              </td>
-
-                              <!-- Customer Name -->
-                              <td class="px-6 py-4 text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                          <i class="bx bx-user text-gray-400"></i>
-                                          <span>{{ order.name }}</span>
-                                    </div>
-                              </td>
-
-                              <!-- Phone -->
-                              <td class="px-6 py-4 text-center">
-                                    <a href="tel:{{ order.phone }}" class="text-rose-600 hover:text-rose-800">
-                                          {{ order.phone }}
-                                    </a>
-                              </td>
-
-                              <!-- Amount -->
-                              <td class="px-6 py-4 text-center">
-                                    <span class="bg-gray-100 px-3 py-1 rounded-full">
-                                          {{ order.cod_amount }} ج.م
-                                    </span>
-                              </td>
-
-                              <!-- Payment Method -->
-                              <td class="px-6 py-4 text-center">
-                                    {% if order.payment_method == 'cash_on_delivery' %}
-                                    <div class="flex items-center justify-center gap-2">
-                                          <i class="bx bx-money text-green-500"></i>
-                                          <span>الدفع عند الاستلام</span>
-                                    </div>
-                                    {% elif order.payment_method == 'vodafone_cash' %}
-                                    <div class="flex items-center justify-center gap-2">
-                                          <i class="bx bx-mobile-alt text-purple-500"></i>
-                                          <span>فودافون كاش</span>
-                                    </div>
-                                    {% elif order.payment_method == 'visa' %}
-                                    <div class="flex items-center justify-center gap-2">
-                                          <i class="bx bx-credit-card text-blue-500"></i>
-                                          <span>فيزا / ماستركارد</span>
-                                    </div>
-                                    {% else %}
-                                    <span class="text-gray-500">غير معروف</span>
-                                    {% endif %}
-                              </td>
-
-                              <!-- Shipping Status -->
-                              <td class="px-6 py-4 text-center">
-                                    <span class="px-3 py-1 rounded-full text-sm 
-                            {% if order.shipping_status == 'pending' %}bg-yellow-100 text-yellow-800
-                            {% elif order.shipping_status == 'shipped' %}bg-blue-100 text-blue-800
-                            {% elif order.shipping_status == 'delivered' %}bg-green-100 text-green-800
-                            {% else %}bg-gray-100 text-gray-800{% endif %}">
-                                          {{ order.shipping_status }}
-                                    </span>
-                              </td>
-
-                              <!-- Actions -->
-                              <td class="px-6 py-4 text-center space-x-2">
-                                    <!-- View Details -->
-                                    <a href="{{ url_for('admin.order_detail', order_id=order.id) }}"
-                                          class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50">
-                                          <i class="bx bx-show text-xl"></i>
-                                    </a>
-
-                                    <!-- Ship Order -->
-                                    <form action="{{ url_for('admin.ship_order', order_id=order.id) }}" method="POST"
-                                          class="inline">
-                                          <button type="submit"
-                                                class="text-green-600 hover:text-green-800 p-2 rounded-lg hover:bg-green-50">
-                                                <i class="bx bx-truck text-xl"></i>
-                                          </button>
-                                    </form>
-                              </td>
-                        </tr>
-                        {% endfor %}
-                  </tbody>
-            </table>
-      </div>
+      <!-- Export Selected Button -->
+      <form action="{{ url_for('admin.export_selected_orders') }}" method="POST" class="mb-4">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                  <i class="bx bx-export mr-2"></i> تصدير المحدد
+            </button>
+            <!-- Orders Table -->
+            <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                  <table class="w-full">
+                        <thead class="bg-gray-50 border-b">
+                              <tr class="text-sm text-gray-500">
+                                    <th class="px-6 py-4 text-center">
+                                          <input type="checkbox" id="select-all"
+                                                class="form-checkbox h-5 w-5 text-blue-600">
+                                    </th>
+                                    <th class="px-6 py-4 text-right">رقم الطلب</th>
+                                    <th class="px-6 py-4 text-center">العميل</th>
+                                    <th class="px-6 py-4 text-center">الهاتف</th>
+                                    <th class="px-6 py-4 text-center">المبلغ</th>
+                                    <th class="px-6 py-4 text-center">طريقة الدفع</th>
+                                    <th class="px-6 py-4 text-center">حالة الشحن</th>
+                                    <th class="px-6 py-4 text-center">تغيير حالة الشحن</th>
+                                    <th class="px-6 py-4 text-center">الإجراءات</th>
+                              </tr>
+                        <tbody class="divide-y">
+                              {% for order in orders %}
+                              <tr class="hover:bg-gray-50 transition-colors">
+                                    <!-- Checkbox -->
+                                    <td class="px-6 py-4 text-center">
+                                          <input type="checkbox" name="order_ids" value="{{ order.id }}"
+                                                class="form-checkbox h-5 w-5 text-blue-600">
+                                    </td>
+                                    <!-- Order ID -->
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                          #{{ order.id }}
+                                    </td>
+                                    <!-- Customer Name -->
+                                    <td class="px-6 py-4 text-center">
+                                          <div class="flex items-center justify-center gap-2">
+                                                <i class="bx bx-user text-gray-400"></i>
+                                                <span>{{ order.name }}</span>
+                                          </div>
+                                    </td>
+                                    <!-- Phone -->
+                                    <td class="px-6 py-4 text-center">
+                                          <a href="tel:{{ order.phone }}" class="text-rose-600 hover:text-rose-800">
+                                                {{ order.phone }}
+                                          </a>
+                                    </td>
+                                    <!-- Amount -->
+                                    <td class="px-6 py-4 text-center">
+                                          <span class="bg-gray-100 px-3 py-1 rounded-full">
+                                                {{ order.cod_amount }} ج.م
+                                          </span>
+                                    </td>
+                                    <!-- Payment Method -->
+                                    <td class="px-6 py-4 text-center">
+                                          {% if order.payment_method == 'cash_on_delivery' %}
+                                          <div class="flex items-center justify-center gap-2">
+                                                <i class="bx bx-money text-green-500"></i>
+                                                <span>الدفع عند الاستلام</span>
+                                          </div>
+                                          {% elif order.payment_method == 'vodafone_cash' %}
+                                          <div class="flex items-center justify-center gap-2">
+                                                <i class="bx bx-mobile-alt text-purple-500"></i>
+                                                <span>فودافون كاش</span>
+                                          </div>
+                                          {% elif order.payment_method == 'visa' %}
+                                          <div class="flex items-center justify-center gap-2">
+                                                <i class="bx bx-credit-card text-blue-500"></i>
+                                                <span>فيزا / ماستركارد</span>
+                                          </div>
+                                          {% else %}
+                                          <span class="text-gray-500">غير معروف</span>
+                                          {% endif %}
+                                    </td>
+                                    <!-- Shipping Status -->
+                                    <td class="px-6 py-4 text-center">
+                                          <span class="px-3 py-1 rounded-full text-sm 
+                                {% if order.shipping_status == 'pending' %}bg-yellow-100 text-yellow-800
+                                {% elif order.shipping_status == 'shipped' %}bg-blue-100 text-blue-800
+                                {% elif order.shipping_status == 'delivered' %}bg-green-100 text-green-800
+                                {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                                {{ order.shipping_status }}
+                                          </span>
+                                    </td>
+                                    <!-- Change Shipping Status -->
+                                    <td class="px-6 py-4 text-center space-x-1">
+                                          <form action="{{ url_for('admin.update_shipping_status', order_id=order.id) }}"
+                                                method="POST" class="inline">
+                                                <input type="hidden" name="status" value="pending">
+                                                <button type="submit"
+                                                      class="bg-yellow-100 text-yellow-800 px-1 py-1 rounded-md hover:bg-yellow-200 text-xs">
+                                                      Pending
+                                                </button>
+                                          </form>
+                                          <form action="{{ url_for('admin.update_shipping_status', order_id=order.id) }}"
+                                                method="POST" class="inline">
+                                                <input type="hidden" name="status" value="shipped">
+                                                <button type="submit"
+                                                      class="bg-blue-100 text-blue-800 px-1 py-1 rounded-md hover:bg-blue-200 text-xs">
+                                                      Shipped
+                                                </button>
+                                          </form>
+                                          <form action="{{ url_for('admin.update_shipping_status', order_id=order.id) }}"
+                                                method="POST" class="inline">
+                                                <input type="hidden" name="status" value="delivered">
+                                                <button type="submit"
+                                                      class="bg-green-100 text-green-800 px-1 py-1 rounded-md hover:bg-green-200 text-xs">
+                                                      Delivered
+                                                </button>
+                                          </form>
+                                    </td>
+                                    <!-- Actions -->
+                                    <td class="px-6 py-4 text-center space-x-2">
+                                          <!-- View Details -->
+                                          <a href="{{ url_for('admin.order_detail', order_id=order.id) }}"
+                                                class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50">
+                                                <i class="bx bx-show text-xl"></i>
+                                          </a>
+                                          <!-- Ship Order -->
+                                          <form action="{{ url_for('admin.ship_order', order_id=order.id) }}"
+                                                method="POST" class="inline">
+                                                <button type="submit"
+                                                      class="text-green-600 hover:text-green-800 p-2 rounded-lg hover:bg-green-50">
+                                                      <i class="bx bx-truck text-xl"></i>
+                                                </button>
+                                          </form>
+                                    </td>
+                              </tr>
+                              {% endfor %}
+                        </tbody>
+                  </table>
+            </div>
+      </form>
 </div>
+<script>
+      const checkboxes = document.querySelectorAll('.form-checkbox');
+      const selectAll = document.getElementById('select-all');
+      selectAll.addEventListener('change', function () {
+            checkboxes.forEach(checkbox => {
+                  checkbox.checked = selectAll.checked;
+            });
+      });
+      checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                  if (!this.checked) {
+                        selectAll.checked = false;
+                  } else {
+                        if ([...checkboxes].every(checkbox => checkbox.checked)) {
+                              selectAll.checked = true;
+                        }
+                  }
+            });
+      });
+</script>
 {% endblock %}

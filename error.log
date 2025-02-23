@@ -1373,3 +1373,942 @@ ValueError: could not convert string to float: '200+'
 [2025-02-10 09:04:42 +0000] [31745] [INFO] Booting worker with pid: 31745
 [2025-02-10 09:04:42 +0000] [31746] [INFO] Booting worker with pid: 31746
 [2025-02-10 09:04:42 +0000] [31747] [INFO] Booting worker with pid: 31747
+[2025-02-10 13:38:52,212] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 271, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-10 14:53:20,810] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 271, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-10 14:55:48,787] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 271, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-10 16:33:45 +0000] [31740] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:45 +0000] [31740] [INFO] Worker exiting (pid: 31740)
+[2025-02-10 16:33:45 +0000] [31737] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:45 +0000] [31737] [INFO] Worker exiting (pid: 31737)
+[2025-02-10 16:33:45 +0000] [31743] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:45 +0000] [31743] [INFO] Worker exiting (pid: 31743)
+[2025-02-10 16:33:45 +0000] [31744] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:45 +0000] [31744] [INFO] Worker exiting (pid: 31744)
+[2025-02-10 16:33:45 +0000] [31738] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:45 +0000] [31738] [INFO] Worker exiting (pid: 31738)
+[2025-02-10 16:33:46 +0000] [31742] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31742] [INFO] Worker exiting (pid: 31742)
+[2025-02-10 16:33:46 +0000] [31746] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31746] [INFO] Worker exiting (pid: 31746)
+[2025-02-10 16:33:46 +0000] [31739] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31736] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31739] [INFO] Worker exiting (pid: 31739)
+[2025-02-10 16:33:46 +0000] [31736] [INFO] Worker exiting (pid: 31736)
+[2025-02-10 16:33:46 +0000] [31741] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31741] [INFO] Worker exiting (pid: 31741)
+[2025-02-10 16:33:46 +0000] [31747] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31747] [INFO] Worker exiting (pid: 31747)
+[2025-02-10 16:33:46 +0000] [91695] [INFO] Booting worker with pid: 91695
+[2025-02-10 16:33:46 +0000] [91696] [INFO] Booting worker with pid: 91696
+[2025-02-10 16:33:46 +0000] [31745] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:33:46 +0000] [31745] [INFO] Worker exiting (pid: 31745)
+[2025-02-10 16:33:46 +0000] [91697] [INFO] Booting worker with pid: 91697
+[2025-02-10 16:33:46 +0000] [91698] [INFO] Booting worker with pid: 91698
+[2025-02-10 16:33:46 +0000] [91699] [INFO] Booting worker with pid: 91699
+[2025-02-10 16:33:47 +0000] [91700] [INFO] Booting worker with pid: 91700
+[2025-02-10 16:33:47 +0000] [91701] [INFO] Booting worker with pid: 91701
+[2025-02-10 16:33:47 +0000] [91702] [INFO] Booting worker with pid: 91702
+[2025-02-10 16:33:47 +0000] [91703] [INFO] Booting worker with pid: 91703
+[2025-02-10 16:33:47 +0000] [91704] [INFO] Booting worker with pid: 91704
+[2025-02-10 16:33:47 +0000] [91705] [INFO] Booting worker with pid: 91705
+[2025-02-10 16:33:47 +0000] [91706] [INFO] Booting worker with pid: 91706
+[2025-02-10 16:35:07 +0000] [91697] [INFO] Worker exiting (pid: 91697)
+[2025-02-10 16:35:07 +0000] [31735] [INFO] Handling signal: term
+[2025-02-10 16:35:07 +0000] [91695] [INFO] Worker exiting (pid: 91695)
+[2025-02-10 16:35:07 +0000] [91698] [INFO] Worker exiting (pid: 91698)
+[2025-02-10 16:35:07 +0000] [91699] [INFO] Worker exiting (pid: 91699)
+[2025-02-10 16:35:07 +0000] [91696] [INFO] Worker exiting (pid: 91696)
+[2025-02-10 16:35:07 +0000] [91703] [INFO] Worker exiting (pid: 91703)
+[2025-02-10 16:35:07 +0000] [91701] [INFO] Worker exiting (pid: 91701)
+[2025-02-10 16:35:07 +0000] [91700] [INFO] Worker exiting (pid: 91700)
+[2025-02-10 16:35:07 +0000] [91702] [INFO] Worker exiting (pid: 91702)
+[2025-02-10 16:35:07 +0000] [91704] [INFO] Worker exiting (pid: 91704)
+[2025-02-10 16:35:07 +0000] [91705] [INFO] Worker exiting (pid: 91705)
+[2025-02-10 16:35:07 +0000] [91706] [INFO] Worker exiting (pid: 91706)
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91702) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91697) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91700) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91699) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91706) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91698) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91705) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91701) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91703) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [ERROR] Worker (pid:91704) was sent SIGTERM!
+[2025-02-10 16:35:07 +0000] [31735] [INFO] Shutting down: Master
+[2025-02-10 16:35:09 +0000] [91938] [INFO] Starting gunicorn 21.2.0
+[2025-02-10 16:35:09 +0000] [91938] [INFO] Listening at: http://127.0.0.1:1305 (91938)
+[2025-02-10 16:35:09 +0000] [91938] [INFO] Using worker: sync
+[2025-02-10 16:35:09 +0000] [91939] [INFO] Booting worker with pid: 91939
+[2025-02-10 16:35:09 +0000] [91940] [INFO] Booting worker with pid: 91940
+[2025-02-10 16:35:09 +0000] [91941] [INFO] Booting worker with pid: 91941
+[2025-02-10 16:35:09 +0000] [91942] [INFO] Booting worker with pid: 91942
+[2025-02-10 16:35:09 +0000] [91943] [INFO] Booting worker with pid: 91943
+[2025-02-10 16:35:09 +0000] [91944] [INFO] Booting worker with pid: 91944
+[2025-02-10 16:35:09 +0000] [91945] [INFO] Booting worker with pid: 91945
+[2025-02-10 16:35:09 +0000] [91946] [INFO] Booting worker with pid: 91946
+[2025-02-10 16:35:09 +0000] [91947] [INFO] Booting worker with pid: 91947
+[2025-02-10 16:35:09 +0000] [91948] [INFO] Booting worker with pid: 91948
+[2025-02-10 16:35:09 +0000] [91949] [INFO] Booting worker with pid: 91949
+[2025-02-10 16:35:09 +0000] [91950] [INFO] Booting worker with pid: 91950
+[2025-02-10 16:37:24 +0000] [91942] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91942] [INFO] Worker exiting (pid: 91942)
+[2025-02-10 16:37:24 +0000] [91943] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91943] [INFO] Worker exiting (pid: 91943)
+[2025-02-10 16:37:24 +0000] [91939] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91939] [INFO] Worker exiting (pid: 91939)
+[2025-02-10 16:37:24 +0000] [91946] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91946] [INFO] Worker exiting (pid: 91946)
+[2025-02-10 16:37:24 +0000] [91945] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91945] [INFO] Worker exiting (pid: 91945)
+[2025-02-10 16:37:24 +0000] [91940] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91940] [INFO] Worker exiting (pid: 91940)
+[2025-02-10 16:37:24 +0000] [91944] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91944] [INFO] Worker exiting (pid: 91944)
+[2025-02-10 16:37:24 +0000] [91948] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91948] [INFO] Worker exiting (pid: 91948)
+[2025-02-10 16:37:24 +0000] [91947] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91947] [INFO] Worker exiting (pid: 91947)
+[2025-02-10 16:37:24 +0000] [91949] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91949] [INFO] Worker exiting (pid: 91949)
+[2025-02-10 16:37:24 +0000] [91950] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:24 +0000] [91950] [INFO] Worker exiting (pid: 91950)
+[2025-02-10 16:37:25 +0000] [91941] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:37:25 +0000] [91941] [INFO] Worker exiting (pid: 91941)
+[2025-02-10 16:37:25 +0000] [92231] [INFO] Booting worker with pid: 92231
+[2025-02-10 16:37:25 +0000] [92233] [INFO] Booting worker with pid: 92233
+[2025-02-10 16:37:26 +0000] [92234] [INFO] Booting worker with pid: 92234
+[2025-02-10 16:37:26 +0000] [92235] [INFO] Booting worker with pid: 92235
+[2025-02-10 16:37:26 +0000] [92236] [INFO] Booting worker with pid: 92236
+[2025-02-10 16:37:26 +0000] [92237] [INFO] Booting worker with pid: 92237
+[2025-02-10 16:37:26 +0000] [92238] [INFO] Booting worker with pid: 92238
+[2025-02-10 16:37:26 +0000] [92239] [INFO] Booting worker with pid: 92239
+[2025-02-10 16:37:26 +0000] [92240] [INFO] Booting worker with pid: 92240
+[2025-02-10 16:37:26 +0000] [92241] [INFO] Booting worker with pid: 92241
+[2025-02-10 16:37:26 +0000] [92242] [INFO] Booting worker with pid: 92242
+[2025-02-10 16:37:26 +0000] [92264] [INFO] Booting worker with pid: 92264
+[2025-02-10 16:37:28 +0000] [91938] [INFO] Handling signal: term
+[2025-02-10 16:37:30 +0000] [92231] [INFO] Worker exiting (pid: 92231)
+[2025-02-10 16:37:30 +0000] [92233] [INFO] Worker exiting (pid: 92233)
+[2025-02-10 16:37:30 +0000] [92234] [INFO] Worker exiting (pid: 92234)
+[2025-02-10 16:37:30 +0000] [92235] [INFO] Worker exiting (pid: 92235)
+[2025-02-10 16:37:31 +0000] [92237] [INFO] Worker exiting (pid: 92237)
+[2025-02-10 16:37:31 +0000] [92238] [INFO] Worker exiting (pid: 92238)
+[2025-02-10 16:37:31 +0000] [92236] [INFO] Worker exiting (pid: 92236)
+[2025-02-10 16:37:31 +0000] [92240] [INFO] Worker exiting (pid: 92240)
+[2025-02-10 16:37:31 +0000] [92239] [INFO] Worker exiting (pid: 92239)
+[2025-02-10 16:37:31 +0000] [92242] [INFO] Worker exiting (pid: 92242)
+[2025-02-10 16:37:31 +0000] [92241] [INFO] Worker exiting (pid: 92241)
+[2025-02-10 16:37:31 +0000] [92322] [INFO] Starting gunicorn 21.2.0
+[2025-02-10 16:37:31 +0000] [92322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-10 16:37:31 +0000] [92322] [ERROR] Retrying in 1 second.
+[2025-02-10 16:37:31 +0000] [92264] [INFO] Worker exiting (pid: 92264)
+[2025-02-10 16:37:32 +0000] [92322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-10 16:37:32 +0000] [92322] [ERROR] Retrying in 1 second.
+[2025-02-10 16:37:32 +0000] [91938] [INFO] Shutting down: Master
+[2025-02-10 16:37:33 +0000] [92322] [INFO] Listening at: http://127.0.0.1:1305 (92322)
+[2025-02-10 16:37:33 +0000] [92322] [INFO] Using worker: sync
+[2025-02-10 16:37:33 +0000] [92326] [INFO] Booting worker with pid: 92326
+[2025-02-10 16:37:33 +0000] [92327] [INFO] Booting worker with pid: 92327
+[2025-02-10 16:37:33 +0000] [92328] [INFO] Booting worker with pid: 92328
+[2025-02-10 16:37:33 +0000] [92329] [INFO] Booting worker with pid: 92329
+[2025-02-10 16:37:33 +0000] [92330] [INFO] Booting worker with pid: 92330
+[2025-02-10 16:37:33 +0000] [92331] [INFO] Booting worker with pid: 92331
+[2025-02-10 16:37:33 +0000] [92332] [INFO] Booting worker with pid: 92332
+[2025-02-10 16:37:33 +0000] [92333] [INFO] Booting worker with pid: 92333
+[2025-02-10 16:37:33 +0000] [92334] [INFO] Booting worker with pid: 92334
+[2025-02-10 16:37:33 +0000] [92335] [INFO] Booting worker with pid: 92335
+[2025-02-10 16:37:34 +0000] [92336] [INFO] Booting worker with pid: 92336
+[2025-02-10 16:37:34 +0000] [92337] [INFO] Booting worker with pid: 92337
+[2025-02-10 16:41:33 +0000] [92337] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:33 +0000] [92337] [INFO] Worker exiting (pid: 92337)
+[2025-02-10 16:41:33 +0000] [92326] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:33 +0000] [92326] [INFO] Worker exiting (pid: 92326)
+[2025-02-10 16:41:33 +0000] [92336] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:33 +0000] [92336] [INFO] Worker exiting (pid: 92336)
+[2025-02-10 16:41:33 +0000] [92327] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:33 +0000] [92327] [INFO] Worker exiting (pid: 92327)
+[2025-02-10 16:41:33 +0000] [92328] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:33 +0000] [92328] [INFO] Worker exiting (pid: 92328)
+[2025-02-10 16:41:34 +0000] [92999] [INFO] Booting worker with pid: 92999
+[2025-02-10 16:41:34 +0000] [93000] [INFO] Booting worker with pid: 93000
+[2025-02-10 16:41:34 +0000] [93001] [INFO] Booting worker with pid: 93001
+[2025-02-10 16:41:34 +0000] [92329] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92329] [INFO] Worker exiting (pid: 92329)
+[2025-02-10 16:41:34 +0000] [92330] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92330] [INFO] Worker exiting (pid: 92330)
+[2025-02-10 16:41:34 +0000] [92334] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92334] [INFO] Worker exiting (pid: 92334)
+[2025-02-10 16:41:34 +0000] [92333] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92333] [INFO] Worker exiting (pid: 92333)
+[2025-02-10 16:41:34 +0000] [92331] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92331] [INFO] Worker exiting (pid: 92331)
+[2025-02-10 16:41:34 +0000] [92332] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92332] [INFO] Worker exiting (pid: 92332)
+[2025-02-10 16:41:34 +0000] [92335] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-10 16:41:34 +0000] [92335] [INFO] Worker exiting (pid: 92335)
+[2025-02-10 16:41:34 +0000] [93002] [INFO] Booting worker with pid: 93002
+[2025-02-10 16:41:35 +0000] [93003] [INFO] Booting worker with pid: 93003
+[2025-02-10 16:41:35 +0000] [93004] [INFO] Booting worker with pid: 93004
+[2025-02-10 16:41:35 +0000] [93006] [INFO] Booting worker with pid: 93006
+[2025-02-10 16:41:35 +0000] [93007] [INFO] Booting worker with pid: 93007
+[2025-02-10 16:41:36 +0000] [93008] [INFO] Booting worker with pid: 93008
+[2025-02-10 16:41:36 +0000] [93010] [INFO] Booting worker with pid: 93010
+[2025-02-10 16:41:36 +0000] [93011] [INFO] Booting worker with pid: 93011
+[2025-02-10 16:41:36 +0000] [93012] [INFO] Booting worker with pid: 93012
+[2025-02-10 16:41:36 +0000] [92322] [INFO] Handling signal: term
+[2025-02-10 16:41:38 +0000] [92999] [INFO] Worker exiting (pid: 92999)
+[2025-02-10 16:41:38 +0000] [93000] [INFO] Worker exiting (pid: 93000)
+[2025-02-10 16:41:38 +0000] [93001] [INFO] Worker exiting (pid: 93001)
+[2025-02-10 16:41:39 +0000] [93033] [INFO] Starting gunicorn 21.2.0
+[2025-02-10 16:41:39 +0000] [93033] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-10 16:41:39 +0000] [93033] [ERROR] Retrying in 1 second.
+[2025-02-10 16:41:39 +0000] [93002] [INFO] Worker exiting (pid: 93002)
+[2025-02-10 16:41:39 +0000] [93003] [INFO] Worker exiting (pid: 93003)
+[2025-02-10 16:41:39 +0000] [93004] [INFO] Worker exiting (pid: 93004)
+[2025-02-10 16:41:40 +0000] [93033] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-10 16:41:40 +0000] [93033] [ERROR] Retrying in 1 second.
+[2025-02-10 16:41:40 +0000] [93007] [INFO] Worker exiting (pid: 93007)
+[2025-02-10 16:41:40 +0000] [93006] [INFO] Worker exiting (pid: 93006)
+[2025-02-10 16:41:40 +0000] [93008] [INFO] Worker exiting (pid: 93008)
+[2025-02-10 16:41:40 +0000] [93011] [INFO] Worker exiting (pid: 93011)
+[2025-02-10 16:41:40 +0000] [93012] [INFO] Worker exiting (pid: 93012)
+[2025-02-10 16:41:40 +0000] [93010] [INFO] Worker exiting (pid: 93010)
+[2025-02-10 16:41:41 +0000] [93033] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-10 16:41:41 +0000] [93033] [ERROR] Retrying in 1 second.
+[2025-02-10 16:41:41 +0000] [92322] [INFO] Shutting down: Master
+[2025-02-10 16:41:42 +0000] [93033] [INFO] Listening at: http://127.0.0.1:1305 (93033)
+[2025-02-10 16:41:42 +0000] [93033] [INFO] Using worker: sync
+[2025-02-10 16:41:42 +0000] [93043] [INFO] Booting worker with pid: 93043
+[2025-02-10 16:41:42 +0000] [93044] [INFO] Booting worker with pid: 93044
+[2025-02-10 16:41:42 +0000] [93045] [INFO] Booting worker with pid: 93045
+[2025-02-10 16:41:42 +0000] [93046] [INFO] Booting worker with pid: 93046
+[2025-02-10 16:41:42 +0000] [93047] [INFO] Booting worker with pid: 93047
+[2025-02-10 16:41:42 +0000] [93048] [INFO] Booting worker with pid: 93048
+[2025-02-10 16:41:42 +0000] [93049] [INFO] Booting worker with pid: 93049
+[2025-02-10 16:41:42 +0000] [93050] [INFO] Booting worker with pid: 93050
+[2025-02-10 16:41:42 +0000] [93051] [INFO] Booting worker with pid: 93051
+[2025-02-10 16:41:42 +0000] [93052] [INFO] Booting worker with pid: 93052
+[2025-02-10 16:41:42 +0000] [93053] [INFO] Booting worker with pid: 93053
+[2025-02-10 16:41:42 +0000] [93054] [INFO] Booting worker with pid: 93054
+[2025-02-10 16:58:20,171] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-10 18:37:28,290] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-10 19:40:53,380] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-11 08:20:30,283] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:49:53,142] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:50:31,436] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:50:34,465] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:50:38,212] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:50:55,173] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 06:52:29,838] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 12:19:46,715] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 23:15:17,602] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 23:15:27,786] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-12 23:48:39,351] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-13 06:52:37,485] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-13 09:21:59,644] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-13 21:00:45,938] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-14 09:47:13 +0000] [93043] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:13 +0000] [93043] [INFO] Worker exiting (pid: 93043)
+[2025-02-14 09:47:14 +0000] [93048] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93048] [INFO] Worker exiting (pid: 93048)
+[2025-02-14 09:47:14 +0000] [93045] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93045] [INFO] Worker exiting (pid: 93045)
+[2025-02-14 09:47:14 +0000] [93046] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93050] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93046] [INFO] Worker exiting (pid: 93046)
+[2025-02-14 09:47:14 +0000] [93050] [INFO] Worker exiting (pid: 93050)
+[2025-02-14 09:47:14 +0000] [93054] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93054] [INFO] Worker exiting (pid: 93054)
+[2025-02-14 09:47:14 +0000] [93052] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93052] [INFO] Worker exiting (pid: 93052)
+[2025-02-14 09:47:14 +0000] [93053] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93053] [INFO] Worker exiting (pid: 93053)
+[2025-02-14 09:47:14 +0000] [93049] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93049] [INFO] Worker exiting (pid: 93049)
+[2025-02-14 09:47:14 +0000] [93051] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93051] [INFO] Worker exiting (pid: 93051)
+[2025-02-14 09:47:14 +0000] [93047] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93047] [INFO] Worker exiting (pid: 93047)
+[2025-02-14 09:47:14 +0000] [93044] [INFO] Worker reloading: /root/SiteCode/Orfe-cosmatics/app.py modified
+[2025-02-14 09:47:14 +0000] [93044] [INFO] Worker exiting (pid: 93044)
+[2025-02-14 09:47:19 +0000] [1125421] [INFO] Booting worker with pid: 1125421
+[2025-02-14 09:47:19 +0000] [1125422] [INFO] Booting worker with pid: 1125422
+[2025-02-14 09:47:19 +0000] [1125423] [INFO] Booting worker with pid: 1125423
+[2025-02-14 09:47:19 +0000] [1125424] [INFO] Booting worker with pid: 1125424
+[2025-02-14 09:47:19 +0000] [1125426] [INFO] Booting worker with pid: 1125426
+[2025-02-14 09:47:19 +0000] [1125427] [INFO] Booting worker with pid: 1125427
+[2025-02-14 09:47:19 +0000] [1125428] [INFO] Booting worker with pid: 1125428
+[2025-02-14 09:47:20 +0000] [1125429] [INFO] Booting worker with pid: 1125429
+[2025-02-14 09:47:20 +0000] [1125431] [INFO] Booting worker with pid: 1125431
+[2025-02-14 09:47:20 +0000] [1125434] [INFO] Booting worker with pid: 1125434
+[2025-02-14 09:47:20 +0000] [1125435] [INFO] Booting worker with pid: 1125435
+[2025-02-14 09:47:21 +0000] [1125437] [INFO] Booting worker with pid: 1125437
+[2025-02-14 09:48:44 +0000] [1125793] [INFO] Starting gunicorn 21.2.0
+[2025-02-14 09:48:44 +0000] [1125793] [INFO] Listening at: http://127.0.0.1:3170 (1125793)
+[2025-02-14 09:48:44 +0000] [1125793] [INFO] Using worker: sync
+[2025-02-14 09:48:44 +0000] [1125794] [INFO] Booting worker with pid: 1125794
+[2025-02-14 09:48:44 +0000] [1125795] [INFO] Booting worker with pid: 1125795
+[2025-02-14 09:48:44 +0000] [1125796] [INFO] Booting worker with pid: 1125796
+[2025-02-14 09:48:45 +0000] [1125798] [INFO] Booting worker with pid: 1125798
+[2025-02-14 09:48:45 +0000] [1125799] [INFO] Booting worker with pid: 1125799
+[2025-02-14 09:48:45 +0000] [1125800] [INFO] Booting worker with pid: 1125800
+[2025-02-14 09:59:28 +0000] [1128018] [INFO] Starting gunicorn 21.2.0
+[2025-02-14 09:59:28 +0000] [1128018] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:28 +0000] [1128018] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:29 +0000] [1128018] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:29 +0000] [1128018] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:30 +0000] [1128018] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:30 +0000] [1128018] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:31 +0000] [1128018] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:31 +0000] [1128018] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:31 +0000] [1125798] [INFO] Worker exiting (pid: 1125798)
+[2025-02-14 09:59:31 +0000] [1125793] [INFO] Handling signal: term
+[2025-02-14 09:59:31 +0000] [1125794] [INFO] Worker exiting (pid: 1125794)
+[2025-02-14 09:59:31 +0000] [1125799] [INFO] Worker exiting (pid: 1125799)
+[2025-02-14 09:59:31 +0000] [1125795] [INFO] Worker exiting (pid: 1125795)
+[2025-02-14 09:59:31 +0000] [1125796] [INFO] Worker exiting (pid: 1125796)
+[2025-02-14 09:59:31 +0000] [1125800] [INFO] Worker exiting (pid: 1125800)
+[2025-02-14 09:59:31 +0000] [1125793] [ERROR] Worker (pid:1125799) was sent SIGTERM!
+[2025-02-14 09:59:31 +0000] [1125793] [ERROR] Worker (pid:1125798) was sent SIGTERM!
+[2025-02-14 09:59:31 +0000] [1125793] [INFO] Shutting down: Master
+[2025-02-14 09:59:32 +0000] [1128018] [INFO] Listening at: http://127.0.0.1:3170 (1128018)
+[2025-02-14 09:59:32 +0000] [1128018] [INFO] Using worker: sync
+[2025-02-14 09:59:32 +0000] [1128027] [INFO] Booting worker with pid: 1128027
+[2025-02-14 09:59:32 +0000] [1128028] [INFO] Booting worker with pid: 1128028
+[2025-02-14 09:59:32 +0000] [1128029] [INFO] Booting worker with pid: 1128029
+[2025-02-14 09:59:32 +0000] [1128031] [INFO] Booting worker with pid: 1128031
+[2025-02-14 09:59:32 +0000] [1128032] [INFO] Booting worker with pid: 1128032
+[2025-02-14 09:59:32 +0000] [1128018] [INFO] Handling signal: term
+[2025-02-14 09:59:32 +0000] [1128033] [INFO] Booting worker with pid: 1128033
+[2025-02-14 09:59:32 +0000] [1128036] [INFO] Starting gunicorn 21.2.0
+[2025-02-14 09:59:32 +0000] [1128036] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:32 +0000] [1128036] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:33 +0000] [1128036] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:33 +0000] [1128036] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:34 +0000] [1128028] [INFO] Worker exiting (pid: 1128028)
+[2025-02-14 09:59:34 +0000] [1128027] [INFO] Worker exiting (pid: 1128027)
+[2025-02-14 09:59:34 +0000] [1128036] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:34 +0000] [1128036] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:34 +0000] [1128029] [INFO] Worker exiting (pid: 1128029)
+[2025-02-14 09:59:35 +0000] [1128031] [INFO] Worker exiting (pid: 1128031)
+[2025-02-14 09:59:35 +0000] [1128032] [INFO] Worker exiting (pid: 1128032)
+[2025-02-14 09:59:35 +0000] [1128036] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:35 +0000] [1128036] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:36 +0000] [1128036] [ERROR] Connection in use: ('127.0.0.1', 3170)
+[2025-02-14 09:59:36 +0000] [1128036] [ERROR] Retrying in 1 second.
+[2025-02-14 09:59:37 +0000] [1128036] [ERROR] Can't connect to ('127.0.0.1', 3170)
+[2025-02-14 10:00:02 +0000] [1128018] [INFO] Shutting down: Master
+[2025-02-14 12:00:32 +0000] [1153437] [INFO] Starting gunicorn 21.2.0
+[2025-02-14 12:00:32 +0000] [1153437] [INFO] Listening at: http://127.0.0.1:3170 (1153437)
+[2025-02-14 12:00:32 +0000] [1153437] [INFO] Using worker: sync
+[2025-02-14 12:00:32 +0000] [1153438] [INFO] Booting worker with pid: 1153438
+[2025-02-14 12:00:32 +0000] [1153439] [INFO] Booting worker with pid: 1153439
+[2025-02-14 12:00:32 +0000] [1153440] [INFO] Booting worker with pid: 1153440
+[2025-02-14 12:00:32 +0000] [1153442] [INFO] Booting worker with pid: 1153442
+[2025-02-14 12:00:32 +0000] [1153443] [INFO] Booting worker with pid: 1153443
+[2025-02-14 12:00:32 +0000] [1153444] [INFO] Booting worker with pid: 1153444
+[2025-02-14 12:00:36 +0000] [1153437] [INFO] Handling signal: term
+[2025-02-14 12:00:36 +0000] [1153438] [INFO] Worker exiting (pid: 1153438)
+[2025-02-14 12:00:37 +0000] [1153439] [INFO] Worker exiting (pid: 1153439)
+[2025-02-14 12:00:37 +0000] [1153440] [INFO] Worker exiting (pid: 1153440)
+[2025-02-14 12:00:38 +0000] [1153443] [INFO] Worker exiting (pid: 1153443)
+[2025-02-14 12:00:38 +0000] [1153444] [INFO] Worker exiting (pid: 1153444)
+[2025-02-14 12:00:38 +0000] [1153442] [INFO] Worker exiting (pid: 1153442)
+[2025-02-14 12:00:38 +0000] [1153437] [INFO] Shutting down: Master
+[2025-02-14 12:00:46 +0000] [1125421] [INFO] Worker exiting (pid: 1125421)
+[2025-02-14 12:00:46 +0000] [1125423] [INFO] Worker exiting (pid: 1125423)
+[2025-02-14 12:00:46 +0000] [1125422] [INFO] Worker exiting (pid: 1125422)
+[2025-02-14 12:00:46 +0000] [1125424] [INFO] Worker exiting (pid: 1125424)
+[2025-02-14 12:00:46 +0000] [93033] [INFO] Handling signal: term
+[2025-02-14 12:00:46 +0000] [1125427] [INFO] Worker exiting (pid: 1125427)
+[2025-02-14 12:00:46 +0000] [1125426] [INFO] Worker exiting (pid: 1125426)
+[2025-02-14 12:00:46 +0000] [1125428] [INFO] Worker exiting (pid: 1125428)
+[2025-02-14 12:00:46 +0000] [1125429] [INFO] Worker exiting (pid: 1125429)
+[2025-02-14 12:00:46 +0000] [1125431] [INFO] Worker exiting (pid: 1125431)
+[2025-02-14 12:00:46 +0000] [1125435] [INFO] Worker exiting (pid: 1125435)
+[2025-02-14 12:00:46 +0000] [1125434] [INFO] Worker exiting (pid: 1125434)
+[2025-02-14 12:00:46 +0000] [1125437] [INFO] Worker exiting (pid: 1125437)
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125437) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125434) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125435) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125428) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125423) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125426) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125429) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125427) was sent SIGTERM!
+[2025-02-14 12:00:46 +0000] [93033] [ERROR] Worker (pid:1125431) was sent SIGTERM!
+[2025-02-14 12:00:47 +0000] [93033] [INFO] Shutting down: Master
+[2025-02-14 12:00:48 +0000] [1153542] [INFO] Starting gunicorn 21.2.0
+[2025-02-14 12:00:48 +0000] [1153542] [INFO] Listening at: http://127.0.0.1:1305 (1153542)
+[2025-02-14 12:00:48 +0000] [1153542] [INFO] Using worker: sync
+[2025-02-14 12:00:48 +0000] [1153543] [INFO] Booting worker with pid: 1153543
+[2025-02-14 12:00:48 +0000] [1153544] [INFO] Booting worker with pid: 1153544
+[2025-02-14 12:00:48 +0000] [1153545] [INFO] Booting worker with pid: 1153545
+[2025-02-14 12:00:48 +0000] [1153546] [INFO] Booting worker with pid: 1153546
+[2025-02-14 12:00:48 +0000] [1153547] [INFO] Booting worker with pid: 1153547
+[2025-02-14 12:00:48 +0000] [1153548] [INFO] Booting worker with pid: 1153548
+[2025-02-14 12:00:48 +0000] [1153549] [INFO] Booting worker with pid: 1153549
+[2025-02-14 12:00:48 +0000] [1153550] [INFO] Booting worker with pid: 1153550
+[2025-02-14 12:00:48 +0000] [1153551] [INFO] Booting worker with pid: 1153551
+[2025-02-14 12:00:48 +0000] [1153552] [INFO] Booting worker with pid: 1153552
+[2025-02-14 12:00:48 +0000] [1153554] [INFO] Booting worker with pid: 1153554
+[2025-02-14 12:00:48 +0000] [1153553] [INFO] Booting worker with pid: 1153553
+[2025-02-14 15:06:44,651] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-14 16:36:55,115] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-18 00:16:23,432] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-18 03:05:04,568] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-18 13:51:10 +0000] [1153546] [INFO] Worker exiting (pid: 1153546)
+[2025-02-18 13:51:10 +0000] [1153545] [INFO] Worker exiting (pid: 1153545)
+[2025-02-18 13:51:10 +0000] [1153543] [INFO] Worker exiting (pid: 1153543)
+[2025-02-18 13:51:10 +0000] [1153544] [INFO] Worker exiting (pid: 1153544)
+[2025-02-18 13:51:10 +0000] [1153547] [INFO] Worker exiting (pid: 1153547)
+[2025-02-18 13:51:10 +0000] [1153548] [INFO] Worker exiting (pid: 1153548)
+[2025-02-18 13:51:10 +0000] [1153549] [INFO] Worker exiting (pid: 1153549)
+[2025-02-18 13:51:10 +0000] [1153550] [INFO] Worker exiting (pid: 1153550)
+[2025-02-18 13:51:10 +0000] [1153551] [INFO] Worker exiting (pid: 1153551)
+[2025-02-18 13:51:10 +0000] [1153552] [INFO] Worker exiting (pid: 1153552)
+[2025-02-18 13:51:10 +0000] [1153554] [INFO] Worker exiting (pid: 1153554)
+[2025-02-18 13:51:10 +0000] [1153553] [INFO] Worker exiting (pid: 1153553)
+[2025-02-18 13:51:10 +0000] [1153542] [INFO] Handling signal: term
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153551) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153553) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153550) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153545) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153546) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153548) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153543) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153544) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153554) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153552) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153547) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [ERROR] Worker (pid:1153549) was sent SIGTERM!
+[2025-02-18 13:51:10 +0000] [1153542] [INFO] Shutting down: Master
+[2025-02-18 13:51:12 +0000] [2233204] [INFO] Starting gunicorn 21.2.0
+[2025-02-18 13:51:12 +0000] [2233204] [INFO] Listening at: http://127.0.0.1:1305 (2233204)
+[2025-02-18 13:51:12 +0000] [2233204] [INFO] Using worker: sync
+[2025-02-18 13:51:12 +0000] [2233205] [INFO] Booting worker with pid: 2233205
+[2025-02-18 13:51:12 +0000] [2233206] [INFO] Booting worker with pid: 2233206
+[2025-02-18 13:51:12 +0000] [2233207] [INFO] Booting worker with pid: 2233207
+[2025-02-18 13:51:12 +0000] [2233208] [INFO] Booting worker with pid: 2233208
+[2025-02-18 13:51:12 +0000] [2233210] [INFO] Booting worker with pid: 2233210
+[2025-02-18 13:51:12 +0000] [2233211] [INFO] Booting worker with pid: 2233211
+[2025-02-18 13:51:12 +0000] [2233212] [INFO] Booting worker with pid: 2233212
+[2025-02-18 13:51:12 +0000] [2233214] [INFO] Booting worker with pid: 2233214
+[2025-02-18 13:51:12 +0000] [2233213] [INFO] Booting worker with pid: 2233213
+[2025-02-18 13:51:12 +0000] [2233216] [INFO] Booting worker with pid: 2233216
+[2025-02-18 13:51:12 +0000] [2233215] [INFO] Booting worker with pid: 2233215
+[2025-02-18 13:51:12 +0000] [2233217] [INFO] Booting worker with pid: 2233217
+[2025-02-18 13:51:53 +0000] [2233403] [INFO] Starting gunicorn 21.2.0
+[2025-02-18 13:51:53 +0000] [2233403] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-18 13:51:53 +0000] [2233403] [ERROR] Retrying in 1 second.
+[2025-02-18 13:51:54 +0000] [2233403] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-18 13:51:54 +0000] [2233403] [ERROR] Retrying in 1 second.
+[2025-02-18 13:51:55 +0000] [2233403] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-18 13:51:55 +0000] [2233403] [ERROR] Retrying in 1 second.
+[2025-02-18 13:51:56 +0000] [2233403] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-18 13:51:56 +0000] [2233403] [ERROR] Retrying in 1 second.
+[2025-02-18 13:51:57 +0000] [2233403] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-02-18 13:51:57 +0000] [2233403] [ERROR] Retrying in 1 second.
+[2025-02-18 13:51:58 +0000] [2233403] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-02-18 21:03:24,091] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-02-18 21:03:46,216] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-02-18 21:32:33,545] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-02-18 21:32:33,654] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-02-18 21:32:34,635] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-02-19 13:24:53,903] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-19 17:51:16,492] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-20 16:10:02,625] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-20 16:17:14,924] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-20 17:42:18,940] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-20 23:48:13,041] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-02-21 06:54:46 +0000] [2233208] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:46 +0000] [2233208] [INFO] Worker exiting (pid: 2233208)
+[2025-02-21 06:54:46 +0000] [2233214] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:46 +0000] [2233206] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:46 +0000] [2233214] [INFO] Worker exiting (pid: 2233214)
+[2025-02-21 06:54:46 +0000] [2233206] [INFO] Worker exiting (pid: 2233206)
+[2025-02-21 06:54:46 +0000] [2233205] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:46 +0000] [2233212] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:46 +0000] [2233212] [INFO] Worker exiting (pid: 2233212)
+[2025-02-21 06:54:46 +0000] [2233205] [INFO] Worker exiting (pid: 2233205)
+[2025-02-21 06:54:47 +0000] [2233211] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:47 +0000] [2233211] [INFO] Worker exiting (pid: 2233211)
+[2025-02-21 06:54:47 +0000] [2233210] [INFO] Worker reloading: /usr/lib/python3.10/html/entities.py modified
+[2025-02-21 06:54:47 +0000] [2233213] [INFO] Worker reloading: /usr/lib/python3.10/codecs.py modified
+[2025-02-21 06:54:47 +0000] [2233213] [INFO] Worker exiting (pid: 2233213)
+[2025-02-21 06:54:47 +0000] [2233207] [INFO] Worker reloading: /usr/lib/python3.10/codecs.py modified
+[2025-02-21 06:54:47 +0000] [2233207] [INFO] Worker exiting (pid: 2233207)
+[2025-02-21 06:54:47 +0000] [2233210] [INFO] Worker exiting (pid: 2233210)
+[2025-02-21 06:54:47 +0000] [2233215] [INFO] Worker reloading: /usr/lib/python3.10/importlib/_bootstrap.py modified
+[2025-02-21 06:54:47 +0000] [2233215] [INFO] Worker exiting (pid: 2233215)
+[2025-02-21 06:54:47 +0000] [2233217] [INFO] Worker reloading: /usr/lib/python3.10/importlib/_bootstrap.py modified
+[2025-02-21 06:54:47 +0000] [2233217] [INFO] Worker exiting (pid: 2233217)
+[2025-02-21 06:54:47 +0000] [2233216] [INFO] Worker reloading: /usr/lib/python3.10/importlib/_bootstrap.py modified
+[2025-02-21 06:54:47 +0000] [2233216] [INFO] Worker exiting (pid: 2233216)
+[2025-02-21 06:55:05 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233207)
+[2025-02-21 06:55:05 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233213)
+[2025-02-21 06:55:05 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233215)
+[2025-02-21 06:55:05 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233217)
+[2025-02-21 06:55:06 +0000] [2233204] [ERROR] Worker (pid:2233213) was sent code 134!
+[2025-02-21 06:55:06 +0000] [2233204] [ERROR] Worker (pid:2233217) was sent code 134!
+[2025-02-21 06:55:06 +0000] [2233204] [ERROR] Worker (pid:2233215) was sent code 134!
+[2025-02-21 06:55:06 +0000] [2233204] [ERROR] Worker (pid:2233207) was sent code 134!
+[2025-02-21 06:55:06 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233212)
+[2025-02-21 06:55:06 +0000] [3261009] [INFO] Booting worker with pid: 3261009
+[2025-02-21 06:55:06 +0000] [3261007] [INFO] Booting worker with pid: 3261007
+[2025-02-21 06:55:06 +0000] [3261004] [INFO] Booting worker with pid: 3261004
+[2025-02-21 06:55:06 +0000] [3261010] [INFO] Booting worker with pid: 3261010
+[2025-02-21 06:55:06 +0000] [2233204] [ERROR] Worker (pid:2233212) was sent code 134!
+[2025-02-21 06:55:07 +0000] [3261020] [INFO] Booting worker with pid: 3261020
+[2025-02-21 06:55:09 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233206)
+[2025-02-21 06:55:09 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233211)
+[2025-02-21 06:55:09 +0000] [2233204] [ERROR] Worker (pid:2233211) was sent code 134!
+[2025-02-21 06:55:09 +0000] [2233204] [ERROR] Worker (pid:2233206) was sent code 134!
+[2025-02-21 06:55:09 +0000] [3261122] [INFO] Booting worker with pid: 3261122
+[2025-02-21 06:55:09 +0000] [3261123] [INFO] Booting worker with pid: 3261123
+[2025-02-21 06:55:14 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233205)
+[2025-02-21 06:55:14 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233214)
+[2025-02-21 06:55:14 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233216)
+[2025-02-21 06:55:15 +0000] [2233204] [ERROR] Worker (pid:2233216) was sent code 134!
+[2025-02-21 06:55:15 +0000] [2233204] [ERROR] Worker (pid:2233205) was sent SIGKILL! Perhaps out of memory?
+[2025-02-21 06:55:15 +0000] [3261270] [INFO] Booting worker with pid: 3261270
+[2025-02-21 06:55:15 +0000] [3261272] [INFO] Booting worker with pid: 3261272
+[2025-02-21 06:55:15 +0000] [2233204] [ERROR] Worker (pid:2233214) was sent code 134!
+[2025-02-21 06:55:15 +0000] [3261280] [INFO] Booting worker with pid: 3261280
+[2025-02-21 06:55:15 +0000] [3261289] [INFO] Booting worker with pid: 3261289
+[2025-02-21 06:55:16 +0000] [2233204] [CRITICAL] WORKER TIMEOUT (pid:2233210)
+[2025-02-21 06:55:16 +0000] [3261374] [INFO] Booting worker with pid: 3261374
+[2025-02-21 15:09:11,376] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/SiteCode/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'

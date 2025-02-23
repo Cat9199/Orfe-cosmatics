@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session , send_from_directory , Blueprint
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session , send_from_directory , Blueprint , send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_ , DateTime , ForeignKey , Integer , String , Float , Text , Column
 from datetime import datetime
@@ -12,7 +12,8 @@ from models.bosta import BostaService
 from datetime import datetime
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
-
+import pandas as pd
+from io import BytesIO
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
@@ -509,65 +510,82 @@ def handle_fawaterak_payment(order):
         app.logger.error(f"Fawaterak API Request Failed: {e}")
         flash('فشل في الاتصال بخدمة الدفع، الرجاء المحاولة مرة أخرى', 'danger')
         return redirect(url_for('shop.checkout'))
+
 @shop.route('/checkout/place_order', methods=['POST'])
 def place_order():
-        required_fields = ['name', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
-        for field in required_fields:
-            if field not in request.form:
-                flash(f'الحقل {field} مطلوب', 'danger')
-                return redirect(url_for('shop.checkout'))
+    required_fields = ['name', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
+    for field in required_fields:
+        if field not in request.form:
+            flash(f'الحقل {field} مطلوب', 'danger')
+            return redirect(url_for('shop.checkout'))
 
-        user = Gusts.query.filter_by(session=session['session']).first()
-        cart_items = Cart.query.filter_by(user_id=user.id).all()
-        if not cart_items:
-            flash('سلة التسوق فارغة', 'danger')
+    user = Gusts.query.filter_by(session=session['session']).first()
+    cart_items = Cart.query.filter_by(user_id=user.id).all()
+    if not cart_items:
+        flash('سلة التسوق فارغة', 'danger')
+        return redirect(url_for('shop.cart'))
+
+    payment_method = request.form['payment_method']
+    if payment_method not in ['cash_on_delivery', 'vodafone_cash', 'visa']:
+        flash('طريقة الدفع المختارة غير متاحة', 'danger')
+        return redirect(url_for('shop.checkout'))
+
+    shipping_cost = ShippingCost.query.filter_by(city_id=request.form['city']).first()
+    if not shipping_cost:
+        flash('تكلفة الشحن غير متوفرة لهذه المدينة', 'danger')
+        return redirect(url_for('shop.checkout'))
+
+    # Get the original product total and promo code (if any)
+    product_total = float(request.form['total'])
+    promo_code = request.form.get('promo_code', '').strip().lower()
+    # mines from stock
+    for cart_item in cart_items:
+        product = Product.query.get(cart_item.product_id)
+        if product.stock < cart_item.quantity:
+            flash(f'الكمية المتاحة من {product.name} غير كافية', 'danger')
             return redirect(url_for('shop.cart'))
+        product.stock -= cart_item.quantity
+    # Apply promo discount if conditions are met
+    if product_total == 725 and promo_code == 'loly20':
+        discount = product_total * 0.20
+        product_total -= discount
 
-        payment_method = request.form['payment_method']
-        if payment_method not in ['cash_on_delivery', 'vodafone_cash', 'visa']:
-            flash('طريقة الدفع المختارة غير متاحة', 'danger')
-            return redirect(url_for('shop.checkout'))
+    total_amount = product_total + shipping_cost.price
 
-        shipping_cost = ShippingCost.query.filter_by(city_id=request.form['city']).first()
-        if not shipping_cost:
-            flash('تكلفة الشحن غير متوفرة لهذه المدينة', 'danger')
-            return redirect(url_for('shop.checkout'))
+    order = Order(
+        user_id=user.id,
+        name=request.form['name'],
+        email=request.form.get('email', 'test@gmail.com'),
+        phone=request.form['phone'],
+        address=request.form['address'],
+        city=request.form['city'],
+        zone_id=request.form['zone_id'],
+        district_id=request.form['district_id'],
+        cod_amount=total_amount,
+        payment_method=payment_method,
+        status='pending'
+    )
 
-        total_amount = float(request.form['total']) + shipping_cost.price
+    db.session.add(order)
+    db.session.commit()
 
-        order = Order(
-            user_id=user.id,
-            name=request.form['name'],
-            email=request.form.get('email', 'test@gmail.com'),
-            phone=request.form['phone'],
-            address=request.form['address'],
-            city=request.form['city'],
-            zone_id=request.form['zone_id'],
-            district_id=request.form['district_id'],
-            cod_amount=total_amount,
-            payment_method=payment_method,
-            status='pending'
+    for cart_item in cart_items:
+        order_item = OrderItem(
+            order_id=order.id,
+            product_id=cart_item.product_id,
+            quantity=cart_item.quantity
         )
+        db.session.add(order_item)
+        db.session.delete(cart_item)
 
-        db.session.add(order)
-        db.session.commit()
+    db.session.commit()
 
-        for cart_item in cart_items:
-            order_item = OrderItem(
-                order_id=order.id,
-                product_id=cart_item.product_id,
-                quantity=cart_item.quantity
-            )
-            db.session.add(order_item)
-            db.session.delete(cart_item)
+    if payment_method == 'visa':
+        return handle_fawaterak_payment(order)
 
-        db.session.commit()
+    flash('تم إنشاء الطلب بنجاح!', 'success')
+    return redirect(url_for('shop.order_confirmation', order_id=order.id))
 
-        if payment_method == 'visa':
-            return handle_fawaterak_payment(order)
-
-        flash('تم إنشاء الطلب بنجاح!', 'success')
-        return redirect(url_for('shop.order_confirmation', order_id=order.id))
 
 # order_confirmation
 @shop.route('/order_confirmation')
@@ -1017,6 +1035,7 @@ def update_shipping_cost():
 @admin_required
 def orders():
     orders = Order.query.all()
+    orders = Order.query.order_by(Order.id.desc()).all()
     return render_template('admin/orders.html', orders=orders)
 
 @admin.route('/order/<int:order_id>')
@@ -1024,7 +1043,10 @@ def orders():
 def order_detail(order_id):
     # Get the order record or return a 404 if not found
     order = Order.query.get_or_404(order_id)
-    
+    city = City.query.filter_by(city_id=order.city).first()
+    city_name = city.name if city else "Unknown"
+
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
     order_items_with_product = (
         db.session.query(OrderItem, Product)
         .outerjoin(Product, OrderItem.product_id == Product.id)
@@ -1045,7 +1067,8 @@ def order_detail(order_id):
         }
         order_items.append(item_data)
 
-    return render_template('admin/order.html', order=order, order_items=order_items, products=products)
+    return render_template('admin/order.html', order=order, order_items=order_items, products=products, city_name=city_name, shipping_cost=shipping_cost)
+
 # delete order
 @admin.route('/delete_order/<int:order_id>', methods=['POST'])
 @admin_required
@@ -1236,6 +1259,126 @@ def delete_district(district_id):
         print(f"Error deleting district: {e}")
         return jsonify({'status': 'error', 'message': 'فشل في حذف الحي'}), 500
 
+@admin.route('/export_orders')
+@admin_required
+def export_orders():
+    # جلب جميع الطلبات مع عناصرها
+    orders = Order.query.all()
+    
+    data = []
+    for order in orders:
+        order_items = db.session.query(OrderItem, Product).join(Product, OrderItem.product_id == Product.id).filter(OrderItem.order_id == order.id).all()
+        total_quantity = sum(item.OrderItem.quantity for item in order_items)
+        product_names = ', '.join([item.Product.name for item in order_items if item.Product])
+        city = City.query.filter_by(city_id=order.city).first()
+        city_name = city.name if city else 'Unknown'
+        # تجهيز البيانات حسب الهيكل المطلوب
+        order_data = {
+            'اسم العميل': order.name,
+            'تليفون (محمول فقط)': order.phone,
+            '' : '',
+            'المدينة': city_name,
+            'المنطقة': order.zone_id,
+            'العنوان': order.address,
+            'علامة مميزة': '',  # غير موجود في النموذج
+            'عنوان عمل': '',  # غير موجود في النموذج
+            'ملاحظات': '',  # غير موجود في النموذج
+            '':'',  # غير موجود في النموذج
+            'قيمة التحصيل النقدي': order.cod_amount,
+            'عدد القطع': total_quantity,
+            'وصف الشحنة': product_names,
+            'مرجع الطلب': order.business_reference or '',
+            'قيمة الشحنة': order.cod_amount,
+            'فتح الشحنة': ''  # غير موجود في النموذج
+        }
+        data.append(order_data)
+    
+    # إنشاء DataFrame
+    df = pd.DataFrame(data)
+    
+    # إنشاء الملف في الذاكرة
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='الطلبات')
+    
+    output.seek(0)
+    
+    # إرسال الملف كاستجابة
+    return send_file(
+        output,
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        as_attachment=True,
+        download_name='الطلبات.xlsx'
+    )
+@admin.route('/export_selected_orders', methods=['POST'])
+@admin_required
+def export_selected_orders():
+    try:
+        selected_order_ids = request.form.getlist('order_ids')
+        order_ids = [int(order_id) for order_id in selected_order_ids]
+        orders = Order.query.filter(Order.id.in_(order_ids)).all()
+        data = []
+        for order in orders:
+            order_items = db.session.query(OrderItem, Product).join(Product, OrderItem.product_id == Product.id).filter(OrderItem.order_id == order.id).all()
+            total_quantity = sum(item.OrderItem.quantity for item in order_items)
+            product_names = ', '.join([item.Product.name for item in order_items if item.Product])
+            city = City.query.filter_by(city_id=order.city).first()
+            city_name = city.name if city else 'Unknown'
+            
+            order_data = {
+                'اسم العميل': order.name,
+                'تليفون (محمول فقط)': order.phone,
+                '' : '',
+                'المدينة': city_name,
+                'المنطقة': order.zone_id,
+                'العنوان': order.address,
+                'علامة مميزة': '',  # غير موجود في النموذج
+                'عنوان عمل': '',  # غير موجود في النموذج
+                'ملاحظات': '',  # غير موجود في النموذج
+                '':'',
+
+                'قيمة التحصيل النقدي': order.cod_amount,
+                'عدد القطع': total_quantity,
+                'وصف الشحنة': product_names,
+                'مرجع الطلب': f'#{order.id}',
+                'قيمة الشحنة': order.cod_amount,
+                'فتح الشحنة': ''  # غير موجود في النموذج
+            }
+            data.append(order_data)
+        
+        # Create DataFrame
+        df = pd.DataFrame(data)
+        
+        # Create the file in memory
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False, sheet_name='الطلبات')
+        
+        output.seek(0)
+        
+        # Send the file as a response
+        return send_file(
+            output,
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            as_attachment=True,
+            download_name='الطلبات المحددة.xlsx'
+        )
+    
+    except Exception as e:
+        app.logger.error(f'Error exporting selected orders: {str(e)}')
+        flash('حدث خطأ أثناء تصدير الطلبات المحددة', 'error')
+        return redirect(url_for('admin.orders'))
+# admin.update_shipping_status
+@admin.route('/update_shipping_status/<int:order_id>', methods=['POST'])
+@admin_required
+def update_shipping_status(order_id):
+    order = Order.query.get_or_404(order_id)
+    status = request.form['status']
+    order.shipping_status = status
+    db.session.commit()
+    flash('تم تحديث حالة الشحن بنجاح!', 'success')
+    return redirect(url_for('admin.orders'))
+
 # ... (بقية الروتات)
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')
@@ -1252,3 +1395,4 @@ if __name__ == '__main__':
         db.create_all()
 
     app.run(debug=True)
+
