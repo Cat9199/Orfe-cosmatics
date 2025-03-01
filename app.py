@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session , send_from_directory , Blueprint , send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_ , DateTime , ForeignKey , Integer , String , Float , Text , Column
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from flask_migrate import Migrate
 import os
 import json
@@ -773,7 +773,12 @@ def home():
     orders_count = Order.query.count()
     customers_count = Gusts.query.count()
     total_revenue = db.session.query(db.func.sum(Order.cod_amount)).scalar() or 0
-    
+    total_sipping_cost = 0
+    for order in Order.query.all():
+        city = City.query.filter_by(city_id=order.city).first() if order.city else None
+        shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first() if city else 0
+        total_sipping_cost += shipping_cost.price
+    total_revenue -= total_sipping_cost
     recent_orders = Order.query.order_by(Order.id.desc()).limit(20).all()
     
     # Generate chart data
@@ -782,9 +787,9 @@ def home():
         'labels': [],
         'data': []
     }
-    for i in range(10):
-        date = datetime.utcnow() - timedelta(days=i)
-        orders_count = Order.query.filter(Order.created_at >= date).count()
+    for _ in range(10):
+        date = datetime.strptime("2021-06-01", '%Y-%m-%d')
+        orders_count = Order.query.count()
         orders_chart['labels'].append(date.strftime('%Y-%m-%d'))
         orders_chart['data'].append(orders_count)
 
@@ -793,8 +798,8 @@ def home():
         'labels': [],
         'data': []
     }
-    for i in range(6):
-        date = datetime.utcnow() - timedelta(days=i*30)
+    for _ in range(6):
+        date = datetime.strptime("2021-06-01", '%Y-%m-%d')
         revenue = db.session.query(db.func.sum(Order.cod_amount)).filter(Order.created_at >= date).scalar() or 0
         revenue_chart['labels'].append(date.strftime('%B'))
         revenue_chart['data'].append(revenue)
@@ -804,6 +809,7 @@ def home():
                          orders_count=orders_count,
                          customers_count=customers_count,
                          total_revenue=total_revenue,
+                         total_sipping_cost=total_sipping_cost,
                          recent_orders=recent_orders,
                          orders_chart=orders_chart,
                          revenue_chart=revenue_chart)
