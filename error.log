@@ -3528,3 +3528,2290 @@ KeyError: '  labels'
 [2025-03-01 23:30:41 +0000] [1925983] [ERROR] Worker (pid:1925996) was sent SIGTERM!
 [2025-03-01 23:30:41 +0000] [1925983] [ERROR] Worker (pid:1925995) was sent SIGTERM!
 [2025-03-01 23:30:42 +0000] [1925983] [INFO] Shutting down: Master
+[2025-03-01 23:35:11 +0000] [1930764] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:35:11 +0000] [1930764] [INFO] Listening at: http://127.0.0.1:1305 (1930764)
+[2025-03-01 23:35:11 +0000] [1930764] [INFO] Using worker: sync
+[2025-03-01 23:35:11 +0000] [1930785] [INFO] Booting worker with pid: 1930785
+[2025-03-01 23:35:12 +0000] [1930788] [INFO] Booting worker with pid: 1930788
+[2025-03-01 23:35:12 +0000] [1930789] [INFO] Booting worker with pid: 1930789
+[2025-03-01 23:35:12 +0000] [1930791] [INFO] Booting worker with pid: 1930791
+[2025-03-01 23:35:12 +0000] [1930792] [INFO] Booting worker with pid: 1930792
+[2025-03-01 23:35:12 +0000] [1930793] [INFO] Booting worker with pid: 1930793
+[2025-03-01 23:35:12 +0000] [1930794] [INFO] Booting worker with pid: 1930794
+[2025-03-01 23:35:12 +0000] [1930796] [INFO] Booting worker with pid: 1930796
+[2025-03-01 23:35:12 +0000] [1930800] [INFO] Booting worker with pid: 1930800
+[2025-03-01 23:35:12 +0000] [1930798] [INFO] Booting worker with pid: 1930798
+[2025-03-01 23:35:12 +0000] [1930804] [INFO] Booting worker with pid: 1930804
+[2025-03-01 23:35:12 +0000] [1930807] [INFO] Booting worker with pid: 1930807
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930785)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930788)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930789)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930791)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930792)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930793)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930794)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930796)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930798)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930800)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930804)
+[2025-03-01 23:35:42 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930807)
+[2025-03-01 23:35:42 +0000] [1930800] [INFO] Worker exiting (pid: 1930800)
+[2025-03-01 23:35:42 +0000] [1930789] [INFO] Worker exiting (pid: 1930789)
+[2025-03-01 23:35:42 +0000] [1930793] [INFO] Worker exiting (pid: 1930793)
+[2025-03-01 23:35:42 +0000] [1930785] [INFO] Worker exiting (pid: 1930785)
+[2025-03-01 23:35:42 +0000] [1930788] [INFO] Worker exiting (pid: 1930788)
+[2025-03-01 23:35:42 +0000] [1930796] [INFO] Worker exiting (pid: 1930796)
+[2025-03-01 23:35:43 +0000] [1930804] [INFO] Worker exiting (pid: 1930804)
+[2025-03-01 23:35:43 +0000] [1930807] [INFO] Worker exiting (pid: 1930807)
+[2025-03-01 23:35:43 +0000] [1930792] [INFO] Worker exiting (pid: 1930792)
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930791) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930789) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930792) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930800) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930979] [INFO] Booting worker with pid: 1930979
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930796) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930804) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930794) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930793) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930785) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930788) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930807) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930764] [ERROR] Worker (pid:1930798) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:35:44 +0000] [1930980] [INFO] Booting worker with pid: 1930980
+[2025-03-01 23:35:44 +0000] [1930981] [INFO] Booting worker with pid: 1930981
+[2025-03-01 23:35:44 +0000] [1930982] [INFO] Booting worker with pid: 1930982
+[2025-03-01 23:35:44 +0000] [1930983] [INFO] Booting worker with pid: 1930983
+[2025-03-01 23:35:44 +0000] [1930984] [INFO] Booting worker with pid: 1930984
+[2025-03-01 23:35:44 +0000] [1930985] [INFO] Booting worker with pid: 1930985
+[2025-03-01 23:35:44 +0000] [1930986] [INFO] Booting worker with pid: 1930986
+[2025-03-01 23:35:44 +0000] [1930987] [INFO] Booting worker with pid: 1930987
+[2025-03-01 23:35:45 +0000] [1930989] [INFO] Booting worker with pid: 1930989
+[2025-03-01 23:35:45 +0000] [1930990] [INFO] Booting worker with pid: 1930990
+[2025-03-01 23:35:45 +0000] [1930992] [INFO] Booting worker with pid: 1930992
+[2025-03-01 23:36:14 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930979)
+[2025-03-01 23:36:14 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930980)
+[2025-03-01 23:36:14 +0000] [1930980] [INFO] Worker exiting (pid: 1930980)
+[2025-03-01 23:36:14 +0000] [1930979] [INFO] Worker exiting (pid: 1930979)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930981)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930982)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930983)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930984)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930985)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930986)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930987)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930989)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930990)
+[2025-03-01 23:36:15 +0000] [1930764] [CRITICAL] WORKER TIMEOUT (pid:1930992)
+[2025-03-01 23:36:15 +0000] [1930986] [INFO] Worker exiting (pid: 1930986)
+[2025-03-01 23:36:15 +0000] [1930983] [INFO] Worker exiting (pid: 1930983)
+[2025-03-01 23:36:15 +0000] [1930990] [INFO] Worker exiting (pid: 1930990)
+[2025-03-01 23:36:15 +0000] [1930984] [INFO] Worker exiting (pid: 1930984)
+[2025-03-01 23:36:15 +0000] [1930985] [INFO] Worker exiting (pid: 1930985)
+[2025-03-01 23:36:15 +0000] [1930992] [INFO] Worker exiting (pid: 1930992)
+[2025-03-01 23:36:15 +0000] [1930982] [INFO] Worker exiting (pid: 1930982)
+[2025-03-01 23:36:15 +0000] [1930989] [INFO] Worker exiting (pid: 1930989)
+[2025-03-01 23:36:15 +0000] [1930987] [INFO] Worker exiting (pid: 1930987)
+[2025-03-01 23:36:15 +0000] [1930981] [INFO] Worker exiting (pid: 1930981)
+[2025-03-01 23:36:15 +0000] [1930764] [ERROR] Worker (pid:1930980) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:15 +0000] [1930764] [ERROR] Worker (pid:1930979) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:15 +0000] [1931292] [INFO] Booting worker with pid: 1931292
+[2025-03-01 23:36:15 +0000] [1931291] [INFO] Booting worker with pid: 1931291
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930986) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930985) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1931294] [INFO] Booting worker with pid: 1931294
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930992) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930981) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930989) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930990) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1930764] [ERROR] Worker (pid:1930983) was sent SIGKILL! Perhaps out of memory?
+[2025-03-01 23:36:16 +0000] [1931295] [INFO] Booting worker with pid: 1931295
+[2025-03-01 23:36:16 +0000] [1931296] [INFO] Booting worker with pid: 1931296
+[2025-03-01 23:36:16 +0000] [1931297] [INFO] Booting worker with pid: 1931297
+[2025-03-01 23:36:16 +0000] [1931298] [INFO] Booting worker with pid: 1931298
+[2025-03-01 23:36:17 +0000] [1931299] [INFO] Booting worker with pid: 1931299
+[2025-03-01 23:36:17 +0000] [1931300] [INFO] Booting worker with pid: 1931300
+[2025-03-01 23:36:17 +0000] [1931301] [INFO] Booting worker with pid: 1931301
+[2025-03-01 23:36:17 +0000] [1931302] [INFO] Booting worker with pid: 1931302
+[2025-03-01 23:36:17 +0000] [1931303] [INFO] Booting worker with pid: 1931303
+[2025-03-01 23:42:06 +0000] [1931294] [INFO] Worker exiting (pid: 1931294)
+[2025-03-01 23:42:06 +0000] [1931303] [INFO] Worker exiting (pid: 1931303)
+[2025-03-01 23:42:06 +0000] [1931292] [INFO] Worker exiting (pid: 1931292)
+[2025-03-01 23:42:06 +0000] [1931291] [INFO] Worker exiting (pid: 1931291)
+[2025-03-01 23:42:06 +0000] [1931295] [INFO] Worker exiting (pid: 1931295)
+[2025-03-01 23:42:06 +0000] [1931300] [INFO] Worker exiting (pid: 1931300)
+[2025-03-01 23:42:06 +0000] [1931297] [INFO] Worker exiting (pid: 1931297)
+[2025-03-01 23:42:06 +0000] [1931301] [INFO] Worker exiting (pid: 1931301)
+[2025-03-01 23:42:06 +0000] [1931296] [INFO] Worker exiting (pid: 1931296)
+[2025-03-01 23:42:06 +0000] [1931299] [INFO] Worker exiting (pid: 1931299)
+[2025-03-01 23:42:06 +0000] [1931302] [INFO] Worker exiting (pid: 1931302)
+[2025-03-01 23:42:06 +0000] [1931298] [INFO] Worker exiting (pid: 1931298)
+[2025-03-01 23:42:06 +0000] [1930764] [INFO] Handling signal: term
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931292) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931300) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931299) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931298) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931296) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931302) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931301) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931303) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931297) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931295) was sent SIGTERM!
+[2025-03-01 23:42:06 +0000] [1930764] [ERROR] Worker (pid:1931291) was sent SIGTERM!
+[2025-03-01 23:42:07 +0000] [1930764] [INFO] Shutting down: Master
+[2025-03-01 23:42:08 +0000] [1935210] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:42:08 +0000] [1935210] [INFO] Listening at: http://127.0.0.1:1305 (1935210)
+[2025-03-01 23:42:08 +0000] [1935210] [INFO] Using worker: sync
+[2025-03-01 23:42:08 +0000] [1935211] [INFO] Booting worker with pid: 1935211
+[2025-03-01 23:42:08 +0000] [1935212] [INFO] Booting worker with pid: 1935212
+[2025-03-01 23:42:08 +0000] [1935213] [INFO] Booting worker with pid: 1935213
+[2025-03-01 23:42:08 +0000] [1935214] [INFO] Booting worker with pid: 1935214
+[2025-03-01 23:42:08 +0000] [1935215] [INFO] Booting worker with pid: 1935215
+[2025-03-01 23:42:08 +0000] [1935216] [INFO] Booting worker with pid: 1935216
+[2025-03-01 23:42:08 +0000] [1935217] [INFO] Booting worker with pid: 1935217
+[2025-03-01 23:42:08 +0000] [1935218] [INFO] Booting worker with pid: 1935218
+[2025-03-01 23:42:08 +0000] [1935219] [INFO] Booting worker with pid: 1935219
+[2025-03-01 23:42:08 +0000] [1935220] [INFO] Booting worker with pid: 1935220
+[2025-03-01 23:42:08 +0000] [1935221] [INFO] Booting worker with pid: 1935221
+[2025-03-01 23:42:08 +0000] [1935222] [INFO] Booting worker with pid: 1935222
+[2025-03-01 23:45:24 +0000] [1935978] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:45:24 +0000] [1935978] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:24 +0000] [1935978] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:25 +0000] [1935978] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:25 +0000] [1935978] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:26 +0000] [1935978] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:26 +0000] [1935978] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:26 +0000] [1935211] [INFO] Worker exiting (pid: 1935211)
+[2025-03-01 23:45:26 +0000] [1935210] [INFO] Handling signal: term
+[2025-03-01 23:45:26 +0000] [1935212] [INFO] Worker exiting (pid: 1935212)
+[2025-03-01 23:45:26 +0000] [1935215] [INFO] Worker exiting (pid: 1935215)
+[2025-03-01 23:45:26 +0000] [1935213] [INFO] Worker exiting (pid: 1935213)
+[2025-03-01 23:45:26 +0000] [1935217] [INFO] Worker exiting (pid: 1935217)
+[2025-03-01 23:45:26 +0000] [1935218] [INFO] Worker exiting (pid: 1935218)
+[2025-03-01 23:45:26 +0000] [1935214] [INFO] Worker exiting (pid: 1935214)
+[2025-03-01 23:45:26 +0000] [1935221] [INFO] Worker exiting (pid: 1935221)
+[2025-03-01 23:45:26 +0000] [1935216] [INFO] Worker exiting (pid: 1935216)
+[2025-03-01 23:45:26 +0000] [1935219] [INFO] Worker exiting (pid: 1935219)
+[2025-03-01 23:45:26 +0000] [1935220] [INFO] Worker exiting (pid: 1935220)
+[2025-03-01 23:45:26 +0000] [1935222] [INFO] Worker exiting (pid: 1935222)
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935216) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935215) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935221) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935222) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935213) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935219) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935218) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935220) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935217) was sent SIGTERM!
+[2025-03-01 23:45:26 +0000] [1935210] [ERROR] Worker (pid:1935214) was sent SIGTERM!
+[2025-03-01 23:45:27 +0000] [1935210] [INFO] Shutting down: Master
+[2025-03-01 23:45:27 +0000] [1935978] [INFO] Listening at: http://127.0.0.1:1305 (1935978)
+[2025-03-01 23:45:27 +0000] [1935978] [INFO] Using worker: sync
+[2025-03-01 23:45:27 +0000] [1935983] [INFO] Booting worker with pid: 1935983
+[2025-03-01 23:45:27 +0000] [1935984] [INFO] Booting worker with pid: 1935984
+[2025-03-01 23:45:27 +0000] [1935985] [INFO] Booting worker with pid: 1935985
+[2025-03-01 23:45:27 +0000] [1935986] [INFO] Booting worker with pid: 1935986
+[2025-03-01 23:45:27 +0000] [1935987] [INFO] Booting worker with pid: 1935987
+[2025-03-01 23:45:27 +0000] [1935988] [INFO] Booting worker with pid: 1935988
+[2025-03-01 23:45:27 +0000] [1935989] [INFO] Booting worker with pid: 1935989
+[2025-03-01 23:45:27 +0000] [1935990] [INFO] Booting worker with pid: 1935990
+[2025-03-01 23:45:27 +0000] [1935991] [INFO] Booting worker with pid: 1935991
+[2025-03-01 23:45:27 +0000] [1935992] [INFO] Booting worker with pid: 1935992
+[2025-03-01 23:45:27 +0000] [1935993] [INFO] Booting worker with pid: 1935993
+[2025-03-01 23:45:27 +0000] [1935994] [INFO] Booting worker with pid: 1935994
+[2025-03-01 23:45:27 +0000] [1935978] [INFO] Handling signal: term
+[2025-03-01 23:45:30 +0000] [1935998] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:45:30 +0000] [1935998] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:30 +0000] [1935998] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:31 +0000] [1935998] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:31 +0000] [1935998] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:32 +0000] [1935998] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:32 +0000] [1935998] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:32 +0000] [1935986] [INFO] Worker exiting (pid: 1935986)
+[2025-03-01 23:45:32 +0000] [1935985] [INFO] Worker exiting (pid: 1935985)
+[2025-03-01 23:45:32 +0000] [1935987] [INFO] Worker exiting (pid: 1935987)
+[2025-03-01 23:45:32 +0000] [1935983] [INFO] Worker exiting (pid: 1935983)
+[2025-03-01 23:45:32 +0000] [1935984] [INFO] Worker exiting (pid: 1935984)
+[2025-03-01 23:45:32 +0000] [1935988] [INFO] Worker exiting (pid: 1935988)
+[2025-03-01 23:45:33 +0000] [1935998] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:33 +0000] [1935998] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:33 +0000] [1935990] [INFO] Worker exiting (pid: 1935990)
+[2025-03-01 23:45:33 +0000] [1935991] [INFO] Worker exiting (pid: 1935991)
+[2025-03-01 23:45:33 +0000] [1935989] [INFO] Worker exiting (pid: 1935989)
+[2025-03-01 23:45:33 +0000] [1935992] [INFO] Worker exiting (pid: 1935992)
+[2025-03-01 23:45:33 +0000] [1935994] [INFO] Worker exiting (pid: 1935994)
+[2025-03-01 23:45:33 +0000] [1935993] [INFO] Worker exiting (pid: 1935993)
+[2025-03-01 23:45:34 +0000] [1935998] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:45:34 +0000] [1935998] [ERROR] Retrying in 1 second.
+[2025-03-01 23:45:35 +0000] [1935998] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-01 23:45:35 +0000] [1935978] [INFO] Shutting down: Master
+[2025-03-01 23:45:39 +0000] [1936026] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:45:39 +0000] [1936026] [INFO] Listening at: http://127.0.0.1:1305 (1936026)
+[2025-03-01 23:45:39 +0000] [1936026] [INFO] Using worker: sync
+[2025-03-01 23:45:39 +0000] [1936027] [INFO] Booting worker with pid: 1936027
+[2025-03-01 23:45:39 +0000] [1936028] [INFO] Booting worker with pid: 1936028
+[2025-03-01 23:45:39 +0000] [1936029] [INFO] Booting worker with pid: 1936029
+[2025-03-01 23:45:39 +0000] [1936030] [INFO] Booting worker with pid: 1936030
+[2025-03-01 23:45:39 +0000] [1936031] [INFO] Booting worker with pid: 1936031
+[2025-03-01 23:45:39 +0000] [1936032] [INFO] Booting worker with pid: 1936032
+[2025-03-01 23:45:39 +0000] [1936033] [INFO] Booting worker with pid: 1936033
+[2025-03-01 23:45:39 +0000] [1936034] [INFO] Booting worker with pid: 1936034
+[2025-03-01 23:45:39 +0000] [1936035] [INFO] Booting worker with pid: 1936035
+[2025-03-01 23:45:39 +0000] [1936036] [INFO] Booting worker with pid: 1936036
+[2025-03-01 23:45:39 +0000] [1936037] [INFO] Booting worker with pid: 1936037
+[2025-03-01 23:45:40 +0000] [1936038] [INFO] Booting worker with pid: 1936038
+[2025-03-01 23:48:17 +0000] [1936486] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:48:17 +0000] [1936486] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:48:17 +0000] [1936486] [ERROR] Retrying in 1 second.
+[2025-03-01 23:48:18 +0000] [1936486] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:48:18 +0000] [1936486] [ERROR] Retrying in 1 second.
+[2025-03-01 23:48:19 +0000] [1936486] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:48:19 +0000] [1936486] [ERROR] Retrying in 1 second.
+[2025-03-01 23:48:20 +0000] [1936486] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:48:20 +0000] [1936486] [ERROR] Retrying in 1 second.
+[2025-03-01 23:48:21 +0000] [1936486] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:48:21 +0000] [1936486] [ERROR] Retrying in 1 second.
+[2025-03-01 23:48:22 +0000] [1936027] [INFO] Worker exiting (pid: 1936027)
+[2025-03-01 23:48:22 +0000] [1936026] [INFO] Handling signal: term
+[2025-03-01 23:48:22 +0000] [1936028] [INFO] Worker exiting (pid: 1936028)
+[2025-03-01 23:48:22 +0000] [1936029] [INFO] Worker exiting (pid: 1936029)
+[2025-03-01 23:48:22 +0000] [1936031] [INFO] Worker exiting (pid: 1936031)
+[2025-03-01 23:48:22 +0000] [1936032] [INFO] Worker exiting (pid: 1936032)
+[2025-03-01 23:48:22 +0000] [1936037] [INFO] Worker exiting (pid: 1936037)
+[2025-03-01 23:48:22 +0000] [1936033] [INFO] Worker exiting (pid: 1936033)
+[2025-03-01 23:48:22 +0000] [1936035] [INFO] Worker exiting (pid: 1936035)
+[2025-03-01 23:48:22 +0000] [1936036] [INFO] Worker exiting (pid: 1936036)
+[2025-03-01 23:48:22 +0000] [1936038] [INFO] Worker exiting (pid: 1936038)
+[2025-03-01 23:48:22 +0000] [1936034] [INFO] Worker exiting (pid: 1936034)
+[2025-03-01 23:48:22 +0000] [1936030] [INFO] Worker exiting (pid: 1936030)
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936032) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936033) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936028) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936029) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936035) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936031) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936036) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936037) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936027) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936026] [ERROR] Worker (pid:1936038) was sent SIGTERM!
+[2025-03-01 23:48:22 +0000] [1936486] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-01 23:48:23 +0000] [1936026] [INFO] Shutting down: Master
+[2025-03-01 23:48:23 +0000] [1936492] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:48:23 +0000] [1936492] [INFO] Listening at: http://127.0.0.1:1305 (1936492)
+[2025-03-01 23:48:23 +0000] [1936492] [INFO] Using worker: sync
+[2025-03-01 23:48:23 +0000] [1936493] [INFO] Booting worker with pid: 1936493
+[2025-03-01 23:48:23 +0000] [1936494] [INFO] Booting worker with pid: 1936494
+[2025-03-01 23:48:23 +0000] [1936495] [INFO] Booting worker with pid: 1936495
+[2025-03-01 23:48:23 +0000] [1936496] [INFO] Booting worker with pid: 1936496
+[2025-03-01 23:48:23 +0000] [1936497] [INFO] Booting worker with pid: 1936497
+[2025-03-01 23:48:23 +0000] [1936498] [INFO] Booting worker with pid: 1936498
+[2025-03-01 23:48:23 +0000] [1936499] [INFO] Booting worker with pid: 1936499
+[2025-03-01 23:48:23 +0000] [1936500] [INFO] Booting worker with pid: 1936500
+[2025-03-01 23:48:23 +0000] [1936501] [INFO] Booting worker with pid: 1936501
+[2025-03-01 23:48:23 +0000] [1936502] [INFO] Booting worker with pid: 1936502
+[2025-03-01 23:48:23 +0000] [1936503] [INFO] Booting worker with pid: 1936503
+[2025-03-01 23:48:23 +0000] [1936504] [INFO] Booting worker with pid: 1936504
+[2025-03-01 23:52:04 +0000] [1937038] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:52:04 +0000] [1937038] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:52:04 +0000] [1937038] [ERROR] Retrying in 1 second.
+[2025-03-01 23:52:05 +0000] [1937038] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:52:05 +0000] [1937038] [ERROR] Retrying in 1 second.
+[2025-03-01 23:52:06 +0000] [1937038] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:52:06 +0000] [1937038] [ERROR] Retrying in 1 second.
+[2025-03-01 23:52:07 +0000] [1937038] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:52:07 +0000] [1937038] [ERROR] Retrying in 1 second.
+[2025-03-01 23:52:08 +0000] [1937038] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-01 23:52:08 +0000] [1937038] [ERROR] Retrying in 1 second.
+[2025-03-01 23:52:08 +0000] [1936493] [INFO] Worker exiting (pid: 1936493)
+[2025-03-01 23:52:08 +0000] [1936492] [INFO] Handling signal: term
+[2025-03-01 23:52:08 +0000] [1936494] [INFO] Worker exiting (pid: 1936494)
+[2025-03-01 23:52:08 +0000] [1936495] [INFO] Worker exiting (pid: 1936495)
+[2025-03-01 23:52:08 +0000] [1936496] [INFO] Worker exiting (pid: 1936496)
+[2025-03-01 23:52:08 +0000] [1936498] [INFO] Worker exiting (pid: 1936498)
+[2025-03-01 23:52:08 +0000] [1936501] [INFO] Worker exiting (pid: 1936501)
+[2025-03-01 23:52:08 +0000] [1936499] [INFO] Worker exiting (pid: 1936499)
+[2025-03-01 23:52:08 +0000] [1936500] [INFO] Worker exiting (pid: 1936500)
+[2025-03-01 23:52:08 +0000] [1936502] [INFO] Worker exiting (pid: 1936502)
+[2025-03-01 23:52:08 +0000] [1936503] [INFO] Worker exiting (pid: 1936503)
+[2025-03-01 23:52:08 +0000] [1936504] [INFO] Worker exiting (pid: 1936504)
+[2025-03-01 23:52:08 +0000] [1936497] [INFO] Worker exiting (pid: 1936497)
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936493) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936494) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936498) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936499) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936495) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936496) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936500) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936501) was sent SIGTERM!
+[2025-03-01 23:52:08 +0000] [1936492] [ERROR] Worker (pid:1936502) was sent SIGTERM!
+[2025-03-01 23:52:09 +0000] [1936492] [INFO] Shutting down: Master
+[2025-03-01 23:52:09 +0000] [1937038] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-01 23:52:11 +0000] [1937107] [INFO] Starting gunicorn 21.2.0
+[2025-03-01 23:52:11 +0000] [1937107] [INFO] Listening at: http://127.0.0.1:1305 (1937107)
+[2025-03-01 23:52:11 +0000] [1937107] [INFO] Using worker: sync
+[2025-03-01 23:52:11 +0000] [1937108] [INFO] Booting worker with pid: 1937108
+[2025-03-01 23:52:12 +0000] [1937109] [INFO] Booting worker with pid: 1937109
+[2025-03-01 23:52:12 +0000] [1937110] [INFO] Booting worker with pid: 1937110
+[2025-03-01 23:52:12 +0000] [1937111] [INFO] Booting worker with pid: 1937111
+[2025-03-01 23:52:12 +0000] [1937112] [INFO] Booting worker with pid: 1937112
+[2025-03-01 23:52:12 +0000] [1937113] [INFO] Booting worker with pid: 1937113
+[2025-03-01 23:52:12 +0000] [1937114] [INFO] Booting worker with pid: 1937114
+[2025-03-01 23:52:12 +0000] [1937115] [INFO] Booting worker with pid: 1937115
+[2025-03-01 23:52:12 +0000] [1937116] [INFO] Booting worker with pid: 1937116
+[2025-03-01 23:52:12 +0000] [1937117] [INFO] Booting worker with pid: 1937117
+[2025-03-01 23:52:12 +0000] [1937118] [INFO] Booting worker with pid: 1937118
+[2025-03-01 23:52:12 +0000] [1937119] [INFO] Booting worker with pid: 1937119
+[2025-03-02 00:23:11,196] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 00:23:31,829] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 00:23:33,340] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 00:24:03,296] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 00:24:45,841] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 08:11:46,302] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 11:56:07 +0000] [1937107] [CRITICAL] WORKER TIMEOUT (pid:1937115)
+[2025-03-02 11:56:07 +0000] [1937115] [INFO] Worker exiting (pid: 1937115)
+[2025-03-02 11:56:11 +0000] [1937107] [ERROR] Worker (pid:1937115) exited with code 1
+[2025-03-02 11:56:11 +0000] [1937107] [ERROR] Worker (pid:1937115) exited with code 1.
+[2025-03-02 11:56:11 +0000] [2042121] [INFO] Booting worker with pid: 2042121
+[2025-03-02 12:08:13 +0000] [1937114] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937114] [INFO] Worker exiting (pid: 1937114)
+[2025-03-02 12:08:13 +0000] [1937111] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937111] [INFO] Worker exiting (pid: 1937111)
+[2025-03-02 12:08:13 +0000] [1937113] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937113] [INFO] Worker exiting (pid: 1937113)
+[2025-03-02 12:08:13 +0000] [1937109] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937109] [INFO] Worker exiting (pid: 1937109)
+[2025-03-02 12:08:13 +0000] [1937116] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937116] [INFO] Worker exiting (pid: 1937116)
+[2025-03-02 12:08:13 +0000] [1937117] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937117] [INFO] Worker exiting (pid: 1937117)
+[2025-03-02 12:08:13 +0000] [1937108] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937108] [INFO] Worker exiting (pid: 1937108)
+[2025-03-02 12:08:13 +0000] [1937112] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937112] [INFO] Worker exiting (pid: 1937112)
+[2025-03-02 12:08:13 +0000] [2042121] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [2042121] [INFO] Worker exiting (pid: 2042121)
+[2025-03-02 12:08:13 +0000] [1937110] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937110] [INFO] Worker exiting (pid: 1937110)
+[2025-03-02 12:08:13 +0000] [1937119] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937119] [INFO] Worker exiting (pid: 1937119)
+[2025-03-02 12:08:13 +0000] [1937118] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-02 12:08:13 +0000] [1937118] [INFO] Worker exiting (pid: 1937118)
+[2025-03-02 12:08:15 +0000] [2045211] [INFO] Booting worker with pid: 2045211
+[2025-03-02 12:08:15 +0000] [2045212] [INFO] Booting worker with pid: 2045212
+[2025-03-02 12:08:15 +0000] [2045213] [INFO] Booting worker with pid: 2045213
+[2025-03-02 12:08:15 +0000] [2045214] [INFO] Booting worker with pid: 2045214
+[2025-03-02 12:08:15 +0000] [2045215] [INFO] Booting worker with pid: 2045215
+[2025-03-02 12:08:16 +0000] [2045216] [INFO] Booting worker with pid: 2045216
+[2025-03-02 12:08:16 +0000] [2045217] [INFO] Booting worker with pid: 2045217
+[2025-03-02 12:08:16 +0000] [2045218] [INFO] Booting worker with pid: 2045218
+[2025-03-02 12:08:16 +0000] [2045219] [INFO] Booting worker with pid: 2045219
+[2025-03-02 12:08:16 +0000] [2045220] [INFO] Booting worker with pid: 2045220
+[2025-03-02 12:08:17 +0000] [1937107] [INFO] Handling signal: term
+[2025-03-02 12:08:17 +0000] [1937107] [ERROR] Worker (pid:1937118) was sent SIGTERM!
+[2025-03-02 12:08:17 +0000] [1937107] [ERROR] Worker (pid:1937116) was sent SIGTERM!
+[2025-03-02 12:08:19 +0000] [2045239] [INFO] Starting gunicorn 21.2.0
+[2025-03-02 12:08:19 +0000] [2045239] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-02 12:08:19 +0000] [2045239] [ERROR] Retrying in 1 second.
+[2025-03-02 12:08:20 +0000] [2045213] [INFO] Worker exiting (pid: 2045213)
+[2025-03-02 12:08:20 +0000] [2045215] [INFO] Worker exiting (pid: 2045215)
+[2025-03-02 12:08:20 +0000] [2045214] [INFO] Worker exiting (pid: 2045214)
+[2025-03-02 12:08:20 +0000] [2045211] [INFO] Worker exiting (pid: 2045211)
+[2025-03-02 12:08:20 +0000] [2045212] [INFO] Worker exiting (pid: 2045212)
+[2025-03-02 12:08:20 +0000] [2045239] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-02 12:08:20 +0000] [2045239] [ERROR] Retrying in 1 second.
+[2025-03-02 12:08:21 +0000] [2045216] [INFO] Worker exiting (pid: 2045216)
+[2025-03-02 12:08:21 +0000] [2045217] [INFO] Worker exiting (pid: 2045217)
+[2025-03-02 12:08:21 +0000] [2045218] [INFO] Worker exiting (pid: 2045218)
+[2025-03-02 12:08:21 +0000] [2045220] [INFO] Worker exiting (pid: 2045220)
+[2025-03-02 12:08:21 +0000] [2045219] [INFO] Worker exiting (pid: 2045219)
+[2025-03-02 12:08:21 +0000] [2045239] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-02 12:08:21 +0000] [2045239] [ERROR] Retrying in 1 second.
+[2025-03-02 12:08:22 +0000] [1937107] [INFO] Shutting down: Master
+[2025-03-02 12:08:22 +0000] [2045239] [INFO] Listening at: http://127.0.0.1:1305 (2045239)
+[2025-03-02 12:08:22 +0000] [2045239] [INFO] Using worker: sync
+[2025-03-02 12:08:22 +0000] [2045251] [INFO] Booting worker with pid: 2045251
+[2025-03-02 12:08:22 +0000] [2045252] [INFO] Booting worker with pid: 2045252
+[2025-03-02 12:08:22 +0000] [2045253] [INFO] Booting worker with pid: 2045253
+[2025-03-02 12:08:23 +0000] [2045254] [INFO] Booting worker with pid: 2045254
+[2025-03-02 12:08:23 +0000] [2045255] [INFO] Booting worker with pid: 2045255
+[2025-03-02 12:08:23 +0000] [2045256] [INFO] Booting worker with pid: 2045256
+[2025-03-02 12:08:23 +0000] [2045257] [INFO] Booting worker with pid: 2045257
+[2025-03-02 12:08:23 +0000] [2045258] [INFO] Booting worker with pid: 2045258
+[2025-03-02 12:08:23 +0000] [2045259] [INFO] Booting worker with pid: 2045259
+[2025-03-02 12:08:23 +0000] [2045260] [INFO] Booting worker with pid: 2045260
+[2025-03-02 12:08:23 +0000] [2045261] [INFO] Booting worker with pid: 2045261
+[2025-03-02 12:08:23 +0000] [2045262] [INFO] Booting worker with pid: 2045262
+[2025-03-02 12:09:41 +0000] [2045251] [INFO] Worker exiting (pid: 2045251)
+[2025-03-02 12:09:41 +0000] [2045239] [INFO] Handling signal: term
+[2025-03-02 12:09:41 +0000] [2045252] [INFO] Worker exiting (pid: 2045252)
+[2025-03-02 12:09:41 +0000] [2045253] [INFO] Worker exiting (pid: 2045253)
+[2025-03-02 12:09:41 +0000] [2045255] [INFO] Worker exiting (pid: 2045255)
+[2025-03-02 12:09:41 +0000] [2045254] [INFO] Worker exiting (pid: 2045254)
+[2025-03-02 12:09:41 +0000] [2045256] [INFO] Worker exiting (pid: 2045256)
+[2025-03-02 12:09:41 +0000] [2045258] [INFO] Worker exiting (pid: 2045258)
+[2025-03-02 12:09:41 +0000] [2045257] [INFO] Worker exiting (pid: 2045257)
+[2025-03-02 12:09:41 +0000] [2045261] [INFO] Worker exiting (pid: 2045261)
+[2025-03-02 12:09:41 +0000] [2045259] [INFO] Worker exiting (pid: 2045259)
+[2025-03-02 12:09:41 +0000] [2045260] [INFO] Worker exiting (pid: 2045260)
+[2025-03-02 12:09:41 +0000] [2045262] [INFO] Worker exiting (pid: 2045262)
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045251) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045254) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045253) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045255) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045256) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045257) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045259) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045252) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045261) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045262) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045260) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [ERROR] Worker (pid:2045258) was sent SIGTERM!
+[2025-03-02 12:09:41 +0000] [2045239] [INFO] Shutting down: Master
+[2025-03-02 12:09:44 +0000] [2045663] [INFO] Starting gunicorn 21.2.0
+[2025-03-02 12:09:44 +0000] [2045663] [INFO] Listening at: http://127.0.0.1:1305 (2045663)
+[2025-03-02 12:09:44 +0000] [2045663] [INFO] Using worker: sync
+[2025-03-02 12:09:44 +0000] [2045664] [INFO] Booting worker with pid: 2045664
+[2025-03-02 12:09:44 +0000] [2045665] [INFO] Booting worker with pid: 2045665
+[2025-03-02 12:09:44 +0000] [2045666] [INFO] Booting worker with pid: 2045666
+[2025-03-02 12:09:44 +0000] [2045669] [INFO] Booting worker with pid: 2045669
+[2025-03-02 12:09:44 +0000] [2045670] [INFO] Booting worker with pid: 2045670
+[2025-03-02 12:09:45 +0000] [2045671] [INFO] Booting worker with pid: 2045671
+[2025-03-02 12:09:45 +0000] [2045672] [INFO] Booting worker with pid: 2045672
+[2025-03-02 12:09:45 +0000] [2045673] [INFO] Booting worker with pid: 2045673
+[2025-03-02 12:09:45 +0000] [2045674] [INFO] Booting worker with pid: 2045674
+[2025-03-02 12:09:45 +0000] [2045675] [INFO] Booting worker with pid: 2045675
+[2025-03-02 12:09:45 +0000] [2045676] [INFO] Booting worker with pid: 2045676
+[2025-03-02 12:09:45 +0000] [2045679] [INFO] Booting worker with pid: 2045679
+[2025-03-02 21:38:17,477] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-02 23:27:00,620] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-03 00:00:15,056] ERROR in app: Exception on /admin/order/56 [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 878, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1253, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 215, in check_session
+    db.session.commit()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/scoping.py", line 597, in commit
+    return self._proxied.commit()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
+    _emit_update_statements(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/persistence.py", line 912, in _emit_update_statements
+    c = connection.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: UPDATE gusts SET last_activity=? WHERE gusts.id = ?]
+[parameters: ('2025-03-03 00:00:09.079355', 121)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-03 02:14:58,568] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-03 02:14:58,785] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-03 02:14:58,802] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-03 02:15:14,656] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-03 02:15:14,832] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-03 02:15:14,833] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-03 02:16:07,794] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-03 08:55:11,675] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 287, in list
+    query = query.order_by(Product.rating.desc())
+AttributeError: type object 'Product' has no attribute 'rating'
+[2025-03-03 08:56:21,788] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-03 09:23:04,887] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-03 09:23:54,175] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-03 11:14:01 +0000] [2045669] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:01 +0000] [2045669] [INFO] Worker exiting (pid: 2045669)
+[2025-03-03 11:14:02 +0000] [2045672] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045672] [INFO] Worker exiting (pid: 2045672)
+[2025-03-03 11:14:02 +0000] [2045673] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045673] [INFO] Worker exiting (pid: 2045673)
+[2025-03-03 11:14:02 +0000] [2045674] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045674] [INFO] Worker exiting (pid: 2045674)
+[2025-03-03 11:14:02 +0000] [2045666] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045666] [INFO] Worker exiting (pid: 2045666)
+[2025-03-03 11:14:02 +0000] [2045665] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045665] [INFO] Worker exiting (pid: 2045665)
+[2025-03-03 11:14:02 +0000] [2045671] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045671] [INFO] Worker exiting (pid: 2045671)
+[2025-03-03 11:14:02 +0000] [2045675] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045675] [INFO] Worker exiting (pid: 2045675)
+[2025-03-03 11:14:02 +0000] [2045679] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045679] [INFO] Worker exiting (pid: 2045679)
+[2025-03-03 11:14:02 +0000] [2045670] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045670] [INFO] Worker exiting (pid: 2045670)
+[2025-03-03 11:14:02 +0000] [2045664] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045664] [INFO] Worker exiting (pid: 2045664)
+[2025-03-03 11:14:02 +0000] [2045676] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-03 11:14:02 +0000] [2045676] [INFO] Worker exiting (pid: 2045676)
+[2025-03-03 11:14:08 +0000] [2251486] [INFO] Booting worker with pid: 2251486
+[2025-03-03 11:14:08 +0000] [2251487] [INFO] Booting worker with pid: 2251487
+[2025-03-03 11:14:08 +0000] [2251488] [INFO] Booting worker with pid: 2251488
+[2025-03-03 11:14:08 +0000] [2251490] [INFO] Booting worker with pid: 2251490
+[2025-03-03 11:14:08 +0000] [2251491] [INFO] Booting worker with pid: 2251491
+[2025-03-03 11:14:08 +0000] [2251492] [INFO] Booting worker with pid: 2251492
+[2025-03-03 11:14:08 +0000] [2251493] [INFO] Booting worker with pid: 2251493
+[2025-03-03 11:14:08 +0000] [2251494] [INFO] Booting worker with pid: 2251494
+[2025-03-03 11:14:08 +0000] [2251495] [INFO] Booting worker with pid: 2251495
+[2025-03-03 11:14:08 +0000] [2251496] [INFO] Booting worker with pid: 2251496
+[2025-03-03 11:14:08 +0000] [2251497] [INFO] Booting worker with pid: 2251497
+[2025-03-03 11:14:09 +0000] [2251498] [INFO] Booting worker with pid: 2251498
+[2025-03-03 11:19:14 +0000] [2252547] [INFO] Starting gunicorn 21.2.0
+[2025-03-03 11:19:14 +0000] [2252547] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:14 +0000] [2252547] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:15 +0000] [2252547] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:15 +0000] [2252547] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:15 +0000] [2251486] [INFO] Worker exiting (pid: 2251486)
+[2025-03-03 11:19:15 +0000] [2045663] [INFO] Handling signal: term
+[2025-03-03 11:19:15 +0000] [2251487] [INFO] Worker exiting (pid: 2251487)
+[2025-03-03 11:19:15 +0000] [2251490] [INFO] Worker exiting (pid: 2251490)
+[2025-03-03 11:19:15 +0000] [2251495] [INFO] Worker exiting (pid: 2251495)
+[2025-03-03 11:19:15 +0000] [2251488] [INFO] Worker exiting (pid: 2251488)
+[2025-03-03 11:19:15 +0000] [2251496] [INFO] Worker exiting (pid: 2251496)
+[2025-03-03 11:19:15 +0000] [2251491] [INFO] Worker exiting (pid: 2251491)
+[2025-03-03 11:19:15 +0000] [2251497] [INFO] Worker exiting (pid: 2251497)
+[2025-03-03 11:19:15 +0000] [2251493] [INFO] Worker exiting (pid: 2251493)
+[2025-03-03 11:19:15 +0000] [2251498] [INFO] Worker exiting (pid: 2251498)
+[2025-03-03 11:19:15 +0000] [2251494] [INFO] Worker exiting (pid: 2251494)
+[2025-03-03 11:19:15 +0000] [2251492] [INFO] Worker exiting (pid: 2251492)
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251497) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251494) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251486) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251491) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251496) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251492) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251498) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251487) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251488) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251493) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251490) was sent SIGTERM!
+[2025-03-03 11:19:15 +0000] [2045663] [ERROR] Worker (pid:2251495) was sent SIGTERM!
+[2025-03-03 11:19:16 +0000] [2045663] [INFO] Shutting down: Master
+[2025-03-03 11:19:16 +0000] [2252547] [INFO] Listening at: http://127.0.0.1:1305 (2252547)
+[2025-03-03 11:19:16 +0000] [2252547] [INFO] Using worker: sync
+[2025-03-03 11:19:16 +0000] [2252565] [INFO] Booting worker with pid: 2252565
+[2025-03-03 11:19:16 +0000] [2252566] [INFO] Booting worker with pid: 2252566
+[2025-03-03 11:19:16 +0000] [2252567] [INFO] Booting worker with pid: 2252567
+[2025-03-03 11:19:16 +0000] [2252568] [INFO] Booting worker with pid: 2252568
+[2025-03-03 11:19:16 +0000] [2252569] [INFO] Booting worker with pid: 2252569
+[2025-03-03 11:19:16 +0000] [2252571] [INFO] Booting worker with pid: 2252571
+[2025-03-03 11:19:16 +0000] [2252570] [INFO] Booting worker with pid: 2252570
+[2025-03-03 11:19:16 +0000] [2252572] [INFO] Booting worker with pid: 2252572
+[2025-03-03 11:19:16 +0000] [2252573] [INFO] Booting worker with pid: 2252573
+[2025-03-03 11:19:16 +0000] [2252574] [INFO] Booting worker with pid: 2252574
+[2025-03-03 11:19:16 +0000] [2252575] [INFO] Booting worker with pid: 2252575
+[2025-03-03 11:19:16 +0000] [2252576] [INFO] Booting worker with pid: 2252576
+[2025-03-03 11:19:16 +0000] [2252547] [INFO] Handling signal: term
+[2025-03-03 11:19:18 +0000] [2252587] [INFO] Starting gunicorn 21.2.0
+[2025-03-03 11:19:18 +0000] [2252587] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:18 +0000] [2252587] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:19 +0000] [2252587] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:19 +0000] [2252587] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:20 +0000] [2252587] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:20 +0000] [2252587] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:21 +0000] [2252587] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:21 +0000] [2252587] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:22 +0000] [2252587] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-03 11:19:22 +0000] [2252587] [ERROR] Retrying in 1 second.
+[2025-03-03 11:19:22 +0000] [2252565] [INFO] Worker exiting (pid: 2252565)
+[2025-03-03 11:19:22 +0000] [2252566] [INFO] Worker exiting (pid: 2252566)
+[2025-03-03 11:19:22 +0000] [2252567] [INFO] Worker exiting (pid: 2252567)
+[2025-03-03 11:19:22 +0000] [2252568] [INFO] Worker exiting (pid: 2252568)
+[2025-03-03 11:19:22 +0000] [2252570] [INFO] Worker exiting (pid: 2252570)
+[2025-03-03 11:19:22 +0000] [2252576] [INFO] Worker exiting (pid: 2252576)
+[2025-03-03 11:19:23 +0000] [2252574] [INFO] Worker exiting (pid: 2252574)
+[2025-03-03 11:19:23 +0000] [2252571] [INFO] Worker exiting (pid: 2252571)
+[2025-03-03 11:19:23 +0000] [2252572] [INFO] Worker exiting (pid: 2252572)
+[2025-03-03 11:19:23 +0000] [2252569] [INFO] Worker exiting (pid: 2252569)
+[2025-03-03 11:19:23 +0000] [2252575] [INFO] Worker exiting (pid: 2252575)
+[2025-03-03 11:19:23 +0000] [2252587] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-03 11:19:23 +0000] [2252573] [INFO] Worker exiting (pid: 2252573)
+[2025-03-03 11:19:24 +0000] [2252547] [INFO] Shutting down: Master
+[2025-03-03 11:27:33 +0000] [2254471] [INFO] Starting gunicorn 21.2.0
+[2025-03-03 11:27:33 +0000] [2254471] [INFO] Listening at: http://127.0.0.1:1305 (2254471)
+[2025-03-03 11:27:33 +0000] [2254471] [INFO] Using worker: sync
+[2025-03-03 11:27:33 +0000] [2254473] [INFO] Booting worker with pid: 2254473
+[2025-03-03 11:27:33 +0000] [2254474] [INFO] Booting worker with pid: 2254474
+[2025-03-03 11:27:33 +0000] [2254475] [INFO] Booting worker with pid: 2254475
+[2025-03-03 11:27:33 +0000] [2254476] [INFO] Booting worker with pid: 2254476
+[2025-03-03 11:27:33 +0000] [2254477] [INFO] Booting worker with pid: 2254477
+[2025-03-03 11:27:33 +0000] [2254478] [INFO] Booting worker with pid: 2254478
+[2025-03-03 11:27:33 +0000] [2254480] [INFO] Booting worker with pid: 2254480
+[2025-03-03 11:27:33 +0000] [2254481] [INFO] Booting worker with pid: 2254481
+[2025-03-03 11:27:34 +0000] [2254482] [INFO] Booting worker with pid: 2254482
+[2025-03-03 11:27:34 +0000] [2254483] [INFO] Booting worker with pid: 2254483
+[2025-03-03 11:27:34 +0000] [2254484] [INFO] Booting worker with pid: 2254484
+[2025-03-03 11:27:34 +0000] [2254485] [INFO] Booting worker with pid: 2254485
+[2025-03-03 19:25:39,838] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-04 20:04:19,781] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-05 16:32:45,093] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-06 00:00:06,021] ERROR in app: Exception on /static/js/modernizr.js [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 212, in check_session
+    cart_count = Cart.query.filter_by(user_id=gest.id).count()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 3112, in count
+    self._legacy_from_self(col).enable_eagerloads(False).scalar()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2805, in scalar
+    ret = self.one()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2778, in one
+    return self._iter().one()  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT cart.id AS cart_id, cart.user_id AS cart_user_id, cart.product_id AS cart_product_id, cart.quantity AS cart_quantity, cart.created_at AS cart_created_at 
+FROM cart 
+WHERE cart.user_id = ?) AS anon_1]
+[parameters: (2890,)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-06 00:00:05,863] ERROR in app: Exception on /static/images/logo.svg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 210, in check_session
+    gest = Gusts.query.filter_by(session=session['session']).first()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2728, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: SELECT gusts.id AS gusts_id, gusts.session AS gusts_session, gusts.name AS gusts_name, gusts.phone AS gusts_phone, gusts.address AS gusts_address, gusts.last_activity AS gusts_last_activity, gusts.created_at AS gusts_created_at 
+FROM gusts 
+WHERE gusts.session = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('cb851ae25e8c580fe9b738b964a946c70a8df20caddf3d5c', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-06 02:33:33,565] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-06 04:23:03,230] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-06 04:23:13,261] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-06 07:04:52,184] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-06 07:04:52,592] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-06 07:04:52,898] ERROR in app: Exception on /order_confirmation [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 598, in order_confirmation
+    order_items = OrderItem.query.filter_by(order_id=order.id).all()
+AttributeError: 'NoneType' object has no attribute 'id'
+[2025-03-06 07:05:02,703] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-06 07:05:02,893] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-06 07:05:02,916] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 612, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-07 03:45:55,695] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-08 11:15:26,818] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-09 04:44:55,934] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-09 08:28:08,511] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-09 21:31:59 +0000] [3701090] [INFO] Starting gunicorn 21.2.0
+[2025-03-09 21:31:59 +0000] [3701090] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-09 21:31:59 +0000] [3701090] [ERROR] Retrying in 1 second.
+[2025-03-09 21:32:00 +0000] [3701090] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-09 21:32:00 +0000] [3701090] [ERROR] Retrying in 1 second.
+[2025-03-09 21:32:01 +0000] [3701090] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-09 21:32:01 +0000] [3701090] [ERROR] Retrying in 1 second.
+[2025-03-09 21:32:02 +0000] [3701090] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-09 21:32:02 +0000] [3701090] [ERROR] Retrying in 1 second.
+[2025-03-09 21:32:03 +0000] [3701090] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-09 21:32:03 +0000] [3701090] [ERROR] Retrying in 1 second.
+[2025-03-09 21:32:04 +0000] [3701090] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-09 21:32:05 +0000] [2254475] [INFO] Worker exiting (pid: 2254475)
+[2025-03-09 21:32:05 +0000] [2254474] [INFO] Worker exiting (pid: 2254474)
+[2025-03-09 21:32:05 +0000] [2254476] [INFO] Worker exiting (pid: 2254476)
+[2025-03-09 21:32:05 +0000] [2254477] [INFO] Worker exiting (pid: 2254477)
+[2025-03-09 21:32:05 +0000] [2254478] [INFO] Worker exiting (pid: 2254478)
+[2025-03-09 21:32:05 +0000] [2254481] [INFO] Worker exiting (pid: 2254481)
+[2025-03-09 21:32:05 +0000] [2254483] [INFO] Worker exiting (pid: 2254483)
+[2025-03-09 21:32:05 +0000] [2254480] [INFO] Worker exiting (pid: 2254480)
+[2025-03-09 21:32:05 +0000] [2254473] [INFO] Worker exiting (pid: 2254473)
+[2025-03-09 21:32:05 +0000] [2254484] [INFO] Worker exiting (pid: 2254484)
+[2025-03-09 21:32:05 +0000] [2254485] [INFO] Worker exiting (pid: 2254485)
+[2025-03-09 21:32:05 +0000] [2254482] [INFO] Worker exiting (pid: 2254482)
+[2025-03-09 21:32:05 +0000] [2254471] [INFO] Handling signal: term
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254482) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254483) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254484) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254485) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254480) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254477) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254473) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254481) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254475) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254476) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254474) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [ERROR] Worker (pid:2254478) was sent SIGTERM!
+[2025-03-09 21:32:06 +0000] [2254471] [INFO] Shutting down: Master
+[2025-03-09 21:32:07 +0000] [3701124] [INFO] Starting gunicorn 21.2.0
+[2025-03-09 21:32:07 +0000] [3701124] [INFO] Listening at: http://127.0.0.1:1305 (3701124)
+[2025-03-09 21:32:07 +0000] [3701124] [INFO] Using worker: sync
+[2025-03-09 21:32:07 +0000] [3701125] [INFO] Booting worker with pid: 3701125
+[2025-03-09 21:32:07 +0000] [3701126] [INFO] Booting worker with pid: 3701126
+[2025-03-09 21:32:07 +0000] [3701127] [INFO] Booting worker with pid: 3701127
+[2025-03-09 21:32:07 +0000] [3701128] [INFO] Booting worker with pid: 3701128
+[2025-03-09 21:32:07 +0000] [3701129] [INFO] Booting worker with pid: 3701129
+[2025-03-09 21:32:07 +0000] [3701130] [INFO] Booting worker with pid: 3701130
+[2025-03-09 21:32:07 +0000] [3701131] [INFO] Booting worker with pid: 3701131
+[2025-03-09 21:32:07 +0000] [3701132] [INFO] Booting worker with pid: 3701132
+[2025-03-09 21:32:08 +0000] [3701133] [INFO] Booting worker with pid: 3701133
+[2025-03-09 21:32:08 +0000] [3701134] [INFO] Booting worker with pid: 3701134
+[2025-03-09 21:32:08 +0000] [3701136] [INFO] Booting worker with pid: 3701136
+[2025-03-09 21:32:08 +0000] [3701135] [INFO] Booting worker with pid: 3701135
+[2025-03-09 21:33:45 +0000] [3701125] [INFO] Worker exiting (pid: 3701125)
+[2025-03-09 21:33:45 +0000] [3701124] [INFO] Handling signal: term
+[2025-03-09 21:33:45 +0000] [3701127] [INFO] Worker exiting (pid: 3701127)
+[2025-03-09 21:33:45 +0000] [3701126] [INFO] Worker exiting (pid: 3701126)
+[2025-03-09 21:33:45 +0000] [3701128] [INFO] Worker exiting (pid: 3701128)
+[2025-03-09 21:33:45 +0000] [3701129] [INFO] Worker exiting (pid: 3701129)
+[2025-03-09 21:33:45 +0000] [3701132] [INFO] Worker exiting (pid: 3701132)
+[2025-03-09 21:33:45 +0000] [3701136] [INFO] Worker exiting (pid: 3701136)
+[2025-03-09 21:33:45 +0000] [3701135] [INFO] Worker exiting (pid: 3701135)
+[2025-03-09 21:33:45 +0000] [3701134] [INFO] Worker exiting (pid: 3701134)
+[2025-03-09 21:33:45 +0000] [3701133] [INFO] Worker exiting (pid: 3701133)
+[2025-03-09 21:33:45 +0000] [3701131] [INFO] Worker exiting (pid: 3701131)
+[2025-03-09 21:33:45 +0000] [3701130] [INFO] Worker exiting (pid: 3701130)
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701125) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701134) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701130) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701131) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701127) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701133) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701128) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701135) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701126) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701132) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701136) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [ERROR] Worker (pid:3701129) was sent SIGTERM!
+[2025-03-09 21:33:45 +0000] [3701124] [INFO] Shutting down: Master
+[2025-03-09 21:34:17 +0000] [3701670] [INFO] Starting gunicorn 21.2.0
+[2025-03-09 21:34:17 +0000] [3701670] [INFO] Listening at: http://127.0.0.1:1305 (3701670)
+[2025-03-09 21:34:17 +0000] [3701670] [INFO] Using worker: sync
+[2025-03-09 21:34:17 +0000] [3701671] [INFO] Booting worker with pid: 3701671
+[2025-03-09 21:34:17 +0000] [3701672] [INFO] Booting worker with pid: 3701672
+[2025-03-09 21:34:17 +0000] [3701673] [INFO] Booting worker with pid: 3701673
+[2025-03-09 21:34:17 +0000] [3701674] [INFO] Booting worker with pid: 3701674
+[2025-03-09 21:34:17 +0000] [3701675] [INFO] Booting worker with pid: 3701675
+[2025-03-09 21:34:17 +0000] [3701676] [INFO] Booting worker with pid: 3701676
+[2025-03-09 21:34:17 +0000] [3701680] [INFO] Booting worker with pid: 3701680
+[2025-03-09 21:34:17 +0000] [3701681] [INFO] Booting worker with pid: 3701681
+[2025-03-09 21:34:17 +0000] [3701682] [INFO] Booting worker with pid: 3701682
+[2025-03-09 21:34:17 +0000] [3701683] [INFO] Booting worker with pid: 3701683
+[2025-03-09 21:34:17 +0000] [3701684] [INFO] Booting worker with pid: 3701684
+[2025-03-09 21:34:17 +0000] [3701685] [INFO] Booting worker with pid: 3701685
+[2025-03-10 17:49:22,285] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-11 00:59:50,226] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-11 02:01:34,024] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-12 20:04:39 +0000] [3701670] [CRITICAL] WORKER TIMEOUT (pid:3701684)
+[2025-03-12 20:04:39 +0000] [3701684] [INFO] Worker exiting (pid: 3701684)
+[2025-03-12 20:04:40 +0000] [3701670] [ERROR] Worker (pid:3701684) was sent SIGKILL! Perhaps out of memory?
+[2025-03-12 20:04:40 +0000] [89344] [INFO] Booting worker with pid: 89344
+[2025-03-13 04:23:26,872] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-13 06:19:02,184] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-13 07:25:21,248] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-13 11:26:25 +0000] [220066] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:26:25 +0000] [220066] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:25 +0000] [220066] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:26 +0000] [220066] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:26 +0000] [220066] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:26 +0000] [3701676] [INFO] Worker exiting (pid: 3701676)
+[2025-03-13 11:26:26 +0000] [3701671] [INFO] Worker exiting (pid: 3701671)
+[2025-03-13 11:26:26 +0000] [89344] [INFO] Worker exiting (pid: 89344)
+[2025-03-13 11:26:26 +0000] [3701673] [INFO] Worker exiting (pid: 3701673)
+[2025-03-13 11:26:26 +0000] [3701674] [INFO] Worker exiting (pid: 3701674)
+[2025-03-13 11:26:26 +0000] [3701675] [INFO] Worker exiting (pid: 3701675)
+[2025-03-13 11:26:26 +0000] [3701672] [INFO] Worker exiting (pid: 3701672)
+[2025-03-13 11:26:26 +0000] [3701680] [INFO] Worker exiting (pid: 3701680)
+[2025-03-13 11:26:26 +0000] [3701682] [INFO] Worker exiting (pid: 3701682)
+[2025-03-13 11:26:26 +0000] [3701681] [INFO] Worker exiting (pid: 3701681)
+[2025-03-13 11:26:26 +0000] [3701685] [INFO] Worker exiting (pid: 3701685)
+[2025-03-13 11:26:26 +0000] [3701683] [INFO] Worker exiting (pid: 3701683)
+[2025-03-13 11:26:26 +0000] [3701670] [INFO] Handling signal: term
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701672) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701675) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701680) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701685) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:89344) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701673) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701676) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701674) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701671) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701681) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701683) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [ERROR] Worker (pid:3701682) was sent SIGTERM!
+[2025-03-13 11:26:27 +0000] [3701670] [INFO] Shutting down: Master
+[2025-03-13 11:26:27 +0000] [220066] [INFO] Listening at: http://127.0.0.1:1305 (220066)
+[2025-03-13 11:26:27 +0000] [220066] [INFO] Using worker: sync
+[2025-03-13 11:26:27 +0000] [220078] [INFO] Booting worker with pid: 220078
+[2025-03-13 11:26:27 +0000] [220079] [INFO] Booting worker with pid: 220079
+[2025-03-13 11:26:27 +0000] [220080] [INFO] Booting worker with pid: 220080
+[2025-03-13 11:26:27 +0000] [220081] [INFO] Booting worker with pid: 220081
+[2025-03-13 11:26:27 +0000] [220082] [INFO] Booting worker with pid: 220082
+[2025-03-13 11:26:27 +0000] [220083] [INFO] Booting worker with pid: 220083
+[2025-03-13 11:26:27 +0000] [220084] [INFO] Booting worker with pid: 220084
+[2025-03-13 11:26:27 +0000] [220085] [INFO] Booting worker with pid: 220085
+[2025-03-13 11:26:27 +0000] [220086] [INFO] Booting worker with pid: 220086
+[2025-03-13 11:26:28 +0000] [220087] [INFO] Booting worker with pid: 220087
+[2025-03-13 11:26:28 +0000] [220088] [INFO] Booting worker with pid: 220088
+[2025-03-13 11:26:28 +0000] [220089] [INFO] Booting worker with pid: 220089
+[2025-03-13 11:26:28 +0000] [220066] [INFO] Handling signal: term
+[2025-03-13 11:26:30 +0000] [220096] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:26:30 +0000] [220096] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:30 +0000] [220096] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:31 +0000] [220096] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:31 +0000] [220096] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:32 +0000] [220096] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:32 +0000] [220096] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:33 +0000] [220096] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:33 +0000] [220096] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:34 +0000] [220096] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:26:34 +0000] [220096] [ERROR] Retrying in 1 second.
+[2025-03-13 11:26:35 +0000] [220096] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-13 11:26:38 +0000] [220079] [INFO] Worker exiting (pid: 220079)
+[2025-03-13 11:26:38 +0000] [220086] [INFO] Worker exiting (pid: 220086)
+[2025-03-13 11:26:38 +0000] [220080] [INFO] Worker exiting (pid: 220080)
+[2025-03-13 11:26:38 +0000] [220082] [INFO] Worker exiting (pid: 220082)
+[2025-03-13 11:26:38 +0000] [220085] [INFO] Worker exiting (pid: 220085)
+[2025-03-13 11:26:38 +0000] [220081] [INFO] Worker exiting (pid: 220081)
+[2025-03-13 11:26:38 +0000] [220088] [INFO] Worker exiting (pid: 220088)
+[2025-03-13 11:26:38 +0000] [220078] [INFO] Worker exiting (pid: 220078)
+[2025-03-13 11:26:38 +0000] [220084] [INFO] Worker exiting (pid: 220084)
+[2025-03-13 11:26:38 +0000] [220083] [INFO] Worker exiting (pid: 220083)
+[2025-03-13 11:26:39 +0000] [220087] [INFO] Worker exiting (pid: 220087)
+[2025-03-13 11:26:58 +0000] [220066] [INFO] Shutting down: Master
+[2025-03-13 11:30:17 +0000] [221483] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:30:17 +0000] [221483] [INFO] Listening at: http://127.0.0.1:1305 (221483)
+[2025-03-13 11:30:17 +0000] [221483] [INFO] Using worker: sync
+[2025-03-13 11:30:17 +0000] [221484] [INFO] Booting worker with pid: 221484
+[2025-03-13 11:30:17 +0000] [221485] [INFO] Booting worker with pid: 221485
+[2025-03-13 11:30:17 +0000] [221486] [INFO] Booting worker with pid: 221486
+[2025-03-13 11:30:17 +0000] [221487] [INFO] Booting worker with pid: 221487
+[2025-03-13 11:30:17 +0000] [221488] [INFO] Booting worker with pid: 221488
+[2025-03-13 11:30:17 +0000] [221489] [INFO] Booting worker with pid: 221489
+[2025-03-13 11:30:17 +0000] [221490] [INFO] Booting worker with pid: 221490
+[2025-03-13 11:30:17 +0000] [221491] [INFO] Booting worker with pid: 221491
+[2025-03-13 11:30:17 +0000] [221493] [INFO] Booting worker with pid: 221493
+[2025-03-13 11:30:17 +0000] [221492] [INFO] Booting worker with pid: 221492
+[2025-03-13 11:30:18 +0000] [221494] [INFO] Booting worker with pid: 221494
+[2025-03-13 11:30:18 +0000] [221495] [INFO] Booting worker with pid: 221495
+[2025-03-13 11:30:20 +0000] [221483] [INFO] Handling signal: term
+[2025-03-13 11:30:22 +0000] [221484] [INFO] Worker exiting (pid: 221484)
+[2025-03-13 11:30:23 +0000] [221545] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:30:23 +0000] [221545] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:30:23 +0000] [221545] [ERROR] Retrying in 1 second.
+[2025-03-13 11:30:23 +0000] [221485] [INFO] Worker exiting (pid: 221485)
+[2025-03-13 11:30:23 +0000] [221486] [INFO] Worker exiting (pid: 221486)
+[2025-03-13 11:30:23 +0000] [221487] [INFO] Worker exiting (pid: 221487)
+[2025-03-13 11:30:24 +0000] [221491] [INFO] Worker exiting (pid: 221491)
+[2025-03-13 11:30:24 +0000] [221494] [INFO] Worker exiting (pid: 221494)
+[2025-03-13 11:30:24 +0000] [221489] [INFO] Worker exiting (pid: 221489)
+[2025-03-13 11:30:24 +0000] [221545] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:30:24 +0000] [221545] [ERROR] Retrying in 1 second.
+[2025-03-13 11:30:24 +0000] [221495] [INFO] Worker exiting (pid: 221495)
+[2025-03-13 11:30:24 +0000] [221492] [INFO] Worker exiting (pid: 221492)
+[2025-03-13 11:30:24 +0000] [221493] [INFO] Worker exiting (pid: 221493)
+[2025-03-13 11:30:24 +0000] [221490] [INFO] Worker exiting (pid: 221490)
+[2025-03-13 11:30:24 +0000] [221488] [INFO] Worker exiting (pid: 221488)
+[2025-03-13 11:30:25 +0000] [221545] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 11:30:25 +0000] [221545] [ERROR] Retrying in 1 second.
+[2025-03-13 11:30:26 +0000] [221483] [INFO] Shutting down: Master
+[2025-03-13 11:30:26 +0000] [221545] [INFO] Listening at: http://127.0.0.1:1305 (221545)
+[2025-03-13 11:30:26 +0000] [221545] [INFO] Using worker: sync
+[2025-03-13 11:30:26 +0000] [221577] [INFO] Booting worker with pid: 221577
+[2025-03-13 11:30:26 +0000] [221578] [INFO] Booting worker with pid: 221578
+[2025-03-13 11:30:26 +0000] [221579] [INFO] Booting worker with pid: 221579
+[2025-03-13 11:30:26 +0000] [221580] [INFO] Booting worker with pid: 221580
+[2025-03-13 11:30:26 +0000] [221581] [INFO] Booting worker with pid: 221581
+[2025-03-13 11:30:26 +0000] [221582] [INFO] Booting worker with pid: 221582
+[2025-03-13 11:30:26 +0000] [221584] [INFO] Booting worker with pid: 221584
+[2025-03-13 11:30:26 +0000] [221586] [INFO] Booting worker with pid: 221586
+[2025-03-13 11:30:26 +0000] [221587] [INFO] Booting worker with pid: 221587
+[2025-03-13 11:30:26 +0000] [221589] [INFO] Booting worker with pid: 221589
+[2025-03-13 11:30:26 +0000] [221588] [INFO] Booting worker with pid: 221588
+[2025-03-13 11:30:26 +0000] [221590] [INFO] Booting worker with pid: 221590
+[2025-03-13 11:33:56 +0000] [221545] [INFO] Handling signal: term
+[2025-03-13 11:33:56 +0000] [221582] [INFO] Worker exiting (pid: 221582)
+[2025-03-13 11:33:56 +0000] [221577] [INFO] Worker exiting (pid: 221577)
+[2025-03-13 11:33:56 +0000] [221578] [INFO] Worker exiting (pid: 221578)
+[2025-03-13 11:33:56 +0000] [221584] [INFO] Worker exiting (pid: 221584)
+[2025-03-13 11:33:56 +0000] [221586] [INFO] Worker exiting (pid: 221586)
+[2025-03-13 11:33:56 +0000] [221579] [INFO] Worker exiting (pid: 221579)
+[2025-03-13 11:33:56 +0000] [221580] [INFO] Worker exiting (pid: 221580)
+[2025-03-13 11:33:56 +0000] [221587] [INFO] Worker exiting (pid: 221587)
+[2025-03-13 11:33:56 +0000] [221581] [INFO] Worker exiting (pid: 221581)
+[2025-03-13 11:33:56 +0000] [221589] [INFO] Worker exiting (pid: 221589)
+[2025-03-13 11:33:56 +0000] [221588] [INFO] Worker exiting (pid: 221588)
+[2025-03-13 11:33:56 +0000] [221590] [INFO] Worker exiting (pid: 221590)
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221589) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221587) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221584) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221582) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221586) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221588) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221590) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221579) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221581) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221580) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221577) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [ERROR] Worker (pid:221578) was sent SIGTERM!
+[2025-03-13 11:33:57 +0000] [221545] [INFO] Shutting down: Master
+[2025-03-13 11:33:58 +0000] [222367] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:33:58 +0000] [222367] [INFO] Listening at: http://127.0.0.1:1305 (222367)
+[2025-03-13 11:33:58 +0000] [222367] [INFO] Using worker: sync
+[2025-03-13 11:33:58 +0000] [222368] [INFO] Booting worker with pid: 222368
+[2025-03-13 11:33:58 +0000] [222369] [INFO] Booting worker with pid: 222369
+[2025-03-13 11:33:58 +0000] [222370] [INFO] Booting worker with pid: 222370
+[2025-03-13 11:33:58 +0000] [222371] [INFO] Booting worker with pid: 222371
+[2025-03-13 11:33:58 +0000] [222372] [INFO] Booting worker with pid: 222372
+[2025-03-13 11:33:58 +0000] [222373] [INFO] Booting worker with pid: 222373
+[2025-03-13 11:33:58 +0000] [222374] [INFO] Booting worker with pid: 222374
+[2025-03-13 11:33:58 +0000] [222375] [INFO] Booting worker with pid: 222375
+[2025-03-13 11:33:58 +0000] [222376] [INFO] Booting worker with pid: 222376
+[2025-03-13 11:33:58 +0000] [222377] [INFO] Booting worker with pid: 222377
+[2025-03-13 11:33:59 +0000] [222378] [INFO] Booting worker with pid: 222378
+[2025-03-13 11:33:59 +0000] [222379] [INFO] Booting worker with pid: 222379
+[2025-03-13 11:34:33 +0000] [222368] [INFO] Worker exiting (pid: 222368)
+[2025-03-13 11:34:33 +0000] [222367] [INFO] Handling signal: term
+[2025-03-13 11:34:33 +0000] [222369] [INFO] Worker exiting (pid: 222369)
+[2025-03-13 11:34:33 +0000] [222371] [INFO] Worker exiting (pid: 222371)
+[2025-03-13 11:34:33 +0000] [222370] [INFO] Worker exiting (pid: 222370)
+[2025-03-13 11:34:33 +0000] [222372] [INFO] Worker exiting (pid: 222372)
+[2025-03-13 11:34:33 +0000] [222373] [INFO] Worker exiting (pid: 222373)
+[2025-03-13 11:34:33 +0000] [222374] [INFO] Worker exiting (pid: 222374)
+[2025-03-13 11:34:33 +0000] [222376] [INFO] Worker exiting (pid: 222376)
+[2025-03-13 11:34:33 +0000] [222377] [INFO] Worker exiting (pid: 222377)
+[2025-03-13 11:34:33 +0000] [222378] [INFO] Worker exiting (pid: 222378)
+[2025-03-13 11:34:33 +0000] [222379] [INFO] Worker exiting (pid: 222379)
+[2025-03-13 11:34:33 +0000] [222375] [INFO] Worker exiting (pid: 222375)
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222369) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222377) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222373) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222375) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222370) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222372) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222368) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222379) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222371) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222376) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222378) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [ERROR] Worker (pid:222374) was sent SIGTERM!
+[2025-03-13 11:34:33 +0000] [222367] [INFO] Shutting down: Master
+[2025-03-13 11:34:34 +0000] [222568] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:34:34 +0000] [222568] [INFO] Listening at: http://127.0.0.1:1305 (222568)
+[2025-03-13 11:34:34 +0000] [222568] [INFO] Using worker: sync
+[2025-03-13 11:34:34 +0000] [222570] [INFO] Booting worker with pid: 222570
+[2025-03-13 11:34:34 +0000] [222571] [INFO] Booting worker with pid: 222571
+[2025-03-13 11:34:34 +0000] [222572] [INFO] Booting worker with pid: 222572
+[2025-03-13 11:34:34 +0000] [222573] [INFO] Booting worker with pid: 222573
+[2025-03-13 11:34:34 +0000] [222574] [INFO] Booting worker with pid: 222574
+[2025-03-13 11:34:34 +0000] [222575] [INFO] Booting worker with pid: 222575
+[2025-03-13 11:34:34 +0000] [222576] [INFO] Booting worker with pid: 222576
+[2025-03-13 11:34:34 +0000] [222577] [INFO] Booting worker with pid: 222577
+[2025-03-13 11:34:34 +0000] [222579] [INFO] Booting worker with pid: 222579
+[2025-03-13 11:34:34 +0000] [222580] [INFO] Booting worker with pid: 222580
+[2025-03-13 11:34:34 +0000] [222581] [INFO] Booting worker with pid: 222581
+[2025-03-13 11:34:34 +0000] [222582] [INFO] Booting worker with pid: 222582
+[2025-03-13 11:34:59 +0000] [222573] [INFO] Worker exiting (pid: 222573)
+[2025-03-13 11:34:59 +0000] [222568] [INFO] Handling signal: term
+[2025-03-13 11:34:59 +0000] [222570] [INFO] Worker exiting (pid: 222570)
+[2025-03-13 11:34:59 +0000] [222576] [INFO] Worker exiting (pid: 222576)
+[2025-03-13 11:34:59 +0000] [222571] [INFO] Worker exiting (pid: 222571)
+[2025-03-13 11:34:59 +0000] [222577] [INFO] Worker exiting (pid: 222577)
+[2025-03-13 11:34:59 +0000] [222572] [INFO] Worker exiting (pid: 222572)
+[2025-03-13 11:34:59 +0000] [222574] [INFO] Worker exiting (pid: 222574)
+[2025-03-13 11:34:59 +0000] [222575] [INFO] Worker exiting (pid: 222575)
+[2025-03-13 11:34:59 +0000] [222579] [INFO] Worker exiting (pid: 222579)
+[2025-03-13 11:34:59 +0000] [222580] [INFO] Worker exiting (pid: 222580)
+[2025-03-13 11:34:59 +0000] [222581] [INFO] Worker exiting (pid: 222581)
+[2025-03-13 11:34:59 +0000] [222582] [INFO] Worker exiting (pid: 222582)
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222576) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222577) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222573) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222580) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222579) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222574) was sent SIGTERM!
+[2025-03-13 11:34:59 +0000] [222568] [ERROR] Worker (pid:222575) was sent SIGTERM!
+[2025-03-13 11:35:00 +0000] [222797] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:35:00 +0000] [222797] [INFO] Listening at: http://127.0.0.1:1305 (222797)
+[2025-03-13 11:35:00 +0000] [222797] [INFO] Using worker: sync
+[2025-03-13 11:35:00 +0000] [222799] [INFO] Booting worker with pid: 222799
+[2025-03-13 11:35:00 +0000] [222568] [INFO] Shutting down: Master
+[2025-03-13 11:35:00 +0000] [222800] [INFO] Booting worker with pid: 222800
+[2025-03-13 11:35:00 +0000] [222801] [INFO] Booting worker with pid: 222801
+[2025-03-13 11:35:00 +0000] [222802] [INFO] Booting worker with pid: 222802
+[2025-03-13 11:35:00 +0000] [222803] [INFO] Booting worker with pid: 222803
+[2025-03-13 11:35:00 +0000] [222804] [INFO] Booting worker with pid: 222804
+[2025-03-13 11:35:00 +0000] [222805] [INFO] Booting worker with pid: 222805
+[2025-03-13 11:35:00 +0000] [222806] [INFO] Booting worker with pid: 222806
+[2025-03-13 11:35:00 +0000] [222807] [INFO] Booting worker with pid: 222807
+[2025-03-13 11:35:00 +0000] [222809] [INFO] Booting worker with pid: 222809
+[2025-03-13 11:35:01 +0000] [222811] [INFO] Booting worker with pid: 222811
+[2025-03-13 11:35:01 +0000] [222813] [INFO] Booting worker with pid: 222813
+[2025-03-13 11:35:35 +0000] [222797] [INFO] Handling signal: term
+[2025-03-13 11:35:35 +0000] [222799] [INFO] Worker exiting (pid: 222799)
+[2025-03-13 11:35:35 +0000] [222801] [INFO] Worker exiting (pid: 222801)
+[2025-03-13 11:35:35 +0000] [222800] [INFO] Worker exiting (pid: 222800)
+[2025-03-13 11:35:35 +0000] [222802] [INFO] Worker exiting (pid: 222802)
+[2025-03-13 11:35:35 +0000] [222803] [INFO] Worker exiting (pid: 222803)
+[2025-03-13 11:35:35 +0000] [222806] [INFO] Worker exiting (pid: 222806)
+[2025-03-13 11:35:35 +0000] [222804] [INFO] Worker exiting (pid: 222804)
+[2025-03-13 11:35:35 +0000] [222809] [INFO] Worker exiting (pid: 222809)
+[2025-03-13 11:35:35 +0000] [222805] [INFO] Worker exiting (pid: 222805)
+[2025-03-13 11:35:35 +0000] [222813] [INFO] Worker exiting (pid: 222813)
+[2025-03-13 11:35:35 +0000] [222807] [INFO] Worker exiting (pid: 222807)
+[2025-03-13 11:35:35 +0000] [222811] [INFO] Worker exiting (pid: 222811)
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222811) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222806) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222799) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222803) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222807) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222809) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222813) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222804) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222805) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222801) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222802) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [ERROR] Worker (pid:222800) was sent SIGTERM!
+[2025-03-13 11:35:35 +0000] [222797] [INFO] Shutting down: Master
+[2025-03-13 11:35:36 +0000] [223021] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:35:36 +0000] [223021] [INFO] Listening at: http://127.0.0.1:1305 (223021)
+[2025-03-13 11:35:36 +0000] [223021] [INFO] Using worker: sync
+[2025-03-13 11:35:36 +0000] [223023] [INFO] Booting worker with pid: 223023
+[2025-03-13 11:35:36 +0000] [223024] [INFO] Booting worker with pid: 223024
+[2025-03-13 11:35:37 +0000] [223026] [INFO] Booting worker with pid: 223026
+[2025-03-13 11:35:37 +0000] [223027] [INFO] Booting worker with pid: 223027
+[2025-03-13 11:35:37 +0000] [223029] [INFO] Booting worker with pid: 223029
+[2025-03-13 11:35:37 +0000] [223031] [INFO] Booting worker with pid: 223031
+[2025-03-13 11:35:37 +0000] [223032] [INFO] Booting worker with pid: 223032
+[2025-03-13 11:35:37 +0000] [223038] [INFO] Booting worker with pid: 223038
+[2025-03-13 11:35:37 +0000] [223039] [INFO] Booting worker with pid: 223039
+[2025-03-13 11:35:37 +0000] [223040] [INFO] Booting worker with pid: 223040
+[2025-03-13 11:35:37 +0000] [223041] [INFO] Booting worker with pid: 223041
+[2025-03-13 11:35:37 +0000] [223043] [INFO] Booting worker with pid: 223043
+[2025-03-13 11:35:59 +0000] [223021] [INFO] Handling signal: term
+[2025-03-13 11:35:59 +0000] [223023] [INFO] Worker exiting (pid: 223023)
+[2025-03-13 11:35:59 +0000] [223029] [INFO] Worker exiting (pid: 223029)
+[2025-03-13 11:35:59 +0000] [223031] [INFO] Worker exiting (pid: 223031)
+[2025-03-13 11:35:59 +0000] [223024] [INFO] Worker exiting (pid: 223024)
+[2025-03-13 11:35:59 +0000] [223039] [INFO] Worker exiting (pid: 223039)
+[2025-03-13 11:35:59 +0000] [223040] [INFO] Worker exiting (pid: 223040)
+[2025-03-13 11:35:59 +0000] [223026] [INFO] Worker exiting (pid: 223026)
+[2025-03-13 11:35:59 +0000] [223027] [INFO] Worker exiting (pid: 223027)
+[2025-03-13 11:35:59 +0000] [223032] [INFO] Worker exiting (pid: 223032)
+[2025-03-13 11:35:59 +0000] [223038] [INFO] Worker exiting (pid: 223038)
+[2025-03-13 11:35:59 +0000] [223041] [INFO] Worker exiting (pid: 223041)
+[2025-03-13 11:35:59 +0000] [223043] [INFO] Worker exiting (pid: 223043)
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223038) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223032) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223041) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223031) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223040) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223029) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [ERROR] Worker (pid:223024) was sent SIGTERM!
+[2025-03-13 11:35:59 +0000] [223021] [INFO] Shutting down: Master
+[2025-03-13 11:36:00 +0000] [223219] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:36:00 +0000] [223219] [INFO] Listening at: http://127.0.0.1:1305 (223219)
+[2025-03-13 11:36:00 +0000] [223219] [INFO] Using worker: sync
+[2025-03-13 11:36:00 +0000] [223220] [INFO] Booting worker with pid: 223220
+[2025-03-13 11:36:00 +0000] [223221] [INFO] Booting worker with pid: 223221
+[2025-03-13 11:36:00 +0000] [223222] [INFO] Booting worker with pid: 223222
+[2025-03-13 11:36:00 +0000] [223223] [INFO] Booting worker with pid: 223223
+[2025-03-13 11:36:00 +0000] [223224] [INFO] Booting worker with pid: 223224
+[2025-03-13 11:36:01 +0000] [223225] [INFO] Booting worker with pid: 223225
+[2025-03-13 11:36:01 +0000] [223227] [INFO] Booting worker with pid: 223227
+[2025-03-13 11:36:01 +0000] [223230] [INFO] Booting worker with pid: 223230
+[2025-03-13 11:36:01 +0000] [223229] [INFO] Booting worker with pid: 223229
+[2025-03-13 11:36:01 +0000] [223231] [INFO] Booting worker with pid: 223231
+[2025-03-13 11:36:01 +0000] [223232] [INFO] Booting worker with pid: 223232
+[2025-03-13 11:36:01 +0000] [223234] [INFO] Booting worker with pid: 223234
+[2025-03-13 11:36:41 +0000] [223222] [INFO] Worker exiting (pid: 223222)
+[2025-03-13 11:36:41 +0000] [223219] [INFO] Handling signal: term
+[2025-03-13 11:36:41 +0000] [223220] [INFO] Worker exiting (pid: 223220)
+[2025-03-13 11:36:41 +0000] [223224] [INFO] Worker exiting (pid: 223224)
+[2025-03-13 11:36:41 +0000] [223221] [INFO] Worker exiting (pid: 223221)
+[2025-03-13 11:36:41 +0000] [223225] [INFO] Worker exiting (pid: 223225)
+[2025-03-13 11:36:41 +0000] [223223] [INFO] Worker exiting (pid: 223223)
+[2025-03-13 11:36:41 +0000] [223229] [INFO] Worker exiting (pid: 223229)
+[2025-03-13 11:36:41 +0000] [223227] [INFO] Worker exiting (pid: 223227)
+[2025-03-13 11:36:41 +0000] [223230] [INFO] Worker exiting (pid: 223230)
+[2025-03-13 11:36:41 +0000] [223231] [INFO] Worker exiting (pid: 223231)
+[2025-03-13 11:36:41 +0000] [223232] [INFO] Worker exiting (pid: 223232)
+[2025-03-13 11:36:41 +0000] [223234] [INFO] Worker exiting (pid: 223234)
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223225) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223222) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223224) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223232) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223223) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223234) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223230) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223227) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223229) was sent SIGTERM!
+[2025-03-13 11:36:41 +0000] [223219] [ERROR] Worker (pid:223231) was sent SIGTERM!
+[2025-03-13 11:36:42 +0000] [223219] [INFO] Shutting down: Master
+[2025-03-13 11:36:42 +0000] [223462] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:36:42 +0000] [223462] [INFO] Listening at: http://127.0.0.1:1305 (223462)
+[2025-03-13 11:36:42 +0000] [223462] [INFO] Using worker: sync
+[2025-03-13 11:36:42 +0000] [223463] [INFO] Booting worker with pid: 223463
+[2025-03-13 11:36:42 +0000] [223464] [INFO] Booting worker with pid: 223464
+[2025-03-13 11:36:43 +0000] [223465] [INFO] Booting worker with pid: 223465
+[2025-03-13 11:36:43 +0000] [223466] [INFO] Booting worker with pid: 223466
+[2025-03-13 11:36:43 +0000] [223467] [INFO] Booting worker with pid: 223467
+[2025-03-13 11:36:43 +0000] [223468] [INFO] Booting worker with pid: 223468
+[2025-03-13 11:36:43 +0000] [223469] [INFO] Booting worker with pid: 223469
+[2025-03-13 11:36:43 +0000] [223470] [INFO] Booting worker with pid: 223470
+[2025-03-13 11:36:43 +0000] [223472] [INFO] Booting worker with pid: 223472
+[2025-03-13 11:36:43 +0000] [223473] [INFO] Booting worker with pid: 223473
+[2025-03-13 11:36:43 +0000] [223474] [INFO] Booting worker with pid: 223474
+[2025-03-13 11:36:43 +0000] [223475] [INFO] Booting worker with pid: 223475
+[2025-03-13 11:36:57 +0000] [223462] [INFO] Handling signal: term
+[2025-03-13 11:36:57 +0000] [223463] [INFO] Worker exiting (pid: 223463)
+[2025-03-13 11:36:57 +0000] [223472] [INFO] Worker exiting (pid: 223472)
+[2025-03-13 11:36:57 +0000] [223464] [INFO] Worker exiting (pid: 223464)
+[2025-03-13 11:36:57 +0000] [223465] [INFO] Worker exiting (pid: 223465)
+[2025-03-13 11:36:57 +0000] [223466] [INFO] Worker exiting (pid: 223466)
+[2025-03-13 11:36:57 +0000] [223467] [INFO] Worker exiting (pid: 223467)
+[2025-03-13 11:36:57 +0000] [223468] [INFO] Worker exiting (pid: 223468)
+[2025-03-13 11:36:57 +0000] [223469] [INFO] Worker exiting (pid: 223469)
+[2025-03-13 11:36:57 +0000] [223470] [INFO] Worker exiting (pid: 223470)
+[2025-03-13 11:36:57 +0000] [223473] [INFO] Worker exiting (pid: 223473)
+[2025-03-13 11:36:57 +0000] [223475] [INFO] Worker exiting (pid: 223475)
+[2025-03-13 11:36:57 +0000] [223474] [INFO] Worker exiting (pid: 223474)
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223474) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223475) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223468) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223464) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223467) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223472) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223466) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223465) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223469) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223463) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223473) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [ERROR] Worker (pid:223470) was sent SIGTERM!
+[2025-03-13 11:36:57 +0000] [223462] [INFO] Shutting down: Master
+[2025-03-13 11:36:58 +0000] [223577] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 11:36:58 +0000] [223577] [INFO] Listening at: http://127.0.0.1:1305 (223577)
+[2025-03-13 11:36:58 +0000] [223577] [INFO] Using worker: sync
+[2025-03-13 11:36:58 +0000] [223578] [INFO] Booting worker with pid: 223578
+[2025-03-13 11:36:58 +0000] [223579] [INFO] Booting worker with pid: 223579
+[2025-03-13 11:36:58 +0000] [223580] [INFO] Booting worker with pid: 223580
+[2025-03-13 11:36:58 +0000] [223583] [INFO] Booting worker with pid: 223583
+[2025-03-13 11:36:58 +0000] [223584] [INFO] Booting worker with pid: 223584
+[2025-03-13 11:36:58 +0000] [223585] [INFO] Booting worker with pid: 223585
+[2025-03-13 11:36:58 +0000] [223586] [INFO] Booting worker with pid: 223586
+[2025-03-13 11:36:58 +0000] [223587] [INFO] Booting worker with pid: 223587
+[2025-03-13 11:36:58 +0000] [223588] [INFO] Booting worker with pid: 223588
+[2025-03-13 11:36:58 +0000] [223590] [INFO] Booting worker with pid: 223590
+[2025-03-13 11:36:59 +0000] [223591] [INFO] Booting worker with pid: 223591
+[2025-03-13 11:36:59 +0000] [223592] [INFO] Booting worker with pid: 223592
+[2025-03-13 12:03:40 +0000] [227987] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 12:03:40 +0000] [227987] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 12:03:40 +0000] [227987] [ERROR] Retrying in 1 second.
+[2025-03-13 12:03:41 +0000] [227987] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 12:03:41 +0000] [227987] [ERROR] Retrying in 1 second.
+[2025-03-13 12:03:42 +0000] [227987] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 12:03:42 +0000] [227987] [ERROR] Retrying in 1 second.
+[2025-03-13 12:03:43 +0000] [227987] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 12:03:43 +0000] [227987] [ERROR] Retrying in 1 second.
+[2025-03-13 12:03:43 +0000] [223579] [INFO] Worker exiting (pid: 223579)
+[2025-03-13 12:03:43 +0000] [223577] [INFO] Handling signal: term
+[2025-03-13 12:03:43 +0000] [223578] [INFO] Worker exiting (pid: 223578)
+[2025-03-13 12:03:43 +0000] [223590] [INFO] Worker exiting (pid: 223590)
+[2025-03-13 12:03:43 +0000] [223591] [INFO] Worker exiting (pid: 223591)
+[2025-03-13 12:03:43 +0000] [223587] [INFO] Worker exiting (pid: 223587)
+[2025-03-13 12:03:43 +0000] [223580] [INFO] Worker exiting (pid: 223580)
+[2025-03-13 12:03:43 +0000] [223583] [INFO] Worker exiting (pid: 223583)
+[2025-03-13 12:03:43 +0000] [223584] [INFO] Worker exiting (pid: 223584)
+[2025-03-13 12:03:43 +0000] [223585] [INFO] Worker exiting (pid: 223585)
+[2025-03-13 12:03:43 +0000] [223586] [INFO] Worker exiting (pid: 223586)
+[2025-03-13 12:03:43 +0000] [223588] [INFO] Worker exiting (pid: 223588)
+[2025-03-13 12:03:43 +0000] [223592] [INFO] Worker exiting (pid: 223592)
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223587) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223591) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223590) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223579) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223584) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223580) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223583) was sent SIGTERM!
+[2025-03-13 12:03:43 +0000] [223577] [ERROR] Worker (pid:223585) was sent SIGTERM!
+[2025-03-13 12:03:44 +0000] [227987] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-13 12:03:44 +0000] [227987] [ERROR] Retrying in 1 second.
+[2025-03-13 12:03:44 +0000] [223577] [INFO] Shutting down: Master
+[2025-03-13 12:03:45 +0000] [227987] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-13 12:03:45 +0000] [228057] [INFO] Starting gunicorn 21.2.0
+[2025-03-13 12:03:45 +0000] [228057] [INFO] Listening at: http://127.0.0.1:1305 (228057)
+[2025-03-13 12:03:45 +0000] [228057] [INFO] Using worker: sync
+[2025-03-13 12:03:45 +0000] [228058] [INFO] Booting worker with pid: 228058
+[2025-03-13 12:03:45 +0000] [228059] [INFO] Booting worker with pid: 228059
+[2025-03-13 12:03:45 +0000] [228061] [INFO] Booting worker with pid: 228061
+[2025-03-13 12:03:45 +0000] [228060] [INFO] Booting worker with pid: 228060
+[2025-03-13 12:03:45 +0000] [228062] [INFO] Booting worker with pid: 228062
+[2025-03-13 12:03:45 +0000] [228063] [INFO] Booting worker with pid: 228063
+[2025-03-13 12:03:45 +0000] [228064] [INFO] Booting worker with pid: 228064
+[2025-03-13 12:03:45 +0000] [228065] [INFO] Booting worker with pid: 228065
+[2025-03-13 12:03:45 +0000] [228066] [INFO] Booting worker with pid: 228066
+[2025-03-13 12:03:45 +0000] [228067] [INFO] Booting worker with pid: 228067
+[2025-03-13 12:03:46 +0000] [228068] [INFO] Booting worker with pid: 228068
+[2025-03-13 12:03:46 +0000] [228069] [INFO] Booting worker with pid: 228069
+[2025-03-14 14:39:15,456] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-14 20:21:34,261] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-15 08:44:40,382] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 614, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-15 08:45:29,769] ERROR in app: Exception on /order_detail [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 614, in order_detail
+    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+AttributeError: 'NoneType' object has no attribute 'city'
+[2025-03-15 12:34:05,688] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-15 12:54:09,299] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 210, in check_session
+    gest = Gusts.query.filter_by(session=session['session']).first()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2728, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: SELECT gusts.id AS gusts_id, gusts.session AS gusts_session, gusts.name AS gusts_name, gusts.phone AS gusts_phone, gusts.address AS gusts_address, gusts.last_activity AS gusts_last_activity, gusts.created_at AS gusts_created_at 
+FROM gusts 
+WHERE gusts.session = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('632eacb8b744e1256af52a35aecb869633e8720d44a8c37c', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-15 12:54:09,121] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 210, in check_session
+    gest = Gusts.query.filter_by(session=session['session']).first()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2728, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: SELECT gusts.id AS gusts_id, gusts.session AS gusts_session, gusts.name AS gusts_name, gusts.phone AS gusts_phone, gusts.address AS gusts_address, gusts.last_activity AS gusts_last_activity, gusts.created_at AS gusts_created_at 
+FROM gusts 
+WHERE gusts.session = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('632eacb8b744e1256af52a35aecb869633e8720d44a8c37c', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-15 12:54:08,723] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+  File "/var/www/Orfe-cosmatics/app.py", line 226, in before_request
+    check_session()
+  File "/var/www/Orfe-cosmatics/app.py", line 210, in check_session
+    gest = Gusts.query.filter_by(session=session['session']).first()
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2728, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/dist-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: SELECT gusts.id AS gusts_id, gusts.session AS gusts_session, gusts.name AS gusts_name, gusts.phone AS gusts_phone, gusts.address AS gusts_address, gusts.last_activity AS gusts_last_activity, gusts.created_at AS gusts_created_at 
+FROM gusts 
+WHERE gusts.session = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('632eacb8b744e1256af52a35aecb869633e8720d44a8c37c', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-03-15 13:15:48,793] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-15 14:12:17,572] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-16 19:04:35,160] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-17 16:01:48,839] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-17 17:58:22,085] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-17 19:18:47,656] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-17 19:45:21,694] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-19 21:53:50,315] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-19 21:53:51,188] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 04:58:22,034] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 285, in list
+    query = query.order_by(Product.rating.asc())
+AttributeError: type object 'Product' has no attribute 'rating'
+[2025-03-21 22:23:30,292] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 22:23:36,201] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 22:23:39,777] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 22:23:39,784] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 22:23:44,673] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-21 22:23:44,793] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'
+[2025-03-27 04:53:36,997] ERROR in app: Exception on /shop [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 272, in list
+    min_price, max_price = map(float, price.split('-'))
+ValueError: could not convert string to float: '200+'

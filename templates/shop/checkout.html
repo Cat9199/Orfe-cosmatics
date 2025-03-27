@@ -46,11 +46,11 @@
                                                 <textarea class="form-control" id="address" name="address" rows="2"
                                                       required></textarea>
                                           </div>
-                                          {% if total == 725 %}
-                                          <div class="mb-3">
+                                          {% if total == 7255 %}
+                                          <div class="mb-3" style="display: none;">
                                                 <label for="promo_code" class="form-label">Promo Code</label>
                                                 <input type="text" class="form-control" id="promo_code"
-                                                      name="promo_code" placeholder="Enter promo code">
+                                                      name="promo_code" placeholder="Enter promo code" value="000">
                                                 <small class="form-text text-muted">Enter "loly20" for a 20%
                                                       discount.</small>
                                           </div>
@@ -205,11 +205,22 @@
                                                       <td class="text-end" id="discountLine">0.00 L.E</td>
                                                 </tr>
                                                 {% endif %}
+                                                {% if total == 725 %}
+                                                <tr class="shipping">
+                                                      <th>Shipping</th>
+                                                      <td class="text-end text-success fw-bold">0.00 L.E</td>
+                                                </tr>
+                                                <p class="text-success text-center mt-3">
+                                                      تهاني! الشحن مجاني عند شراء المنتجين 🌙
+                                                </p>
+                                                {% else %}
                                                 <tr class="shipping">
                                                       <th>Shipping</th>
                                                       <td class="text-end text-muted" id="shippingCost">Calculated at
                                                             checkout</td>
                                                 </tr>
+                                                {% endif %}
+
                                                 <tr class="total border-top">
                                                       <th>Total</th>
                                                       <td class="text-end fw-bold" id="totalValue">{{
@@ -332,6 +343,11 @@
                         if (input.type !== 'email' && !input.value) {
                               valid = false;
                         }
+                        // promo code is optional
+                        if (input.id === 'promo_code' && input.value.trim().toLowerCase() !== 'loly20') {
+                              valid = false;
+                        }
+
                   });
                   paymentButton.disabled = !valid;
             });

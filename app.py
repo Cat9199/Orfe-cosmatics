@@ -510,7 +510,6 @@ def handle_fawaterak_payment(order):
         app.logger.error(f"Fawaterak API Request Failed: {e}")
         flash('فشل في الاتصال بخدمة الدفع، الرجاء المحاولة مرة أخرى', 'danger')
         return redirect(url_for('shop.checkout'))
-
 @shop.route('/checkout/place_order', methods=['POST'])
 def place_order():
     required_fields = ['name', 'phone', 'address', 'city', 'zone_id', 'district_id', 'total', 'payment_method']
@@ -546,9 +545,13 @@ def place_order():
             return redirect(url_for('shop.cart'))
         product.stock -= cart_item.quantity
     # Apply promo discount if conditions are met
-    if product_total == 725 and promo_code == 'loly20':
+    if product_total == 725 and promo_code == 'loly2000':
         discount = product_total * 0.20
         product_total -= discount
+
+    # Make shipping free if the total cost is 725
+    if product_total == 725:
+        shipping_cost.price = 0
 
     total_amount = product_total + shipping_cost.price
 
@@ -585,7 +588,6 @@ def place_order():
 
     flash('تم إنشاء الطلب بنجاح!', 'success')
     return redirect(url_for('shop.order_confirmation', order_id=order.id))
-
 
 # order_confirmation
 @shop.route('/order_confirmation')
@@ -766,6 +768,7 @@ def logout():
     session.pop('admin')
     return redirect(url_for('admin.login'))
 
+
 @admin.route('/')
 @admin_required
 def home():
@@ -773,14 +776,17 @@ def home():
     orders_count = Order.query.count()
     customers_count = Gusts.query.count()
     total_revenue = db.session.query(db.func.sum(Order.cod_amount)).scalar() or 0
-    total_sipping_cost = 0
+    total_shipping_cost = 0
+
     for order in Order.query.all():
-        city = City.query.filter_by(city_id=order.city).first() if order.city else None
-        shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first() if city else 0
-        total_sipping_cost += shipping_cost.price
-    total_revenue -= total_sipping_cost
+        order_items = OrderItem.query.filter_by(order_id=order.id).all()
+        product_total = sum(item.quantity * Product.query.get(item.product_id).price for item in order_items)
+        shipping_cost = order.cod_amount - product_total
+        total_shipping_cost += max(shipping_cost, 0)  # Ensure shipping cost is not negative
+
+    total_revenue -= total_shipping_cost
     recent_orders = Order.query.order_by(Order.id.desc()).limit(20).all()
-    
+
     # Generate chart data
     # Calculate orders chart data
     orders_chart = {
@@ -803,18 +809,16 @@ def home():
         revenue = db.session.query(db.func.sum(Order.cod_amount)).filter(Order.created_at >= date).scalar() or 0
         revenue_chart['labels'].append(date.strftime('%B'))
         revenue_chart['data'].append(revenue)
-    
+
     return render_template('admin/index.html',
-                         products_count=products_count,
-                         orders_count=orders_count,
-                         customers_count=customers_count,
-                         total_revenue=total_revenue,
-                         total_sipping_cost=total_sipping_cost,
-                         recent_orders=recent_orders,
-                         orders_chart=orders_chart,
-                         revenue_chart=revenue_chart)
-
-
+                            products_count=products_count,
+                            orders_count=orders_count,
+                            customers_count=customers_count,
+                            total_revenue=total_revenue,
+                            total_shipping_cost=total_shipping_cost,
+                            recent_orders=recent_orders,
+                            orders_chart=orders_chart,
+                            revenue_chart=revenue_chart)
 
 @admin.route('/add_product', methods=['POST'])
 @admin_required
@@ -1400,5 +1404,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0',port=8765)
 

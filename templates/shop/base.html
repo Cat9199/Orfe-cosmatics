@@ -63,12 +63,137 @@
 </head>
 
 <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true">
-      <!-- <div class="promo-banner text-center py-2" dir="rtl" style="background-color: #ff69b4; color: white;">
+      <style>
+            .promo-banner {
+                  background-color: rgb(151, 71, 71);
+                  color: white;
+                  position: relative;
+                  overflow: hidden;
+                  text-align: center;
+                  padding: 15px;
+                  animation: fadeIn 1s ease-in-out;
+            }
+
+            /* Background animation */
+            .promo-banner::before {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: brown;
+                  opacity: 0.1;
+                  animation: moveBg 10s linear infinite;
+            }
+
+            .promo-content {
+                  position: relative;
+                  z-index: 1;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-wrap: wrap;
+                  font-size: 18px;
+            }
+
+            #countdown {
+                  font-weight: bold;
+                  font-size: 18px;
+                  margin-left: 10px;
+                  display: flex;
+                  gap: 5px;
+            }
+
+            #countdown span {
+                  background: rgba(255, 255, 255, 0.2);
+                  padding: 5px 10px;
+                  border-radius: 5px;
+                  font-size: 16px;
+                  transition: all 0.3s ease-in-out;
+            }
+
+            /* Keyframes for animations */
+            @keyframes fadeIn {
+                  from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                  }
+
+                  to {
+                        opacity: 1;
+                        transform: translateY(0);
+                  }
+            }
+
+            @keyframes moveBg {
+                  0% {
+                        background-position: 0 0;
+                  }
+
+                  100% {
+                        background-position: 100px 100px;
+                  }
+            }
+
+            @keyframes pulse {
+                  0% {
+                        transform: scale(1);
+                  }
+
+                  50% {
+                        transform: scale(1.05);
+                  }
+
+                  100% {
+                        transform: scale(1);
+                  }
+            }
+      </style>
+
+      <div class="promo-banner" dir="rtl">
+            <div class="promo-content">
+                  <strong>🚚 شحن مجاني</strong> عند شراء المنتجين Oil & Spray! العرض ينتهي في:
+                  <span id="countdown"></span> ⏳
+            </div>
+      </div>
+
+      <script>
+            function updateCountdown() {
+                  const endDate = new Date('March 19, 2025 23:59:59').getTime();
+                  const now = new Date().getTime();
+                  const distance = endDate - now;
+
+                  if (distance < 0) {
+                        document.getElementById('countdown').innerHTML = "انتهى العرض";
+                        clearInterval(countdownInterval);
+                        return;
+                  }
+
+                  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                  document.getElementById('countdown').innerHTML = `
+            <span>${days} يوم</span> 
+            <span>${hours} ساعة</span> 
+            <span>${minutes} دقيقة</span> 
+            <span>${seconds} ثانية</span>`;
+
+                  // Apply pulse animation when numbers change
+                  document.querySelectorAll("#countdown span").forEach(el => {
+                        el.style.animation = "pulse 0.5s";
+                        setTimeout(() => el.style.animation = "", 500);
+                  });
+            }
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+      </script>
 
 
-           
-            كود خصم بمناسبة الفلانتاين 20% عند شراء المنتجين: <strong>loly20</strong>      </div>
-       -->
+
       <header id="header" class="site-header">
             <nav class="navbar navbar-expand-lg px-3">
                   <div class="container-fluid">
