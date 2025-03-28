@@ -119,7 +119,15 @@
                                                 </h5>
                                                 <div class="mt-auto"> <!-- دفع العناصر للأسفل -->
                                                       <p class="card-text text-muted mb-3 fs-5 fw-bold">
+                                                            {% if product.price == 135 %}
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                  <span class="badge bg-danger rounded-pill">خصم 18%</span>
+                                                                  <span class="text-decoration-line-through text-muted small">165 L.E</span>
+                                                                  <span class="text-success fw-bold">{{ product.price }} L.E</span>
+                                                            </div>
+                                                            {% else %}
                                                             {{ product.price }} L.E
+                                                            {% endif %}
                                                       </p>
                                                       <a href="/{{ product.id }}"
                                                             class="btn btn-primary w-100 rounded-pill py-2">

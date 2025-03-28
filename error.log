@@ -5851,3 +5851,427 @@ ValueError: could not convert string to float: '200+'
 [2025-03-28 11:22:13 +0000] [3262361] [INFO] Booting worker with pid: 3262361
 [2025-03-28 11:22:15 +0000] [3262366] [INFO] Booting worker with pid: 3262366
 [2025-03-28 11:22:15 +0000] [3262371] [INFO] Booting worker with pid: 3262371
+[2025-03-28 11:23:42 +0000] [3262963] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 11:23:42 +0000] [3262963] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:23:42 +0000] [3262963] [ERROR] Retrying in 1 second.
+[2025-03-28 11:23:43 +0000] [3262963] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:23:43 +0000] [3262963] [ERROR] Retrying in 1 second.
+[2025-03-28 11:23:44 +0000] [3262963] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:23:44 +0000] [3262963] [ERROR] Retrying in 1 second.
+[2025-03-28 11:23:45 +0000] [3262963] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:23:45 +0000] [3262963] [ERROR] Retrying in 1 second.
+[2025-03-28 11:23:46 +0000] [3262963] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:23:46 +0000] [3262963] [ERROR] Retrying in 1 second.
+[2025-03-28 11:23:47 +0000] [3262963] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-28 11:23:49 +0000] [3262347] [INFO] Worker exiting (pid: 3262347)
+[2025-03-28 11:23:49 +0000] [228057] [INFO] Handling signal: term
+[2025-03-28 11:23:49 +0000] [3262348] [INFO] Worker exiting (pid: 3262348)
+[2025-03-28 11:23:49 +0000] [3262349] [INFO] Worker exiting (pid: 3262349)
+[2025-03-28 11:23:49 +0000] [3262352] [INFO] Worker exiting (pid: 3262352)
+[2025-03-28 11:23:49 +0000] [3262356] [INFO] Worker exiting (pid: 3262356)
+[2025-03-28 11:23:49 +0000] [3262355] [INFO] Worker exiting (pid: 3262355)
+[2025-03-28 11:23:49 +0000] [3262358] [INFO] Worker exiting (pid: 3262358)
+[2025-03-28 11:23:49 +0000] [3262357] [INFO] Worker exiting (pid: 3262357)
+[2025-03-28 11:23:49 +0000] [3262371] [INFO] Worker exiting (pid: 3262371)
+[2025-03-28 11:23:49 +0000] [3262360] [INFO] Worker exiting (pid: 3262360)
+[2025-03-28 11:23:49 +0000] [3262361] [INFO] Worker exiting (pid: 3262361)
+[2025-03-28 11:23:49 +0000] [3262366] [INFO] Worker exiting (pid: 3262366)
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262358) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262366) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262357) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262360) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262352) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262356) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262361) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262349) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262371) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262348) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [ERROR] Worker (pid:3262355) was sent SIGTERM!
+[2025-03-28 11:23:49 +0000] [228057] [INFO] Shutting down: Master
+[2025-03-28 11:23:51 +0000] [3263030] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 11:23:51 +0000] [3263030] [INFO] Listening at: http://127.0.0.1:1305 (3263030)
+[2025-03-28 11:23:51 +0000] [3263030] [INFO] Using worker: sync
+[2025-03-28 11:23:51 +0000] [3263032] [INFO] Booting worker with pid: 3263032
+[2025-03-28 11:23:52 +0000] [3263033] [INFO] Booting worker with pid: 3263033
+[2025-03-28 11:23:52 +0000] [3263034] [INFO] Booting worker with pid: 3263034
+[2025-03-28 11:23:52 +0000] [3263035] [INFO] Booting worker with pid: 3263035
+[2025-03-28 11:23:52 +0000] [3263036] [INFO] Booting worker with pid: 3263036
+[2025-03-28 11:23:52 +0000] [3263037] [INFO] Booting worker with pid: 3263037
+[2025-03-28 11:23:52 +0000] [3263038] [INFO] Booting worker with pid: 3263038
+[2025-03-28 11:23:52 +0000] [3263039] [INFO] Booting worker with pid: 3263039
+[2025-03-28 11:23:52 +0000] [3263040] [INFO] Booting worker with pid: 3263040
+[2025-03-28 11:23:52 +0000] [3263041] [INFO] Booting worker with pid: 3263041
+[2025-03-28 11:23:52 +0000] [3263042] [INFO] Booting worker with pid: 3263042
+[2025-03-28 11:23:52 +0000] [3263043] [INFO] Booting worker with pid: 3263043
+[2025-03-28 11:41:39 +0000] [3263038] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:39 +0000] [3263038] [INFO] Worker exiting (pid: 3263038)
+[2025-03-28 11:41:39 +0000] [3263041] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:39 +0000] [3263041] [INFO] Worker exiting (pid: 3263041)
+[2025-03-28 11:41:39 +0000] [3263039] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:39 +0000] [3263039] [INFO] Worker exiting (pid: 3263039)
+[2025-03-28 11:41:39 +0000] [3263043] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:39 +0000] [3263043] [INFO] Worker exiting (pid: 3263043)
+[2025-03-28 11:41:40 +0000] [3263042] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263042] [INFO] Worker exiting (pid: 3263042)
+[2025-03-28 11:41:40 +0000] [3263033] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263033] [INFO] Worker exiting (pid: 3263033)
+[2025-03-28 11:41:40 +0000] [3263040] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263040] [INFO] Worker exiting (pid: 3263040)
+[2025-03-28 11:41:40 +0000] [3265887] [INFO] Booting worker with pid: 3265887
+[2025-03-28 11:41:40 +0000] [3263034] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263034] [INFO] Worker exiting (pid: 3263034)
+[2025-03-28 11:41:40 +0000] [3263035] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263035] [INFO] Worker exiting (pid: 3263035)
+[2025-03-28 11:41:40 +0000] [3263032] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263032] [INFO] Worker exiting (pid: 3263032)
+[2025-03-28 11:41:40 +0000] [3263036] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263036] [INFO] Worker exiting (pid: 3263036)
+[2025-03-28 11:41:40 +0000] [3263037] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:41:40 +0000] [3263037] [INFO] Worker exiting (pid: 3263037)
+[2025-03-28 11:41:41 +0000] [3265888] [INFO] Booting worker with pid: 3265888
+[2025-03-28 11:41:41 +0000] [3265890] [INFO] Booting worker with pid: 3265890
+[2025-03-28 11:41:41 +0000] [3265891] [INFO] Booting worker with pid: 3265891
+[2025-03-28 11:41:41 +0000] [3265892] [INFO] Booting worker with pid: 3265892
+[2025-03-28 11:41:42 +0000] [3265893] [INFO] Booting worker with pid: 3265893
+[2025-03-28 11:41:42 +0000] [3265894] [INFO] Booting worker with pid: 3265894
+[2025-03-28 11:41:42 +0000] [3265895] [INFO] Booting worker with pid: 3265895
+[2025-03-28 11:41:42 +0000] [3265896] [INFO] Booting worker with pid: 3265896
+[2025-03-28 11:41:42 +0000] [3265897] [INFO] Booting worker with pid: 3265897
+[2025-03-28 11:41:42 +0000] [3265898] [INFO] Booting worker with pid: 3265898
+[2025-03-28 11:41:42 +0000] [3265899] [INFO] Booting worker with pid: 3265899
+[2025-03-28 11:49:51,754] ERROR in app: Exception on /admin/products [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 763, in decorated_function
+    return f(*args, **kwargs)
+  File "/var/www/Orfe-cosmatics/app.py", line 937, in products
+    return render_template('admin/products.html', products=products, categories=categories)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/var/www/Orfe-cosmatics/templates/admin/products.html", line 1, in top-level template code
+    {% extends 'admin/base.html' %}
+  File "/var/www/Orfe-cosmatics/templates/admin/base.html", line 124, in top-level template code
+    {% block content %}{% endblock %}
+  File "/var/www/Orfe-cosmatics/templates/admin/products.html", line 101, in block 'content'
+    {{ product.price|apply_discount(product.discount) }}
+jinja2.exceptions.TemplateRuntimeError: No filter named 'apply_discount' found.
+[2025-03-28 11:50:00,449] ERROR in app: Exception on /admin/products [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/var/www/Orfe-cosmatics/app.py", line 763, in decorated_function
+    return f(*args, **kwargs)
+  File "/var/www/Orfe-cosmatics/app.py", line 937, in products
+    return render_template('admin/products.html', products=products, categories=categories)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/usr/local/lib/python3.10/dist-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.10/dist-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/var/www/Orfe-cosmatics/templates/admin/products.html", line 1, in top-level template code
+    {% extends 'admin/base.html' %}
+  File "/var/www/Orfe-cosmatics/templates/admin/base.html", line 124, in top-level template code
+    {% block content %}{% endblock %}
+  File "/var/www/Orfe-cosmatics/templates/admin/products.html", line 101, in block 'content'
+    {{ product.price|apply_discount(product.discount) }}
+jinja2.exceptions.TemplateRuntimeError: No filter named 'apply_discount' found.
+[2025-03-28 11:54:46,321] ERROR in app: Error adding product: could not convert string to float: ''
+[2025-03-28 11:56:41 +0000] [3265895] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:41 +0000] [3265895] [INFO] Worker exiting (pid: 3265895)
+[2025-03-28 11:56:41 +0000] [3265897] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:41 +0000] [3265897] [INFO] Worker exiting (pid: 3265897)
+[2025-03-28 11:56:41 +0000] [3265894] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:41 +0000] [3265894] [INFO] Worker exiting (pid: 3265894)
+[2025-03-28 11:56:42 +0000] [3265896] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265896] [INFO] Worker exiting (pid: 3265896)
+[2025-03-28 11:56:42 +0000] [3265888] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265888] [INFO] Worker exiting (pid: 3265888)
+[2025-03-28 11:56:42 +0000] [3265892] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265892] [INFO] Worker exiting (pid: 3265892)
+[2025-03-28 11:56:42 +0000] [3265898] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265887] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265898] [INFO] Worker exiting (pid: 3265898)
+[2025-03-28 11:56:42 +0000] [3265887] [INFO] Worker exiting (pid: 3265887)
+[2025-03-28 11:56:42 +0000] [3265899] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265899] [INFO] Worker exiting (pid: 3265899)
+[2025-03-28 11:56:42 +0000] [3265891] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265891] [INFO] Worker exiting (pid: 3265891)
+[2025-03-28 11:56:42 +0000] [3265890] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265890] [INFO] Worker exiting (pid: 3265890)
+[2025-03-28 11:56:42 +0000] [3265893] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:42 +0000] [3265893] [INFO] Worker exiting (pid: 3265893)
+[2025-03-28 11:56:43 +0000] [3268218] [INFO] Booting worker with pid: 3268218
+[2025-03-28 11:56:43 +0000] [3268219] [INFO] Booting worker with pid: 3268219
+[2025-03-28 11:56:43 +0000] [3268220] [INFO] Booting worker with pid: 3268220
+[2025-03-28 11:56:44 +0000] [3268221] [INFO] Booting worker with pid: 3268221
+[2025-03-28 11:56:44 +0000] [3268222] [INFO] Booting worker with pid: 3268222
+[2025-03-28 11:56:44 +0000] [3268223] [INFO] Booting worker with pid: 3268223
+[2025-03-28 11:56:44 +0000] [3268224] [INFO] Booting worker with pid: 3268224
+[2025-03-28 11:56:44 +0000] [3268225] [INFO] Booting worker with pid: 3268225
+[2025-03-28 11:56:44 +0000] [3268226] [INFO] Booting worker with pid: 3268226
+[2025-03-28 11:56:44 +0000] [3268227] [INFO] Booting worker with pid: 3268227
+[2025-03-28 11:56:44 +0000] [3268228] [INFO] Booting worker with pid: 3268228
+[2025-03-28 11:56:44 +0000] [3268229] [INFO] Booting worker with pid: 3268229
+[2025-03-28 11:56:57 +0000] [3268218] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268218] [INFO] Worker exiting (pid: 3268218)
+[2025-03-28 11:56:57 +0000] [3268219] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268219] [INFO] Worker exiting (pid: 3268219)
+[2025-03-28 11:56:57 +0000] [3268264] [INFO] Booting worker with pid: 3268264
+[2025-03-28 11:56:57 +0000] [3268220] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268220] [INFO] Worker exiting (pid: 3268220)
+[2025-03-28 11:56:57 +0000] [3268265] [INFO] Booting worker with pid: 3268265
+[2025-03-28 11:56:57 +0000] [3268222] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268222] [INFO] Worker exiting (pid: 3268222)
+[2025-03-28 11:56:57 +0000] [3268224] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268224] [INFO] Worker exiting (pid: 3268224)
+[2025-03-28 11:56:57 +0000] [3268223] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268221] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:57 +0000] [3268223] [INFO] Worker exiting (pid: 3268223)
+[2025-03-28 11:56:57 +0000] [3268221] [INFO] Worker exiting (pid: 3268221)
+[2025-03-28 11:56:57 +0000] [3268266] [INFO] Booting worker with pid: 3268266
+[2025-03-28 11:56:58 +0000] [3268225] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:58 +0000] [3268225] [INFO] Worker exiting (pid: 3268225)
+[2025-03-28 11:56:58 +0000] [3268226] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:58 +0000] [3268226] [INFO] Worker exiting (pid: 3268226)
+[2025-03-28 11:56:58 +0000] [3268228] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:58 +0000] [3268228] [INFO] Worker exiting (pid: 3268228)
+[2025-03-28 11:56:58 +0000] [3268227] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:58 +0000] [3268227] [INFO] Worker exiting (pid: 3268227)
+[2025-03-28 11:56:58 +0000] [3268229] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:56:58 +0000] [3268229] [INFO] Worker exiting (pid: 3268229)
+[2025-03-28 11:56:59 +0000] [3268282] [INFO] Booting worker with pid: 3268282
+[2025-03-28 11:56:59 +0000] [3268283] [INFO] Booting worker with pid: 3268283
+[2025-03-28 11:56:59 +0000] [3268284] [INFO] Booting worker with pid: 3268284
+[2025-03-28 11:56:59 +0000] [3268285] [INFO] Booting worker with pid: 3268285
+[2025-03-28 11:57:00 +0000] [3268286] [INFO] Booting worker with pid: 3268286
+[2025-03-28 11:57:00 +0000] [3268287] [INFO] Booting worker with pid: 3268287
+[2025-03-28 11:57:00 +0000] [3268288] [INFO] Booting worker with pid: 3268288
+[2025-03-28 11:57:00 +0000] [3268289] [INFO] Booting worker with pid: 3268289
+[2025-03-28 11:57:00 +0000] [3268290] [INFO] Booting worker with pid: 3268290
+[2025-03-28 11:57:04 +0000] [3268322] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 11:57:04 +0000] [3268322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:04 +0000] [3268322] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:05 +0000] [3268322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:05 +0000] [3268322] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:06 +0000] [3268322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:06 +0000] [3268322] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:07 +0000] [3268264] [INFO] Worker exiting (pid: 3268264)
+[2025-03-28 11:57:07 +0000] [3263030] [INFO] Handling signal: term
+[2025-03-28 11:57:07 +0000] [3268282] [INFO] Worker exiting (pid: 3268282)
+[2025-03-28 11:57:07 +0000] [3268266] [INFO] Worker exiting (pid: 3268266)
+[2025-03-28 11:57:07 +0000] [3268285] [INFO] Worker exiting (pid: 3268285)
+[2025-03-28 11:57:07 +0000] [3268283] [INFO] Worker exiting (pid: 3268283)
+[2025-03-28 11:57:07 +0000] [3268287] [INFO] Worker exiting (pid: 3268287)
+[2025-03-28 11:57:07 +0000] [3268284] [INFO] Worker exiting (pid: 3268284)
+[2025-03-28 11:57:07 +0000] [3268290] [INFO] Worker exiting (pid: 3268290)
+[2025-03-28 11:57:07 +0000] [3268286] [INFO] Worker exiting (pid: 3268286)
+[2025-03-28 11:57:07 +0000] [3268265] [INFO] Worker exiting (pid: 3268265)
+[2025-03-28 11:57:07 +0000] [3268288] [INFO] Worker exiting (pid: 3268288)
+[2025-03-28 11:57:07 +0000] [3268289] [INFO] Worker exiting (pid: 3268289)
+[2025-03-28 11:57:07 +0000] [3268322] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:07 +0000] [3268322] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268288) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268286) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268264) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268290) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268265) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268283) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268284) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268266) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268285) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268287) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268289) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [ERROR] Worker (pid:3268282) was sent SIGTERM!
+[2025-03-28 11:57:07 +0000] [3263030] [INFO] Shutting down: Master
+[2025-03-28 11:57:08 +0000] [3268322] [INFO] Listening at: http://127.0.0.1:1305 (3268322)
+[2025-03-28 11:57:08 +0000] [3268322] [INFO] Using worker: sync
+[2025-03-28 11:57:08 +0000] [3268401] [INFO] Booting worker with pid: 3268401
+[2025-03-28 11:57:08 +0000] [3268402] [INFO] Booting worker with pid: 3268402
+[2025-03-28 11:57:08 +0000] [3268403] [INFO] Booting worker with pid: 3268403
+[2025-03-28 11:57:08 +0000] [3268404] [INFO] Booting worker with pid: 3268404
+[2025-03-28 11:57:08 +0000] [3268409] [INFO] Booting worker with pid: 3268409
+[2025-03-28 11:57:08 +0000] [3268411] [INFO] Booting worker with pid: 3268411
+[2025-03-28 11:57:08 +0000] [3268412] [INFO] Booting worker with pid: 3268412
+[2025-03-28 11:57:08 +0000] [3268413] [INFO] Booting worker with pid: 3268413
+[2025-03-28 11:57:08 +0000] [3268415] [INFO] Booting worker with pid: 3268415
+[2025-03-28 11:57:08 +0000] [3268414] [INFO] Booting worker with pid: 3268414
+[2025-03-28 11:57:08 +0000] [3268416] [INFO] Booting worker with pid: 3268416
+[2025-03-28 11:57:08 +0000] [3268417] [INFO] Booting worker with pid: 3268417
+[2025-03-28 11:57:08 +0000] [3268322] [INFO] Handling signal: term
+[2025-03-28 11:57:10 +0000] [3268423] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 11:57:10 +0000] [3268423] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:10 +0000] [3268423] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:11 +0000] [3268423] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:11 +0000] [3268423] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:12 +0000] [3268423] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:12 +0000] [3268423] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:12 +0000] [3268401] [INFO] Worker exiting (pid: 3268401)
+[2025-03-28 11:57:13 +0000] [3268423] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:13 +0000] [3268423] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:13 +0000] [3268402] [INFO] Worker exiting (pid: 3268402)
+[2025-03-28 11:57:13 +0000] [3268403] [INFO] Worker exiting (pid: 3268403)
+[2025-03-28 11:57:13 +0000] [3268404] [INFO] Worker exiting (pid: 3268404)
+[2025-03-28 11:57:13 +0000] [3268411] [INFO] Worker exiting (pid: 3268411)
+[2025-03-28 11:57:13 +0000] [3268409] [INFO] Worker exiting (pid: 3268409)
+[2025-03-28 11:57:13 +0000] [3268413] [INFO] Worker exiting (pid: 3268413)
+[2025-03-28 11:57:13 +0000] [3268415] [INFO] Worker exiting (pid: 3268415)
+[2025-03-28 11:57:13 +0000] [3268412] [INFO] Worker exiting (pid: 3268412)
+[2025-03-28 11:57:14 +0000] [3268423] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-03-28 11:57:14 +0000] [3268423] [ERROR] Retrying in 1 second.
+[2025-03-28 11:57:14 +0000] [3268417] [INFO] Worker exiting (pid: 3268417)
+[2025-03-28 11:57:14 +0000] [3268414] [INFO] Worker exiting (pid: 3268414)
+[2025-03-28 11:57:14 +0000] [3268416] [INFO] Worker exiting (pid: 3268416)
+[2025-03-28 11:57:15 +0000] [3268423] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-03-28 11:57:15 +0000] [3268322] [INFO] Shutting down: Master
+[2025-03-28 11:58:09 +0000] [3268616] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 11:58:09 +0000] [3268616] [INFO] Listening at: http://127.0.0.1:1305 (3268616)
+[2025-03-28 11:58:09 +0000] [3268616] [INFO] Using worker: sync
+[2025-03-28 11:58:09 +0000] [3268618] [INFO] Booting worker with pid: 3268618
+[2025-03-28 11:58:09 +0000] [3268619] [INFO] Booting worker with pid: 3268619
+[2025-03-28 11:58:09 +0000] [3268620] [INFO] Booting worker with pid: 3268620
+[2025-03-28 11:58:09 +0000] [3268621] [INFO] Booting worker with pid: 3268621
+[2025-03-28 11:58:09 +0000] [3268622] [INFO] Booting worker with pid: 3268622
+[2025-03-28 11:58:09 +0000] [3268623] [INFO] Booting worker with pid: 3268623
+[2025-03-28 11:58:09 +0000] [3268624] [INFO] Booting worker with pid: 3268624
+[2025-03-28 11:58:09 +0000] [3268625] [INFO] Booting worker with pid: 3268625
+[2025-03-28 11:58:09 +0000] [3268626] [INFO] Booting worker with pid: 3268626
+[2025-03-28 11:58:09 +0000] [3268627] [INFO] Booting worker with pid: 3268627
+[2025-03-28 11:58:09 +0000] [3268628] [INFO] Booting worker with pid: 3268628
+[2025-03-28 11:58:09 +0000] [3268629] [INFO] Booting worker with pid: 3268629
+[2025-03-28 12:03:15 +0000] [3268616] [INFO] Handling signal: term
+[2025-03-28 12:03:15 +0000] [3268621] [INFO] Worker exiting (pid: 3268621)
+[2025-03-28 12:03:15 +0000] [3268618] [INFO] Worker exiting (pid: 3268618)
+[2025-03-28 12:03:15 +0000] [3268622] [INFO] Worker exiting (pid: 3268622)
+[2025-03-28 12:03:15 +0000] [3268619] [INFO] Worker exiting (pid: 3268619)
+[2025-03-28 12:03:15 +0000] [3268628] [INFO] Worker exiting (pid: 3268628)
+[2025-03-28 12:03:15 +0000] [3268620] [INFO] Worker exiting (pid: 3268620)
+[2025-03-28 12:03:15 +0000] [3268629] [INFO] Worker exiting (pid: 3268629)
+[2025-03-28 12:03:15 +0000] [3268623] [INFO] Worker exiting (pid: 3268623)
+[2025-03-28 12:03:15 +0000] [3268624] [INFO] Worker exiting (pid: 3268624)
+[2025-03-28 12:03:15 +0000] [3268625] [INFO] Worker exiting (pid: 3268625)
+[2025-03-28 12:03:15 +0000] [3268626] [INFO] Worker exiting (pid: 3268626)
+[2025-03-28 12:03:15 +0000] [3268627] [INFO] Worker exiting (pid: 3268627)
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268618) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268620) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268626) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268629) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268621) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268622) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268628) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268627) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268623) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268625) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268624) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [ERROR] Worker (pid:3268619) was sent SIGTERM!
+[2025-03-28 12:03:15 +0000] [3268616] [INFO] Shutting down: Master
+[2025-03-28 12:03:16 +0000] [3269601] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 12:03:16 +0000] [3269601] [INFO] Listening at: http://127.0.0.1:1305 (3269601)
+[2025-03-28 12:03:16 +0000] [3269601] [INFO] Using worker: sync
+[2025-03-28 12:03:16 +0000] [3269602] [INFO] Booting worker with pid: 3269602
+[2025-03-28 12:03:16 +0000] [3269603] [INFO] Booting worker with pid: 3269603
+[2025-03-28 12:03:16 +0000] [3269606] [INFO] Booting worker with pid: 3269606
+[2025-03-28 12:03:16 +0000] [3269607] [INFO] Booting worker with pid: 3269607
+[2025-03-28 12:03:16 +0000] [3269609] [INFO] Booting worker with pid: 3269609
+[2025-03-28 12:03:16 +0000] [3269615] [INFO] Booting worker with pid: 3269615
+[2025-03-28 12:03:17 +0000] [3269616] [INFO] Booting worker with pid: 3269616
+[2025-03-28 12:03:17 +0000] [3269617] [INFO] Booting worker with pid: 3269617
+[2025-03-28 12:03:17 +0000] [3269618] [INFO] Booting worker with pid: 3269618
+[2025-03-28 12:03:17 +0000] [3269619] [INFO] Booting worker with pid: 3269619
+[2025-03-28 12:03:17 +0000] [3269620] [INFO] Booting worker with pid: 3269620
+[2025-03-28 12:03:17 +0000] [3269621] [INFO] Booting worker with pid: 3269621
+[2025-03-28 12:04:19 +0000] [3269602] [INFO] Worker exiting (pid: 3269602)
+[2025-03-28 12:04:19 +0000] [3269601] [INFO] Handling signal: term
+[2025-03-28 12:04:19 +0000] [3269606] [INFO] Worker exiting (pid: 3269606)
+[2025-03-28 12:04:19 +0000] [3269603] [INFO] Worker exiting (pid: 3269603)
+[2025-03-28 12:04:19 +0000] [3269615] [INFO] Worker exiting (pid: 3269615)
+[2025-03-28 12:04:19 +0000] [3269617] [INFO] Worker exiting (pid: 3269617)
+[2025-03-28 12:04:19 +0000] [3269609] [INFO] Worker exiting (pid: 3269609)
+[2025-03-28 12:04:19 +0000] [3269620] [INFO] Worker exiting (pid: 3269620)
+[2025-03-28 12:04:19 +0000] [3269616] [INFO] Worker exiting (pid: 3269616)
+[2025-03-28 12:04:19 +0000] [3269618] [INFO] Worker exiting (pid: 3269618)
+[2025-03-28 12:04:19 +0000] [3269619] [INFO] Worker exiting (pid: 3269619)
+[2025-03-28 12:04:19 +0000] [3269621] [INFO] Worker exiting (pid: 3269621)
+[2025-03-28 12:04:19 +0000] [3269607] [INFO] Worker exiting (pid: 3269607)
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269609) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269616) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269602) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269618) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269621) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269617) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269607) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269615) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269603) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269620) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269606) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [ERROR] Worker (pid:3269619) was sent SIGTERM!
+[2025-03-28 12:04:19 +0000] [3269601] [INFO] Shutting down: Master
+[2025-03-28 12:04:20 +0000] [3269942] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 12:04:20 +0000] [3269942] [INFO] Listening at: http://127.0.0.1:1305 (3269942)
+[2025-03-28 12:04:20 +0000] [3269942] [INFO] Using worker: sync
+[2025-03-28 12:04:20 +0000] [3269943] [INFO] Booting worker with pid: 3269943
+[2025-03-28 12:04:20 +0000] [3269944] [INFO] Booting worker with pid: 3269944
+[2025-03-28 12:04:20 +0000] [3269945] [INFO] Booting worker with pid: 3269945
+[2025-03-28 12:04:20 +0000] [3269946] [INFO] Booting worker with pid: 3269946
+[2025-03-28 12:04:20 +0000] [3269947] [INFO] Booting worker with pid: 3269947
+[2025-03-28 12:04:20 +0000] [3269948] [INFO] Booting worker with pid: 3269948
+[2025-03-28 12:04:20 +0000] [3269949] [INFO] Booting worker with pid: 3269949
+[2025-03-28 12:04:20 +0000] [3269950] [INFO] Booting worker with pid: 3269950
+[2025-03-28 12:04:20 +0000] [3269951] [INFO] Booting worker with pid: 3269951
+[2025-03-28 12:04:20 +0000] [3269952] [INFO] Booting worker with pid: 3269952
+[2025-03-28 12:04:20 +0000] [3269953] [INFO] Booting worker with pid: 3269953
+[2025-03-28 12:04:20 +0000] [3269954] [INFO] Booting worker with pid: 3269954
+[2025-03-28 12:05:52 +0000] [3269942] [INFO] Handling signal: term
+[2025-03-28 12:05:52 +0000] [3269943] [INFO] Worker exiting (pid: 3269943)
+[2025-03-28 12:05:52 +0000] [3269947] [INFO] Worker exiting (pid: 3269947)
+[2025-03-28 12:05:52 +0000] [3269944] [INFO] Worker exiting (pid: 3269944)
+[2025-03-28 12:05:52 +0000] [3269948] [INFO] Worker exiting (pid: 3269948)
+[2025-03-28 12:05:52 +0000] [3269946] [INFO] Worker exiting (pid: 3269946)
+[2025-03-28 12:05:52 +0000] [3269945] [INFO] Worker exiting (pid: 3269945)
+[2025-03-28 12:05:52 +0000] [3269949] [INFO] Worker exiting (pid: 3269949)
+[2025-03-28 12:05:52 +0000] [3269950] [INFO] Worker exiting (pid: 3269950)
+[2025-03-28 12:05:52 +0000] [3269951] [INFO] Worker exiting (pid: 3269951)
+[2025-03-28 12:05:52 +0000] [3269954] [INFO] Worker exiting (pid: 3269954)
+[2025-03-28 12:05:52 +0000] [3269953] [INFO] Worker exiting (pid: 3269953)
+[2025-03-28 12:05:52 +0000] [3269952] [INFO] Worker exiting (pid: 3269952)
+[2025-03-28 12:05:52 +0000] [3269942] [ERROR] Worker (pid:3269947) was sent SIGTERM!
+[2025-03-28 12:05:52 +0000] [3269942] [ERROR] Worker (pid:3269952) was sent SIGTERM!
+[2025-03-28 12:05:52 +0000] [3269942] [ERROR] Worker (pid:3269944) was sent SIGTERM!
+[2025-03-28 12:05:52 +0000] [3269942] [ERROR] Worker (pid:3269951) was sent SIGTERM!
+[2025-03-28 12:05:52 +0000] [3269942] [INFO] Shutting down: Master
+[2025-03-28 12:05:53 +0000] [3270323] [INFO] Starting gunicorn 21.2.0
+[2025-03-28 12:05:53 +0000] [3270323] [INFO] Listening at: http://127.0.0.1:1305 (3270323)
+[2025-03-28 12:05:53 +0000] [3270323] [INFO] Using worker: sync
+[2025-03-28 12:05:53 +0000] [3270324] [INFO] Booting worker with pid: 3270324
+[2025-03-28 12:05:53 +0000] [3270325] [INFO] Booting worker with pid: 3270325
+[2025-03-28 12:05:53 +0000] [3270326] [INFO] Booting worker with pid: 3270326
+[2025-03-28 12:05:53 +0000] [3270327] [INFO] Booting worker with pid: 3270327
+[2025-03-28 12:05:54 +0000] [3270328] [INFO] Booting worker with pid: 3270328
+[2025-03-28 12:05:54 +0000] [3270329] [INFO] Booting worker with pid: 3270329
+[2025-03-28 12:05:54 +0000] [3270330] [INFO] Booting worker with pid: 3270330
+[2025-03-28 12:05:54 +0000] [3270332] [INFO] Booting worker with pid: 3270332
+[2025-03-28 12:05:54 +0000] [3270333] [INFO] Booting worker with pid: 3270333
+[2025-03-28 12:05:54 +0000] [3270334] [INFO] Booting worker with pid: 3270334
+[2025-03-28 12:05:54 +0000] [3270335] [INFO] Booting worker with pid: 3270335
+[2025-03-28 12:05:54 +0000] [3270336] [INFO] Booting worker with pid: 3270336

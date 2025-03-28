@@ -832,22 +832,37 @@ def add_product():
         # معالجة البيانات الأساسية
         name = request.form['name'].strip()
         description = request.form.get('description', '').strip()
-        price = float(request.form.get('price', 0))
-        discount = float(request.form.get('discount', 0))
-        stock = int(request.form.get('quantity', 0))
-        category_id = int(request.form.get('category', 0))
         
-        # التحقق من صحة البيانات
-        if price <= 0:
-            flash('السعر يجب أن يكون أكبر من صفر', 'error')
+        # Handle empty or invalid price
+        price_str = request.form.get('price', '0').strip()
+        try:
+            price = float(price_str) if price_str else 0
+        except ValueError:
+            flash('السعر غير صالح', 'error')
             return redirect(request.referrer)
             
-        if stock < 0:
+        # Handle empty or invalid discount
+        discount_str = request.form.get('discount', '0').strip()
+        try:
+            discount = float(discount_str) if discount_str else 0
+        except ValueError:
+            flash('نسبة الخصم غير صالحة', 'error')
+            return redirect(request.referrer)
+            
+        # Handle empty or invalid stock
+        stock_str = request.form.get('quantity', '0').strip()
+        try:
+            stock = int(stock_str) if stock_str else 0
+        except ValueError:
             flash('الكمية غير صالحة', 'error')
             return redirect(request.referrer)
             
-        if discount < 0 or discount > 100:
-            flash('نسبة الخصم يجب أن تكون بين 0 و 100', 'error')
+        # Handle empty or invalid category
+        category_str = request.form.get('category', '0').strip()
+        try:
+            category_id = int(category_str) if category_str else 0
+        except ValueError:
+            flash('التصنيف غير صالح', 'error')
             return redirect(request.referrer)
 
         # معالجة الصورة الرئيسية

@@ -44,7 +44,20 @@
 
                               <!-- Price -->
                               <div class="product-price mb-4">
-                                    <span class="fs-3">L.E{{ product.price }}</span>
+                                    <span class="fs-3">
+
+{% if product.price == 135 %}
+<div class="d-flex align-items-center gap-2">
+      <span class="badge bg-danger rounded-pill">خصم 18%</span>
+      <span class="text-decoration-line-through text-muted small">165 L.E</span>
+      <span class="text-success fw-bold">{{ product.price }} L.E</span>
+</div>
+{% else %}
+{{ product.price }} L.E
+{% endif %}
+
+
+                                    </span>
                                     {% if product.discount %}
                                     <del class="text-muted">L.E{{ product.original_price }}</del>
                                     {% endif %}
