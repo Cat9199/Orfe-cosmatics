@@ -5815,3 +5815,39 @@ Traceback (most recent call last):
   File "/var/www/Orfe-cosmatics/app.py", line 272, in list
     min_price, max_price = map(float, price.split('-'))
 ValueError: could not convert string to float: '200+'
+[2025-03-28 11:22:04 +0000] [228064] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228064] [INFO] Worker exiting (pid: 228064)
+[2025-03-28 11:22:04 +0000] [228068] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228068] [INFO] Worker exiting (pid: 228068)
+[2025-03-28 11:22:04 +0000] [228060] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228058] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228060] [INFO] Worker exiting (pid: 228060)
+[2025-03-28 11:22:04 +0000] [228058] [INFO] Worker exiting (pid: 228058)
+[2025-03-28 11:22:04 +0000] [228067] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228067] [INFO] Worker exiting (pid: 228067)
+[2025-03-28 11:22:04 +0000] [228061] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228061] [INFO] Worker exiting (pid: 228061)
+[2025-03-28 11:22:04 +0000] [228065] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228065] [INFO] Worker exiting (pid: 228065)
+[2025-03-28 11:22:04 +0000] [228059] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228059] [INFO] Worker exiting (pid: 228059)
+[2025-03-28 11:22:04 +0000] [228062] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:04 +0000] [228062] [INFO] Worker exiting (pid: 228062)
+[2025-03-28 11:22:04 +0000] [228063] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:05 +0000] [228063] [INFO] Worker exiting (pid: 228063)
+[2025-03-28 11:22:05 +0000] [228069] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:05 +0000] [228069] [INFO] Worker exiting (pid: 228069)
+[2025-03-28 11:22:05 +0000] [228066] [INFO] Worker reloading: /var/www/Orfe-cosmatics/app.py modified
+[2025-03-28 11:22:05 +0000] [228066] [INFO] Worker exiting (pid: 228066)
+[2025-03-28 11:22:10 +0000] [3262348] [INFO] Booting worker with pid: 3262348
+[2025-03-28 11:22:10 +0000] [3262347] [INFO] Booting worker with pid: 3262347
+[2025-03-28 11:22:10 +0000] [3262349] [INFO] Booting worker with pid: 3262349
+[2025-03-28 11:22:12 +0000] [3262352] [INFO] Booting worker with pid: 3262352
+[2025-03-28 11:22:13 +0000] [3262355] [INFO] Booting worker with pid: 3262355
+[2025-03-28 11:22:13 +0000] [3262356] [INFO] Booting worker with pid: 3262356
+[2025-03-28 11:22:13 +0000] [3262357] [INFO] Booting worker with pid: 3262357
+[2025-03-28 11:22:13 +0000] [3262358] [INFO] Booting worker with pid: 3262358
+[2025-03-28 11:22:13 +0000] [3262360] [INFO] Booting worker with pid: 3262360
+[2025-03-28 11:22:13 +0000] [3262361] [INFO] Booting worker with pid: 3262361
+[2025-03-28 11:22:15 +0000] [3262366] [INFO] Booting worker with pid: 3262366
+[2025-03-28 11:22:15 +0000] [3262371] [INFO] Booting worker with pid: 3262371

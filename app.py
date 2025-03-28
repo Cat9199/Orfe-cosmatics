@@ -550,7 +550,7 @@ def place_order():
         product_total -= discount
 
     # Make shipping free if the total cost is 725
-    if product_total == 725:
+    if product_total == 72225:
         shipping_cost.price = 0
 
     total_amount = product_total + shipping_cost.price
