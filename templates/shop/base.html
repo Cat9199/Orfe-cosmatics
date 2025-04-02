@@ -65,7 +65,7 @@
 <body class="bg-body" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true">
       <style>
             .promo-banner {
-                  background-color: rgb(151, 71, 71);
+                  background-color: #8B4513;  /* Changed to a festive brown color */
                   color: white;
                   position: relative;
                   overflow: hidden;
@@ -82,7 +82,7 @@
                   left: 0;
                   width: 100%;
                   height: 100%;
-                  background-color: brown;
+                  background-color: #D2691E;
                   opacity: 0.1;
                   animation: moveBg 10s linear infinite;
             }
@@ -95,6 +95,7 @@
                   align-items: center;
                   flex-wrap: wrap;
                   font-size: 18px;
+                  gap: 10px;
             }
 
             #countdown {
@@ -119,7 +120,6 @@
                         opacity: 0;
                         transform: translateY(-20px);
                   }
-
                   to {
                         opacity: 1;
                         transform: translateY(0);
@@ -130,7 +130,6 @@
                   0% {
                         background-position: 0 0;
                   }
-
                   100% {
                         background-position: 100px 100px;
                   }
@@ -140,27 +139,30 @@
                   0% {
                         transform: scale(1);
                   }
-
                   50% {
                         transform: scale(1.05);
                   }
-
                   100% {
                         transform: scale(1);
                   }
             }
       </style>
 
-      <!-- <div class="promo-banner" dir="rtl">
+      <div class="promo-banner" dir="rtl">
             <div class="promo-content">
-                  <strong>🚚 شحن مجاني</strong> عند شراء المنتجين Oil & Spray! العرض ينتهي في:
-                  <span id="countdown"></span> ⏳
+                  <strong>🎉 عيد الفطر المبارك 🎉</strong>
+                  <span>خصم 30% عند شراء 3 منتجات! العرض ينتهي خلال:</span>
+                  <span id="countdown"></span>
             </div>
       </div>
 
       <script>
             function updateCountdown() {
-                  const endDate = new Date('March 19, 2025 23:59:59').getTime();
+                  // Set end date to 10 days from now
+                  const endDate = new Date();
+                  endDate.setDate(endDate.getDate() + 10);
+                  endDate.setHours(23, 59, 59, 999);
+                  
                   const now = new Date().getTime();
                   const distance = endDate - now;
 
@@ -176,10 +178,10 @@
                   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                   document.getElementById('countdown').innerHTML = `
-            <span>${days} يوم</span> 
-            <span>${hours} ساعة</span> 
-            <span>${minutes} دقيقة</span> 
-            <span>${seconds} ثانية</span>`;
+                        <span>${days} يوم</span> 
+                        <span>${hours} ساعة</span> 
+                        <span>${minutes} دقيقة</span> 
+                        <span>${seconds} ثانية</span>`;
 
                   // Apply pulse animation when numbers change
                   document.querySelectorAll("#countdown span").forEach(el => {
@@ -190,9 +192,7 @@
 
             const countdownInterval = setInterval(updateCountdown, 1000);
             updateCountdown();
-      </script> -->
-
-
+      </script>
 
       <header id="header" class="site-header">
             <nav class="navbar navbar-expand-lg px-3">

@@ -1,209 +1,319 @@
-{% extends 'admin/base.html' %}
+{% extends "admin/base.html" %}
 
 {% block content %}
 <div class="container mx-auto px-4 py-6">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold text-rose-900">
-      <i class='bx bx-receipt mr-2'></i>
-      تفاصيل الطلب #{{ order.id }}
-    </h1>
-    <a href="/admin/orders" class="text-rose-600 hover:text-rose-800">
-      <i class='bx bx-arrow-back mr-1'></i> العودة للطلبات
-    </a>
-  </div>
-
-  <!-- Order Actions -->
-  <div class="mt-6 flex justify-end gap-3">
-    <!-- Delete Order -->
-    <form action="{{ url_for('admin.delete_order', order_id=order.id) }}" method="POST"
-      onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
-      <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-        <i class='bx bx-trash mr-2'></i> حذف الطلب
-      </button>
-    </form>
-  </div>
-
-  <!-- Order Summary -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <!-- Customer Info -->
-    <div class="bg-white rounded-xl shadow-sm p-6">
-      <h2 class="text-lg font-semibold mb-4 border-b pb-2">
-        <i class='bx bx-user mr-2'></i> معلومات العميل
-      </h2>
-      <div class="space-y-3">
-        <div class="flex justify-between">
-          <span class="text-gray-600">الاسم:</span>
-          <span class="font-medium">{{ order.name }}</span>
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-4">
+            <h1 class="text-2xl font-bold text-rose-900">
+                <i class='bx bx-receipt mr-2'></i>
+                تفاصيل الطلب #{{ order.id }}
+            </h1>
+            <span class="px-3 py-1 rounded-full text-sm font-medium
+                {% if order_summary.shipping_status == 'تم التوصيل' %}bg-green-100 text-green-800
+                {% elif order_summary.shipping_status == 'ملغي' %}bg-red-100 text-red-800
+                {% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                {{ order_summary.shipping_status }}
+            </span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-gray-600">الهاتف:</span>
-          <a href="tel:{{ order.phone }}" class="text-rose-600 hover:text-rose-800">
-            {{ order.phone }}
-          </a>
+        <div class="flex items-center gap-3">
+            <button onclick="window.print()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                <i class='bx bx-printer'></i>
+                طباعة الطلب
+            </button>
+            <a href="{{ url_for('admin.orders') }}" class="text-rose-600 hover:text-rose-800 flex items-center gap-2">
+                <i class='bx bx-arrow-back'></i>
+                العودة للطلبات
+            </a>
         </div>
-        <div class="flex justify-between">
-          <span class="text-gray-600">العنوان:</span>
-          <span class="text-right max-w-xs">{{ order.address }}</span>
-        </div>
-        <!-- city -->
-
-        <div class="flex justify-between">
-          <span class="text-gray-600">المدينة:</span>
-          <span class="text-right max-w-xs">{{ city_name }}</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-gray-600">المنطقة:</span>
-          <span class="text-right max-w-xs">{{ order.zone_id }}</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-gray-600">الحي:</span>
-          <span class="text-right max-w-xs">{{ order.district_id }}</span>
-        </div>
-        <!-- shipping_cost -->
-        <div class="flex justify-between">
-          <span class="text-gray-600">تكلفة الشحن:</span>
-          <span class="text-right max-w-xs">{{ shipping_cost.price }} ج.م</span>
-        </div>
-      </div>
     </div>
 
-    <!-- Order Info -->
-    <div class="bg-white rounded-xl shadow-sm p-6">
-      <h2 class="text-lg font-semibold mb-4 border-b pb-2">
-        <i class='bx bx-package mr-2'></i> معلومات الطلب
-      </h2>
-      <div class="space-y-3">
-        <div class="flex justify-between">
-          <span class="text-gray-600">تاريخ الطلب:</span>
-          <span>{{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+    <!-- Order Actions -->
+    <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+        <div class="flex justify-between items-center">
+            <h2 class="text-lg font-semibold">
+                <i class='bx bx-cog mr-2'></i>
+                إجراءات الطلب
+            </h2>
+            <div class="flex gap-3">
+                <form action="{{ url_for('admin.update_shipping_status', order_id=order.id) }}" method="POST" class="flex gap-2">
+                    <select name="status" class="border px-3 py-2 rounded-lg">
+                        <option value="pending" {% if order.shipping_status == 'pending' %}selected{% endif %}>قيد الانتظار</option>
+                        <option value="shipped" {% if order.shipping_status == 'shipped' %}selected{% endif %}>تم الشحن</option>
+                        <option value="delivered" {% if order.shipping_status == 'delivered' %}selected{% endif %}>تم التوصيل</option>
+                        <option value="cancelled" {% if order.shipping_status == 'cancelled' %}selected{% endif %}>ملغي</option>
+                    </select>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                        <i class='bx bx-refresh mr-2'></i> تحديث الحالة
+                    </button>
+                </form>
+                <form action="{{ url_for('admin.delete_order', order_id=order.id) }}" method="POST" 
+                      onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
+                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                        <i class='bx bx-trash mr-2'></i> حذف الطلب
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="flex justify-between">
-          <span class="text-gray-600">طريقة الدفع:</span>
-          <span>
-            {% if order.payment_method == 'cash_on_delivery' %}
-            الدفع عند الاستلام
-            {% elif order.payment_method == 'vodafone_cash' %}
-            فودافون كاش
-            {% else %}
-            {{ order.payment_method }}
-            {% endif %}
-          </span>
-        </div>
-        {% if order.payment_method == 'visa' %}
-        <div class="flex justify-between">
-          <span class="text-gray-600">رابط الفاتورة:</span>
-          <a href="{{ order.invoice_url }}" class="text-rose-600 hover:text-rose-800" target="_blank">
-            عرض الفاتورة
-          </a>
-        </div>
-
-        {% endif %}
-        <div class="flex justify-between">
-          <span class="text-gray-600">المجموع:</span>
-          <span>{{ order.cod_amount }} ج.م</span>
-        </div>
-
-        <div class="flex justify-between">
-          <span class="text-gray-600">حالة الشحن:</span>
-          <span class="px-2 py-1 rounded-full 
-                        {% if order.shipping_status == 'delivered' %}bg-green-100 text-green-800
-                        {% elif order.shipping_status == 'shipped' %}bg-blue-100 text-blue-800
-                        {% else %}bg-yellow-100 text-yellow-800{% endif %}">
-            {{ order.shipping_status }}
-          </span>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Add Item to Order -->
-  <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-    <h2 class="text-lg font-semibold mb-4 border-b pb-2">
-      <i class='bx bx-plus-circle mr-2'></i> إضافة منتج إلى الطلب
-    </h2>
-
-    <form action="{{ url_for('admin.add_item_to_order', order_id=order.id) }}" method="POST" class="flex gap-4">
-      <select name="product_id" class="border px-3 py-2 rounded-lg w-full">
-        {% for product in products %}
-        <option value="{{ product.id }}">{{ product.name }} - {{ product.price }} EGP</option>
-        {% endfor %}
-      </select>
-      <input type="number" name="quantity" value="1" min="1" class="border px-3 py-2 rounded-lg w-24 text-center">
-      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-        <i class='bx bx-plus mr-2'></i> إضافة
-      </button>
-    </form>
-  </div>
-
-  <!-- Order Items -->
-  <div class="bg-white rounded-xl shadow-sm p-6">
-    <h2 class="text-lg font-semibold mb-4 border-b pb-2">
-      <i class='bx bx-list-ul mr-2'></i> العناصر المطلوبة
-    </h2>
-
-    <form action="{{ url_for('admin.export_selected_orders') }}" method="POST">
-      <div class="overflow-x-auto">
-        <table class="w-full">
-          <thead class="bg-gray-50">
-            <tr class="text-sm text-gray-600">
-              <th class="px-4 py-3 text-right">المنتج</th>
-              <th class="px-4 py-3 text-center">الكمية</th>
-              <th class="px-4 py-3 text-center">السعر</th>
-              <th class="px-4 py-3 text-center">المجموع</th>
-              <th class="px-4 py-3 text-center">إجراءات</th>
-              <th class="px-4 py-3 text-center">
-                <input type="checkbox" id="select_all" onclick="toggleSelectAll(this)">
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y">
-            {% for item in order_items %}
-            <tr class="text-sm hover:bg-gray-50">
-              <td class="px-4 py-3">
-                <div class="flex items-center gap-3"></div>
-                <img src="/{{ item.product.image }}" class="w-12 h-12 object-cover rounded-lg border">
-                <div>
-                  <div class="font-medium">{{ item.product.name }}</div>
-                  <div class="text-gray-500 text-sm">#{{ item.product.id }}</div>
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Customer Info -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-lg font-semibold mb-4 border-b pb-2">
+                    <i class='bx bx-user mr-2'></i> معلومات العميل
+                </h2>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">الاسم:</span>
+                        <span class="font-medium">{{ order.name }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">الهاتف:</span>
+                        <a href="tel:{{ order.phone }}" class="text-rose-600 hover:text-rose-800">
+                            {{ order.phone }}
+                        </a>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">البريد الإلكتروني:</span>
+                        <span>{{ order.email }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">العنوان:</span>
+                        <span class="text-right max-w-xs">{{ order.address }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">المدينة:</span>
+                        <span>{{ city_name }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">المنطقة:</span>
+                        <span>{{ order.zone_id }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">الحي:</span>
+                        <span>{{ order.district_id }}</span>
+                    </div>
                 </div>
-      </div>
-      </td>
-      <td class="px-4 py-3 text-center">{{ item.order_item.quantity }}</td>
-      <td class="px-4 py-3 text-center">{{ item.product.price }}</td>
-      <td class="px-4 py-3 text-center font-medium">
-        {{ (item.product.price * item.order_item.quantity) }}
-      </td>
-      <td class="px-4 py-3 text-center">
-        <form action="{{ url_for('admin.delete_item_from_order', order_id=order.id, item_id=item.order_item.id) }}"
-          method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا المنتج؟');">
-          <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
-            <i class='bx bx-trash'></i>
-          </button>
-        </form>
-      </td>
-      <td class="px-4 py-3 text-center">
-        <input type="checkbox" name="order_ids" value="{{ order.id }}">
-      </td>
-      </tr>
-      {% endfor %}
-      </tbody>
-      </table>
-  </div>
-  <div class="mt-4 flex justify-end">
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-      <i class='bx bx-export mr-2'></i> تصدير الطلبات المحددة
-    </button>
-  </div>
-  </form>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-lg font-semibold mb-4 border-b pb-2">
+                    <i class='bx bx-package mr-2'></i> ملخص الطلب
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">تاريخ الطلب:</span>
+                            <span>{{ order_summary.created_at }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">طريقة الدفع:</span>
+                            <span>{{ order_summary.payment_method }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">حالة الدفع:</span>
+                            <span class="px-2 py-1 rounded-full 
+                                        {% if order_summary.payment_status == 'تم الدفع' %}bg-green-100 text-green-800
+                                        {% elif order_summary.payment_status == 'فشل الدفع' %}bg-red-100 text-red-800
+                                        {% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                {{ order_summary.payment_status }}
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">رقم التتبع:</span>
+                            <span>{{ order_summary.tracking_number }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">المرجع:</span>
+                            <span>{{ order_summary.business_reference }}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">المجموع الفرعي:</span>
+                            <span>{{ "%.2f"|format(order_summary.subtotal) }} L.E</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">تكلفة الشحن:</span>
+                            <span>{{ "%.2f"|format(order_summary.shipping_cost) }} L.E</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">الخصم:</span>
+                            <span class="text-green-600">{{ "%.2f"|format(order_summary.subtotal + order_summary.shipping_cost - order.cod_amount) }} L.E</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">نسبة الخصم:</span>
+                            <span class="text-green-600">{{ "%.1f"|format(((order_summary.subtotal + order_summary.shipping_cost - order.cod_amount) / (order_summary.subtotal + order_summary.shipping_cost)) * 100) }}%</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-bold">
+                            <span>المجموع الكلي:</span>
+                            <span>{{ "%.2f"|format(order.cod_amount) }} L.E</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="mt-6">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold border-b pb-2">
+                    <i class='bx bx-list-ul mr-2'></i> المنتجات المطلوبة
+                </h2>
+                <button onclick="window.print()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                    <i class='bx bx-printer'></i>
+                    طباعة الطلب
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr class="text-sm text-gray-600">
+                            <th class="px-4 py-3 text-right">المنتج</th>
+                            <th class="px-4 py-3 text-center">التصنيف</th>
+                            <th class="px-4 py-3 text-center">السعر</th>
+                            <th class="px-4 py-3 text-center">الكمية</th>
+                            <th class="px-4 py-3 text-center">المجموع</th>
+                            <th class="px-4 py-3 text-center">الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        {% for item in order_items %}
+                        <tr class="text-sm hover:bg-gray-50">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <img src="/{{ item.product.image }}" 
+                                         class="w-12 h-12 object-cover rounded-lg border">
+                                    <div>
+                                        <div class="font-medium">{{ item.product.name }}</div>
+                                        <div class="text-gray-500 text-sm">#{{ item.product.id }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-center">{{ item.product.category }}</td>
+                            <td class="px-4 py-3 text-center">{{ "%.2f"|format(item.product.price) }} L.E</td>
+                            <td class="px-4 py-3 text-center">{{ item.order_item.quantity }}</td>
+                            <td class="px-4 py-3 text-center font-medium">
+                                {{ "%.2f"|format(item.item_total) }} L.E
+                            </td>
+                            <td class="px-4 py-3 text-center">
+                                <form action="{{ url_for('admin.delete_item_from_order', order_id=order.id, item_id=item.order_item.id) }}"
+                                      method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا المنتج؟');">
+                                    <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
+                                        <i class='bx bx-trash'></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot class="bg-gray-50">
+                        <tr>
+                            <td colspan="4" class="px-4 py-3 text-right font-medium">المجموع الفرعي:</td>
+                            <td colspan="2" class="px-4 py-3 text-center font-medium">
+                                {{ "%.2f"|format(order_summary.subtotal) }} L.E
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="px-4 py-3 text-right font-medium">تكلفة الشحن:</td>
+                            <td colspan="2" class="px-4 py-3 text-center font-medium">
+                                {{ "%.2f"|format(order_summary.shipping_cost) }} L.E
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="px-4 py-3 text-right font-medium">المجموع الكلي:</td>
+                            <td colspan="2" class="px-4 py-3 text-center font-medium">
+                                {{ "%.2f"|format(order_summary.total_amount) }} L.E
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Item -->
+    <div class="mt-6">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <h2 class="text-lg font-semibold mb-4 border-b pb-2">
+                <i class='bx bx-plus-circle mr-2'></i> إضافة منتج إلى الطلب
+            </h2>
+
+            <form action="{{ url_for('admin.add_item_to_order', order_id=order.id) }}" method="POST" class="flex gap-4">
+                <select name="product_id" class="border px-3 py-2 rounded-lg w-full" required>
+                    <option value="">اختر المنتج</option>
+                    {% for product in available_products %}
+                    <option value="{{ product.id }}" data-price="{{ product.price }}" data-stock="{{ product.stock }}">
+                        {{ product.name }} - {{ "%.2f"|format(product.price) }} L.E
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="quantity" class="border px-3 py-2 rounded-lg w-24 text-center" 
+                       placeholder="الكمية" min="1" required>
+                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                    <i class='bx bx-plus mr-2'></i> إضافة
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
-</div>
+
+<style>
+@media print {
+    .no-print {
+        display: none;
+    }
+    .container {
+        padding: 0;
+    }
+    .bg-white {
+        background: white !important;
+        box-shadow: none !important;
+    }
+    .rounded-xl {
+        border-radius: 0 !important;
+    }
+}
+</style>
 
 <script>
-  function toggleSelectAll(source) {
-    checkboxes = document.getElementsByName('order_ids');
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = source.checked;
+document.addEventListener('DOMContentLoaded', function() {
+    // Add validation for quantity input
+    const quantityInput = document.querySelector('input[name="quantity"]');
+    const productSelect = document.querySelector('select[name="product_id"]');
+    
+    if (quantityInput && productSelect) {
+        quantityInput.addEventListener('change', function() {
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            if (selectedOption.value) {
+                const maxStock = parseInt(selectedOption.dataset.stock) || 0;
+                if (this.value > maxStock) {
+                    alert('الكمية المطلوبة غير متوفرة في المخزون');
+                    this.value = maxStock;
+                }
+            }
+        });
+
+        productSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption.value) {
+                const maxStock = parseInt(selectedOption.dataset.stock) || 0;
+                quantityInput.max = maxStock;
+                if (parseInt(quantityInput.value) > maxStock) {
+                    quantityInput.value = maxStock;
+                }
+            }
+        });
     }
-  }
+});
 </script>
 {% endblock %}

@@ -2,306 +2,407 @@
 <html lang="ar" dir="rtl">
 
 <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Orfe Dashboard</title>
-      <script src="https://cdn.tailwindcss.com"></script>
-      <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-      <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png" />
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <style>
-            @font-face {
-                  font-family: 'masmak';
-                  src: url('/static/font.otf') format('opentype');
-            }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orfe Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @font-face {
+            font-family: 'masmak';
+            src: url('/static/font.otf') format('opentype');
+        }
 
-            * {
-                  font-family: 'masmak', sans-serif;
-            }
+        * {
+            font-family: 'masmak', sans-serif;
+        }
 
+        .sidebar {
+            transform: translateX(100%);
+            height: 100vh;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #ffffff 0%, #fdf2f8 100%);
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            margin: 0 8px;
+        }
+
+        .nav-link:hover {
+            background-color: #fdf2f8;
+            color: #e11d48;
+            transform: translateX(-4px);
+        }
+
+        .nav-link.active {
+            background-color: #fdf2f8;
+            color: #e11d48;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background-color: #e11d48;
+            border-radius: 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e11d48;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be123c;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(90deg, #ffffff 0%, #fdf2f8 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Layout Improvements */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-right: 0 !important;
+            }
+            
             .sidebar {
-                  transform: translateX(100%);
+                width: 100%;
+                max-width: 300px;
             }
+        }
 
-            .sidebar.active {
-                  transform: translateX(0);
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
             }
+            
+            .sidebar, 
+            header, 
+            .modal-content {
+                display: none !important;
+            }
+            
+            .main-content {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        }
 
-            /* Custom Styles for Product Form */
-            input[type="file"]+label {
-                  transition: all 0.3s ease;
-            }
+        /* Custom Form Styles */
+        input[type="file"]+label {
+            transition: all 0.3s ease;
+        }
 
-            input[type="file"]+label:hover {
-                  background-color: #fdf2f8;
-                  border-color: #f472b6;
-            }
+        input[type="file"]+label:hover {
+            background-color: #fdf2f8;
+            border-color: #f472b6;
+        }
 
-            .image-preview img {
-                  transition: transform 0.3s ease;
-            }
+        .image-preview img {
+            transition: transform 0.3s ease;
+        }
 
-            .image-preview img:hover {
-                  transform: scale(1.05);
-            }
-      </style>
+        .image-preview img:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
-      <!-- Sidebar Overlay -->
-      <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
 
-      <!-- Sidebar -->
-      <aside id="sidebar"
-            class="sidebar fixed right-0 w-64 h-screen bg-white shadow-lg transition-transform duration-300 md:translate-x-0 z-50 p-4">
-            <div class="flex flex-col h-full">
-                  <div class="mb-8 text-center">
-                        <img src="/static/images/logo.svg" alt="Logo" class="w-32 mx-auto" />
-                        <div class="text-xs text-gray-500 mt-2">الإصدار 1.0</div>
-                  </div>
-                  <nav class="flex-1 space-y-2">
-                        <a href="/admin" class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-rose-100">
-                              <i class='bx bx-home text-xl'></i>
-                              <span>الرئيسية</span>
-                        </a>
-                        <a href="/admin/products"
-                              class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-rose-100">
-                              <i class='bx bx-package text-xl'></i>
-                              <span>المنتجات</span>
-                        </a>
-                        <a href="/admin/categories"
-                              class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-rose-100">
-                              <i class='bx bx-category text-xl'></i>
-                              <span>الأقسام</span>
-                        </a>
-                        <a href="/admin/orders"
-                              class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-rose-100">
-                              <i class='bx bx-cart text-xl'></i>
-                              <span>الطلبات</span>
-                              <span class="bg-rose-500 text-white px-2 rounded-full text-sm">15</span>
-                        </a>
-                        <a href="/admin/shipping"
-                              class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-rose-100">
-                              <i class='bx bx-truck text-xl'></i>
-                              <span>الشحن</span>
-                        </a>
-                  </nav>
-                  <div class="border-t pt-4">
-                        <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100">
-                              <img src="https://ui-avatars.com/api/?name=Admin&background=rose-500&color=fff"
-                                    class="w-8 h-8 rounded-full">
-                              <div>
-                                    <div class="font-medium">المشرف العام</div>
-                                    <div class="text-sm text-gray-500">مدير النظام</div>
-                              </div>
-                        </div>
-                        <a href="/admin/logout"
-                              class="flex items-center gap-3 p-3 rounded-lg transition hover:bg-red-50 text-red-600">
-                              <i class='bx bx-log-out text-xl'></i>
-                              <span>تسجيل الخروج</span>
-                        </a>
-                  </div>
+    <!-- Sidebar -->
+    <aside id="sidebar"
+        class="sidebar fixed right-0 w-72 shadow-lg transition-transform duration-300 md:translate-x-0 z-50">
+        <div class="flex flex-col h-full p-6">
+            <div class="mb-8 text-center">
+                <img src="/static/images/logo.svg" alt="Logo" class="w-40 mx-auto" />
+                <div class="text-xs text-gray-500 mt-2">الإصدار 1.0</div>
             </div>
-      </aside>
+            <nav class="flex-1 space-y-1">
+                <a href="/admin" class="nav-link flex items-center gap-3 p-3">
+                    <i class='bx bx-home text-xl'></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="/admin/products"
+                    class="nav-link flex items-center gap-3 p-3">
+                    <i class='bx bx-package text-xl'></i>
+                    <span>المنتجات</span>
+                </a>
+                <a href="/admin/categories"
+                    class="nav-link flex items-center gap-3 p-3">
+                    <i class='bx bx-category text-xl'></i>
+                    <span>الأقسام</span>
+                </a>
+                <a href="/admin/orders"
+                    class="nav-link flex items-center gap-3 p-3">
+                    <i class='bx bx-cart text-xl'></i>
+                    <span>الطلبات</span>
+                    <span class="bg-rose-500 text-white px-2 rounded-full text-sm">15</span>
+                </a>
+                <a href="/admin/shipping"
+                    class="nav-link flex items-center gap-3 p-3">
+                    <i class='bx bx-truck text-xl'></i>
+                    <span>الشحن</span>
+                </a>
+            </nav>
+            <div class="border-t border-gray-100 pt-4">
+                <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=rose-500&color=fff"
+                        class="w-10 h-10 rounded-full ring-2 ring-rose-100">
+                    <div>
+                        <div class="font-medium">المشرف العام</div>
+                        <div class="text-sm text-gray-500">مدير النظام</div>
+                    </div>
+                </div>
+                <a href="/admin/logout"
+                    class="nav-link flex items-center gap-3 p-3 text-red-600 hover:bg-red-50">
+                    <i class='bx bx-log-out text-xl'></i>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </div>
+        </div>
+    </aside>
 
-      <!-- Main Content -->
-      <main class="md:pr-64 min-h-screen">
-            <header class="sticky top-0 bg-white shadow-sm z-30 p-4 flex items-center justify-between">
-                  <button id="toggleSidebar" class="md:hidden text-2xl">
-                        <i class='bx bx-menu'></i>
-                  </button>
-                  <div class="flex items-center gap-4">
-                        <div id="timenow" class="bg-gray-100 px-3 py-1 rounded-lg"></div>
-                        <button onclick="document.getElementById('productModal').classList.remove('hidden')"
-                              class="bg-rose-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-rose-700">
-                              <i class='bx bx-plus'></i>
-                              <span>إضافة منتج</span>
+    <!-- Main Content -->
+    <main class="main-content md:pr-72 min-h-screen">
+        <header class="header sticky top-0 z-30 p-4 flex items-center justify-between">
+            <button id="toggleSidebar" class="md:hidden text-2xl text-gray-600 hover:text-gray-800">
+                <i class='bx bx-menu'></i>
+            </button>
+            <div class="flex items-center gap-4">
+                <div id="timenow" class="bg-white px-4 py-2 rounded-lg shadow-sm text-gray-700 flex items-center gap-2">
+                    <i class='bx bx-time text-xl'></i>
+                    <span></span>
+                </div>
+                <button onclick="document.getElementById('productModal').classList.remove('hidden')"
+                    class="bg-rose-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-rose-700 transition-colors shadow-sm">
+                    <i class='bx bx-plus'></i>
+                    <span>إضافة منتج</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="p-4 md:p-6">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Add Product Modal -->
+        <div id="productModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-center p-6 border-b">
+                    <h2 class="text-xl font-bold">إضافة منتج جديد</h2>
+                    <button onclick="closeModal()"
+                        class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+                </div>
+
+                <form method="POST" enctype="multipart/form-data" action="/admin/add_product"
+                    class="p-6 space-y-4">
+                    <!-- Product Name -->
+                    <div>
+                        <label class="block mb-2 font-medium">اسم المنتج <span
+                                    class="text-red-500">*</span></label>
+                        <input type="text" name="name" required
+                            class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent">
+                    </div>
+
+                    <!-- Price & Stock -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-2 font-medium">السعر (ج.م) <span
+                                        class="text-red-500">*</span></label>
+                            <input type="number" step="0.01" name="price" required
+                                class="w-full p-3 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block mb-2 font-medium">الكمية المتاحة <span
+                                        class="text-red-500">*</span></label>
+                            <input type="number" name="quantity" required
+                                class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+
+                    <!-- Category & Discount -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-2 font-medium">التصنيف <span
+                                        class="text-red-500">*</span></label>
+                            <select name="category" required class="w-full p-3 border rounded-lg">
+                                {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2 font-medium">نسبة الخصم (%)</label>
+                            <input type="number" name="discount" min="0" max="100"
+                                class="w-full p-3 border rounded-lg">
+                        </div>
+                    </div>
+
+                    <!-- Images Upload -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block mb-2 font-medium">الصورة الرئيسية <span
+                                        class="text-red-500">*</span></label>
+                            <div class="border-2 border-dashed rounded-lg p-4 text-center">
+                                <input type="file" name="image" required class="hidden"
+                                    id="mainImageInput" accept="image/*">
+                                <label for="mainImageInput" class="cursor-pointer">
+                                    <i class='bx bx-cloud-upload text-3xl text-gray-400'></i>
+                                    <p class="text-gray-500 mt-2">انقر لرفع الصورة</p>
+                                </label>
+                                <img id="mainImagePreview" class="mt-2 max-h-32 hidden mx-auto">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block mb-2 font-medium">صور إضافية</label>
+                            <div class="border-2 border-dashed rounded-lg p-4 text-center">
+                                <input type="file" name="additional_images" multiple class="hidden"
+                                    id="additionalImagesInput" accept="image/*">
+                                <label for="additionalImagesInput" class="cursor-pointer">
+                                    <i class='bx bx-cloud-upload text-3xl text-gray-400'></i>
+                                    <p class="text-gray-500 mt-2">انقر لرفع الصور (يمكن اختيار أكثر من
+                                        صورة)</p>
+                                </label>
+                                <div id="additionalImagesPreview" class="grid grid-cols-3 gap-2 mt-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="block mb-2 font-medium">وصف المنتج</label>
+                        <textarea name="description" rows="4"
+                            class="w-full p-3 border rounded-lg"></textarea>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex justify-end gap-3 pt-6">
+                        <button type="button" onclick="closeModal()"
+                            class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                            إلغاء
                         </button>
-                  </div>
-            </header>
-
-            <div class="p-6">
-                  {% block content %}{% endblock %}
+                        <button type="submit"
+                            class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 flex items-center">
+                            <i class='bx bx-save mr-2'></i>
+                            حفظ المنتج
+                        </button>
+                    </div>
+                </form>
             </div>
-            <!-- Add Product Modal -->
-            <div id="productModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-                  <div class="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                        <div class="flex justify-between items-center p-6 border-b">
-                              <h2 class="text-xl font-bold">إضافة منتج جديد</h2>
-                              <button onclick="closeModal()"
-                                    class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
-                        </div>
+        </div>
+    </main>
 
-                        <form method="POST" enctype="multipart/form-data" action="/admin/add_product"
-                              class="p-6 space-y-4">
-                              <!-- Product Name -->
-                              <div>
-                                    <label class="block mb-2 font-medium">اسم المنتج <span
-                                                class="text-red-500">*</span></label>
-                                    <input type="text" name="name" required
-                                          class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent">
-                              </div>
+    <script>
+        // Sidebar Toggle
+        document.getElementById('toggleSidebar').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('hidden');
+        });
+        document.getElementById('sidebarOverlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.add('hidden');
+        });
 
-                              <!-- Price & Stock -->
-                              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                          <label class="block mb-2 font-medium">السعر (ج.م) <span
-                                                      class="text-red-500">*</span></label>
-                                          <input type="number" step="0.01" name="price" required
-                                                class="w-full p-3 border rounded-lg">
-                                    </div>
-                                    <div>
-                                          <label class="block mb-2 font-medium">الكمية المتاحة <span
-                                                      class="text-red-500">*</span></label>
-                                          <input type="number" name="quantity" required
-                                                class="w-full p-3 border rounded-lg">
-                                    </div>
-                              </div>
+        // Time Update
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('timenow').querySelector('span').textContent = 
+                now.toLocaleTimeString('ar-EG', { 
+                    hour: 'numeric', 
+                    minute: 'numeric', 
+                    second: 'numeric', 
+                    hour12: true 
+                });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
 
-                              <!-- Category & Discount -->
-                              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                          <label class="block mb-2 font-medium">التصنيف <span
-                                                      class="text-red-500">*</span></label>
-                                          <select name="category" required class="w-full p-3 border rounded-lg">
-                                                {% for category in categories %}
-                                                <option value="{{ category.id }}">{{ category.name }}</option>
-                                                {% endfor %}
-                                          </select>
-                                    </div>
-                                    <div>
-                                          <label class="block mb-2 font-medium">نسبة الخصم (%)</label>
-                                          <input type="number" name="discount" min="0" max="100"
-                                                class="w-full p-3 border rounded-lg">
-                                    </div>
-                              </div>
+        // Image Preview Functionality
+        function handleImagePreview(input, previewContainer, isMultiple) {
+            const files = input.files;
 
-                              <!-- Images Upload -->
-                              <div class="space-y-4">
-                                    <div>
-                                          <label class="block mb-2 font-medium">الصورة الرئيسية <span
-                                                      class="text-red-500">*</span></label>
-                                          <div class="border-2 border-dashed rounded-lg p-4 text-center">
-                                                <input type="file" name="image" required class="hidden"
-                                                      id="mainImageInput" accept="image/*">
-                                                <label for="mainImageInput" class="cursor-pointer">
-                                                      <i class='bx bx-cloud-upload text-3xl text-gray-400'></i>
-                                                      <p class="text-gray-500 mt-2">انقر لرفع الصورة</p>
-                                                </label>
-                                                <img id="mainImagePreview" class="mt-2 max-h-32 hidden mx-auto">
-                                          </div>
-                                    </div>
-
-                                    <div>
-                                          <label class="block mb-2 font-medium">صور إضافية</label>
-                                          <div class="border-2 border-dashed rounded-lg p-4 text-center">
-                                                <input type="file" name="additional_images" multiple class="hidden"
-                                                      id="additionalImagesInput" accept="image/*">
-                                                <label for="additionalImagesInput" class="cursor-pointer">
-                                                      <i class='bx bx-cloud-upload text-3xl text-gray-400'></i>
-                                                      <p class="text-gray-500 mt-2">انقر لرفع الصور (يمكن اختيار أكثر من
-                                                            صورة)</p>
-                                                </label>
-                                                <div id="additionalImagesPreview" class="grid grid-cols-3 gap-2 mt-2">
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-
-                              <!-- Description -->
-                              <div>
-                                    <label class="block mb-2 font-medium">وصف المنتج</label>
-                                    <textarea name="description" rows="4"
-                                          class="w-full p-3 border rounded-lg"></textarea>
-                              </div>
-
-                              <!-- Form Actions -->
-                              <div class="flex justify-end gap-3 pt-6">
-                                    <button type="button" onclick="closeModal()"
-                                          class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
-                                          إلغاء
-                                    </button>
-                                    <button type="submit"
-                                          class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 flex items-center">
-                                          <i class='bx bx-save mr-2'></i>
-                                          حفظ المنتج
-                                    </button>
-                              </div>
-                        </form>
-                  </div>
-            </div>
-
-            <script>
-                  // Image Preview Functionality
-                  function handleImagePreview(input, previewContainer, isMultiple) {
-                        const files = input.files;
-
-                        if (isMultiple) {
-                              previewContainer.innerHTML = '';
-                              Array.from(files).forEach(file => {
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                          const img = document.createElement('img');
-                                          img.src = e.target.result;
-                                          img.className = 'h-24 w-full object-cover rounded border';
-                                          previewContainer.appendChild(img);
-                                    }
-                                    reader.readAsDataURL(file);
-                              });
-                        } else {
-                              const reader = new FileReader();
-                              reader.onload = (e) => {
-                                    previewContainer.src = e.target.result;
-                                    previewContainer.classList.remove('hidden');
-                              }
-                              reader.readAsDataURL(files[0]);
-                        }
-                  }
-
-                  // Initialize previews
-                  document.getElementById('mainImageInput').addEventListener('change', (e) => {
-                        handleImagePreview(e.target, document.getElementById('mainImagePreview'), false);
-                  });
-
-                  document.getElementById('additionalImagesInput').addEventListener('change', (e) => {
-                        handleImagePreview(e.target, document.getElementById('additionalImagesPreview'), true);
-                  });
-
-                  // Modal Handling
-                  function closeModal() {
-                        document.getElementById('productModal').classList.add('hidden');
-                        // Reset form on close
-                        document.querySelector('#productModal form').reset();
-                        document.getElementById('mainImagePreview').classList.add('hidden');
-                        document.getElementById('additionalImagesPreview').innerHTML = '';
-                  }
-
-                  // Close modal on outside click
-                  document.getElementById('productModal').addEventListener('click', (e) => {
-                        if (e.target === document.getElementById('productModal')) {
-                              closeModal();
-                        }
-                  });
-            </script>
-      </main>
-
-
-      <script>
-            document.getElementById('toggleSidebar').addEventListener('click', () => {
-                  document.getElementById('sidebar').classList.toggle('active');
-                  document.getElementById('sidebarOverlay').classList.toggle('hidden');
-            });
-            document.getElementById('sidebarOverlay').addEventListener('click', () => {
-                  document.getElementById('sidebar').classList.remove('active');
-                  document.getElementById('sidebarOverlay').classList.add('hidden');
-            });
-            function updateTime() {
-                  const now = new Date();
-                  document.getElementById('timenow').textContent = now.toLocaleTimeString('ar-EG', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+            if (isMultiple) {
+                previewContainer.innerHTML = '';
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'h-24 w-full object-cover rounded border';
+                        previewContainer.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewContainer.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                }
+                reader.readAsDataURL(files[0]);
             }
-            setInterval(updateTime, 1000);
-            updateTime();
-      </script>
+        }
+
+        // Initialize previews
+        document.getElementById('mainImageInput').addEventListener('change', (e) => {
+            handleImagePreview(e.target, document.getElementById('mainImagePreview'), false);
+        });
+
+        document.getElementById('additionalImagesInput').addEventListener('change', (e) => {
+            handleImagePreview(e.target, document.getElementById('additionalImagesPreview'), true);
+        });
+
+        // Modal Handling
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            // Reset form on close
+            document.querySelector('#productModal form').reset();
+            document.getElementById('mainImagePreview').classList.add('hidden');
+            document.getElementById('additionalImagesPreview').innerHTML = '';
+        }
+
+        // Close modal on outside click
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('productModal')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 
 </html>

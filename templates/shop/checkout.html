@@ -196,38 +196,81 @@
                                           <tbody>
                                                 <tr class="subtotal">
                                                       <th>Subtotal</th>
-                                                      <td class="text-end" id="subtotalValue">{{ "%.2f"|format(total) }}
-                                                            L.E</td>
+                                                      <td class="text-end" id="subtotalValue">{{ "%.2f"|format(total + discount) }} L.E</td>
                                                 </tr>
-                                                {% if total == 725 %}
+                                                {% if discount > 0 %}
                                                 <tr class="discount">
-                                                      <th>Discount</th>
-                                                      <td class="text-end" id="discountLine">0.00 L.E</td>
+                                                      <th>Discount (30%)</th>
+                                                      <td class="text-end text-success" id="discountLine">-{{ "%.2f"|format(discount) }} L.E</td>
                                                 </tr>
                                                 {% endif %}
-                                                {% if total == 725 %}
                                                 <tr class="shipping">
                                                       <th>Shipping</th>
-                                                      <td class="text-end text-success fw-bold">0.00 L.E</td>
+                                                      <td class="text-end text-muted" id="shippingCost">Calculated at checkout</td>
                                                 </tr>
-                                                <p class="text-success text-center mt-3">
-                                                      تهاني! الشحن مجاني عند شراء المنتجين 🌙
-                                                </p>
-                                                {% else %}
-                                                <tr class="shipping">
-                                                      <th>Shipping</th>
-                                                      <td class="text-end text-muted" id="shippingCost">Calculated at
-                                                            checkout</td>
-                                                </tr>
-                                                {% endif %}
-
                                                 <tr class="total border-top">
                                                       <th>Total</th>
-                                                      <td class="text-end fw-bold" id="totalValue">{{
-                                                            "%.2f"|format(total) }} L.E</td>
+                                                      <td class="text-end fw-bold" id="totalValue">{{ "%.2f"|format(total) }} L.E</td>
                                                 </tr>
                                           </tbody>
                                     </table>
+
+                                    <!-- Special Discount Offer -->
+                                    <div class="special-offer mt-4 p-3 bg-light rounded">
+                                          <h6 class="mb-3">العروض الخاصة:</h6>
+                                          
+                                          <!-- Products 1, 2, 3 Discount -->
+                                          <div class="offer-item mb-2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                      <span>خصم 30% عند شراء المنتجات المميزة:</span>
+                                                      <span class="badge {% if discount > 0 %}bg-success{% else %}bg-secondary{% endif %}">
+                                                            {% if discount > 0 %}
+                                                            تم تطبيق الخصم
+                                                            {% else %}
+                                                            غير مطبق
+                                                            {% endif %}
+                                                      </span>
+                                                </div>
+                                                <small class="text-muted">
+                                                      اشترِ المنتجات المميزة (1، 2، 3) واحصل على خصم 30% على إجمالي الطلب
+                                                </small>
+                                          </div>
+
+                                          <!-- Shipping Conditions -->
+                                          <div class="shipping-conditions mt-3">
+                                                <h6 class="mb-3">شروط الشحن المجاني:</h6>
+                                                
+                                                <!-- Product ID 3 Condition -->
+                                                <div class="condition-item mb-2">
+                                                      <div class="d-flex justify-content-between align-items-center">
+                                                            <span>شراء 3 منتجات من المنتج رقم 3:</span>
+                                                            <span class="badge {% if shipping_conditions.product_3_count >= 3 %}bg-success{% else %}bg-secondary{% endif %}">
+                                                                  {{ shipping_conditions.product_3_count }}/3
+                                                            </span>
+                                                      </div>
+                                                      {% if shipping_conditions.needs_for_free_shipping_3 > 0 %}
+                                                      <small class="text-muted">
+                                                            تحتاج {{ shipping_conditions.needs_for_free_shipping_3 }} منتج{{ 'ات' if shipping_conditions.needs_for_free_shipping_3 > 1 else '' }} أخرى للحصول على شحن مجاني
+                                                      </small>
+                                                      {% endif %}
+                                                </div>
+
+                                                <!-- Total Amount Condition -->
+                                                <div class="condition-item">
+                                                      <div class="d-flex justify-content-between align-items-center">
+                                                            <span>إجمالي الطلب 405 جنيه:</span>
+                                                            <span class="badge {% if shipping_conditions.total >= 405 %}bg-success{% else %}bg-secondary{% endif %}">
+                                                                  {{ "%.2f"|format(shipping_conditions.total) }}/405 L.E
+                                                            </span>
+                                                      </div>
+                                                      {% if shipping_conditions.needs_for_free_shipping_total > 0 %}
+                                                      <small class="text-muted">
+                                                            تحتاج {{ "%.2f"|format(shipping_conditions.needs_for_free_shipping_total) }} جنيه أخرى للحصول على شحن مجاني
+                                                      </small>
+                                                      {% endif %}
+                                                </div>
+                                          </div>
+                                    </div>
 
                                     <!-- زر الدفع الموحد -->
                                     <button id="paymentButton" type="submit" class="btn btn-success w-100 mt-3">
