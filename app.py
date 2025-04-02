@@ -1745,11 +1745,9 @@ def update_order_shipping_price(order_id):
         else:
             shipping_cost.price = new_shipping_price
         
-        # Update order's cod_amount to reflect the new shipping cost
-        # Calculate new total: subtotal + new shipping price
-        order_items = OrderItem.query.filter_by(order_id=order.id).all()
-        subtotal = sum(item.quantity * Product.query.get(item.product_id).price for item in order_items)
-        order.cod_amount = subtotal + new_shipping_price
+        # Update only the shipping cost, don't recalculate the total
+        # This preserves any existing discounts
+        order.shipping_cost = new_shipping_price
         
         db.session.commit()
         
