@@ -1726,6 +1726,62 @@ def ship_order(order_id):
         
     return redirect(url_for('admin.order_detail', order_id=order_id))
 
+@admin.route('/admin/order/<int:order_id>/update-shipping-price', methods=['POST'])
+@admin_required
+def update_order_shipping_price(order_id):
+    try:
+        order = Order.query.get_or_404(order_id)
+        new_shipping_price = float(request.form.get('shipping_price', 0))
+        
+        if new_shipping_price < 0:
+            flash('تكلفة الشحن يجب أن تكون رقم موجب', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+        
+        # Get or create shipping cost for the city
+        shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+        if not shipping_cost:
+            shipping_cost = ShippingCost(city_id=order.city, price=new_shipping_price)
+            db.session.add(shipping_cost)
+        else:
+            shipping_cost.price = new_shipping_price
+        
+        # Update order's cod_amount to reflect the new shipping cost
+        # Calculate new total: subtotal + new shipping price
+        order_items = OrderItem.query.filter_by(order_id=order.id).all()
+        subtotal = sum(item.quantity * Product.query.get(item.product_id).price for item in order_items)
+        order.cod_amount = subtotal + new_shipping_price
+        
+        db.session.commit()
+        
+        flash('تم تحديث تكلفة الشحن بنجاح', 'success')
+        return redirect(url_for('admin.order_detail', order_id=order_id))
+    except Exception as e:
+        db.session.rollback()
+        flash('حدث خطأ أثناء تحديث تكلفة الشحن', 'error')
+        return redirect(url_for('admin.order_detail', order_id=order_id))
+
+@admin.route('/admin/order/<int:order_id>/update-cod-amount', methods=['POST'])
+@admin_required
+def update_order_cod_amount(order_id):
+    try:
+        order = Order.query.get_or_404(order_id)
+        new_cod_amount = float(request.form.get('cod_amount', 0))
+        
+        if new_cod_amount < 0:
+            flash('المبلغ الكلي يجب أن يكون رقم موجب', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+        
+        # Update COD amount
+        order.cod_amount = new_cod_amount
+        db.session.commit()
+        
+        flash('تم تحديث المبلغ الكلي بنجاح', 'success')
+        return redirect(url_for('admin.order_detail', order_id=order_id))
+    except Exception as e:
+        db.session.rollback()
+        flash('حدث خطأ أثناء تحديث المبلغ الكلي', 'error')
+        return redirect(url_for('admin.order_detail', order_id=order_id))
+
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')
 @app.errorhandler(404)

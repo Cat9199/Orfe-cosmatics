@@ -141,7 +141,13 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">تكلفة الشحن:</span>
-                            <span>{{ "%.2f"|format(order_summary.shipping_cost) }} L.E</span>
+                            <div class="flex items-center gap-2">
+                                <span>{{ "%.2f"|format(order_summary.shipping_cost) }} L.E</span>
+                                <button onclick="document.getElementById('shippingPriceModal').classList.remove('hidden')" 
+                                        class="text-rose-600 hover:text-rose-800">
+                                    <i class='bx bx-edit'></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">الخصم:</span>
@@ -153,7 +159,13 @@
                         </div>
                         <div class="flex justify-between text-lg font-bold">
                             <span>المجموع الكلي:</span>
-                            <span>{{ "%.2f"|format(order.cod_amount) }} L.E</span>
+                            <div class="flex items-center gap-2">
+                                <span>{{ "%.2f"|format(order.cod_amount) }} L.E</span>
+                                <button onclick="document.getElementById('codAmountModal').classList.remove('hidden')" 
+                                        class="text-rose-600 hover:text-rose-800">
+                                    <i class='bx bx-edit'></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -262,6 +274,70 @@
                 <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
                     <i class='bx bx-plus mr-2'></i> إضافة
                 </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Shipping Price Update Modal -->
+    <div id="shippingPriceModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl w-full max-w-md">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h2 class="text-xl font-bold">تحديث تكلفة الشحن</h2>
+                <button onclick="document.getElementById('shippingPriceModal').classList.add('hidden')"
+                    class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <form action="{{ url_for('admin.update_order_shipping_price', order_id=order.id) }}" method="POST" class="p-6">
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">تكلفة الشحن الحالية</label>
+                    <div class="text-lg font-bold">{{ "%.2f"|format(order_summary.shipping_cost) }} L.E</div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">تكلفة الشحن الجديدة</label>
+                    <input type="number" step="0.01" name="shipping_price" required
+                        class="w-full p-3 border rounded-lg" value="{{ order_summary.shipping_cost }}">
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="document.getElementById('shippingPriceModal').classList.add('hidden')"
+                        class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                        إلغاء
+                    </button>
+                    <button type="submit"
+                        class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
+                        تحديث
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- COD Amount Update Modal -->
+    <div id="codAmountModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl w-full max-w-md">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h2 class="text-xl font-bold">تحديث المبلغ الكلي</h2>
+                <button onclick="document.getElementById('codAmountModal').classList.add('hidden')"
+                    class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <form action="{{ url_for('admin.update_order_cod_amount', order_id=order.id) }}" method="POST" class="p-6">
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">المبلغ الكلي الحالي</label>
+                    <div class="text-lg font-bold">{{ "%.2f"|format(order.cod_amount) }} L.E</div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">المبلغ الكلي الجديد</label>
+                    <input type="number" step="0.01" name="cod_amount" required
+                        class="w-full p-3 border rounded-lg" value="{{ order.cod_amount }}">
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="document.getElementById('codAmountModal').classList.add('hidden')"
+                        class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                        إلغاء
+                    </button>
+                    <button type="submit"
+                        class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
+                        تحديث
+                    </button>
+                </div>
             </form>
         </div>
     </div>
