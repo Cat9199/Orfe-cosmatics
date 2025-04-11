@@ -27,6 +27,20 @@ app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_KEY_PREFIX'] = 'orfe-shop'
 app.secret_key = 'secret-key'
 
+# Add escapejs filter
+@app.template_filter('escapejs')
+def escapejs(value):
+    if not value:
+        return ''
+    value = str(value)
+    value = value.replace('\\', '\\\\')
+    value = value.replace('\'', '\\\'')
+    value = value.replace('"', '\\"')
+    value = value.replace('\n', '\\n')
+    value = value.replace('\r', '\\r')
+    value = value.replace('\t', '\\t')
+    return value
+
 # save sessiom 365 day 
 app.config['PERMANENT_SESSION_LIFETIME'] = 365 * 24 * 60 * 60
 UPLOAD_FOLDER = 'static/uploads'
@@ -36,6 +50,12 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bosta_service = BostaService()
 
+# Add apply_discount filter
+@app.template_filter('apply_discount')
+def apply_discount(price, discount):
+    if not discount:
+        return price
+    return price * (1 - discount/100)
 
 # products and  Category and Card and Order and OrderItem and adintiol images and adintiol data to prodect amd promo code
 class Admins(db.Model):
@@ -491,6 +511,7 @@ def remove_from_cart(item_id):
     db.session.commit()
     flash('تم حذف المنتج من السلة', 'success')
     return redirect(url_for('shop.cart'))
+from urllib.parse import quote
 
 @shop.route('/checkout')
 def checkout():
@@ -502,33 +523,28 @@ def checkout():
 
     total = sum(item.product.price * item.quantity for item in cart_items)
     cities = City.query.all()
-    discount = 0
-    
-    # Calculate shipping conditions
-    product_3_count = sum(item.quantity for item in cart_items if item.product_id == 3)
-    shipping_conditions = {
-        'product_3_count': product_3_count,
-        'needs_for_free_shipping_3': max(0, 3 - product_3_count),
-        'total': total,
-        'needs_for_free_shipping_total': max(0, 405 - total)
-    }
 
-    # Check for special discount (products 1, 2, and 3)
-    product_ids = [item.product_id for item in cart_items]
-    if all(id in product_ids for id in [1, 2, 3]):
-        discount = total * 0.30  # 30% discount
-        total = total - discount
-        flash('تهاني! حصلت على خصم 30% عند شراء المنتجات المميزة 🎉', 'success')
-    elif total == 860:
-        discount = total * 0.30  # 30% discount
-        total = total - discount
+    # WhatsApp message generation
+     
+    admin_phone = "201030553029"
 
-    return render_template('shop/checkout.html', 
-                         cart_items=cart_items, 
-                         total=total, 
-                         cities=cities, 
-                         discount=discount,
-                         shipping_conditions=shipping_conditions)
+    message_lines = ["السلام عليكم، انا عاوز اشتري:"]
+    for item in cart_items:
+        message_lines.append(f"- {item.product.name} × {item.quantity}")
+    message_lines.append("\nمن موقع أورف، وعاوز ادفع بالمحافظ الإلكترونية.")
+
+    full_message = "\n".join(message_lines)
+    encoded_message = quote(full_message)
+    whatsapp_link = f"https://wa.me/{admin_phone}?text={encoded_message}"
+
+    return render_template(
+        'shop/checkout.html',
+        cart_items=cart_items,
+        total=total,
+        cities=cities,
+        whatsapp_link=whatsapp_link
+    )
+
 
 from uuid import uuid4
 
@@ -695,17 +711,8 @@ def place_order():
                 flash(f'الكمية المتاحة من {product.name} غير كافية', 'danger')
                 return redirect(url_for('shop.cart'))
 
-        # 7. Calculate shipping cost with special conditions
+        # 7. Calculate shipping cost
         shipping_price = shipping_cost.price
-        
-        # Check for free shipping conditions
-        product_3_count = sum(item.quantity for item in cart_items if item.product_id == 3)
-        if product_3_count >= 3:
-            shipping_price = 0
-            flash('تهاني! الشحن مجاني عند شراء 3 منتجات من المنتج رقم 3 🎉', 'success')
-        elif product_total == 405:
-            shipping_price = 0
-            flash('تهاني! الشحن مجاني عند شراء منتجات بقيمة 405 جنيه 🎉', 'success')
 
         # 8. Calculate final total
         total_amount = product_total + shipping_price
@@ -733,7 +740,7 @@ def place_order():
         for cart_item in cart_items:
             product = Product.query.get(cart_item.product_id)
             order_item = OrderItem(
-                order_id=order.id,  # Now we have the order ID
+                order_id=order.id,
                 product_id=cart_item.product_id,
                 quantity=cart_item.quantity
             )
@@ -753,6 +760,17 @@ def place_order():
             return handle_fawaterak_payment(order)
 
         flash('تم إنشاء الطلب بنجاح!', 'success')
+        # if payment method is vodafone cash
+        admin_phone = "201030553029"
+        message_lines = ["السلام عليكم، انا عاوز اشتري:"]
+        for item in cart_items:
+            message_lines.append(f"- {item.product.name} × {item.quantity}")
+        message_lines.append("\nمن موقع أورف، وعاوز ادفع بالمحافظ الإلكترونية.")
+        full_message = "\n".join(message_lines)
+        encoded_message = quote(full_message)
+        whatsapp_link = f"https://wa.me/{admin_phone}?text={encoded_message}"
+        if payment_method == 'vodafone_cash':
+            return redirect(whatsapp_link)
         return redirect(url_for('shop.order_confirmation', order_id=order.id))
 
     except Exception as e:
@@ -846,21 +864,20 @@ def get_cities():
 
 # /api/zones?city_id=
 @shop.route('/api/zones')
-def get_zones():
+def get_zones_api():
     city_id = request.args.get('city_id')
     zones = Zone.query.filter_by(city_id=city_id).all()
     return jsonify(zones=[zone.serialize() for zone in zones])
 
 # /api/districts?city_id=
 @shop.route('/api/districts')
-def get_districts():
+def get_districts_api():
     city_id = request.args.get('city_id')
     districts = District.query.filter_by(city_id=city_id).all()
     return jsonify(districts=[district.serialize() for district in districts])
 
 @shop.route('/api/shipping-cost')
-def get_shipping_cost():    
-
+def get_shipping_cost_api():    
     city_id = request.args.get('city_id')
     shipping_cost = ShippingCost.query.filter_by(city_id=city_id).first()
 
@@ -903,25 +920,41 @@ def change_quantity(action, item_id):
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        is_admin_created = Admins.query.first()
-        if not is_admin_created:
-            new_admin = Admins(
-                name='Admin',
-                email="orfecosmetics@gmail.com",
-                password="Orfe196196",
-            )
-            db.session.add(new_admin)
-            db.session.commit()
-            flash('تم إنشاء حساب المشرف بنجاح!', 'success')
-        email = request.form['username']
-        password = request.form['password']
-        admin = Admins.query.filter_by(email=email, password=password).first()
-        if admin:
-            session['admin'] = admin.id
-            admin.last_login = datetime.utcnow()
-            db.session.commit()
-            return redirect("/admin")
-        flash('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'danger')
+        try:
+            is_admin_created = Admins.query.first()
+            if not is_admin_created:
+                new_admin = Admins(
+                    name='Admin',
+                    email="orfecosmetics@gmail.com",
+                    password="Orfe196196",
+                )
+                db.session.add(new_admin)
+                db.session.commit()
+                flash('تم إنشاء حساب المشرف بنجاح!', 'success')
+                return redirect(url_for('admin.login'))
+            
+            email = request.form.get('username')
+            password = request.form.get('password')
+            
+            if not email or not password:
+                flash('الرجاء إدخال البريد الإلكتروني وكلمة المرور', 'error')
+                return redirect(url_for('admin.login'))
+            
+            admin = Admins.query.filter_by(email=email, password=password).first()
+            if admin:
+                session['admin'] = admin.id
+                admin.last_login = datetime.utcnow()
+                db.session.commit()
+                return redirect(url_for('admin.home'))
+            
+            flash('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error')
+            return redirect(url_for('admin.login'))
+            
+        except Exception as e:
+            app.logger.error(f'Login error: {str(e)}')
+            flash('حدث خطأ أثناء تسجيل الدخول', 'error')
+            return redirect(url_for('admin.login'))
+    
     return render_template('admin/login.html')
 # ...existing code...
 from functools import wraps
@@ -944,53 +977,226 @@ def logout():
 @admin.route('/')
 @admin_required
 def home():
-    products_count = Product.query.count()
-    orders_count = Order.query.count()
-    customers_count = Gusts.query.count()
-    total_revenue = db.session.query(db.func.sum(Order.cod_amount)).scalar() or 0
-    total_shipping_cost = 0
+    try:
+        # Basic counts with error handling
+        try:
+            products_count = Product.query.count()
+            categories_count = Category.query.count()
+            active_products = Product.query.filter(Product.stock > 0).count()
+        except Exception as e:
+            app.logger.error(f'Error counting products: {str(e)}')
+            products_count = 0
+            categories_count = 0
+            active_products = 0
+            
+        try:
+            # Get all orders with their shipping status
+            orders_count = Order.query.count()
+            delivered_orders = Order.query.filter(Order.shipping_status == 'delivered').count()
+            pending_orders = Order.query.filter(Order.shipping_status == 'pending').count()
+            shipped_orders = Order.query.filter(Order.shipping_status == 'shipped').count()
+            returned_orders = Order.query.filter(Order.shipping_status == 'returned').count()
+            
+            # Calculate average order value
+            total_delivered_amount = db.session.query(db.func.sum(Order.cod_amount)).filter(
+                Order.shipping_status == 'delivered'
+            ).scalar() or 0
+            avg_order_value = total_delivered_amount / delivered_orders if delivered_orders > 0 else 0
+        except Exception as e:
+            app.logger.error(f'Error counting orders: {str(e)}')
+            orders_count = 0
+            delivered_orders = 0
+            pending_orders = 0
+            shipped_orders = 0
+            returned_orders = 0
+            avg_order_value = 0
+            
+        try:
+            customers_count = Gusts.query.count()
+            new_customers = Gusts.query.filter(
+                Gusts.created_at >= datetime.now() - timedelta(days=30)
+            ).count()
+            
+            # Calculate repeat customers
+            repeat_customers = db.session.query(Gusts).join(Order).group_by(Gusts.id).having(
+                db.func.count(Order.id) > 1
+            ).count()
+        except Exception as e:
+            app.logger.error(f'Error counting customers: {str(e)}')
+            customers_count = 0
+            new_customers = 0
+            repeat_customers = 0
+        
+        # Calculate total revenue with error handling
+        try:
+            # Get all delivered orders
+            delivered_orders = Order.query.filter(
+                Order.shipping_status == 'delivered',
+                Order.cod_amount.isnot(None)
+            ).all()
+            
+            # Calculate total revenue by subtracting shipping costs
+            total_revenue = 0
+            total_shipping_cost = 0
+            for order in delivered_orders:
+                try:
+                    # Get shipping cost for the order's city
+                    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+                    shipping_price = float(shipping_cost.price) if shipping_cost else 0
+                    total_shipping_cost += shipping_price
+                    
+                    # Ensure cod_amount is a valid number
+                    order_amount = float(order.cod_amount) if order.cod_amount else 0
+                    
+                    # Subtract shipping cost from order total
+                    total_revenue += max(0, order_amount - shipping_price)
+                except (ValueError, TypeError, AttributeError) as e:
+                    app.logger.error(f'Error processing order {order.id}: {str(e)}')
+                    continue
+            
+            # Calculate monthly revenue
+            monthly_revenue = 0
+            current_month = datetime.now().month
+            current_year = datetime.now().year
+            monthly_orders = Order.query.filter(
+                Order.shipping_status == 'delivered',
+                Order.cod_amount.isnot(None),
+                db.extract('month', Order.created_at) == current_month,
+                db.extract('year', Order.created_at) == current_year
+            ).all()
+            
+            for order in monthly_orders:
+                try:
+                    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+                    shipping_price = float(shipping_cost.price) if shipping_cost else 0
+                    order_amount = float(order.cod_amount) if order.cod_amount else 0
+                    monthly_revenue += max(0, order_amount - shipping_price)
+                except (ValueError, TypeError, AttributeError) as e:
+                    app.logger.error(f'Error processing monthly order {order.id}: {str(e)}')
+                    continue
+            
+            # Calculate daily revenue
+            daily_revenue = 0
+            today = datetime.now().date()
+            daily_orders = Order.query.filter(
+                Order.shipping_status == 'delivered',
+                Order.cod_amount.isnot(None),
+                db.func.date(Order.created_at) == today
+            ).all()
+            
+            for order in daily_orders:
+                try:
+                    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+                    shipping_price = float(shipping_cost.price) if shipping_cost else 0
+                    order_amount = float(order.cod_amount) if order.cod_amount else 0
+                    daily_revenue += max(0, order_amount - shipping_price)
+                except (ValueError, TypeError, AttributeError) as e:
+                    app.logger.error(f'Error processing daily order {order.id}: {str(e)}')
+                    continue
+                
+        except Exception as e:
+            app.logger.error(f'Error calculating revenue: {str(e)}')
+            total_revenue = 0
+            monthly_revenue = 0
+            daily_revenue = 0
+            total_shipping_cost = 0
+        
+        # Get recent orders with error handling
+        try:
+            recent_orders = Order.query.order_by(Order.created_at.desc()).limit(10).all()
+        except Exception as e:
+            app.logger.error(f'Error fetching recent orders: {str(e)}')
+            recent_orders = []
+        
+        # Initialize chart data with empty values
+        revenue_chart = {'labels': [], 'data': []}
+        orders_chart = {'labels': [], 'data': []}
+        
+        try:
+            # Generate chart data for the last 6 months
+            current_date = datetime.now()
+            for i in range(6):
+                # Calculate the date for this month
+                month_date = current_date - timedelta(days=30*i)
+                month_name = month_date.strftime('%B')
+                
+                # Revenue data
+                monthly_revenue = db.session.query(db.func.sum(Order.cod_amount)).filter(
+                    Order.shipping_status == 'delivered',
+                    db.extract('month', Order.created_at) == month_date.month,
+                    db.extract('year', Order.created_at) == month_date.year
+                ).scalar() or 0
+                
+                # Orders data
+                monthly_orders = Order.query.filter(
+                    Order.shipping_status == 'delivered',
+                    db.extract('month', Order.created_at) == month_date.month,
+                    db.extract('year', Order.created_at) == month_date.year
+                ).count()
+                
+                revenue_chart['labels'].insert(0, month_name)
+                revenue_chart['data'].insert(0, monthly_revenue)
+                
+                orders_chart['labels'].insert(0, month_name)
+                orders_chart['data'].insert(0, monthly_orders)
+        except Exception as e:
+            app.logger.error(f'Error generating chart data: {str(e)}')
+        
+        # Get top selling products with error handling - Only from delivered orders
+        try:
+            top_products = db.session.query(
+                Product,
+                db.func.sum(OrderItem.quantity).label('total_sold')
+            ).select_from(Product).join(
+                OrderItem, Product.id == OrderItem.product_id
+            ).join(
+                Order, OrderItem.order_id == Order.id
+            ).filter(
+                Order.shipping_status == 'delivered'
+            ).group_by(Product.id).order_by(
+                db.desc('total_sold')
+            ).limit(5).all()
+        except Exception as e:
+            app.logger.error(f'Error fetching top products: {str(e)}')
+            top_products = []
+        
+        # Get shipping status distribution
+        try:
+            shipping_status_distribution = db.session.query(
+                Order.shipping_status,
+                db.func.count(Order.id).label('count')
+            ).group_by(Order.shipping_status).all()
+        except Exception as e:
+            app.logger.error(f'Error fetching shipping status distribution: {str(e)}')
+            shipping_status_distribution = []
 
-    for order in Order.query.all():
-        order_items = OrderItem.query.filter_by(order_id=order.id).all()
-        product_total = sum(item.quantity * Product.query.get(item.product_id).price for item in order_items)
-        shipping_cost = order.cod_amount - product_total
-        total_shipping_cost += max(shipping_cost, 0)  # Ensure shipping cost is not negative
-
-    total_revenue -= total_shipping_cost
-    recent_orders = Order.query.order_by(Order.id.desc()).limit(20).all()
-
-    # Generate chart data
-    # Calculate orders chart data
-    orders_chart = {
-        'labels': [],
-        'data': []
-    }
-    for _ in range(10):
-        date = datetime.strptime("2021-06-01", '%Y-%m-%d')
-        orders_count = Order.query.count()
-        orders_chart['labels'].append(date.strftime('%Y-%m-%d'))
-        orders_chart['data'].append(orders_count)
-
-    # Calculate revenue chart data
-    revenue_chart = {
-        'labels': [],
-        'data': []
-    }
-    for _ in range(6):
-        date = datetime.strptime("2021-06-01", '%Y-%m-%d')
-        revenue = db.session.query(db.func.sum(Order.cod_amount)).filter(Order.created_at >= date).scalar() or 0
-        revenue_chart['labels'].append(date.strftime('%B'))
-        revenue_chart['data'].append(revenue)
-
-    return render_template('admin/index.html',
+        return render_template('admin/index.html',
                             products_count=products_count,
+                            categories_count=categories_count,
+                            active_products=active_products,
                             orders_count=orders_count,
+                            delivered_orders=delivered_orders,
+                            pending_orders=pending_orders,
+                            shipped_orders=shipped_orders,
+                            returned_orders=returned_orders,
                             customers_count=customers_count,
+                            new_customers=new_customers,
+                            repeat_customers=repeat_customers,
                             total_revenue=total_revenue,
+                            monthly_revenue=monthly_revenue,
+                            daily_revenue=daily_revenue,
                             total_shipping_cost=total_shipping_cost,
+                            avg_order_value=avg_order_value,
                             recent_orders=recent_orders,
+                            revenue_chart=revenue_chart,
                             orders_chart=orders_chart,
-                            revenue_chart=revenue_chart)
+                            top_products=top_products,
+                            shipping_status_distribution=shipping_status_distribution)
+                            
+    except Exception as e:
+        app.logger.error(f'Error in admin dashboard: {str(e)}')
+        flash('حدث خطأ أثناء تحميل لوحة التحكم', 'error')
+        return redirect(url_for('admin.login'))
 
 @admin.route('/add_product', methods=['POST'])
 @admin_required
@@ -1780,6 +1986,279 @@ def update_order_cod_amount(order_id):
         flash('حدث خطأ أثناء تحديث المبلغ الكلي', 'error')
         return redirect(url_for('admin.order_detail', order_id=order_id))
 
+@admin.route('/order/<int:order_id>/update-status', methods=['POST'])
+@admin_required
+def update_order_status(order_id):
+    try:
+        order = Order.query.get_or_404(order_id)
+        status = request.form.get('status')
+        
+        if not status:
+            flash('حالة الطلب مطلوبة', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+            
+        valid_statuses = ['pending', 'completed', 'cancelled']
+        if status not in valid_statuses:
+            flash('حالة الطلب غير صالحة', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+            
+        order.status = status
+        db.session.commit()
+        
+        flash('تم تحديث حالة الطلب بنجاح!', 'success')
+        
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f'Error updating order status: {str(e)}')
+        flash('حدث خطأ أثناء تحديث حالة الطلب', 'error')
+        
+    return redirect(url_for('admin.order_detail', order_id=order_id))
+
+@admin.route('/test-db')
+def test_db():
+    try:
+        # Test basic database connectivity
+        db.session.execute('SELECT 1')
+        
+        # Test if required tables exist
+        tables = {
+            'Admins': Admins.query.first(),
+            'Product': Product.query.first(),
+            'Order': Order.query.first(),
+            'Category': Category.query.first(),
+            'City': City.query.first(),
+            'ShippingCost': ShippingCost.query.first()
+        }
+        
+        results = {
+            'database_connection': 'success',
+            'tables': {table: 'exists' if result else 'missing' for table, result in tables.items()}
+        }
+        
+        return jsonify(results)
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'database_connection': 'failed'
+        }), 500
+
+@shop.route('/get_zones/<string:city_id>')
+def get_zones(city_id):
+    try:
+        zones = Zone.query.filter_by(city_id=city_id).all()
+        return jsonify(zones=[zone.serialize() for zone in zones])
+    except Exception as e:
+        app.logger.error(f"Error fetching zones: {str(e)}")
+        return jsonify({'error': 'Failed to fetch zones'}), 500
+
+
+@shop.route('/get_districts/<string:city_id>')
+def get_districts(city_id):
+    try:
+        # First find the city by its city_id string
+        city = City.query.filter_by(city_id=city_id).first()
+        if not city:
+            app.logger.error(f"City not found with city_id: {city_id}")
+            return jsonify({'error': 'City not found'}), 404
+            
+        # Then get districts for this city
+        districts = District.query.filter_by(city_id=city.id).all()
+        app.logger.info(f"Found {len(districts)} districts for city_id: {city_id}")
+        
+        # Debug the districts data
+        for district in districts:
+            app.logger.info(f"District: id={district.id}, name={district.name}, city_id={district.city_id}")
+            
+        # Return districts in the format expected by the frontend
+        return jsonify({
+            'districts': [{'id': district.id, 'name': district.name} for district in districts]
+        })
+    except Exception as e:
+        app.logger.error(f"Error fetching districts: {str(e)}")
+        return jsonify({'error': 'Failed to fetch districts'}), 500
+    
+            
+
+
+@shop.route('/get_shipping_cost/<string:city_id>')
+def get_shipping_cost(city_id):
+    try:
+        # First find the city by its city_id string
+        city = City.query.filter_by(city_id=city_id).first()
+        if not city:
+            return jsonify({'error': 'City not found'}), 404
+            
+        # Then get shipping cost for this city using the correct city_id
+        shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first()
+        if shipping_cost:
+            return jsonify({'shipping_cost': shipping_cost.price})
+        else:
+            # Return default shipping cost if not found
+            return jsonify({'shipping_cost': 80})
+    except Exception as e:
+        app.logger.error(f"Error fetching shipping cost: {str(e)}")
+        return jsonify({'error': 'Failed to fetch shipping cost'}), 500
+
+@shop.route('/debug/cities')
+def debug_cities():
+    try:
+        cities = City.query.all()
+        return jsonify({
+            'cities': [{'id': city.id, 'city_id': city.city_id, 'name': city.name} for city in cities]
+        })
+    except Exception as e:
+        app.logger.error(f"Error fetching cities: {str(e)}")
+        return jsonify({'error': 'Failed to fetch cities'}), 500
+
+
+@admin.route('/export_income_stats', methods=['GET'])
+@admin_required
+def export_income_stats():
+    try:
+        # Get date range from request
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
+        
+        # Base query for orders
+        query = Order.query.filter(
+            or_(
+                Order.shipping_status == 'delivered',
+                Order.shipping_status == 'returned'
+            )
+        )
+        
+        # Apply date filter if provided
+        if start_date and end_date:
+            try:
+                # Convert dates to datetime objects
+                start = datetime.strptime(start_date, '%Y-%m-%d')
+                end = datetime.strptime(end_date, '%Y-%m-%d')
+                # Add one day to end date to include the full day
+                end = end + timedelta(days=1)
+                query = query.filter(Order.created_at.between(start, end))
+            except ValueError as e:
+                app.logger.error(f'Error parsing dates: {str(e)}')
+                flash('خطأ في تنسيق التواريخ', 'error')
+                return redirect(url_for('admin.home'))
+        
+        # Get all orders
+        orders = query.all()
+        
+        data = []
+        total_cash_collection = 0
+        total_shipping_cost = 0
+        total_manufacturing_cost = 0
+        total_net = 0
+        delivered_count = 0
+        returned_count = 0
+        
+        for order in orders:
+            # Get shipping cost for the order
+            shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+            shipping_price = shipping_cost.price if shipping_cost else 0
+            
+            # Calculate manufacturing cost (20 per order)
+            manufacturing_cost = 20
+            
+            # Calculate net amount based on order status
+            if order.shipping_status == 'delivered':
+                cash_collection = float(order.cod_amount) if order.cod_amount else 0
+                net_amount = cash_collection - shipping_price - manufacturing_cost
+                delivered_count += 1
+            else:  # returned
+                cash_collection = 0
+                net_amount = -shipping_price - manufacturing_cost  # Subtract both shipping and manufacturing costs
+                returned_count += 1
+            
+            # Add to totals
+            total_cash_collection += cash_collection
+            total_shipping_cost += shipping_price
+            total_manufacturing_cost += manufacturing_cost
+            total_net += net_amount
+            
+            # Prepare order data
+            order_data = {
+                'اسم العميل': order.name,
+                'تليفون (محمول فقط)': order.phone,
+                'قيمة التحصيل النقدي': cash_collection,
+                'قيمه الشحن': shipping_price,
+                'تكلفة التصنيع': manufacturing_cost,
+                'صافي': net_amount,
+                'الحالة': 'تم التوصيل' if order.shipping_status == 'delivered' else 'مرتجع',
+                'التاريخ': order.created_at.strftime('%Y-%m-%d %H:%M')
+            }
+            data.append(order_data)
+        
+        # Add summary row
+        summary = {
+            'اسم العميل': '',
+            'تليفون (محمول فقط)': '',
+            'قيمة التحصيل النقدي': '',
+            'قيمه الشحن': '',
+            'تكلفة التصنيع': '',
+            'صافي': '',
+            'الحالة': '',
+            'التاريخ': ''
+        }
+        data.append(summary)
+        
+        # Add statistics row
+        stats = {
+            'اسم العميل': f'عدد الطلبات الموصلة: {delivered_count}',
+            'تليفون (محمول فقط)': f'عدد الطلبات المرتجعة: {returned_count}',
+            'قيمة التحصيل النقدي': f'اجمالي المستحق: {total_cash_collection}',
+            'قيمه الشحن': f'اجمالي مصاريف الشحن: {total_shipping_cost}',
+            'تكلفة التصنيع': f'اجمالي تكلفة التصنيع: {total_manufacturing_cost}',
+            'صافي': f'صافي المستحق: {total_net}',
+            'الحالة': '',
+            'التاريخ': ''
+        }
+        data.append(stats)
+        
+        # Create DataFrame
+        df = pd.DataFrame(data)
+        
+        # Create the file in memory
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            # Write to Excel with formatting
+            df.to_excel(writer, index=False, sheet_name='إحصائيات الدخل')
+            
+            # Get the worksheet
+            worksheet = writer.sheets['إحصائيات الدخل']
+            
+            # Set column widths
+            for idx, col in enumerate(df.columns):
+                max_length = max(
+                    df[col].astype(str).apply(len).max(),
+                    len(str(col))
+                )
+                worksheet.column_dimensions[chr(65 + idx)].width = max_length + 2
+            
+            # Format the last two rows (summary and stats)
+            for row in range(len(df) - 1, len(df) + 1):
+                for col in range(1, len(df.columns) + 1):
+                    cell = worksheet.cell(row=row, column=col)
+                    cell.font = cell.font.copy(bold=True)
+                    if row == len(df):  # Stats row
+                        cell.fill = cell.fill.copy(fill_type='solid', fgColor='F2F2F2')
+        
+        output.seek(0)
+        
+        # Send the file as a response
+        return send_file(
+            output,
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            as_attachment=True,
+            download_name='إحصائيات الدخل.xlsx'
+        )
+        
+    except Exception as e:
+        app.logger.error(f'Error exporting income statistics: {str(e)}')
+        flash('حدث خطأ أثناء تصدير إحصائيات الدخل', 'error')
+        return redirect(url_for('admin.home'))
+
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')
 @app.errorhandler(404)
@@ -1795,4 +2274,3 @@ if __name__ == '__main__':
         db.create_all()
 
     app.run(debug=True,host='0.0.0.0',port=8765)
-

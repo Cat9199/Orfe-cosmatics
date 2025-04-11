@@ -76,10 +76,14 @@
                   background-color: #4338ca;
             }
 
-            .login-box .error {
+            .flash-message {
                   color: #ef4444;
                   text-align: center;
                   margin-bottom: 1rem;
+                  padding: 0.75rem;
+                  border-radius: 5px;
+                  background-color: #fee2e2;
+                  border: 1px solid #fecaca;
             }
       </style>
 </head>
@@ -88,11 +92,15 @@
       <div class="login-container">
             <div class="login-box">
                   <h2>تسجيل الدخول</h2>
-                  {% if error %}
-                  <div class="error">{{ error }}</div>
-                  {% endif %}
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                              {% for category, message in messages %}
+                                    <div class="flash-message">{{ message }}</div>
+                              {% endfor %}
+                        {% endif %}
+                  {% endwith %}
                   <form method="POST" action="/admin/login">
-                        <input type="text" name="username" placeholder="اسم المستخدم" required />
+                        <input type="text" name="username" placeholder="البريد الإلكتروني" required />
                         <input type="password" name="password" placeholder="كلمة المرور" required />
                         <button type="submit">تسجيل الدخول</button>
                   </form>

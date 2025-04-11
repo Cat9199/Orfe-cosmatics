@@ -32,9 +32,7 @@
                                                 <input type="text" class="form-control" id="name" name="name" required>
                                           </div>
                                           <div class="col-md-6 mb-3">
-                                                <label for="email" class="form-label">Email Address
-                                                      (optional)
-                                                </label>
+                                                <label for="email" class="form-label">Email Address (optional)</label>
                                                 <input type="email" class="form-control" id="email" name="email">
                                           </div>
                                           <div class="col-md-6 mb-3">
@@ -43,18 +41,8 @@
                                           </div>
                                           <div class="col-md-6 mb-3">
                                                 <label for="address" class="form-label">Shipping Address</label>
-                                                <textarea class="form-control" id="address" name="address" rows="2"
-                                                      required></textarea>
+                                                <textarea class="form-control" id="address" name="address" rows="2" required></textarea>
                                           </div>
-                                          {% if total == 7255 %}
-                                          <div class="mb-3" style="display: none;">
-                                                <label for="promo_code" class="form-label">Promo Code</label>
-                                                <input type="text" class="form-control" id="promo_code"
-                                                      name="promo_code" placeholder="Enter promo code" value="000">
-                                                <small class="form-text text-muted">Enter "loly20" for a 20%
-                                                      discount.</small>
-                                          </div>
-                                          {% endif %}
 
                                           <div class="col-md-4 mb-3">
                                                 <label for="city" class="form-label">المدينة</label>
@@ -71,14 +59,12 @@
                                                       <option value="">اختر المنطقة</option>
                                                 </select>
                                           </div>
-                                          <div class="col-md-4 mb-3">
+                                          <div class="col-md-4 mb-3" style="display: none;">
                                                 <label for="district" class="form-label">الحي</label>
-                                                <select class="form-select" id="district" name="district_id" required
-                                                      disabled>
-                                                      <option value="">اختر الحي</option>
+                                                <select class="form-select" id="district" name="district_id" disabled>
+                                                      <option value="testtest">اختر الحي</option>
                                                 </select>
                                           </div>
-
                                     </div>
                                     <input type="hidden" name="total" value="{{ total }}">
 
@@ -102,19 +88,21 @@
                                           <!-- فودافون كاش + واتساب -->
                                           <div class="col-md-4 mb-3">
                                                 <div class="card shadow-sm p-3 text-center">
-                                                      <img src="https://app.fawaterk.com/clients/payment_options/pay5png"
+                                                      <img src="https://app.fawaterk.com/clients/payment_options/pay5png" 
                                                             alt="Vodafone Cash" class="img-fluid mb-2" width="100">
                                                       <div class="form-check">
                                                             <input class="form-check-input" type="radio"
                                                                   name="payment_method" id="vodafone_cash"
                                                                   value="vodafone_cash" required>
-                                                            <label class="form-check-label fw-bold"
-                                                                  for="vodafone_cash">فودافون كاش + واتساب</label>
+                                                            <label class="form-check-label fw-bold" for="vodafone_cash">
+                                                                فودافون كاش + واتساب
+                                                            </label>
                                                       </div>
                                                 </div>
                                           </div>
+                                          
 
-                                          <!-- الدفع بالفيزا (قريبًا) -->
+                                          <!-- الدفع بالفيزا -->
                                           <div class="col-md-4 mb-3">
                                                 <div class="card shadow-sm p-3 text-center">
                                                       <img src="https://app.fawaterk.com/clients/payment_options/Visa_mastercardpng"
@@ -127,52 +115,7 @@
                                                       </div>
                                                 </div>
                                           </div>
-
-                                          <!-- فوري -->
-                                          <div class="col-md-4 mb-3">
-                                                <div class="card shadow-sm p-3 text-center">
-                                                      <img src="https://app.fawaterk.com/clients/payment_options/fawrypng"
-                                                            alt="Fawry" class="img-fluid mb-2" width="100">
-                                                      <div class="form-check">
-                                                            <input class="form-check-input" type="radio"
-                                                                  name="payment_method" id="fawry" value="visa"
-                                                                  required>
-                                                            <label class="form-check-label fw-bold"
-                                                                  for="fawry">فوري</label>
-                                                      </div>
-                                                </div>
-                                          </div>
-
-                                          <!-- أمان -->
-                                          <div class="col-md-4 mb-3">
-                                                <div class="card shadow-sm p-3 text-center">
-                                                      <img src="https://app.fawaterk.com/clients/payment_options/Amanpng"
-                                                            alt="Aman" class="img-fluid mb-2" width="100">
-                                                      <div class="form-check">
-                                                            <input class="form-check-input" type="radio"
-                                                                  name="payment_method" id="aman" value="visa" required>
-                                                            <label class="form-check-label fw-bold"
-                                                                  for="aman">أمان</label>
-                                                      </div>
-                                                </div>
-                                          </div>
-
-                                          <!-- بساطة -->
-                                          <div class="col-md-4 mb-3">
-                                                <div class="card shadow-sm p-3 text-center">
-                                                      <img src="https://app.fawaterk.com/clients/payment_options/basata.png"
-                                                            alt="Basata" class="img-fluid mb-2" width="100">
-                                                      <div class="form-check">
-                                                            <input class="form-check-input" type="radio"
-                                                                  name="payment_method" id="basata" value="visa"
-                                                                  required>
-                                                            <label class="form-check-label fw-bold"
-                                                                  for="basata">بساطة</label>
-                                                      </div>
-                                                </div>
-                                          </div>
                                     </div>
-
                               </div>
                         </div>
 
@@ -187,8 +130,7 @@
                                                       <h6 class="mb-0">{{ item.product.name }}</h6>
                                                       <small class="text-muted">Qty: {{ item.quantity }}</small>
                                                 </div>
-                                                <span class="text-dark">{{ "%.2f"|format(item.product.price *
-                                                      item.quantity) }} L.E</span>
+                                                <span class="text-dark">{{ "%.2f"|format(item.product.price * item.quantity) }} L.E</span>
                                           </div>
                                           {% endfor %}
                                     </div>
@@ -196,14 +138,8 @@
                                           <tbody>
                                                 <tr class="subtotal">
                                                       <th>Subtotal</th>
-                                                      <td class="text-end" id="subtotalValue">{{ "%.2f"|format(total + discount) }} L.E</td>
+                                                      <td class="text-end" id="subtotalValue">{{ "%.2f"|format(total) }} L.E</td>
                                                 </tr>
-                                                {% if discount > 0 %}
-                                                <tr class="discount">
-                                                      <th>Discount (30%)</th>
-                                                      <td class="text-end text-success" id="discountLine">-{{ "%.2f"|format(discount) }} L.E</td>
-                                                </tr>
-                                                {% endif %}
                                                 <tr class="shipping">
                                                       <th>Shipping</th>
                                                       <td class="text-end text-muted" id="shippingCost">Calculated at checkout</td>
@@ -215,69 +151,7 @@
                                           </tbody>
                                     </table>
 
-                                    <!-- Special Discount Offer -->
-                                    <div class="special-offer mt-4 p-3 bg-light rounded">
-                                          <h6 class="mb-3">العروض الخاصة:</h6>
-                                          
-                                          <!-- Products 1, 2, 3 Discount -->
-                                          <div class="offer-item mb-2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                      <span>خصم 30% عند شراء المنتجات المميزة:</span>
-                                                      <span class="badge {% if discount > 0 %}bg-success{% else %}bg-secondary{% endif %}">
-                                                            {% if discount > 0 %}
-                                                            تم تطبيق الخصم
-                                                            {% else %}
-                                                            غير مطبق
-                                                            {% endif %}
-                                                      </span>
-                                                </div>
-                                                <small class="text-muted">
-                                                      اشترِ المنتجات المميزة (1، 2، 3) واحصل على خصم 30% على إجمالي الطلب
-                                                </small>
-                                          </div>
-
-                                          <!-- Shipping Conditions -->
-                                          <div class="shipping-conditions mt-3">
-                                                <h6 class="mb-3">شروط الشحن المجاني:</h6>
-                                                
-                                                <!-- Product ID 3 Condition -->
-                                                <div class="condition-item mb-2">
-                                                      <div class="d-flex justify-content-between align-items-center">
-                                                            <span>شراء 3 منتجات من المنتج رقم 3:</span>
-                                                            <span class="badge {% if shipping_conditions.product_3_count >= 3 %}bg-success{% else %}bg-secondary{% endif %}">
-                                                                  {{ shipping_conditions.product_3_count }}/3
-                                                            </span>
-                                                      </div>
-                                                      {% if shipping_conditions.needs_for_free_shipping_3 > 0 %}
-                                                      <small class="text-muted">
-                                                            تحتاج {{ shipping_conditions.needs_for_free_shipping_3 }} منتج{{ 'ات' if shipping_conditions.needs_for_free_shipping_3 > 1 else '' }} أخرى للحصول على شحن مجاني
-                                                      </small>
-                                                      {% endif %}
-                                                </div>
-
-                                                <!-- Total Amount Condition -->
-                                                <div class="condition-item">
-                                                      <div class="d-flex justify-content-between align-items-center">
-                                                            <span>إجمالي الطلب 405 جنيه:</span>
-                                                            <span class="badge {% if shipping_conditions.total >= 405 %}bg-success{% else %}bg-secondary{% endif %}">
-                                                                  {{ "%.2f"|format(shipping_conditions.total) }}/405 L.E
-                                                            </span>
-                                                      </div>
-                                                      {% if shipping_conditions.needs_for_free_shipping_total > 0 %}
-                                                      <small class="text-muted">
-                                                            تحتاج {{ "%.2f"|format(shipping_conditions.needs_for_free_shipping_total) }} جنيه أخرى للحصول على شحن مجاني
-                                                      </small>
-                                                      {% endif %}
-                                                </div>
-                                          </div>
-                                    </div>
-
-                                    <!-- زر الدفع الموحد -->
-                                    <button id="paymentButton" type="submit" class="btn btn-success w-100 mt-3">
-                                          تأكيد الطلب والدفع
-                                    </button>
-                                    <a href="{{ url_for('shop.cart') }}" class="btn btn-outline-dark w-100 mt-2">Return
-                                          to Cart</a>
+                                    <button type="submit" class="btn btn-primary w-100 mt-3">Place Order</button>
                               </div>
                         </div>
                   </div>
@@ -286,134 +160,120 @@
 </section>
 
 <script>
-      // Function to update subtotal, discount, and total
-      function updateTotals() {
-            const originalSubtotal = parseFloat("{{ total }}");
-            let discountAmount = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    const citySelect = document.getElementById('city');
+    const zoneSelect = document.getElementById('zone');
+    const districtSelect = document.getElementById('district');
+    const shippingCostElement = document.getElementById('shippingCost');
+    const totalValueElement = document.getElementById('totalValue');
+    const subtotalValue = parseFloat(document.getElementById('subtotalValue').textContent);
 
-            const promoInput = document.getElementById('promo_code');
-            if (promoInput && promoInput.value.trim().toLowerCase() === 'loly20') {
-                  discountAmount = originalSubtotal * 0.20;
-            }
-
-            const discountedSubtotal = originalSubtotal - discountAmount;
-            document.getElementById('subtotalValue').textContent = discountedSubtotal.toFixed(2) + ' L.E';
-
-            // Update discount row if present
-            const discountLine = document.getElementById('discountLine');
-            if (discountLine) {
-                  discountLine.textContent = '-' + discountAmount.toFixed(2) + ' L.E';
-            }
-
-            // Retrieve shipping cost if already set (otherwise assume 0)
-            const shippingCostElement = document.getElementById('shippingCost');
-            let shippingCost = 0;
-            if (shippingCostElement && shippingCostElement.textContent !== 'Calculated at checkout') {
-                  // Extract numeric value; assuming shippingCostElement.textContent is like "50 L.E"
-                  shippingCost = parseFloat(shippingCostElement.textContent);
-            }
-
-            // New total = discounted subtotal + shipping cost
-            const newTotal = discountedSubtotal + shippingCost;
-            document.getElementById('totalValue').textContent = newTotal.toFixed(2) + ' L.E';
-      }
-
-      // Listen for changes on the promo code field (if it exists)
-      const promoField = document.getElementById('promo_code');
-      if (promoField) {
-            promoField.addEventListener('input', updateTotals);
-      }
-
-      // Update shipping cost when city is changed and then update totals accordingly
-      document.getElementById('city').addEventListener('change', async function () {
-            const cityId = this.value;
-            const zoneSelect = document.getElementById('zone');
-            zoneSelect.disabled = false;
-
-            // Fetch zones
-            const responseZones = await fetch(`/api/zones?city_id=${cityId}`);
-            const dataZones = await responseZones.json();
-            const zones = dataZones.zones;
-            zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
-            zones.forEach(zone => {
-                  const option = document.createElement('option');
-                  option.value = zone.name;
-                  option.textContent = zone.name;
-                  zoneSelect.appendChild(option);
+    // Function to update shipping cost and total
+    function updateShippingCost(cityId) {
+        fetch(`/get_shipping_cost/${cityId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                const shippingCost = data.shipping_cost;
+                shippingCostElement.textContent = `${shippingCost} L.E`;
+                const total = subtotalValue + shippingCost;
+                totalValueElement.textContent = `${total.toFixed(2)} L.E`;
+            })
+            .catch(error => {
+                console.error('Error fetching shipping cost:', error);
+                shippingCostElement.textContent = 'Error calculating shipping';
             });
-            document.getElementById('zone').addEventListener('change', async function () {
-                  const cityId = document.getElementById('city').value;
-                  const districtSelect = document.getElementById('district');
-                  districtSelect.disabled = false;
-                  const response = await fetch(`/api/districts?city_id=${cityId}`);
-                  const data = await response.json();
-                  const districts = data.districts;
-                  districtSelect.innerHTML = '<option value="">اختر الحي</option>';
-                  districts.forEach(district => {
+    }
+
+    // Handle city selection
+    citySelect.addEventListener('change', function() {
+        const cityId = this.value;
+        
+        // Reset and disable zone and district selects
+        zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
+        districtSelect.innerHTML = '<option value="testtest">اختر الحي</option>';
+        zoneSelect.disabled = true;
+        districtSelect.disabled = true;
+
+        if (cityId) {
+            // Fetch zones for selected city
+            fetch(`/get_zones/${cityId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    zoneSelect.innerHTML = '<option value="">اختر المنطقة</option>';
+                    data.zones.forEach(zone => {
                         const option = document.createElement('option');
-                        option.value = district.name;
-                        option.textContent = district.name;
-                        districtSelect.appendChild(option);
-                  });
-            });
+                        option.value = zone.id;
+                        option.textContent = zone.name;
+                        zoneSelect.appendChild(option);
+                    });
+                    zoneSelect.disabled = false;
 
+                    // Fetch districts for the city
+                    fetch(`/get_districts/${cityId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                throw new Error(data.error);
+                            }
+                            districtSelect.innerHTML = '<option value="">اختر الحي</option>';
+                            data.districts.forEach(district => {
+                                const option = document.createElement('option');
+                                option.value = district.id;
+                                option.textContent = district.name;
+                                districtSelect.appendChild(option);
+                            });
+                            districtSelect.disabled = false;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching districts:', error);
+                            districtSelect.innerHTML = '<option value="">Error loading districts</option>';
+                        });
+                })
+                .catch(error => {
+                    console.error('Error fetching zones:', error);
+                    zoneSelect.innerHTML = '<option value="">Error loading zones</option>';
+                });
 
-            // Fetch shipping cost
-            const responseShipping = await fetch(`/api/shipping-cost?city_id=${cityId}`);
-            const dataShipping = await responseShipping.json();
-            const shippingCost = dataShipping.cost;
+            // Update shipping cost
+            updateShippingCost(cityId);
+        }
+    });
 
-            // Update shipping cost element
-            const shippingCostElement = document.getElementById('shippingCost');
-            if (shippingCostElement) {
-                  shippingCostElement.textContent = shippingCost + ' L.E';
-            }
+    // Remove zone selection handler since we're fetching districts with city_id
+    zoneSelect.addEventListener('change', function() {
+        // No need to fetch districts here anymore
+    });
 
-            // Update totals now that shipping is known
-            updateTotals();
-      });
+    // Handle Vodafone Cash payment
+    const vodafoneCashRadio = document.getElementById('vodafone_cash');
+    const checkoutForm = document.getElementById('checkoutForm');
 
-      // Existing validation logic for enabling/disabling the payment button remains unchanged
-      const form = document.getElementById('checkoutForm');
-      const inputs = form.querySelectorAll('input, select, textarea');
-      const paymentButton = document.getElementById('paymentButton');
-      paymentButton.disabled = true;
+    vodafoneCashRadio.addEventListener('change', function() {
+        if (this.checked) {
+            // Submit the form first
+            checkoutForm.submit();
+            
+            // After form submission, redirect to WhatsApp
+            setTimeout(function() {
+                window.location.href = '{{ whatsapp_link }}';
+            }, 1000); // Small delay to ensure form submission completes
+        }
+    });
 
-      inputs.forEach(input => {
-            input.addEventListener('input', function () {
-                  let valid = true;
-                  inputs.forEach(input => {
-                        if (input.type !== 'email' && !input.value) {
-                              valid = false;
-                        }
-                        // promo code is optional
-                        if (input.id === 'promo_code' && input.value.trim().toLowerCase() !== 'loly20') {
-                              valid = false;
-                        }
-
-                  });
-                  paymentButton.disabled = !valid;
-            });
-      });
-
-      // Existing payment method handler remains unchanged
-      function handlePaymentButtonClick(event) {
-            const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
-            if (selectedMethod === "vodafone_cash") {
-                  event.preventDefault();
-                  const orderDetails = "تفاصيل الطلب:\n" +
-                        "الاسم: " + document.getElementById("name").value + "\n" +
-                        "المجموع: " + document.getElementById('totalValue').textContent + "\n" +
-                        "يرجى تحويل المبلغ إلى رقم فودافون كاش.";
-                  const whatsappUrl = "https://wa.me/201030553029?text=" + encodeURIComponent(orderDetails);
-                  window.open(whatsappUrl, "_blank");
-                  setTimeout(() => {
-                        document.getElementById("checkoutForm").submit();
-                  }, 1000);
-            }
-      }
+    // Prevent default form submission for Vodafone Cash
+    checkoutForm.addEventListener('submit', function(e) {
+        if (vodafoneCashRadio.checked) {
+            e.preventDefault();
+            // The form will be submitted by the change event handler above
+        }
+    });
+});
 </script>
-
-
 
 {% endblock %}

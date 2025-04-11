@@ -240,6 +240,23 @@
                     <i class='bx bx-truck text-xl'></i>
                     <span>الشحن</span>
                 </a>
+                <div class="nav-link p-3">
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <i class='bx bx-line-chart text-xl'></i>
+                            <span>تصدير إحصائيات الدخل</span>
+                        </div>
+                        <div class="flex flex-col gap-2 mt-2">
+                            <input type="date" id="startDate" class="w-full p-2 border rounded-lg text-sm">
+                            <input type="date" id="endDate" class="w-full p-2 border rounded-lg text-sm">
+                            <button onclick="exportIncomeStats()" 
+                                class="w-full bg-rose-600 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-rose-700 transition-colors">
+                                <i class='bx bx-download text-xl'></i>
+                                <span>تصدير</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="border-t border-gray-100 pt-4">
                 <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
@@ -476,6 +493,29 @@
                     setTimeout(() => message.remove(), 300);
                 }, 5000);
             });
+        });
+
+        // Export Income Stats Function
+        function exportIncomeStats() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            if (!startDate || !endDate) {
+                alert('الرجاء تحديد تاريخ البداية والنهاية');
+                return;
+            }
+            
+            window.location.href = `/admin/export_income_stats?start_date=${startDate}&end_date=${endDate}`;
+        }
+
+        // Set default dates (last 30 days)
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(today.getDate() - 30);
+            
+            document.getElementById('endDate').value = today.toISOString().split('T')[0];
+            document.getElementById('startDate').value = thirtyDaysAgo.toISOString().split('T')[0];
         });
     </script>
 </body>
