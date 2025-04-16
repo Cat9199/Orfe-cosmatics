@@ -14,6 +14,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 import pandas as pd
 from io import BytesIO
+from honeybadger.contrib import FlaskHoneybadger
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
@@ -26,6 +27,10 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_KEY_PREFIX'] = 'orfe-shop'
 app.secret_key = 'secret-key'
+app.config['HONEYBADGER_ENVIRONMENT'] = 'production'
+app.config['HONEYBADGER_API_KEY'] = 'hbp_RTCJm56cyjX93lX5YzLlbPjw9IEkOu05xd4F'
+app.config['HONEYBADGER_PARAMS_FILTERS'] = 'password, secret, credit-card'
+FlaskHoneybadger(app, report_exceptions=True)
 
 # Add escapejs filter
 @app.template_filter('escapejs')
@@ -303,7 +308,9 @@ def check_session():
         if 'session' not in session:
             session['session'] = os.urandom(24).hex()
             session['cart_count'] = 0
-
+@app.route('/test-honeybadger')
+def test_honeybadger():
+    return f"{1/0}"
 @app.before_request
 def before_request():
     check_session()
@@ -659,6 +666,74 @@ def handle_fawaterak_payment(order):
         flash('فشل في الاتصال بخدمة الدفع، الرجاء المحاولة مرة أخرى', 'danger')
         return redirect(url_for('shop.checkout'))
     
+def send_discord_notification(order, order_items):
+    """Send order notification to Discord webhook"""
+    try:
+        webhook_url = "https://discord.com/api/webhooks/1360629735406964903/eIUmFwXpnR_YwW4rjBjFH8380KrAGLSZFd5OxelQV27HImsjrJFv0Nn5lGyJNhsMyk8o"
+        
+        # Get shipping cost
+        shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+        shipping_price = shipping_cost.price if shipping_cost else 0
+        
+        # Calculate total amount
+        total_amount = 0
+        items_details = []
+        for item in order_items:
+            product = Product.query.get(item.product_id)
+            if product:
+                item_total = product.price * item.quantity
+                total_amount += item_total
+                items_details.append(f"- {product.name} × {item.quantity} = {item_total} ج.م")
+        
+        total_amount += shipping_price
+        
+        # Create the message content
+        message = {
+            "embeds": [{
+                "title": "طلب جديد 🛍️",
+                "color": 0x00ff00,
+                "fields": [
+                    {
+                        "name": "معلومات العميل",
+                        "value": f"الاسم: {order.name}\nالهاتف: {order.phone}\nالعنوان: {order.address}",
+                        "inline": False
+                    },
+                    {
+                        "name": "تفاصيل الطلب",
+                        "value": "\n".join(items_details),
+                        "inline": False
+                    },
+                    {
+                        "name": "المبلغ الإجمالي",
+                        "value": f"قيمة المنتجات: {total_amount - shipping_price} ج.م\nقيمة الشحن: {shipping_price} ج.م\nالإجمالي: {total_amount} ج.م",
+                        "inline": False
+                    },
+                    {
+                        "name": "طريقة الدفع",
+                        "value": "الدفع عند الاستلام" if order.payment_method == 'cash_on_delivery' else "فودافون كاش" if order.payment_method == 'vodafone_cash' else "الدفع بالفيزا",
+                        "inline": True
+                    }
+                ],
+                "timestamp": datetime.utcnow().isoformat(),
+                "footer": {
+                    "text": f"رقم الطلب: {order.id}"
+                }
+            }]
+        }
+        
+        # Send the request to Discord
+        response = requests.post(
+            webhook_url,
+            json=message,
+            headers={'Content-Type': 'application/json'}
+        )
+        
+        if response.status_code != 204:
+            app.logger.error(f"Failed to send Discord notification: {response.text}")
+            
+    except Exception as e:
+        app.logger.error(f"Error sending Discord notification: {str(e)}")
+
 @shop.route('/checkout/place_order', methods=['POST'])
 def place_order():
     try:
@@ -737,6 +812,7 @@ def place_order():
         db.session.commit()
 
         # 11. Create order items and update stock
+        order_items = []
         for cart_item in cart_items:
             product = Product.query.get(cart_item.product_id)
             order_item = OrderItem(
@@ -744,6 +820,7 @@ def place_order():
                 product_id=cart_item.product_id,
                 quantity=cart_item.quantity
             )
+            order_items.append(order_item)
             db.session.add(order_item)
             
             # Update product stock
@@ -755,7 +832,10 @@ def place_order():
         # 12. Commit all changes
         db.session.commit()
 
-        # 13. Handle payment method
+        # 13. Send Discord notification
+        send_discord_notification(order, order_items)
+
+        # 14. Handle payment method
         if payment_method == 'visa':
             return handle_fawaterak_payment(order)
 
