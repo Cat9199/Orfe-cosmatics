@@ -176,10 +176,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.error) {
                     throw new Error(data.error);
                 }
-                const shippingCost = data.shipping_cost;
-                shippingCostElement.textContent = `${shippingCost} L.E`;
-                const total = subtotalValue + shippingCost;
-                totalValueElement.textContent = `${total.toFixed(2)} L.E`;
+                
+                // Check if discount was applied
+                if (data.discount_applied) {
+                    // Show standard cost as crossed out and free shipping message
+                    const standardCost = data.standard_cost;
+                    const discountMessage = data.discount_message || "Free Shipping";
+                    
+                    shippingCostElement.innerHTML = `
+                        <span class="text-decoration-line-through text-muted">${standardCost} L.E</span>
+                        <span class="ms-2 text-success">0 L.E</span>
+                        <div class="mt-1 text-success small"><i class="bi bi-gift me-1"></i>${discountMessage}</div>
+                    `;
+                    
+                    // Update total with free shipping
+                    totalValueElement.textContent = `${subtotalValue.toFixed(2)} L.E`;
+                } else {
+                    // Regular shipping cost
+                    const shippingCost = data.shipping_cost;
+                    shippingCostElement.textContent = `${shippingCost} L.E`;
+                    const total = subtotalValue + shippingCost;
+                    totalValueElement.textContent = `${total.toFixed(2)} L.E`;
+                }
             })
             .catch(error => {
                 console.error('Error fetching shipping cost:', error);

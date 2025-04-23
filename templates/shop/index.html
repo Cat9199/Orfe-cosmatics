@@ -5,17 +5,26 @@
   .hero-banner {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 0.6s ease, filter 0.3s ease;
+  }
+
+  .hero-banner:hover .hero-image {
+    transform: scale(1.1);
+    filter: brightness(0.9);
   }
 
   .hero-overlay {
@@ -24,33 +33,91 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* Dark overlay for better text readability */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    z-index: 1;
   }
 
   .hero-content {
     position: absolute;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 700px;
+    padding: 30px;
     text-align: center;
+    color: #fff;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
   }
 
-  @media (min-width: 992px) {
-    .hero-content {
-      text-align: left;
-      /* Align left on larger screens */
-      padding-left: 50px;
-    }
+  .hero-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
   .btn-light {
     background-color: #fff;
     color: #333;
     font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
   }
 
   .btn-light:hover {
-    background-color: #f8f9fa;
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 992px) {
+    .hero-content {
+      text-align: left;
+      padding-left: 60px;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+    }
+  }
+
+  .reviews-section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+  }
+
+  .review-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px;
+    text-align: center;
+  }
+
+  .review-card h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .review-card p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .review-card .rating {
+    color: #f39c12;
+    font-size: 1.2rem;
   }
 </style>
 
@@ -58,25 +125,22 @@
   <div class="swiper main-swiper">
     <div class="swiper-wrapper">
       {% set banners = [
-      {'image': 'static/images/banner-image3.jpg', 'title': 'Orfe Advanced Blends For Hair Spray',
-      'description': "Achieve fuller, healthier hair with Orfe’s Hair Volume Spray. Designed to boost hair density and
-      restore
-      vitality for a fresh, voluminous look."},
-      {'image': 'static/images/banner-image2.jpg', 'title': 'Orfe Advanced Blends For Hair Oil',
-      'description': "Enhance shine and thickness with Orfe’s Nourishing Hair Oil. Infused with natural ingredients to
-      promote
-      hair growth and fill in thinning areas."}
+      {'image': 'https://e.top4top.io/p_3399y42yj1.jpg', 'title': 'Orfe Advanced Blends For Hair Spray',
+      'description': "Achieve fuller, healthier hair with Orfe’s Hair Volume Spray. Designed to boost hair density and restore vitality for a fresh, voluminous look."},
+      {'image': 'https://f.top4top.io/p_3399frbky2.jpg', 'title': 'Orfe Advanced Blends For Hair Oil',
+      'description': "Enhance shine and thickness with Orfe’s Nourishing Hair Oil. Infused with natural ingredients to promote hair growth and fill in thinning areas."},
+      {'image': 'https://f.top4top.io/p_3396mbqvn1.jpg', 'title': 'Orfe Lashes and Ayebrow Serum',
+      'description': "Transform your lashes and brows with Orfe’s Growth Serum. Formulated to enhance length and volume for a stunning, natural look."}
       ] %}
-
 
       {% for banner in banners %}
       <div class="swiper-slide">
-        <div class="hero-banner position-relative d-flex align-items-center justify-content-center">
+        <div class="hero-banner">
           <img src="{{ banner.image }}" alt="{{ banner.title }}" class="hero-image" loading="lazy">
           <div class="hero-overlay"></div>
-          <div class="hero-content text-center text-lg-start">
-            <h2 class="display-4 text-capitalize text-white fw-bold">{{ banner.title }}</h2>
-            <p class="text-white">{{ banner.description }}</p>
+          <div class="hero-content">
+            <h2 class="display-4 text-capitalize fw-bold">{{ banner.title }}</h2>
+            <p>{{ banner.description }}</p>
             <a href="/shop" class="btn btn-light rounded-pill px-4 py-2 mt-3">
               Shop Now
             </a>
@@ -85,7 +149,6 @@
       </div>
       {% endfor %}
     </div>
-    <!-- Swiper Navigation -->
     <div class="swiper-pagination"></div>
   </div>
 </section>
@@ -95,40 +158,94 @@
     new Swiper('.main-swiper', {
       loop: true,
       autoplay: {
-        delay: 5000, // Change slide every 5 seconds
+        delay: 4000,
         disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
-      effect: 'fade', // Smooth fade transition
-      speed: 800, // Faster transition speed
+      effect: 'fade',
+      speed: 700,
     });
   });
 </script>
 
-<!-- About Us Section -->
-<section id="about-us" class="padding-large pt-0">
-  <div class="container-fluid">
-    <div class="row align-items-center justify-content-center g-5">
-      <div class="col-md-6">
-        <div class="text-center">
-          <h2 class="display-2 text-capitalize text-dark pb-2">About Us</h2>
-          <p class="pb-3">
-            At Orfe, we believe in high-quality skincare made with natural ingredients. Our mission is to provide
-            products that nourish and enhance your skin while maintaining ethical and sustainable practices.
-          </p>
-
-        </div>
+<section id="about-us" class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6 text-center">
+        <h2 class="display-4 text-dark pb-3">About Us</h2>
+        <p class="lead">
+          At Orfe, we believe in high-quality skincare made with natural ingredients. Our mission is to provide
+          products that nourish and enhance your skin while maintaining ethical and sustainable practices.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Featured Products Section -->
 
 
 {% include "shop/components/product_section.html" with context %}
+{% set reviews = [
+  {'rating': 5, 'comment': "Hello, I just wanted to give a review. The applicator is perfect and the product itself isn't oily and doesn't grease my hair at all. Also, no smell at all which is just amazing. I only used it for 4 days but so far it's perfect really."},
+  {'rating': 5, 'comment': "شكرا بجد ع ال جميل Packing والأسباراي ده الأسباراي بجد حلو جدا وضعي علي القشرة في وقت قليل والزيت قمر طلعلي بيبي هير بعد شهر استخدام وبالبيبي هير بدا يطول كمان ميرسي بجد ع الشحن السريع والتعامل الزوق جدا والمنتجات التحفة دي"},
+  {'rating': 5, 'comment': "المنتج جميل جدا ومتقافله بعد فترة النتيجة هتكون مرضيه بجد شكرا على المنتج له حق نديم يتكلم في الاستوري بجد يكلم ربنا يبارككم ويرزقكم يا رب"},
+  {'rating': 5, 'comment': "مساء الخير أولاً أحب أن أقول رأيي في المنتجات بتاعتكوا الصراحة المنتجات تحفه ف شعري جداااااااااااااااااااا"},
+  {'rating': 5, 'comment': "Hey there, I have been using this product for a week now and I must say, it’s absolutely non-greasy and has no smell, which is rare and awesome. My hair feels lighter and healthier already! Really happy with it."},
+  {'rating': 5, 'comment': "صباح الخير، الحمد لله على هذه المنتجات الممتازة اللي عملت فرق كبير معايا. تعبت من القشرة لسنين وده المنتج الأول اللي خلاني أحس بإني قربت من الحل النهائي. مرسي ليكم جداً جداً."},
+  {'rating': 5, 'comment': "بصراحة مش قادر أوصف كمية السعادة اللي حسيتها لما شفت النتيجة. الشعر بقى أكثر كثافة والنعومة زادت بشكل واضح. المنتج يستاهل كل فلوس إنك تشتريه بلا منازع."}
+] %}
 
+<section id="customer-reviews" class="reviews-section mt-5">
+  <div class="container">
+    <h2 class="text-center mb-5 display-4 text-dark">What Our Customers Say</h2>
+    <div class="swiper reviews-swiper" style="margin-bottom: 50px;">
+      <div class="swiper-wrapper">
+        {% for review in reviews %}
+        <div class="swiper-slide">
+          <div class="review-card p-4">
+            <p class="rating mb-2">
+              {{ "★" * review.rating }}{{ "☆" * (5 - review.rating) }}
+            </p>
+            <p class="text-muted fst-italic">"{{ review.comment }}"</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.reviews-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      slidesPerView: 1,
+      spaceBetween: 30,
+      breakpoints: {
+        576: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1200: {
+          slidesPerView: 3,
+        },
+      },
+      speed: 800,
+    });
+  });
+</script>
 {% endblock %}

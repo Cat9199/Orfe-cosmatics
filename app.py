@@ -62,6 +62,38 @@ def apply_discount(price, discount):
         return price
     return price * (1 - discount/100)
 
+# Check for shipping discount eligibility
+def check_shipping_discount(cart_items):
+    """
+    Check if the cart is eligible for free shipping based on specific product combination:
+    - Only applies when products with IDs 1, 2, and 3 are all in the cart
+    
+    Returns a dictionary with discount info
+    """
+    # Initialize product presence flags
+    has_product_1 = False
+    has_product_2 = False
+    has_product_3 = False
+    
+    # Check each cart item
+    for item in cart_items:
+        product_id = item.product_id if hasattr(item, 'product_id') else item.product.id 
+        
+        if product_id == 1:
+            has_product_1 = True
+        elif product_id == 2:
+            has_product_2 = True
+        elif product_id == 3:
+            has_product_3 = True
+    
+    # Determine discount eligibility - only applies when all three products are present
+    discount_eligible = has_product_1 and has_product_2 and has_product_3
+    
+    return {
+        "eligible": discount_eligible,
+        "discount_type": "combo_1_2_3" if discount_eligible else None
+    }
+
 # products and  Category and Card and Order and OrderItem and adintiol images and adintiol data to prodect amd promo code
 class Admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -361,8 +393,22 @@ def list():
     if category:
       query = query.filter(Product.category_id == category)
     if price:
-      min_price, max_price = map(float, price.split('-'))
-      query = query.filter(Product.price.between(min_price, max_price))
+      try:
+          if '+' in price:
+              # Handle "200+" style price ranges
+              min_price = float(price.replace('+', ''))
+              query = query.filter(Product.price >= min_price)
+          elif '-' in price:
+              # Handle regular price ranges like "100-200"
+              min_price, max_price = map(float, price.split('-'))
+              query = query.filter(Product.price.between(min_price, max_price))
+          else:
+              # Handle single price value
+              exact_price = float(price)
+              query = query.filter(Product.price == exact_price)
+      except ValueError:
+          # Silently handle invalid price formats
+          app.logger.warning(f"Invalid price filter format: {price}")
 
     # Apply sorting
     if sort == 'name-asc':
@@ -786,13 +832,22 @@ def place_order():
                 flash(f'الكمية المتاحة من {product.name} غير كافية', 'danger')
                 return redirect(url_for('shop.cart'))
 
-        # 7. Calculate shipping cost
-        shipping_price = shipping_cost.price
+        # 7. Check for shipping discount eligibility
+        discount_info = check_shipping_discount(cart_items)
+        
+        # 8. Calculate shipping cost (with discount if applicable)
+        if discount_info['eligible']:
+            # Free shipping if discount is eligible
+            shipping_price = 0
+            app.logger.info(f"Free shipping applied for order - discount type: {discount_info['discount_type']}")
+        else:
+            # Regular shipping cost
+            shipping_price = shipping_cost.price
 
-        # 8. Calculate final total
+        # 9. Calculate final total
         total_amount = product_total + shipping_price
 
-        # 9. Create order
+        # 10. Create order
         order = Order(
             user_id=user.id,
             name=request.form['name'],
@@ -802,16 +857,16 @@ def place_order():
             city=request.form['city'],
             zone_id=request.form['zone_id'],
             district_id=request.form['district_id'],
-            cod_amount=total_amount,
+            cod_amount=total_amount,  # This now reflects the correct amount with any shipping discount
             payment_method=payment_method,
             status='pending'
         )
 
-        # 10. Add order to session and commit to get the order ID
+        # 11. Add order to session and commit to get the order ID
         db.session.add(order)
         db.session.commit()
 
-        # 11. Create order items and update stock
+        # 12. Create order items and update stock
         order_items = []
         for cart_item in cart_items:
             product = Product.query.get(cart_item.product_id)
@@ -829,13 +884,13 @@ def place_order():
             # Delete cart item
             db.session.delete(cart_item)
 
-        # 12. Commit all changes
+        # 13. Commit all changes
         db.session.commit()
 
-        # 13. Send Discord notification
+        # 14. Send Discord notification
         send_discord_notification(order, order_items)
 
-        # 14. Handle payment method
+        # 15. Handle payment method
         if payment_method == 'visa':
             return handle_fawaterak_payment(order)
 
@@ -876,20 +931,37 @@ def order_confirmation():
 # order_detail
 @shop.route('/order_detail')
 def order_detail():
-    # get gusts session
-    user = Gusts.query.filter_by(session=session['session']).first()
-    # get order by user id
-    order = Order.query.filter_by(user_id=user.id).order_by(Order.id.desc()).first()
-    # get order items by order id
-    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
-    order_items = OrderItem.query.filter_by(order_id=order.id).all()
-    for item in order_items:
-        product = Product.query.get(item.product_id)
-        item.product = product
-    productsPrice = 0 
-    for item in order_items:
-        productsPrice += item.product.price * item.quantity
-    return render_template('shop/order_detail.html', order=order, order_items=order_items , shipping_cost=shipping_cost ,productsPrice=productsPrice)
+    try:
+        # get gusts session
+        user = Gusts.query.filter_by(session=session['session']).first()
+        
+        # get order by user id
+        order = Order.query.filter_by(user_id=user.id).order_by(Order.id.desc()).first()
+        
+        # Check if order exists
+        if not order:
+            flash('لا يوجد طلبات سابقة', 'warning')
+            return redirect(url_for('shop.cart'))
+        
+        # get order items by order id
+        shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
+        order_items = OrderItem.query.filter_by(order_id=order.id).all()
+        
+        for item in order_items:
+            product = Product.query.get(item.product_id)
+            item.product = product
+            
+        productsPrice = 0 
+        for item in order_items:
+            productsPrice += item.product.price * item.quantity
+            
+        return render_template('shop/order_detail.html', order=order, order_items=order_items, shipping_cost=shipping_cost, productsPrice=productsPrice)
+    
+    except Exception as e:
+        app.logger.error(f"Error in order_detail: {str(e)}")
+        flash('حدث خطأ أثناء عرض تفاصيل الطلب', 'danger')
+        return redirect(url_for('shop.cart'))
+
 @shop.route('/payment/success/<int:order_id>')
 def payment_success(order_id):
     order = Order.query.get_or_404(order_id)
@@ -2168,14 +2240,40 @@ def get_shipping_cost(city_id):
         city = City.query.filter_by(city_id=city_id).first()
         if not city:
             return jsonify({'error': 'City not found'}), 404
-            
-        # Then get shipping cost for this city using the correct city_id
+        
+        # Get cart items to check for discounts
+        user = Gusts.query.filter_by(session=session['session']).first()
+        cart_items = Cart.query.filter_by(user_id=user.id).all()
+        
+        # Check if the order qualifies for free shipping
+        discount_info = check_shipping_discount(cart_items)
+        
+        # Get standard shipping cost
         shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first()
-        if shipping_cost:
-            return jsonify({'shipping_cost': shipping_cost.price})
-        else:
+        if not shipping_cost:
             # Return default shipping cost if not found
-            return jsonify({'shipping_cost': 80})
+            standard_cost = 80
+        else:
+            standard_cost = shipping_cost.price
+        
+        # Apply discount if eligible
+        if (discount_info['eligible']):
+            # Free shipping
+            final_cost = 0
+            discount_message = ""
+            if discount_info['discount_type'] == "combo_1_2_3":
+                discount_message = "Free shipping - Special offer for products #1, #2, and #3"
+        else:
+            final_cost = standard_cost
+            discount_message = None
+        
+        return jsonify({
+            'shipping_cost': final_cost,
+            'standard_cost': standard_cost,
+            'discount_applied': discount_info['eligible'],
+            'discount_message': discount_message
+        })
+        
     except Exception as e:
         app.logger.error(f"Error fetching shipping cost: {str(e)}")
         return jsonify({'error': 'Failed to fetch shipping cost'}), 500
@@ -2209,7 +2307,7 @@ def export_income_stats():
         )
         
         # Apply date filter if provided
-        if start_date and end_date:
+        if (start_date and end_date):
             try:
                 # Convert dates to datetime objects
                 start = datetime.strptime(start_date, '%Y-%m-%d')
@@ -2338,6 +2436,35 @@ def export_income_stats():
         app.logger.error(f'Error exporting income statistics: {str(e)}')
         flash('حدث خطأ أثناء تصدير إحصائيات الدخل', 'error')
         return redirect(url_for('admin.home'))
+
+@admin.route('/order/<int:order_id>/update-payment-method', methods=['POST'])
+@admin_required
+def update_payment_method(order_id):
+    try:
+        order = Order.query.get_or_404(order_id)
+        payment_method = request.form.get('payment_method')
+        
+        if not payment_method:
+            flash('طريقة الدفع مطلوبة', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+            
+        valid_payment_methods = ['cash_on_delivery', 'vodafone_cash', 'visa']
+        if payment_method not in valid_payment_methods:
+            flash('طريقة الدفع غير صالحة', 'error')
+            return redirect(url_for('admin.order_detail', order_id=order_id))
+            
+        # Update payment method
+        order.payment_method = payment_method
+        db.session.commit()
+        
+        flash('تم تحديث طريقة الدفع بنجاح!', 'success')
+        
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f'Error updating payment method: {str(e)}')
+        flash('حدث خطأ أثناء تحديث طريقة الدفع', 'error')
+        
+    return redirect(url_for('admin.order_detail', order_id=order_id))
 
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')

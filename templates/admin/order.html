@@ -1,13 +1,10 @@
-{% extends "admin/base.html" %}
-
-{% block content %}
+{% extends "admin/base.html" %} {% block content %}
 <div class="container mx-auto px-4 py-6">
     <!-- Header Section -->
     <div class="flex justify-between items-center mb-6">
         <div class="flex items-center gap-4">
             <h1 class="text-2xl font-bold text-rose-900">
-                <i class='bx bx-receipt mr-2'></i>
-                تفاصيل الطلب #{{ order.id }}
+                <i class='bx bx-receipt mr-2'></i> تفاصيل الطلب #{{ order.id }}
             </h1>
             <div class="flex gap-2">
                 <span class="px-3 py-1 rounded-full text-sm font-medium
@@ -30,8 +27,7 @@
                 طباعة الطلب
             </button>
             <a href="{{ url_for('admin.orders') }}" class="text-rose-600 hover:text-rose-800 flex items-center gap-2">
-                <i class='bx bx-arrow-back'></i>
-                العودة للطلبات
+                <i class='bx bx-arrow-back'></i> العودة للطلبات
             </a>
         </div>
     </div>
@@ -40,8 +36,7 @@
     <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
         <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">
-                <i class='bx bx-cog mr-2'></i>
-                إجراءات الطلب
+                <i class='bx bx-cog mr-2'></i> إجراءات الطلب
             </h2>
             <div class="flex gap-3">
                 <form action="{{ url_for('admin.update_shipping_status', order_id=order.id) }}" method="POST" class="flex gap-2">
@@ -55,8 +50,7 @@
                         <i class='bx bx-refresh mr-2'></i> تحديث الحالة
                     </button>
                 </form>
-                <form action="{{ url_for('admin.delete_order', order_id=order.id) }}" method="POST" 
-                      onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
+                <form action="{{ url_for('admin.delete_order', order_id=order.id) }}" method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
                     <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
                         <i class='bx bx-trash mr-2'></i> حذف الطلب
                     </button>
@@ -124,7 +118,12 @@
                     <div class="space-y-3">
                         <div class="flex justify-between">
                             <span class="text-gray-600">طريقة الدفع:</span>
-                            <span>{{ order_summary.payment_method }}</span>
+                            <div class="flex items-center gap-2">
+                                <span>{{ order_summary.payment_method }}</span>
+                                <button onclick="document.getElementById('paymentMethodModal').classList.remove('hidden')" class="text-rose-600 hover:text-rose-800">
+                                    <i class='bx bx-edit'></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">رقم التتبع:</span>
@@ -152,8 +151,7 @@
                             <span class="text-gray-600">تكلفة الشحن:</span>
                             <div class="flex items-center gap-2">
                                 <span>{{ "%.2f"|format(order_summary.shipping_cost) }} L.E</span>
-                                <button onclick="document.getElementById('shippingPriceModal').classList.remove('hidden')" 
-                                        class="text-rose-600 hover:text-rose-800">
+                                <button onclick="document.getElementById('shippingPriceModal').classList.remove('hidden')" class="text-rose-600 hover:text-rose-800">
                                     <i class='bx bx-edit'></i>
                                 </button>
                             </div>
@@ -170,8 +168,7 @@
                             <span>المجموع الكلي:</span>
                             <div class="flex items-center gap-2">
                                 <span>{{ "%.2f"|format(order.cod_amount) }} L.E</span>
-                                <button onclick="document.getElementById('codAmountModal').classList.remove('hidden')" 
-                                        class="text-rose-600 hover:text-rose-800">
+                                <button onclick="document.getElementById('codAmountModal').classList.remove('hidden')" class="text-rose-600 hover:text-rose-800">
                                     <i class='bx bx-edit'></i>
                                 </button>
                             </div>
@@ -212,8 +209,7 @@
                         <tr class="text-sm hover:bg-gray-50">
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
-                                    <img src="/{{ item.product.image }}" 
-                                         class="w-12 h-12 object-cover rounded-lg border">
+                                    <img src="/{{ item.product.image }}" class="w-12 h-12 object-cover rounded-lg border">
                                     <div>
                                         <div class="font-medium">{{ item.product.name }}</div>
                                         <div class="text-gray-500 text-sm">#{{ item.product.id }}</div>
@@ -227,8 +223,7 @@
                                 {{ "%.2f"|format(item.item_total) }} L.E
                             </td>
                             <td class="px-4 py-3 text-center">
-                                <form action="{{ url_for('admin.delete_item_from_order', order_id=order.id, item_id=item.order_item.id) }}"
-                                      method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا المنتج؟');">
+                                <form action="{{ url_for('admin.delete_item_from_order', order_id=order.id, item_id=item.order_item.id) }}" method="POST" onsubmit="return confirm('هل أنت متأكد من حذف هذا المنتج؟');">
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
                                         <i class='bx bx-trash'></i>
                                     </button>
@@ -278,8 +273,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <input type="number" name="quantity" class="border px-3 py-2 rounded-lg w-24 text-center" 
-                       placeholder="الكمية" min="1" required>
+                <input type="number" name="quantity" class="border px-3 py-2 rounded-lg w-24 text-center" placeholder="الكمية" min="1" required>
                 <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
                     <i class='bx bx-plus mr-2'></i> إضافة
                 </button>
@@ -292,8 +286,7 @@
         <div class="bg-white rounded-xl w-full max-w-md">
             <div class="flex justify-between items-center p-6 border-b">
                 <h2 class="text-xl font-bold">تحديث تكلفة الشحن</h2>
-                <button onclick="document.getElementById('shippingPriceModal').classList.add('hidden')"
-                    class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+                <button onclick="document.getElementById('shippingPriceModal').classList.add('hidden')" class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
             </div>
             <form action="{{ url_for('admin.update_order_shipping_price', order_id=order.id) }}" method="POST" class="p-6">
                 <div class="mb-4">
@@ -302,16 +295,13 @@
                 </div>
                 <div class="mb-4">
                     <label class="block mb-2 font-medium">تكلفة الشحن الجديدة</label>
-                    <input type="number" step="0.01" name="shipping_price" required
-                        class="w-full p-3 border rounded-lg" value="{{ order_summary.shipping_cost }}">
+                    <input type="number" step="0.01" name="shipping_price" required class="w-full p-3 border rounded-lg" value="{{ order_summary.shipping_cost }}">
                 </div>
                 <div class="flex justify-end gap-3">
-                    <button type="button" onclick="document.getElementById('shippingPriceModal').classList.add('hidden')"
-                        class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                    <button type="button" onclick="document.getElementById('shippingPriceModal').classList.add('hidden')" class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
                         إلغاء
                     </button>
-                    <button type="submit"
-                        class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
+                    <button type="submit" class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
                         تحديث
                     </button>
                 </div>
@@ -324,8 +314,7 @@
         <div class="bg-white rounded-xl w-full max-w-md">
             <div class="flex justify-between items-center p-6 border-b">
                 <h2 class="text-xl font-bold">تحديث المبلغ الكلي</h2>
-                <button onclick="document.getElementById('codAmountModal').classList.add('hidden')"
-                    class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+                <button onclick="document.getElementById('codAmountModal').classList.add('hidden')" class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
             </div>
             <form action="{{ url_for('admin.update_order_cod_amount', order_id=order.id) }}" method="POST" class="p-6">
                 <div class="mb-4">
@@ -334,16 +323,45 @@
                 </div>
                 <div class="mb-4">
                     <label class="block mb-2 font-medium">المبلغ الكلي الجديد</label>
-                    <input type="number" step="0.01" name="cod_amount" required
-                        class="w-full p-3 border rounded-lg" value="{{ order.cod_amount }}">
+                    <input type="number" step="0.01" name="cod_amount" required class="w-full p-3 border rounded-lg" value="{{ order.cod_amount }}">
                 </div>
                 <div class="flex justify-end gap-3">
-                    <button type="button" onclick="document.getElementById('codAmountModal').classList.add('hidden')"
-                        class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                    <button type="button" onclick="document.getElementById('codAmountModal').classList.add('hidden')" class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
                         إلغاء
                     </button>
-                    <button type="submit"
-                        class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
+                    <button type="submit" class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
+                        تحديث
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Method Update Modal -->
+    <div id="paymentMethodModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl w-full max-w-md">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h2 class="text-xl font-bold">تحديث طريقة الدفع</h2>
+                <button onclick="document.getElementById('paymentMethodModal').classList.add('hidden')" class="text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <form action="{{ url_for('admin.update_payment_method', order_id=order.id) }}" method="POST" class="p-6">
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">طريقة الدفع الحالية</label>
+                    <div class="text-lg font-bold">{{ order_summary.payment_method }}</div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">طريقة الدفع الجديدة</label>
+                    <select name="payment_method" class="w-full p-3 border rounded-lg" required>
+                        <option value="cash_on_delivery" {% if order.payment_method == 'cash_on_delivery' %}selected{% endif %}>الدفع عند الاستلام</option>
+                        <option value="vodafone_cash" {% if order.payment_method == 'vodafone_cash' %}selected{% endif %}>فودافون كاش</option>
+                        <option value="visa" {% if order.payment_method == 'visa' %}selected{% endif %}>الدفع بالفيزا</option>
+                    </select>
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="document.getElementById('paymentMethodModal').classList.add('hidden')" class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">
                         تحديث
                     </button>
                 </div>
@@ -353,52 +371,52 @@
 </div>
 
 <style>
-@media print {
-    .no-print {
-        display: none;
+    @media print {
+        .no-print {
+            display: none;
+        }
+        .container {
+            padding: 0;
+        }
+        .bg-white {
+            background: white !important;
+            box-shadow: none !important;
+        }
+        .rounded-xl {
+            border-radius: 0 !important;
+        }
     }
-    .container {
-        padding: 0;
-    }
-    .bg-white {
-        background: white !important;
-        box-shadow: none !important;
-    }
-    .rounded-xl {
-        border-radius: 0 !important;
-    }
-}
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Add validation for quantity input
-    const quantityInput = document.querySelector('input[name="quantity"]');
-    const productSelect = document.querySelector('select[name="product_id"]');
-    
-    if (quantityInput && productSelect) {
-        quantityInput.addEventListener('change', function() {
-            const selectedOption = productSelect.options[productSelect.selectedIndex];
-            if (selectedOption.value) {
-                const maxStock = parseInt(selectedOption.dataset.stock) || 0;
-                if (this.value > maxStock) {
-                    alert('الكمية المطلوبة غير متوفرة في المخزون');
-                    this.value = maxStock;
-                }
-            }
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add validation for quantity input
+        const quantityInput = document.querySelector('input[name="quantity"]');
+        const productSelect = document.querySelector('select[name="product_id"]');
 
-        productSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            if (selectedOption.value) {
-                const maxStock = parseInt(selectedOption.dataset.stock) || 0;
-                quantityInput.max = maxStock;
-                if (parseInt(quantityInput.value) > maxStock) {
-                    quantityInput.value = maxStock;
+        if (quantityInput && productSelect) {
+            quantityInput.addEventListener('change', function() {
+                const selectedOption = productSelect.options[productSelect.selectedIndex];
+                if (selectedOption.value) {
+                    const maxStock = parseInt(selectedOption.dataset.stock) || 0;
+                    if (this.value > maxStock) {
+                        alert('الكمية المطلوبة غير متوفرة في المخزون');
+                        this.value = maxStock;
+                    }
                 }
-            }
-        });
-    }
-});
+            });
+
+            productSelect.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                if (selectedOption.value) {
+                    const maxStock = parseInt(selectedOption.dataset.stock) || 0;
+                    quantityInput.max = maxStock;
+                    if (parseInt(quantityInput.value) > maxStock) {
+                        quantityInput.value = maxStock;
+                    }
+                }
+            });
+        }
+    });
 </script>
 {% endblock %}
