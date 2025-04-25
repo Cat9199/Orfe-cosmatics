@@ -419,14 +419,15 @@ def list():
       query = query.order_by(Product.price.asc())
     elif sort == 'price-desc':
       query = query.order_by(Product.price.desc())
-    elif sort == 'rating-asc':
-      query = query.order_by(Product.rating.asc())
-    elif sort == 'rating-desc':
-      query = query.order_by(Product.rating.desc())
-    elif sort == 'model-asc':
-      query = query.order_by(Product.model.asc())
-    elif sort == 'model-desc':
-      query = query.order_by(Product.model.desc())
+    elif sort == 'rating-asc' or sort == 'rating-desc':
+      # Handle rating sort by falling back to default sort for now (newest products)
+      # This prevents errors when rating is requested but the field doesn't exist
+      app.logger.warning(f"Rating sort requested but not implemented. Falling back to default sort.")
+      query = query.order_by(Product.created_at.desc())
+    elif sort == 'model-asc' or sort == 'model-desc':
+      # Handle model sort by falling back to default sort
+      app.logger.warning(f"Model sort requested but not implemented. Falling back to default sort.")
+      query = query.order_by(Product.created_at.desc())
     else:
       query = query.order_by(Product.created_at.desc())
 
