@@ -14,7 +14,14 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 import pandas as pd
 from io import BytesIO
-from honeybadger.contrib import FlaskHoneybadger
+
+# Import Honeybadger conditionally to handle compatibility issues
+try:
+    from honeybadger.contrib import FlaskHoneybadger
+    has_honeybadger = True
+except (ImportError, AttributeError) as e:
+    print(f"Warning: Honeybadger import failed: {e}")
+    has_honeybadger = False
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///orfe-shop.sqlite3'
@@ -27,11 +34,20 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_KEY_PREFIX'] = 'orfe-shop'
 app.secret_key = 'secret-key'
-app.config['HONEYBADGER_ENVIRONMENT'] = 'production'
-app.config['HONEYBADGER_API_KEY'] = 'hbp_RTCJm56cyjX93lX5YzLlbPjw9IEkOu05xd4F'
-app.config['HONEYBADGER_PARAMS_FILTERS'] = 'password, secret, credit-card'
-FlaskHoneybadger(app, report_exceptions=True)
 
+# Configure Honeybadger only if successfully imported
+if has_honeybadger:
+    app.config['HONEYBADGER_ENVIRONMENT'] = 'production'
+    app.config['HONEYBADGER_API_KEY'] = 'hbp_RTCJm56cyjX93lX5YzLlbPjw9IEkOu05xd4F'
+    app.config['HONEYBADGER_PARAMS_FILTERS'] = 'password, secret, credit-card'
+    try:
+        from honeybadger.contrib import FlaskHoneybadger
+        FlaskHoneybadger(app, report_exceptions=True)
+        print("Honeybadger initialized successfully")
+    except Exception as e:
+        print(f"Warning: Could not initialize Honeybadger: {e}")
+        # Continue without error reporting
+        
 # Add escapejs filter
 @app.template_filter('escapejs')
 def escapejs(value):
@@ -1712,8 +1728,74 @@ def update_shipping_cost():
 @admin_required
 def orders():
     try:
-        # Get all orders with their details
-        orders = Order.query.order_by(Order.id.desc()).all()
+        # Get page parameter from the request, default to 1 if not provided
+        page = request.args.get('page', 1, type=int)
+        per_page = 50  # Show 50 orders per page
+        
+        # Get filter parameters from request
+        search = request.args.get('search', '')
+        status_filter = request.args.get('status', '')
+        payment_filter = request.args.get('payment', '')
+        shipping_filter = request.args.get('shipping', '')
+        start_date = request.args.get('start_date', '')
+        end_date = request.args.get('end_date', '')
+        
+        # Create a base query for orders with descending order by ID
+        base_query = Order.query.order_by(Order.id.desc())
+        
+        # Apply filters to the base query
+        if search:
+            search_term = f"%{search}%"
+            base_query = base_query.filter(
+                or_(
+                    Order.name.ilike(search_term),
+                    Order.phone.ilike(search_term),
+                    Order.id.in_([int(search) if search.isdigit() else 0])
+                )
+            )
+        
+        if status_filter:
+            base_query = base_query.filter(Order.status == status_filter)
+            
+        if payment_filter:
+            base_query = base_query.filter(Order.payment_method == payment_filter)
+            
+        if shipping_filter:
+            base_query = base_query.filter(Order.shipping_status == shipping_filter)
+        
+        # Apply date range filters
+        if start_date and end_date:
+            try:
+                # Convert dates to datetime objects
+                start = datetime.strptime(start_date, '%Y-%m-%d')
+                end = datetime.strptime(end_date, '%Y-%m-%d')
+                # Add one day to end date to include all records of the end date
+                end = end + timedelta(days=1)
+                base_query = base_query.filter(Order.created_at.between(start, end))
+            except ValueError:
+                # If date parsing fails, ignore the date filter
+                app.logger.warning(f"Invalid date format: start_date={start_date}, end_date={end_date}")
+        elif start_date:
+            try:
+                start = datetime.strptime(start_date, '%Y-%m-%d')
+                base_query = base_query.filter(Order.created_at >= start)
+            except ValueError:
+                app.logger.warning(f"Invalid date format: start_date={start_date}")
+        elif end_date:
+            try:
+                end = datetime.strptime(end_date, '%Y-%m-%d')
+                # Add one day to end date to include all records of the end date
+                end = end + timedelta(days=1)
+                base_query = base_query.filter(Order.created_at <= end)
+            except ValueError:
+                app.logger.warning(f"Invalid date format: end_date={end_date}")
+        
+        # Get total count of filtered orders for stats
+        total_filtered = base_query.count()
+        
+        # Apply pagination
+        paginated_orders = base_query.paginate(page=page, per_page=per_page, error_out=False)
+        orders = paginated_orders.items
         
         # Add additional information to each order
         for order in orders:
@@ -1750,7 +1832,43 @@ def orders():
             }
             order.payment_method_display = payment_methods.get(order.payment_method, order.payment_method)
         
-        return render_template('admin/orders.html', orders=orders)
+        # Get filter options for dropdowns
+        payment_options = [
+            {'value': 'cash_on_delivery', 'label': 'الدفع عند الاستلام'},
+            {'value': 'vodafone_cash', 'label': 'فودافون كاش'},
+            {'value': 'visa', 'label': 'فيزا / ماستركارد'}
+        ]
+        
+        status_options = [
+            {'value': 'pending', 'label': 'قيد الانتظار'},
+            {'value': 'completed', 'label': 'مكتمل'},
+            {'value': 'cancelled', 'label': 'ملغي'}
+        ]
+        
+        shipping_options = [
+            {'value': 'pending', 'label': 'قيد الانتظار'},
+            {'value': 'shipped', 'label': 'تم الشحن'},
+            {'value': 'delivered', 'label': 'تم التوصيل'},
+            {'value': 'returned', 'label': 'تم الإرجاع'}
+        ]
+        
+        return render_template('admin/orders.html', 
+                               orders=orders, 
+                               pagination=paginated_orders,
+                               total_filtered=total_filtered,
+                               filters={
+                                   'search': search,
+                                   'status': status_filter,
+                                   'payment': payment_filter,
+                                   'shipping': shipping_filter,
+                                   'start_date': start_date,
+                                   'end_date': end_date
+                               },
+                               options={
+                                   'payment': payment_options,
+                                   'status': status_options,
+                                   'shipping': shipping_options
+                               })
         
     except Exception as e:
         app.logger.error(f'Error in orders route: {str(e)}')
@@ -2007,7 +2125,7 @@ def delete_order(order_id):
 def export_orders():
     try:
         # Get all orders with their items
-        orders = Order.query.all()
+        orders = Order.query.order_by(Order.id.desc()).all()
         
         data = []
         for order in orders:
@@ -2282,7 +2400,7 @@ def get_districts(city_id):
             return jsonify({'error': 'City not found'}), 404
             
         # Then get districts for this city
-        districts = District.query.filter_by(city_id=city.id).all()
+        districts = District.query.filter_by(city_id=city_id).all()
         app.logger.info(f"Found {len(districts)} districts for city_id: {city_id}")
         
         # Debug the districts data
@@ -2290,20 +2408,15 @@ def get_districts(city_id):
             app.logger.info(f"District: id={district.id}, name={district.name}, city_id={district.city_id}")
             
         # Return districts in the format expected by the frontend
-        return jsonify({
-            'districts': [{'id': district.id, 'name': district.name} for district in districts]
-        })
+        return jsonify(districts=[district.serialize() for district in districts])
+        
     except Exception as e:
         app.logger.error(f"Error fetching districts: {str(e)}")
         return jsonify({'error': 'Failed to fetch districts'}), 500
-    
-            
-
 
 @shop.route('/get_shipping_cost/<string:city_id>')
 def get_shipping_cost(city_id):
     try:
-        # First find the city by its city_id string
         city = City.query.filter_by(city_id=city_id).first()
         if not city:
             return jsonify({'error': 'City not found'}), 404
