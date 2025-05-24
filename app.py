@@ -1213,6 +1213,22 @@ def logout():
 @admin_required
 def home():
     try:
+        # Get date range from request
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
+        
+        # Create base query with date filter if provided
+        base_query = Order.query
+        if start_date and end_date:
+            try:
+                start = datetime.strptime(start_date, '%Y-%m-%d')
+                end = datetime.strptime(end_date, '%Y-%m-%d')
+                # Add one day to end date to include all records of the end date
+                end = end + timedelta(days=1)
+                base_query = base_query.filter(Order.created_at.between(start, end))
+            except ValueError:
+                flash('صيغة التاريخ غير صحيحة', 'error')
+
         # Basic counts with error handling
         try:
             products_count = Product.query.count()
@@ -1264,11 +1280,12 @@ def home():
         
         # Calculate total revenue with error handling
         try:
-            # Get all delivered orders
-            delivered_orders = Order.query.filter(
+            # Get all delivered orders with date filter
+            delivered_query = base_query.filter(
                 Order.shipping_status == 'delivered',
                 Order.cod_amount.isnot(None)
-            ).all()
+            )
+            delivered_orders = delivered_query.all()
             
             # Calculate total revenue by subtracting shipping costs
             total_revenue = 0
@@ -2074,7 +2091,7 @@ def update_shipping_status(order_id):
             flash('حالة الشحن مطلوبة', 'error')
             return redirect(url_for('admin.order_detail', order_id=order_id))
             
-        valid_statuses = ['pending', 'shipped', 'delivered', 'cancelled']
+        valid_statuses = ['pending', 'shipped', 'delivered', 'cancelled', 'returned']
         if status not in valid_statuses:
             flash('حالة الشحن غير صالحة', 'error')
             return redirect(url_for('admin.order_detail', order_id=order_id))

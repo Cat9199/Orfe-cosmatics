@@ -1,7 +1,30 @@
-{% extends "admin/base.html" %}
-
-{% block content %}
+{% extends "admin/base.html" %} {% block content %}
 <div class="container mx-auto px-4 py-8">
+    <!-- Date Filter Card -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">فلتر حسب التاريخ</h2>
+            <a href="{{ url_for('admin.home') }}" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-sync-alt"></i> إعادة تعيين
+            </a>
+        </div>
+        <form method="GET" class="flex flex-wrap gap-4">
+            <div class="flex-1 min-w-[200px]">
+                <label class="block text-gray-700 mb-2" for="start_date">من تاريخ</label>
+                <input type="date" id="start_date" name="start_date" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ request.args.get('start_date', '') }}">
+            </div>
+            <div class="flex-1 min-w-[200px]">
+                <label class="block text-gray-700 mb-2" for="end_date">إلى تاريخ</label>
+                <input type="date" id="end_date" name="end_date" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ request.args.get('end_date', '') }}">
+            </div>
+            <div class="flex items-end space-x-2">
+                <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    تطبيق الفلتر
+                </button>
+            </div>
+        </form>
+    </div>
+
     <!-- Quick Stats -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <!-- Revenue Card -->
@@ -47,7 +70,7 @@
                 <div class="ml-4">
                     <p class="text-gray-500">متوسط قيمة الطلب</p>
                     <p class="text-2xl font-bold">{{ avg_order_value|currency }}</p>
-                    <div class="flex justify-between text-sm">
+                    <div class="flex justify بين text-sm">
                         <span class="text-green-600">إجمالي الشحن: {{ total_shipping_cost|currency }}</span>
                         <span class="text-gray-600">{{ returned_orders }} مرتجع</span>
                     </div>
@@ -77,29 +100,39 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <!-- Revenue Chart -->
         <div class="bg-white rounded-lg shadow-lg p-4">
-            <div class="flex justify-between items-center mb-2">
-                <h2 class="text-lg font-bold">الإيرادات الشهرية</h2>
-                <div class="flex space-x-2">
-                    <button class="px-2 py-1 bg-blue-100 text-blue-600 rounded-full text-xs">شهري</button>
-                    <button class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">سنوي</button>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-gray-800">
+                    <i class="fas fa-chart-line mr-2 text-blue-600"></i> الإيرادات الشهرية
+                </h2>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1.5 bg-blue-100 text-blue-600 rounded-full text-xs hover:bg-blue-200 transition-colors">شهري</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs hover:bg-gray-200 transition-colors">سنوي</button>
                 </div>
             </div>
-            <div class="h-64">
-                <canvas id="revenueChart"></canvas>
+            <div class="relative h-64">
+                <div id="revenue-chart-loader" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 hidden">
+                    <div class="animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
+                </div>
+                <canvas id="revenueChart" data-labels='{{ revenue_chart.labels|tojson|safe }}' data-values='{{ revenue_chart.data|tojson|safe }}'></canvas>
             </div>
         </div>
-        
+
         <!-- Orders Chart -->
         <div class="bg-white rounded-lg shadow-lg p-4">
-            <div class="flex justify-between items-center mb-2">
-                <h2 class="text-lg font-bold">الطلبات الشهرية</h2>
-                <div class="flex space-x-2">
-                    <button class="px-2 py-1 bg-green-100 text-green-600 rounded-full text-xs">شهري</button>
-                    <button class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">سنوي</button>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-gray-800">
+                    <i class="fas fa-shopping-cart mr-2 text-green-600"></i> الطلبات الشهرية
+                </h2>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1.5 bg-green-100 text-green-600 rounded-full text-xs hover:bg-green-200 transition-colors">شهري</button>
+                    <button class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs hover:bg-gray-200 transition-colors">سنوي</button>
                 </div>
             </div>
-            <div class="h-64">
-                <canvas id="ordersChart"></canvas>
+            <div class="relative h-64">
+                <div id="orders-chart-loader" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 hidden">
+                    <div class="animate-spin rounded-full h-8 w-8 border-4 border-green-500 border-t-transparent"></div>
+                </div>
+                <canvas id="ordersChart" data-labels='{{ orders_chart.labels|tojson|safe }}' data-values='{{ orders_chart.data|tojson|safe }}'></canvas>
             </div>
         </div>
     </div>
@@ -126,8 +159,7 @@
                         <tr class="border-b hover:bg-gray-50">
                             <td class="py-3">
                                 <div class="flex items-center">
-                                    <img src="/{{ product.image }}" alt="{{ product.name }}" class="w-8 h-8 rounded-full mr-2">
-                                    {{ product.name }}
+                                    <img src="/{{ product.image }}" alt="{{ product.name }}" class="w-8 h-8 rounded-full mr-2"> {{ product.name }}
                                 </div>
                             </td>
                             <td class="py-3">{{ total_sold }}</td>
@@ -138,7 +170,7 @@
                 </table>
             </div>
         </div>
-        
+
         <!-- Shipping Status -->
         <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex justify-between items-center mb-4">
@@ -164,8 +196,7 @@
                             {% elif status == 'pending' %}bg-yellow-500
                             {% elif status == 'shipped' %}bg-blue-500
                             {% elif status == 'returned' %}bg-red-500
-                            {% else %}bg-gray-500{% endif %}"
-                            style="width: {{ (count / orders_count * 100)|round }}%">
+                            {% else %}bg-gray-500{% endif %}" style="width: {{ (count / orders_count * 100)|round }}%">
                         </div>
                     </div>
                 </div>
@@ -176,7 +207,7 @@
 
     <!-- Recent Orders -->
     <div class="bg-white rounded-lg shadow-lg p-6">
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify بين items-center mb-4">
             <h2 class="text-xl font-bold">أحدث الطلبات</h2>
             <a href="{{ url_for('admin.orders') }}" class="text-blue-600 hover:text-blue-800">عرض الكل</a>
         </div>
@@ -215,9 +246,7 @@
                         <td class="py-3">{{ order.created_at|date_format }}</td>
                         <td class="py-3">
                             <div class="flex space-x-2">
-                                <a href="{{ url_for('admin.orders') }}?order_id={{ order.id }}" 
-                                   class="text-blue-600 hover:text-blue-800" 
-                                   title="عرض التفاصيل">
+                                <a href="{{ url_for('admin.orders') }}?order_id={{ order.id }}" class="text-blue-600 hover:text-blue-800" title="عرض التفاصيل">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </div>
@@ -230,132 +259,7 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Revenue Chart
-    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-    new Chart(revenueCtx, {
-        type: 'bar',
-        data: {
-            labels: {{ revenue_chart.labels|tojson|safe }},
-            datasets: [{
-                label: 'الإيرادات',
-                data: {{ revenue_chart.data|tojson|safe }},
-                backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                borderColor: 'rgb(59, 130, 246)',
-                borderWidth: 1,
-                borderRadius: 5,
-                barThickness: 15,
-                maxBarThickness: 20
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    padding: 8,
-                    callbacks: {
-                        label: function(context) {
-                            return context.parsed.y.toLocaleString() + ' ج.م';
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        callback: function(value) {
-                            return value.toLocaleString() + ' ج.م';
-                        },
-                        maxTicksLimit: 5
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        maxRotation: 0,
-                        minRotation: 0
-                    }
-                }
-            }
-        }
-    });
-
-    // Orders Chart
-    const ordersCtx = document.getElementById('ordersChart').getContext('2d');
-    new Chart(ordersCtx, {
-        type: 'line',
-        data: {
-            labels: {{ orders_chart.labels|tojson|safe }},
-            datasets: [{
-                label: 'الطلبات',
-                data: {{ orders_chart.data|tojson|safe }},
-                borderColor: 'rgb(16, 185, 129)',
-                backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                tension: 0.4,
-                fill: true,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                pointBackgroundColor: 'rgb(16, 185, 129)',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    padding: 8
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        stepSize: 1,
-                        maxTicksLimit: 5
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        maxRotation: 0,
-                        minRotation: 0
-                    }
-                }
-            }
-        }
-    });
-</script>
-{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="{{ url_for('static', filename='admin/charts.js') }}"></script>
+{% endblock %}{% endblock %}
