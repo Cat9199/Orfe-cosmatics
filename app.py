@@ -1191,7 +1191,6 @@ def login():
             return redirect(url_for('admin.login'))
     
     return render_template('admin/login.html')
-# ...existing code...
 from functools import wraps
 from datetime import timedelta
 # ...existing code...
@@ -2517,6 +2516,13 @@ def export_income_stats():
                 flash('خطأ في تنسيق التواريخ', 'error')
                 return redirect(url_for('admin.home'))
         
+        # Define product costs
+        product_costs = {
+            'زيت': 140,
+            'سبراي': 140,
+            'سيروم الرموش': 35
+        }
+
         # Get all orders
         orders = query.all()
         
@@ -2527,6 +2533,9 @@ def export_income_stats():
         total_net = 0
         delivered_count = 0
         returned_count = 0
+
+        # Initialize product stats
+        product_stats = {}
         
         for order in orders:
             # Get shipping cost for the order
@@ -2541,6 +2550,31 @@ def export_income_stats():
                 cash_collection = float(order.cod_amount) if order.cod_amount else 0
                 net_amount = cash_collection - shipping_price - manufacturing_cost
                 delivered_count += 1
+
+                # Process product details for delivered orders only
+                order_items = (
+                    db.session.query(OrderItem, Product)
+                    .join(Product, OrderItem.product_id == Product.id)
+                    .filter(OrderItem.order_id == order.id)
+                    .all()
+                )
+                
+                for item in order_items:
+                    product_name = item.Product.name
+                    quantity = item.OrderItem.quantity
+                    
+                    if product_name not in product_stats:
+                        product_stats[product_name] = {
+                            'quantity': 0,
+                            'revenue': 0,
+                            'cost': 0
+                        }
+                    
+                    product_stats[product_name]['quantity'] += quantity
+                    product_stats[product_name]['revenue'] += quantity * float(item.Product.price)
+                    production_cost = product_costs.get(product_name, 0)
+                    product_stats[product_name]['cost'] += quantity * production_cost
+
             else:  # returned
                 cash_collection = 0
                 net_amount = -shipping_price - manufacturing_cost  # Subtract both shipping and manufacturing costs
@@ -2564,7 +2598,7 @@ def export_income_stats():
                 'التاريخ': order.created_at.strftime('%Y-%m-%d %H:%M')
             }
             data.append(order_data)
-        
+
         # Add summary row
         summary = {
             'اسم العميل': '',
@@ -2590,20 +2624,37 @@ def export_income_stats():
             'التاريخ': ''
         }
         data.append(stats)
-        
-        # Create DataFrame
+
+        # Create DataFrame for orders
         df = pd.DataFrame(data)
+        
+        # Create DataFrame for product statistics
+        product_data = []
+        for product_name, stats in product_stats.items():
+            product_row = {
+                'المنتج': product_name,
+                'الكمية المباعة': stats['quantity'],
+                'الإيرادات': stats['revenue'],
+                'تكلفة الإنتاج': stats['cost'],
+                'صافي الربح': stats['revenue'] - stats['cost']
+            }
+            product_data.append(product_row)
+
+        df_products = pd.DataFrame(product_data)
         
         # Create the file in memory
         output = BytesIO()
         with pd.ExcelWriter(output, engine='openpyxl') as writer:
-            # Write to Excel with formatting
+            # Write orders sheet
             df.to_excel(writer, index=False, sheet_name='إحصائيات الدخل')
             
-            # Get the worksheet
+            # Write products sheet
+            df_products.to_excel(writer, index=False, sheet_name='إحصائيات المنتجات')
+            
+            # Format orders sheet
             worksheet = writer.sheets['إحصائيات الدخل']
             
-            # Set column widths
+            # Set column widths for orders
             for idx, col in enumerate(df.columns):
                 max_length = max(
                     df[col].astype(str).apply(len).max(),
@@ -2618,6 +2669,23 @@ def export_income_stats():
                     cell.font = cell.font.copy(bold=True)
                     if row == len(df):  # Stats row
                         cell.fill = cell.fill.copy(fill_type='solid', fgColor='F2F2F2')
+
+            # Format products sheet
+            worksheet_products = writer.sheets['إحصائيات المنتجات']
+            
+            # Set column widths for products
+            for idx, col in enumerate(df_products.columns):
+                max_length = max(
+                    df_products[col].astype(str).apply(len).max(),
+                    len(str(col))
+                )
+                worksheet_products.column_dimensions[chr(65 + idx)].width = max_length + 2
+            
+            # Format header row
+            for col in range(1, len(df_products.columns) + 1):
+                cell = worksheet_products.cell(row=1, column=col)
+                cell.font = cell.font.copy(bold=True)
+                cell.fill = cell.fill.copy(fill_type='solid', fgColor='F2F2F2')
         
         output.seek(0)
         
