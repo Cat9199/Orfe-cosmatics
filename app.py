@@ -110,6 +110,71 @@ def check_shipping_discount(cart_items):
         "discount_type": "combo_1_2_3" if discount_eligible else None
     }
 
+# Check for Eid Al-Adha shipping offer
+def check_eid_shipping_offer(cart_items, city_id):
+    """
+    Check for Eid Al-Adha special shipping offer (6 days duration):
+    - Free shipping for package #4 to Alexandria, Cairo, Giza, and Beheira
+    - 50% off shipping for package #4 to other governorates
+    Returns dictionary with offer details
+    """
+    from datetime import datetime, timedelta
+    
+    # Define offer period (6 days) - Eid Al-Adha 2025
+    offer_start_date = datetime(2025, 6, 5)  # يبدأ اليوم
+    offer_end_date = datetime(2025, 6, 11, 23, 59, 59)  # 6 days
+    current_date = datetime.now()
+    
+    # Check if offer is still active
+    if current_date < offer_start_date or current_date > offer_end_date:
+        return {"eligible": False, "discount": 0, "message": None, "offer_active": False}
+
+    # Check if cart contains package #4 (العناية الكاملة)
+    has_package_4 = False
+    for item in cart_items:
+        product_id = item.product_id if hasattr(item, 'product_id') else item.product.id 
+        if product_id == 4:
+            has_package_4 = True
+            break
+    
+    if not has_package_4:
+        return {"eligible": False, "discount": 0, "message": None, "offer_active": True}
+
+    # Define cities with free shipping (you'll need to check your actual city_id values)
+    free_shipping_cities = [
+        "الاسكندريه",  # الإسكندرية
+        "القاهره",       # القاهرة  
+        "الجيزه",        # الجيزة
+        "البحيره"      # البحيرة
+    ]
+    
+    # Get city name from database
+    try:
+        city = City.query.filter_by(city_id=city_id).first()
+        city_name = city.name if city else ""
+    except:
+        city_name = ""
+    
+    # Check if city qualifies for free shipping
+    city_qualifies_for_free = any(free_city.lower() in city_name.lower() for free_city in free_shipping_cities)
+    
+    if city_qualifies_for_free:
+        return {
+            "eligible": True,
+            "discount": 1.0,  # 100% discount (free shipping)
+            "message": "🎉 شحن مجاني - عرض عيد الأضحى على باقة العناية الكاملة",
+            "offer_active": True,
+            "offer_type": "eid_free_shipping"
+        }
+    else:
+        return {
+            "eligible": True,
+            "discount": 0.5,  # 50% discount
+            "message": "🎉 خصم 50% على الشحن - عرض عيد الأضحى على باقة العناية الكاملة", 
+            "offer_active": True,
+            "offer_type": "eid_50_percent"
+        }
+
 # products and  Category and Card and Order and OrderItem and adintiol images and adintiol data to prodect amd promo code
 class Admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -915,12 +980,20 @@ def place_order():
                 flash(f'الكمية المتاحة من {product.name} غير كافية', 'danger')
                 return redirect(url_for('shop.cart'))
 
-        # 7. Check for shipping discount eligibility
+        # 7. Check for Eid Al-Adha shipping offer first (takes priority)
+        eid_offer_info = check_eid_shipping_offer(cart_items, request.form['city'])
+        
+        # 8. Check for regular shipping discount eligibility
         discount_info = check_shipping_discount(cart_items)
         
-        # 8. Calculate shipping cost (with discount if applicable)
-        if discount_info['eligible']:
-            # Free shipping if discount is eligible
+        # 9. Calculate shipping cost (with Eid offer or regular discount if applicable)
+        if eid_offer_info['eligible']:
+            # Apply Eid offer discount
+            discount_amount = shipping_cost.price * eid_offer_info['discount']
+            shipping_price = shipping_cost.price - discount_amount
+            app.logger.info(f"Eid Al-Adha offer applied - discount: {eid_offer_info['discount']*100}%, offer type: {eid_offer_info['offer_type']}")
+        elif discount_info['eligible']:
+            # Free shipping if regular discount is eligible
             shipping_price = 0
             app.logger.info(f"Free shipping applied for order - discount type: {discount_info['discount_type']}")
         else:
@@ -2441,7 +2514,10 @@ def get_shipping_cost(city_id):
         user = Gusts.query.filter_by(session=session['session']).first()
         cart_items = Cart.query.filter_by(user_id=user.id).all()
         
-        # Check if the order qualifies for free shipping
+        # Check for Eid Al-Adha offer first
+        eid_offer_info = check_eid_shipping_offer(cart_items, city_id)
+        
+        # Check if the order qualifies for regular free shipping
         discount_info = check_shipping_discount(cart_items)
         
         # Get standard shipping cost
@@ -2452,22 +2528,32 @@ def get_shipping_cost(city_id):
         else:
             standard_cost = shipping_cost.price
         
-        # Apply discount if eligible
-        if (discount_info['eligible']):
+        # Apply Eid offer if eligible (takes priority over regular discounts)
+        if eid_offer_info['eligible']:
+            discount_amount = standard_cost * eid_offer_info['discount']
+            final_cost = standard_cost - discount_amount
+            discount_message = eid_offer_info['message']
+            discount_applied = True
+        # Apply regular discount if eligible and no Eid offer
+        elif discount_info['eligible']:
             # Free shipping
             final_cost = 0
             discount_message = ""
             if discount_info['discount_type'] == "combo_1_2_3":
                 discount_message = "Free shipping - Special offer for products #1, #2, and #3"
+            discount_applied = True
         else:
             final_cost = standard_cost
             discount_message = None
+            discount_applied = False
         
         return jsonify({
             'shipping_cost': final_cost,
             'standard_cost': standard_cost,
-            'discount_applied': discount_info['eligible'],
-            'discount_message': discount_message
+            'discount_applied': discount_applied,
+            'discount_message': discount_message,
+            'eid_offer_active': eid_offer_info.get('offer_active', False),
+            'eid_offer_type': eid_offer_info.get('offer_type', None)
         })
         
     except Exception as e:
@@ -2744,5 +2830,10 @@ def internal_server_error(e):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-
+        # make the product 4 stock 100
+        product = Product.query.get(4)
+        if product:
+            product.stock = 100
+            db.session.commit()
+        
     app.run(debug=True,host='0.0.0.0',port=8765)

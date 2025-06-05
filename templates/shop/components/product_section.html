@@ -32,8 +32,8 @@
                             <!-- Discount badge -->
                             {% if product.price == 135 %}
                             <span class="discount-badge">-18%</span> {% elif product.price == 375 or product.price == 350 %}
-                            <span class="discount-badge">-20%</span> {% elif product.price == 725 %}
-                            <span class="discount-badge">-35%</span> {% endif %}
+                            <span class="discount-badge">-20%</span> {% elif product.price == 860 %}
+                            <span class="discount-badge">-20%</span> {% endif %}
 
                             <!-- Add to cart quick action -->
                             <div class="quick-action">
@@ -59,7 +59,7 @@
                             <span class="old-price">469 L.E</span>
                             <span class="current-price">{{ product.price }} L.E</span> {% elif product.price == 350 %}
                             <span class="old-price">438 L.E</span>
-                            <span class="current-price">{{ product.price }} L.E</span> {% elif product.price == 725 %}
+                            <span class="current-price">{{ product.price }} L.E</span> {% elif product.price == 860 %}
                             <span class="old-price">1072 L.E</span>
                             <span class="current-price">{{ product.price }} L.E</span> {% else %}
                             <span class="current-price">{{ product.price }} L.E</span> {% endif %}

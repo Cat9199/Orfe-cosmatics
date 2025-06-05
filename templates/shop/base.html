@@ -148,52 +148,50 @@
             }
         }
     </style>
-    <!-- 
-      <div class="promo-banner" dir="rtl">
-            <div class="promo-content">
-                  <strong>🎉 عيد الفطر المبارك 🎉</strong>
-                  <span>خصم 30% عند شراء 3 منتجات! العرض ينتهي خلال:</span>
-                  <span id="countdown"></span>
-            </div>
-      </div>
+    <!-- Eid Al-Adha Promo Banner -->
+    <div class="promo-banner" dir="rtl">
+        <div class="promo-content">
+            <strong>🕌 عرض عيد الأضحى المبارك 🎉</strong>
+            <span>شحن مجاني لباقة العناية الكاملة للقاهرة والإسكندرية والجيزة والبحيرة • خصم 50% على الشحن لباقي المحافظات</span>
+            <span id="countdown"></span>
+        </div>
+    </div>
 
-      <script>
-            function updateCountdown() {
-                  // Set end date to 10 days from now
-                  const endDate = new Date();
-                  endDate.setDate(endDate.getDate() + 10);
-                  endDate.setHours(23, 59, 59, 999);
-                  
-                  const now = new Date().getTime();
-                  const distance = endDate - now;
+    <script>
+        function updateCountdown() {
+            // Set end date to June 11, 2025 (6 days from June 5)
+            const endDate = new Date('2025-06-11T23:59:59');
+            const now = new Date().getTime();
+            const distance = endDate - now;
 
-                  if (distance < 0) {
-                        document.getElementById('countdown').innerHTML = "انتهى العرض";
-                        clearInterval(countdownInterval);
-                        return;
-                  }
-
-                  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                  document.getElementById('countdown').innerHTML = `
-                        <span>${days} يوم</span> 
-                        <span>${hours} ساعة</span> 
-                        <span>${minutes} دقيقة</span> 
-                        <span>${seconds} ثانية</span>`;
-
-                  // Apply pulse animation when numbers change
-                  document.querySelectorAll("#countdown span").forEach(el => {
-                        el.style.animation = "pulse 0.5s";
-                        setTimeout(() => el.style.animation = "", 500);
-                  });
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "انتهى العرض";
+                document.querySelector('.promo-banner').style.display = 'none';
+                clearInterval(countdownInterval);
+                return;
             }
 
-            const countdownInterval = setInterval(updateCountdown, 1000);
-            updateCountdown();
-      </script> -->
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `
+                <span>العرض ينتهي خلال: ${days} يوم</span> 
+                <span>${hours} ساعة</span> 
+                <span>${minutes} دقيقة</span> 
+                <span>${seconds} ثانية</span>`;
+
+            // Apply pulse animation when numbers change
+            document.querySelectorAll("#countdown span").forEach(el => {
+                el.style.animation = "pulse 0.5s";
+                setTimeout(() => el.style.animation = "", 500);
+            });
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 
     <header id="header" class="site-header">
         <nav class="navbar navbar-expand-lg px-3">
