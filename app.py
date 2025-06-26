@@ -14,6 +14,8 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 import pandas as pd
 from io import BytesIO
+import shutil
+import subprocess
 
 # Import Honeybadger conditionally to handle compatibility issues
 try:
@@ -47,6 +49,76 @@ if has_honeybadger:
     except Exception as e:
         print(f"Warning: Could not initialize Honeybadger: {e}")
         # Continue without error reporting
+
+# Database backup functionality
+def create_project_backup():
+    """Create a full backup of the project including code and database"""
+    try:
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        
+        # 1. Create backups directory if it doesn't exist
+        backup_dir = os.path.join(os.path.dirname(app.root_path), 'backups', timestamp)
+        os.makedirs(backup_dir, exist_ok=True)
+        
+        # 2. Create project backup (excluding venv, __pycache__, etc.)
+        def backup_filter(src, names):
+            return {
+                'env', '__pycache__', '.git', 'backups',
+                '*.pyc', '*.pyo', '*.pyd', '.Python', 'pip-log.txt',
+                '.env', '.venv', 'venv', 'ENV'
+            }
+        
+        # Copy entire project
+        shutil.copytree(
+            app.root_path, 
+            os.path.join(backup_dir, 'project'),
+            ignore=backup_filter,
+            dirs_exist_ok=True
+        )
+        
+        # 3. Backup database separately
+        db_backup_dir = os.path.join(backup_dir, 'database')
+        os.makedirs(db_backup_dir, exist_ok=True)
+        
+        db_source = os.path.join(app.root_path, 'instance', 'orfe-shop.sqlite3')
+        db_backup = os.path.join(db_backup_dir, 'orfe-shop.sqlite3')
+        shutil.copy2(db_source, db_backup)
+        
+        # 4. Create a zip archive of the backup
+        backup_zip = os.path.join(os.path.dirname(backup_dir), f'orfe_backup_{timestamp}.zip')
+        shutil.make_archive(
+            os.path.splitext(backup_zip)[0],
+            'zip',
+            backup_dir
+        )
+        
+        # 5. Git operations - Stage only tracked files
+        try:
+            # Initialize git configuration if not set
+            subprocess.run(['git', 'config', 'user.name', 'Backup System'], check=True)
+            subprocess.run(['git', 'config', 'user.email', 'backup@orfe-cosmetics.com'], check=True)
+            
+            # Stage all tracked files
+            subprocess.run(['git', 'add', '-u'], check=True)
+            
+            # Create backup commit
+            commit_message = f'Project backup {timestamp}'
+            subprocess.run(['git', 'commit', '-m', commit_message], check=True)
+            
+            # Try to push (this might fail if no remote access)
+            try:
+                subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+                git_status = "and pushed to GitHub"
+            except subprocess.CalledProcessError:
+                git_status = "but GitHub push failed (check credentials)"
+            
+            return True, f"Backup created successfully {git_status}. Saved to: {backup_zip}"
+            
+        except subprocess.CalledProcessError as e:
+            return True, f"Backup created but git operations failed: {str(e)}. Saved to: {backup_zip}"
+            
+    except Exception as e:
+        return False, f"Backup failed: {str(e)}"
         
 # Add escapejs filter
 @app.template_filter('escapejs')
@@ -2816,6 +2888,17 @@ def update_payment_method(order_id):
         flash('حدث خطأ أثناء تحديث طريقة الدفع', 'error')
         
     return redirect(url_for('admin.order_detail', order_id=order_id))
+
+@admin.route('/backup_project', methods=['POST'])
+@admin_required
+def backup_project():
+    """Handle full project backup request"""
+    success, message = create_project_backup()
+    if success:
+        flash(message, 'success')
+    else:
+        flash(message, 'danger')
+    return redirect(url_for('admin.home'))
 
 app.register_blueprint(shop)
 app.register_blueprint(admin , url_prefix='/admin')

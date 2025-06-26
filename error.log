@@ -6480,3 +6480,211 @@ jinja2.exceptions.TemplateRuntimeError: No filter named 'apply_discount' found.
 [2025-06-26 07:49:51 +0000] [26594] [INFO] Booting worker with pid: 26594
 [2025-06-26 07:49:51 +0000] [26595] [INFO] Booting worker with pid: 26595
 [2025-06-26 07:49:51 +0000] [26596] [INFO] Booting worker with pid: 26596
+[2025-06-26 07:50:48 +0000] [26591] [INFO] Worker exiting (pid: 26591)
+[2025-06-26 07:50:48 +0000] [26590] [INFO] Handling signal: term
+[2025-06-26 07:50:48 +0000] [26592] [INFO] Worker exiting (pid: 26592)
+[2025-06-26 07:50:48 +0000] [26595] [INFO] Worker exiting (pid: 26595)
+[2025-06-26 07:50:48 +0000] [26596] [INFO] Worker exiting (pid: 26596)
+[2025-06-26 07:50:48 +0000] [26594] [INFO] Worker exiting (pid: 26594)
+[2025-06-26 07:50:48 +0000] [26593] [INFO] Worker exiting (pid: 26593)
+[2025-06-26 07:50:48 +0000] [26590] [INFO] Shutting down: Master
+[2025-06-26 07:50:49 +0000] [26862] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 07:50:49 +0000] [26862] [INFO] Listening at: http://127.0.0.1:1305 (26862)
+[2025-06-26 07:50:49 +0000] [26862] [INFO] Using worker: sync
+[2025-06-26 07:50:49 +0000] [26863] [INFO] Booting worker with pid: 26863
+[2025-06-26 07:50:49 +0000] [26864] [INFO] Booting worker with pid: 26864
+[2025-06-26 07:50:49 +0000] [26865] [INFO] Booting worker with pid: 26865
+[2025-06-26 07:50:49 +0000] [26866] [INFO] Booting worker with pid: 26866
+[2025-06-26 07:50:49 +0000] [26867] [INFO] Booting worker with pid: 26867
+[2025-06-26 07:50:49 +0000] [26868] [INFO] Booting worker with pid: 26868
+[2025-06-26 07:53:48 +0000] [26864] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:48 +0000] [26864] [INFO] Worker exiting (pid: 26864)
+[2025-06-26 07:53:48 +0000] [26866] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:48 +0000] [26866] [INFO] Worker exiting (pid: 26866)
+[2025-06-26 07:53:48 +0000] [26865] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:48 +0000] [26865] [INFO] Worker exiting (pid: 26865)
+[2025-06-26 07:53:48 +0000] [26863] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:48 +0000] [26863] [INFO] Worker exiting (pid: 26863)
+[2025-06-26 07:53:48 +0000] [26867] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:48 +0000] [26867] [INFO] Worker exiting (pid: 26867)
+[2025-06-26 07:53:48 +0000] [27071] [INFO] Booting worker with pid: 27071
+[2025-06-26 07:53:49 +0000] [26868] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:53:49 +0000] [26868] [INFO] Worker exiting (pid: 26868)
+[2025-06-26 07:53:49 +0000] [27073] [INFO] Booting worker with pid: 27073
+[2025-06-26 07:53:49 +0000] [27074] [INFO] Booting worker with pid: 27074
+[2025-06-26 07:53:49 +0000] [27075] [INFO] Booting worker with pid: 27075
+[2025-06-26 07:53:49 +0000] [27076] [INFO] Booting worker with pid: 27076
+[2025-06-26 07:53:49 +0000] [27080] [INFO] Booting worker with pid: 27080
+[2025-06-26 07:55:00 +0000] [27074] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:00 +0000] [27074] [INFO] Worker exiting (pid: 27074)
+[2025-06-26 07:55:00 +0000] [27073] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:00 +0000] [27073] [INFO] Worker exiting (pid: 27073)
+[2025-06-26 07:55:00 +0000] [27075] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:00 +0000] [27075] [INFO] Worker exiting (pid: 27075)
+[2025-06-26 07:55:00 +0000] [27080] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:00 +0000] [27080] [INFO] Worker exiting (pid: 27080)
+[2025-06-26 07:55:00 +0000] [27187] [INFO] Booting worker with pid: 27187
+[2025-06-26 07:55:00 +0000] [27076] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:00 +0000] [27076] [INFO] Worker exiting (pid: 27076)
+[2025-06-26 07:55:01 +0000] [27071] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:55:01 +0000] [27071] [INFO] Worker exiting (pid: 27071)
+[2025-06-26 07:55:01 +0000] [27188] [INFO] Booting worker with pid: 27188
+[2025-06-26 07:55:01 +0000] [27189] [INFO] Booting worker with pid: 27189
+[2025-06-26 07:55:01 +0000] [27193] [INFO] Booting worker with pid: 27193
+[2025-06-26 07:55:01 +0000] [27194] [INFO] Booting worker with pid: 27194
+[2025-06-26 07:55:02 +0000] [27198] [INFO] Booting worker with pid: 27198
+[2025-06-26 07:56:43 +0000] [27194] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:43 +0000] [27194] [INFO] Worker exiting (pid: 27194)
+[2025-06-26 07:56:43 +0000] [27193] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:43 +0000] [27193] [INFO] Worker exiting (pid: 27193)
+[2025-06-26 07:56:43 +0000] [27198] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:43 +0000] [27198] [INFO] Worker exiting (pid: 27198)
+[2025-06-26 07:56:43 +0000] [27339] [INFO] Booting worker with pid: 27339
+[2025-06-26 07:56:43 +0000] [27340] [INFO] Booting worker with pid: 27340
+[2025-06-26 07:56:43 +0000] [27187] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:43 +0000] [27187] [INFO] Worker exiting (pid: 27187)
+[2025-06-26 07:56:44 +0000] [27341] [INFO] Booting worker with pid: 27341
+[2025-06-26 07:56:44 +0000] [27189] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:44 +0000] [27189] [INFO] Worker exiting (pid: 27189)
+[2025-06-26 07:56:44 +0000] [27188] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 07:56:44 +0000] [27188] [INFO] Worker exiting (pid: 27188)
+[2025-06-26 07:56:44 +0000] [27342] [INFO] Booting worker with pid: 27342
+[2025-06-26 07:56:44 +0000] [27351] [INFO] Booting worker with pid: 27351
+[2025-06-26 07:56:45 +0000] [27356] [INFO] Booting worker with pid: 27356
+[2025-06-26 07:58:27 +0000] [27340] [INFO] Worker exiting (pid: 27340)
+[2025-06-26 07:58:27 +0000] [27339] [INFO] Worker exiting (pid: 27339)
+[2025-06-26 07:58:27 +0000] [26862] [INFO] Handling signal: term
+[2025-06-26 07:58:27 +0000] [27342] [INFO] Worker exiting (pid: 27342)
+[2025-06-26 07:58:27 +0000] [27341] [INFO] Worker exiting (pid: 27341)
+[2025-06-26 07:58:27 +0000] [27356] [INFO] Worker exiting (pid: 27356)
+[2025-06-26 07:58:27 +0000] [27351] [INFO] Worker exiting (pid: 27351)
+[2025-06-26 07:58:27 +0000] [26862] [ERROR] Worker (pid:27339) was sent SIGTERM!
+[2025-06-26 07:58:27 +0000] [26862] [ERROR] Worker (pid:27340) was sent SIGTERM!
+[2025-06-26 07:58:27 +0000] [26862] [INFO] Shutting down: Master
+[2025-06-26 07:58:28 +0000] [27495] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 07:58:28 +0000] [27495] [INFO] Listening at: http://127.0.0.1:1305 (27495)
+[2025-06-26 07:58:28 +0000] [27495] [INFO] Using worker: sync
+[2025-06-26 07:58:28 +0000] [27496] [INFO] Booting worker with pid: 27496
+[2025-06-26 07:58:28 +0000] [27497] [INFO] Booting worker with pid: 27497
+[2025-06-26 07:58:28 +0000] [27498] [INFO] Booting worker with pid: 27498
+[2025-06-26 07:58:28 +0000] [27499] [INFO] Booting worker with pid: 27499
+[2025-06-26 07:58:28 +0000] [27500] [INFO] Booting worker with pid: 27500
+[2025-06-26 07:58:28 +0000] [27501] [INFO] Booting worker with pid: 27501
+[2025-06-26 07:58:39,342] ERROR in app: Exception on /admin/backup_database [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/var/Orfe-cosmatics/app.py", line 1316, in decorated_function
+    return f(*args, **kwargs)
+  File "/var/Orfe-cosmatics/app.py", line 2870, in backup_database
+    return redirect(url_for('admin.index'))
+  File "/usr/local/lib/python3.10/dist-packages/flask/helpers.py", line 225, in url_for
+    return current_app.url_for(
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'admin.index'. Did you mean 'admin.login' instead?
+[2025-06-26 07:59:41,402] ERROR in app: Exception on /admin/backup_database [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/var/Orfe-cosmatics/app.py", line 1316, in decorated_function
+    return f(*args, **kwargs)
+  File "/var/Orfe-cosmatics/app.py", line 2870, in backup_database
+    return redirect(url_for('admin.index'))
+  File "/usr/local/lib/python3.10/dist-packages/flask/helpers.py", line 225, in url_for
+    return current_app.url_for(
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/usr/local/lib/python3.10/dist-packages/werkzeug/routing/map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'admin.index'. Did you mean 'admin.login' instead?
+[2025-06-26 08:01:24 +0000] [27501] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:24 +0000] [27501] [INFO] Worker exiting (pid: 27501)
+[2025-06-26 08:01:24 +0000] [27499] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:24 +0000] [27499] [INFO] Worker exiting (pid: 27499)
+[2025-06-26 08:01:25 +0000] [27496] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:25 +0000] [27496] [INFO] Worker exiting (pid: 27496)
+[2025-06-26 08:01:25 +0000] [27755] [INFO] Booting worker with pid: 27755
+[2025-06-26 08:01:25 +0000] [27497] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:25 +0000] [27497] [INFO] Worker exiting (pid: 27497)
+[2025-06-26 08:01:25 +0000] [27500] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:25 +0000] [27500] [INFO] Worker exiting (pid: 27500)
+[2025-06-26 08:01:25 +0000] [27498] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:25 +0000] [27498] [INFO] Worker exiting (pid: 27498)
+[2025-06-26 08:01:25 +0000] [27756] [INFO] Booting worker with pid: 27756
+[2025-06-26 08:01:25 +0000] [27758] [INFO] Booting worker with pid: 27758
+[2025-06-26 08:01:25 +0000] [27759] [INFO] Booting worker with pid: 27759
+[2025-06-26 08:01:26 +0000] [27760] [INFO] Booting worker with pid: 27760
+[2025-06-26 08:01:26 +0000] [27761] [INFO] Booting worker with pid: 27761
+[2025-06-26 08:01:42 +0000] [27756] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:42 +0000] [27756] [INFO] Worker exiting (pid: 27756)
+[2025-06-26 08:01:42 +0000] [27759] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:42 +0000] [27759] [INFO] Worker exiting (pid: 27759)
+[2025-06-26 08:01:42 +0000] [27761] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:42 +0000] [27761] [INFO] Worker exiting (pid: 27761)
+[2025-06-26 08:01:42 +0000] [27760] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:42 +0000] [27760] [INFO] Worker exiting (pid: 27760)
+[2025-06-26 08:01:43 +0000] [27815] [INFO] Booting worker with pid: 27815
+[2025-06-26 08:01:43 +0000] [27816] [INFO] Booting worker with pid: 27816
+[2025-06-26 08:01:43 +0000] [27758] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:43 +0000] [27758] [INFO] Worker exiting (pid: 27758)
+[2025-06-26 08:01:43 +0000] [27817] [INFO] Booting worker with pid: 27817
+[2025-06-26 08:01:43 +0000] [27818] [INFO] Booting worker with pid: 27818
+[2025-06-26 08:01:43 +0000] [27755] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:43 +0000] [27755] [INFO] Worker exiting (pid: 27755)
+[2025-06-26 08:01:43 +0000] [27819] [INFO] Booting worker with pid: 27819
+[2025-06-26 08:01:44 +0000] [27820] [INFO] Booting worker with pid: 27820
+[2025-06-26 08:01:59 +0000] [27819] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:59 +0000] [27819] [INFO] Worker exiting (pid: 27819)
+[2025-06-26 08:01:59 +0000] [27820] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:01:59 +0000] [27820] [INFO] Worker exiting (pid: 27820)
+[2025-06-26 08:01:59 +0000] [27866] [INFO] Booting worker with pid: 27866
+[2025-06-26 08:02:00 +0000] [27818] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:02:00 +0000] [27818] [INFO] Worker exiting (pid: 27818)
+[2025-06-26 08:02:00 +0000] [27867] [INFO] Booting worker with pid: 27867
+[2025-06-26 08:02:00 +0000] [27816] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:02:00 +0000] [27816] [INFO] Worker exiting (pid: 27816)
+[2025-06-26 08:02:00 +0000] [27815] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:02:00 +0000] [27815] [INFO] Worker exiting (pid: 27815)
+[2025-06-26 08:02:00 +0000] [27817] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:02:00 +0000] [27817] [INFO] Worker exiting (pid: 27817)
+[2025-06-26 08:02:00 +0000] [27872] [INFO] Booting worker with pid: 27872
+[2025-06-26 08:02:01 +0000] [27874] [INFO] Booting worker with pid: 27874
+[2025-06-26 08:02:01 +0000] [27878] [INFO] Booting worker with pid: 27878
+[2025-06-26 08:02:01 +0000] [27879] [INFO] Booting worker with pid: 27879
+[2025-06-26 08:02:12 +0000] [27874] [INFO] Worker exiting (pid: 27874)
+[2025-06-26 08:02:12 +0000] [27495] [INFO] Handling signal: term
+[2025-06-26 08:02:12 +0000] [27872] [INFO] Worker exiting (pid: 27872)
+[2025-06-26 08:02:12 +0000] [27866] [INFO] Worker exiting (pid: 27866)
+[2025-06-26 08:02:12 +0000] [27867] [INFO] Worker exiting (pid: 27867)
+[2025-06-26 08:02:12 +0000] [27878] [INFO] Worker exiting (pid: 27878)
+[2025-06-26 08:02:12 +0000] [27879] [INFO] Worker exiting (pid: 27879)
+[2025-06-26 08:02:12 +0000] [27495] [ERROR] Worker (pid:27878) was sent SIGTERM!
+[2025-06-26 08:02:13 +0000] [27495] [INFO] Shutting down: Master
+[2025-06-26 08:02:13 +0000] [27934] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 08:02:13 +0000] [27934] [INFO] Listening at: http://127.0.0.1:1305 (27934)
+[2025-06-26 08:02:13 +0000] [27934] [INFO] Using worker: sync
+[2025-06-26 08:02:13 +0000] [27935] [INFO] Booting worker with pid: 27935
+[2025-06-26 08:02:13 +0000] [27936] [INFO] Booting worker with pid: 27936
+[2025-06-26 08:02:13 +0000] [27937] [INFO] Booting worker with pid: 27937
+[2025-06-26 08:02:13 +0000] [27938] [INFO] Booting worker with pid: 27938
+[2025-06-26 08:02:13 +0000] [27939] [INFO] Booting worker with pid: 27939
+[2025-06-26 08:02:13 +0000] [27940] [INFO] Booting worker with pid: 27940
