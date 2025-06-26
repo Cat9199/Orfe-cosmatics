@@ -1801,18 +1801,63 @@ def edit_category(category_id):
 @admin_required
 def shipping():
     try:
-        # Get all cities
+        # Get all cities with their related data
         cities = City.query.all()
         
-        # Ensure each city has a shipping cost
+        cities_data = []
+        total_cities = len(cities)
+        total_zones = 0
+        total_districts = 0
+        total_shipping_cost = 0
+        cities_with_shipping = 0
+        
+        # Process each city and prepare data
         for city in cities:
+            # Get shipping cost for this city
             shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first()
             if not shipping_cost:
+                # Create default shipping cost if it doesn't exist
                 shipping_cost = ShippingCost(city_id=city.city_id, price=100)
                 db.session.add(shipping_cost)
+                
+            # Count zones and districts
+            zones_count = len(city.zones) if city.zones else 0
+            districts_count = len(city.districts) if city.districts else 0
+            
+            total_zones += zones_count
+            total_districts += districts_count
+            
+            if shipping_cost:
+                total_shipping_cost += shipping_cost.price
+                cities_with_shipping += 1
+            
+            # Prepare city data
+            city_data = {
+                'id': city.id,
+                'name': city.name,
+                'city_id': city.city_id,
+                'created_at': city.created_at,
+                'zones_count': zones_count,
+                'districts_count': districts_count,
+                'zones': city.zones,
+                'districts': city.districts,
+                'shipping_price': shipping_cost.price if shipping_cost else 100
+            }
+            cities_data.append(city_data)
+        
+        # Calculate average shipping cost
+        avg_shipping_cost = total_shipping_cost / cities_with_shipping if cities_with_shipping > 0 else 0
+        
+        # Prepare statistics
+        stats = {
+            'total_cities': total_cities,
+            'total_zones': total_zones,
+            'total_districts': total_districts,
+            'avg_shipping_cost': avg_shipping_cost
+        }
         
         db.session.commit()
-        return render_template('admin/shipping.html', cities=cities)
+        return render_template('admin/shipping.html', cities=cities_data, stats=stats)
         
     except Exception as e:
         db.session.rollback()
