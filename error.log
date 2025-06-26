@@ -6688,3 +6688,969 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'admin.
 [2025-06-26 08:02:13 +0000] [27938] [INFO] Booting worker with pid: 27938
 [2025-06-26 08:02:13 +0000] [27939] [INFO] Booting worker with pid: 27939
 [2025-06-26 08:02:13 +0000] [27940] [INFO] Booting worker with pid: 27940
+[2025-06-26 08:14:03 +0000] [27935] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27935] [INFO] Worker exiting (pid: 27935)
+[2025-06-26 08:14:03 +0000] [27936] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27936] [INFO] Worker exiting (pid: 27936)
+[2025-06-26 08:14:03 +0000] [27937] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27937] [INFO] Worker exiting (pid: 27937)
+[2025-06-26 08:14:03 +0000] [27938] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27938] [INFO] Worker exiting (pid: 27938)
+[2025-06-26 08:14:03 +0000] [27940] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27940] [INFO] Worker exiting (pid: 27940)
+[2025-06-26 08:14:03 +0000] [27939] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:14:03 +0000] [27939] [INFO] Worker exiting (pid: 27939)
+[2025-06-26 08:14:03 +0000] [29155] [INFO] Booting worker with pid: 29155
+[2025-06-26 08:14:03 +0000] [29167] [INFO] Booting worker with pid: 29167
+[2025-06-26 08:14:04 +0000] [29171] [INFO] Booting worker with pid: 29171
+[2025-06-26 08:14:04 +0000] [29172] [INFO] Booting worker with pid: 29172
+[2025-06-26 08:14:04 +0000] [29176] [INFO] Booting worker with pid: 29176
+[2025-06-26 08:14:04 +0000] [29177] [INFO] Booting worker with pid: 29177
+[2025-06-26 08:21:30 +0000] [29167] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29167] [INFO] Worker exiting (pid: 29167)
+[2025-06-26 08:21:30 +0000] [29176] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29176] [INFO] Worker exiting (pid: 29176)
+[2025-06-26 08:21:30 +0000] [29177] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29177] [INFO] Worker exiting (pid: 29177)
+[2025-06-26 08:21:30 +0000] [29172] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29172] [INFO] Worker exiting (pid: 29172)
+[2025-06-26 08:21:30 +0000] [29171] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29171] [INFO] Worker exiting (pid: 29171)
+[2025-06-26 08:21:30 +0000] [29155] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:21:30 +0000] [29155] [INFO] Worker exiting (pid: 29155)
+[2025-06-26 08:21:30 +0000] [30216] [INFO] Booting worker with pid: 30216
+[2025-06-26 08:21:30 +0000] [30216] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:21:30 +0000] [30218] [INFO] Booting worker with pid: 30218
+[2025-06-26 08:21:31 +0000] [30218] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:21:31 +0000] [30224] [INFO] Booting worker with pid: 30224
+[2025-06-26 08:21:31 +0000] [30224] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:21:31 +0000] [30234] [INFO] Booting worker with pid: 30234
+[2025-06-26 08:21:31 +0000] [30234] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:21:31 +0000] [30236] [INFO] Booting worker with pid: 30236
+[2025-06-26 08:21:31 +0000] [30237] [INFO] Booting worker with pid: 30237
+[2025-06-26 08:21:31 +0000] [30236] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:21:31 +0000] [30237] [ERROR] invalid syntax (app.py, line 1390)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1390
+    except Exception as e:
+    ^^^^^^
+SyntaxError: invalid syntax
+[2025-06-26 08:23:12 +0000] [30216] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30216] [INFO] Worker exiting (pid: 30216)
+[2025-06-26 08:23:12 +0000] [30379] [INFO] Booting worker with pid: 30379
+[2025-06-26 08:23:12 +0000] [30218] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30218] [INFO] Worker exiting (pid: 30218)
+[2025-06-26 08:23:12 +0000] [30391] [INFO] Booting worker with pid: 30391
+[2025-06-26 08:23:12 +0000] [30224] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30224] [INFO] Worker exiting (pid: 30224)
+[2025-06-26 08:23:12 +0000] [30392] [INFO] Booting worker with pid: 30392
+[2025-06-26 08:23:12 +0000] [30234] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30234] [INFO] Worker exiting (pid: 30234)
+[2025-06-26 08:23:12 +0000] [30393] [INFO] Booting worker with pid: 30393
+[2025-06-26 08:23:12 +0000] [30236] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30236] [INFO] Worker exiting (pid: 30236)
+[2025-06-26 08:23:12 +0000] [30237] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:12 +0000] [30237] [INFO] Worker exiting (pid: 30237)
+[2025-06-26 08:23:12 +0000] [30394] [INFO] Booting worker with pid: 30394
+[2025-06-26 08:23:12 +0000] [30395] [INFO] Booting worker with pid: 30395
+[2025-06-26 08:23:14 +0000] [30391] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:14 +0000] [30391] [INFO] Worker exiting (pid: 30391)
+[2025-06-26 08:23:14 +0000] [30379] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:23:14 +0000] [30379] [INFO] Worker exiting (pid: 30379)
+[2025-06-26 08:23:14 +0000] [30434] [INFO] Booting worker with pid: 30434
+[2025-06-26 08:23:14 +0000] [30435] [INFO] Booting worker with pid: 30435
+[2025-06-26 08:27:28 +0000] [30434] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30434] [INFO] Worker exiting (pid: 30434)
+[2025-06-26 08:27:28 +0000] [30435] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30435] [INFO] Worker exiting (pid: 30435)
+[2025-06-26 08:27:28 +0000] [30395] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30395] [INFO] Worker exiting (pid: 30395)
+[2025-06-26 08:27:28 +0000] [30393] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30393] [INFO] Worker exiting (pid: 30393)
+[2025-06-26 08:27:28 +0000] [30394] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30394] [INFO] Worker exiting (pid: 30394)
+[2025-06-26 08:27:28 +0000] [30392] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:27:28 +0000] [30392] [INFO] Worker exiting (pid: 30392)
+[2025-06-26 08:27:29 +0000] [31212] [INFO] Booting worker with pid: 31212
+[2025-06-26 08:27:29 +0000] [31223] [INFO] Booting worker with pid: 31223
+[2025-06-26 08:27:29 +0000] [31224] [INFO] Booting worker with pid: 31224
+[2025-06-26 08:27:29 +0000] [31225] [INFO] Booting worker with pid: 31225
+[2025-06-26 08:27:29 +0000] [31226] [INFO] Booting worker with pid: 31226
+[2025-06-26 08:27:29 +0000] [31230] [INFO] Booting worker with pid: 31230
+[2025-06-26 08:34:03 +0000] [31212] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:03 +0000] [31212] [INFO] Worker exiting (pid: 31212)
+[2025-06-26 08:34:03 +0000] [31223] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:03 +0000] [31223] [INFO] Worker exiting (pid: 31223)
+[2025-06-26 08:34:04 +0000] [31224] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:04 +0000] [31224] [INFO] Worker exiting (pid: 31224)
+[2025-06-26 08:34:04 +0000] [31226] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:04 +0000] [31226] [INFO] Worker exiting (pid: 31226)
+[2025-06-26 08:34:04 +0000] [32076] [INFO] Booting worker with pid: 32076
+[2025-06-26 08:34:04 +0000] [31225] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:04 +0000] [31225] [INFO] Worker exiting (pid: 31225)
+[2025-06-26 08:34:04 +0000] [32077] [INFO] Booting worker with pid: 32077
+[2025-06-26 08:34:04 +0000] [31230] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:34:04 +0000] [31230] [INFO] Worker exiting (pid: 31230)
+[2025-06-26 08:34:04 +0000] [32078] [INFO] Booting worker with pid: 32078
+[2025-06-26 08:34:04 +0000] [32082] [INFO] Booting worker with pid: 32082
+[2025-06-26 08:34:04 +0000] [32092] [INFO] Booting worker with pid: 32092
+[2025-06-26 08:34:05 +0000] [32095] [INFO] Booting worker with pid: 32095
+[2025-06-26 08:37:23 +0000] [32082] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:23 +0000] [32082] [INFO] Worker exiting (pid: 32082)
+[2025-06-26 08:37:23 +0000] [32092] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:23 +0000] [32092] [INFO] Worker exiting (pid: 32092)
+[2025-06-26 08:37:23 +0000] [32095] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:23 +0000] [32095] [INFO] Worker exiting (pid: 32095)
+[2025-06-26 08:37:23 +0000] [32544] [INFO] Booting worker with pid: 32544
+[2025-06-26 08:37:23 +0000] [32076] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:23 +0000] [32076] [INFO] Worker exiting (pid: 32076)
+[2025-06-26 08:37:23 +0000] [32545] [INFO] Booting worker with pid: 32545
+[2025-06-26 08:37:23 +0000] [32077] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:23 +0000] [32077] [INFO] Worker exiting (pid: 32077)
+[2025-06-26 08:37:23 +0000] [32546] [INFO] Booting worker with pid: 32546
+[2025-06-26 08:37:24 +0000] [32078] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:37:24 +0000] [32078] [INFO] Worker exiting (pid: 32078)
+[2025-06-26 08:37:24 +0000] [32558] [INFO] Booting worker with pid: 32558
+[2025-06-26 08:37:24 +0000] [32559] [INFO] Booting worker with pid: 32559
+[2025-06-26 08:37:24 +0000] [32560] [INFO] Booting worker with pid: 32560
+[2025-06-26 08:39:06 +0000] [32560] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:06 +0000] [32560] [INFO] Worker exiting (pid: 32560)
+[2025-06-26 08:39:06 +0000] [32544] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:06 +0000] [32544] [INFO] Worker exiting (pid: 32544)
+[2025-06-26 08:39:06 +0000] [32909] [INFO] Booting worker with pid: 32909
+[2025-06-26 08:39:07 +0000] [32910] [INFO] Booting worker with pid: 32910
+[2025-06-26 08:39:07 +0000] [32545] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:07 +0000] [32545] [INFO] Worker exiting (pid: 32545)
+[2025-06-26 08:39:07 +0000] [32546] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:07 +0000] [32546] [INFO] Worker exiting (pid: 32546)
+[2025-06-26 08:39:07 +0000] [32558] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:07 +0000] [32558] [INFO] Worker exiting (pid: 32558)
+[2025-06-26 08:39:07 +0000] [32559] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:39:07 +0000] [32559] [INFO] Worker exiting (pid: 32559)
+[2025-06-26 08:39:07 +0000] [32915] [INFO] Booting worker with pid: 32915
+[2025-06-26 08:39:07 +0000] [32924] [INFO] Booting worker with pid: 32924
+[2025-06-26 08:39:07 +0000] [32926] [INFO] Booting worker with pid: 32926
+[2025-06-26 08:39:08 +0000] [32927] [INFO] Booting worker with pid: 32927
+[2025-06-26 08:41:32 +0000] [32926] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32926] [INFO] Worker exiting (pid: 32926)
+[2025-06-26 08:41:32 +0000] [32915] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32915] [INFO] Worker exiting (pid: 32915)
+[2025-06-26 08:41:32 +0000] [32924] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32924] [INFO] Worker exiting (pid: 32924)
+[2025-06-26 08:41:32 +0000] [32927] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32927] [INFO] Worker exiting (pid: 32927)
+[2025-06-26 08:41:32 +0000] [32909] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32909] [INFO] Worker exiting (pid: 32909)
+[2025-06-26 08:41:32 +0000] [33139] [INFO] Booting worker with pid: 33139
+[2025-06-26 08:41:32 +0000] [32910] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:41:32 +0000] [32910] [INFO] Worker exiting (pid: 32910)
+[2025-06-26 08:41:32 +0000] [33143] [INFO] Booting worker with pid: 33143
+[2025-06-26 08:41:32 +0000] [33152] [INFO] Booting worker with pid: 33152
+[2025-06-26 08:41:33 +0000] [33153] [INFO] Booting worker with pid: 33153
+[2025-06-26 08:41:33 +0000] [33158] [INFO] Booting worker with pid: 33158
+[2025-06-26 08:41:33 +0000] [33159] [INFO] Booting worker with pid: 33159
+[2025-06-26 08:51:03 +0000] [33143] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33143] [INFO] Worker exiting (pid: 33143)
+[2025-06-26 08:51:03 +0000] [33139] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33139] [INFO] Worker exiting (pid: 33139)
+[2025-06-26 08:51:03 +0000] [33153] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33153] [INFO] Worker exiting (pid: 33153)
+[2025-06-26 08:51:03 +0000] [33158] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33158] [INFO] Worker exiting (pid: 33158)
+[2025-06-26 08:51:03 +0000] [33152] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33152] [INFO] Worker exiting (pid: 33152)
+[2025-06-26 08:51:03 +0000] [33159] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:03 +0000] [33159] [INFO] Worker exiting (pid: 33159)
+[2025-06-26 08:51:03 +0000] [33986] [INFO] Booting worker with pid: 33986
+[2025-06-26 08:51:03 +0000] [33987] [INFO] Booting worker with pid: 33987
+[2025-06-26 08:51:04 +0000] [33989] [INFO] Booting worker with pid: 33989
+[2025-06-26 08:51:04 +0000] [33990] [INFO] Booting worker with pid: 33990
+[2025-06-26 08:51:04 +0000] [33991] [INFO] Booting worker with pid: 33991
+[2025-06-26 08:51:04 +0000] [33992] [INFO] Booting worker with pid: 33992
+[2025-06-26 08:51:16 +0000] [33991] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:16 +0000] [33991] [INFO] Worker exiting (pid: 33991)
+[2025-06-26 08:51:16 +0000] [33992] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:16 +0000] [33992] [INFO] Worker exiting (pid: 33992)
+[2025-06-26 08:51:16 +0000] [34100] [INFO] Booting worker with pid: 34100
+[2025-06-26 08:51:16 +0000] [34101] [INFO] Booting worker with pid: 34101
+[2025-06-26 08:51:16 +0000] [33986] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:16 +0000] [33986] [INFO] Worker exiting (pid: 33986)
+[2025-06-26 08:51:16 +0000] [33989] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:16 +0000] [33989] [INFO] Worker exiting (pid: 33989)
+[2025-06-26 08:51:17 +0000] [33987] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:17 +0000] [33987] [INFO] Worker exiting (pid: 33987)
+[2025-06-26 08:51:17 +0000] [33990] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:17 +0000] [33990] [INFO] Worker exiting (pid: 33990)
+[2025-06-26 08:51:17 +0000] [34110] [INFO] Booting worker with pid: 34110
+[2025-06-26 08:51:17 +0000] [34111] [INFO] Booting worker with pid: 34111
+[2025-06-26 08:51:17 +0000] [34115] [INFO] Booting worker with pid: 34115
+[2025-06-26 08:51:17 +0000] [34116] [INFO] Booting worker with pid: 34116
+[2025-06-26 08:51:43 +0000] [34101] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34101] [INFO] Worker exiting (pid: 34101)
+[2025-06-26 08:51:43 +0000] [34110] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34110] [INFO] Worker exiting (pid: 34110)
+[2025-06-26 08:51:43 +0000] [34100] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34100] [INFO] Worker exiting (pid: 34100)
+[2025-06-26 08:51:43 +0000] [34115] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34115] [INFO] Worker exiting (pid: 34115)
+[2025-06-26 08:51:43 +0000] [34111] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34111] [INFO] Worker exiting (pid: 34111)
+[2025-06-26 08:51:43 +0000] [34116] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:51:43 +0000] [34116] [INFO] Worker exiting (pid: 34116)
+[2025-06-26 08:51:43 +0000] [34287] [INFO] Booting worker with pid: 34287
+[2025-06-26 08:51:43 +0000] [34299] [INFO] Booting worker with pid: 34299
+[2025-06-26 08:51:43 +0000] [34304] [INFO] Booting worker with pid: 34304
+[2025-06-26 08:51:43 +0000] [34308] [INFO] Booting worker with pid: 34308
+[2025-06-26 08:51:43 +0000] [34310] [INFO] Booting worker with pid: 34310
+[2025-06-26 08:51:44 +0000] [34311] [INFO] Booting worker with pid: 34311
+[2025-06-26 08:52:44 +0000] [34304] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:44 +0000] [34304] [INFO] Worker exiting (pid: 34304)
+[2025-06-26 08:52:45 +0000] [34287] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:45 +0000] [34287] [INFO] Worker exiting (pid: 34287)
+[2025-06-26 08:52:45 +0000] [34310] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:45 +0000] [34310] [INFO] Worker exiting (pid: 34310)
+[2025-06-26 08:52:45 +0000] [34308] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:45 +0000] [34308] [INFO] Worker exiting (pid: 34308)
+[2025-06-26 08:52:45 +0000] [34299] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:45 +0000] [34299] [INFO] Worker exiting (pid: 34299)
+[2025-06-26 08:52:45 +0000] [34311] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:52:45 +0000] [34311] [INFO] Worker exiting (pid: 34311)
+[2025-06-26 08:52:45 +0000] [34480] [INFO] Booting worker with pid: 34480
+[2025-06-26 08:52:45 +0000] [34480] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:52:45 +0000] [34481] [INFO] Booting worker with pid: 34481
+[2025-06-26 08:52:45 +0000] [34481] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:52:45 +0000] [34484] [INFO] Booting worker with pid: 34484
+[2025-06-26 08:52:45 +0000] [34484] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:52:45 +0000] [34486] [INFO] Booting worker with pid: 34486
+[2025-06-26 08:52:45 +0000] [34486] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:52:45 +0000] [34489] [INFO] Booting worker with pid: 34489
+[2025-06-26 08:52:45 +0000] [34489] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:52:45 +0000] [34495] [INFO] Booting worker with pid: 34495
+[2025-06-26 08:52:45 +0000] [34495] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:53:09 +0000] [34489] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:09 +0000] [34489] [INFO] Worker exiting (pid: 34489)
+[2025-06-26 08:53:09 +0000] [34541] [INFO] Booting worker with pid: 34541
+[2025-06-26 08:53:09 +0000] [34495] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:09 +0000] [34495] [INFO] Worker exiting (pid: 34495)
+[2025-06-26 08:53:09 +0000] [34542] [INFO] Booting worker with pid: 34542
+[2025-06-26 08:53:10 +0000] [34480] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:10 +0000] [34480] [INFO] Worker exiting (pid: 34480)
+[2025-06-26 08:53:10 +0000] [34481] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:10 +0000] [34481] [INFO] Worker exiting (pid: 34481)
+[2025-06-26 08:53:10 +0000] [34550] [INFO] Booting worker with pid: 34550
+[2025-06-26 08:53:10 +0000] [34484] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:10 +0000] [34484] [INFO] Worker exiting (pid: 34484)
+[2025-06-26 08:53:10 +0000] [34552] [INFO] Booting worker with pid: 34552
+[2025-06-26 08:53:10 +0000] [34553] [INFO] Booting worker with pid: 34553
+[2025-06-26 08:53:10 +0000] [34486] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:53:10 +0000] [34486] [INFO] Worker exiting (pid: 34486)
+[2025-06-26 08:53:10 +0000] [34556] [INFO] Booting worker with pid: 34556
+[2025-06-26 08:54:29 +0000] [34541] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:29 +0000] [34541] [INFO] Worker exiting (pid: 34541)
+[2025-06-26 08:54:29 +0000] [34552] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:29 +0000] [34552] [INFO] Worker exiting (pid: 34552)
+[2025-06-26 08:54:29 +0000] [34550] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:29 +0000] [34550] [INFO] Worker exiting (pid: 34550)
+[2025-06-26 08:54:29 +0000] [34553] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:29 +0000] [34553] [INFO] Worker exiting (pid: 34553)
+[2025-06-26 08:54:29 +0000] [34556] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:29 +0000] [34556] [INFO] Worker exiting (pid: 34556)
+[2025-06-26 08:54:29 +0000] [34922] [INFO] Booting worker with pid: 34922
+[2025-06-26 08:54:30 +0000] [34542] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:30 +0000] [34542] [INFO] Worker exiting (pid: 34542)
+[2025-06-26 08:54:30 +0000] [34924] [INFO] Booting worker with pid: 34924
+[2025-06-26 08:54:30 +0000] [34927] [INFO] Booting worker with pid: 34927
+[2025-06-26 08:54:30 +0000] [34932] [INFO] Booting worker with pid: 34932
+[2025-06-26 08:54:30 +0000] [34933] [INFO] Booting worker with pid: 34933
+[2025-06-26 08:54:30 +0000] [34934] [INFO] Booting worker with pid: 34934
+[2025-06-26 08:54:45 +0000] [34934] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:45 +0000] [34934] [INFO] Worker exiting (pid: 34934)
+[2025-06-26 08:54:45 +0000] [35075] [INFO] Booting worker with pid: 35075
+[2025-06-26 08:54:45 +0000] [34922] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:45 +0000] [34922] [INFO] Worker exiting (pid: 34922)
+[2025-06-26 08:54:46 +0000] [35076] [INFO] Booting worker with pid: 35076
+[2025-06-26 08:54:46 +0000] [34927] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:46 +0000] [34927] [INFO] Worker exiting (pid: 34927)
+[2025-06-26 08:54:46 +0000] [34924] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:46 +0000] [34924] [INFO] Worker exiting (pid: 34924)
+[2025-06-26 08:54:46 +0000] [34932] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:46 +0000] [34932] [INFO] Worker exiting (pid: 34932)
+[2025-06-26 08:54:46 +0000] [34933] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:46 +0000] [34933] [INFO] Worker exiting (pid: 34933)
+[2025-06-26 08:54:46 +0000] [35082] [INFO] Booting worker with pid: 35082
+[2025-06-26 08:54:46 +0000] [35083] [INFO] Booting worker with pid: 35083
+[2025-06-26 08:54:46 +0000] [35084] [INFO] Booting worker with pid: 35084
+[2025-06-26 08:54:47 +0000] [35090] [INFO] Booting worker with pid: 35090
+[2025-06-26 08:54:57 +0000] [35075] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35075] [INFO] Worker exiting (pid: 35075)
+[2025-06-26 08:54:57 +0000] [35083] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35083] [INFO] Worker exiting (pid: 35083)
+[2025-06-26 08:54:57 +0000] [35082] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35082] [INFO] Worker exiting (pid: 35082)
+[2025-06-26 08:54:57 +0000] [35084] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35084] [INFO] Worker exiting (pid: 35084)
+[2025-06-26 08:54:57 +0000] [35090] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35090] [INFO] Worker exiting (pid: 35090)
+[2025-06-26 08:54:57 +0000] [35188] [INFO] Booting worker with pid: 35188
+[2025-06-26 08:54:57 +0000] [35188] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:54:57 +0000] [35190] [INFO] Booting worker with pid: 35190
+[2025-06-26 08:54:57 +0000] [35190] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:54:57 +0000] [35192] [INFO] Booting worker with pid: 35192
+[2025-06-26 08:54:57 +0000] [35192] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:54:57 +0000] [35194] [INFO] Booting worker with pid: 35194
+[2025-06-26 08:54:57 +0000] [35194] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:54:57 +0000] [35076] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:54:57 +0000] [35076] [INFO] Worker exiting (pid: 35076)
+[2025-06-26 08:54:58 +0000] [35196] [INFO] Booting worker with pid: 35196
+[2025-06-26 08:54:58 +0000] [35196] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:54:58 +0000] [35199] [INFO] Booting worker with pid: 35199
+[2025-06-26 08:54:58 +0000] [35199] [ERROR] expected 'except' or 'finally' block (app.py, line 1574)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.10/dist-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/Orfe-cosmatics/app.py", line 1574
+    @admin.route('/add_product', methods=['POST'])
+SyntaxError: expected 'except' or 'finally' block
+[2025-06-26 08:55:17 +0000] [35188] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:17 +0000] [35188] [INFO] Worker exiting (pid: 35188)
+[2025-06-26 08:55:17 +0000] [35256] [INFO] Booting worker with pid: 35256
+[2025-06-26 08:55:17 +0000] [35190] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:17 +0000] [35190] [INFO] Worker exiting (pid: 35190)
+[2025-06-26 08:55:17 +0000] [35257] [INFO] Booting worker with pid: 35257
+[2025-06-26 08:55:17 +0000] [35192] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:17 +0000] [35192] [INFO] Worker exiting (pid: 35192)
+[2025-06-26 08:55:17 +0000] [35258] [INFO] Booting worker with pid: 35258
+[2025-06-26 08:55:17 +0000] [35194] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:17 +0000] [35194] [INFO] Worker exiting (pid: 35194)
+[2025-06-26 08:55:18 +0000] [35259] [INFO] Booting worker with pid: 35259
+[2025-06-26 08:55:18 +0000] [35196] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:18 +0000] [35196] [INFO] Worker exiting (pid: 35196)
+[2025-06-26 08:55:18 +0000] [35260] [INFO] Booting worker with pid: 35260
+[2025-06-26 08:55:18 +0000] [35199] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 08:55:18 +0000] [35199] [INFO] Worker exiting (pid: 35199)
+[2025-06-26 08:55:18 +0000] [35267] [INFO] Booting worker with pid: 35267
+[2025-06-26 09:12:01 +0000] [35259] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35259] [INFO] Worker exiting (pid: 35259)
+[2025-06-26 09:12:01 +0000] [35257] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35257] [INFO] Worker exiting (pid: 35257)
+[2025-06-26 09:12:01 +0000] [35258] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35256] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35258] [INFO] Worker exiting (pid: 35258)
+[2025-06-26 09:12:01 +0000] [35256] [INFO] Worker exiting (pid: 35256)
+[2025-06-26 09:12:01 +0000] [35260] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35260] [INFO] Worker exiting (pid: 35260)
+[2025-06-26 09:12:01 +0000] [35267] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:12:01 +0000] [35267] [INFO] Worker exiting (pid: 35267)
+[2025-06-26 09:12:02 +0000] [38650] [INFO] Booting worker with pid: 38650
+[2025-06-26 09:12:02 +0000] [38652] [INFO] Booting worker with pid: 38652
+[2025-06-26 09:12:02 +0000] [38656] [INFO] Booting worker with pid: 38656
+[2025-06-26 09:12:02 +0000] [38658] [INFO] Booting worker with pid: 38658
+[2025-06-26 09:12:03 +0000] [38659] [INFO] Booting worker with pid: 38659
+[2025-06-26 09:12:03 +0000] [38660] [INFO] Booting worker with pid: 38660
+[2025-06-26 09:19:22 +0000] [38658] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:22 +0000] [38658] [INFO] Worker exiting (pid: 38658)
+[2025-06-26 09:19:22 +0000] [38660] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:22 +0000] [38660] [INFO] Worker exiting (pid: 38660)
+[2025-06-26 09:19:22 +0000] [38659] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:22 +0000] [38659] [INFO] Worker exiting (pid: 38659)
+[2025-06-26 09:19:23 +0000] [39871] [INFO] Booting worker with pid: 39871
+[2025-06-26 09:19:23 +0000] [39872] [INFO] Booting worker with pid: 39872
+[2025-06-26 09:19:23 +0000] [39873] [INFO] Booting worker with pid: 39873
+[2025-06-26 09:19:23 +0000] [38652] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:23 +0000] [38652] [INFO] Worker exiting (pid: 38652)
+[2025-06-26 09:19:23 +0000] [38656] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:23 +0000] [38656] [INFO] Worker exiting (pid: 38656)
+[2025-06-26 09:19:23 +0000] [38650] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:23 +0000] [38650] [INFO] Worker exiting (pid: 38650)
+[2025-06-26 09:19:23 +0000] [39884] [INFO] Booting worker with pid: 39884
+[2025-06-26 09:19:24 +0000] [39888] [INFO] Booting worker with pid: 39888
+[2025-06-26 09:19:24 +0000] [39889] [INFO] Booting worker with pid: 39889
+[2025-06-26 09:19:32 +0000] [39871] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:32 +0000] [39871] [INFO] Worker exiting (pid: 39871)
+[2025-06-26 09:19:32 +0000] [39872] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:32 +0000] [39872] [INFO] Worker exiting (pid: 39872)
+[2025-06-26 09:19:32 +0000] [39873] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:32 +0000] [39873] [INFO] Worker exiting (pid: 39873)
+[2025-06-26 09:19:33 +0000] [39978] [INFO] Booting worker with pid: 39978
+[2025-06-26 09:19:33 +0000] [39979] [INFO] Booting worker with pid: 39979
+[2025-06-26 09:19:33 +0000] [39983] [INFO] Booting worker with pid: 39983
+[2025-06-26 09:19:33 +0000] [39888] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:33 +0000] [39888] [INFO] Worker exiting (pid: 39888)
+[2025-06-26 09:19:33 +0000] [39884] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:33 +0000] [39884] [INFO] Worker exiting (pid: 39884)
+[2025-06-26 09:19:33 +0000] [39889] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:33 +0000] [39889] [INFO] Worker exiting (pid: 39889)
+[2025-06-26 09:19:34 +0000] [39991] [INFO] Booting worker with pid: 39991
+[2025-06-26 09:19:34 +0000] [39993] [INFO] Booting worker with pid: 39993
+[2025-06-26 09:19:34 +0000] [39998] [INFO] Booting worker with pid: 39998
+[2025-06-26 09:19:56 +0000] [39979] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39979] [INFO] Worker exiting (pid: 39979)
+[2025-06-26 09:19:56 +0000] [39983] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39983] [INFO] Worker exiting (pid: 39983)
+[2025-06-26 09:19:56 +0000] [40099] [INFO] Booting worker with pid: 40099
+[2025-06-26 09:19:56 +0000] [40100] [INFO] Booting worker with pid: 40100
+[2025-06-26 09:19:56 +0000] [39991] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39991] [INFO] Worker exiting (pid: 39991)
+[2025-06-26 09:19:56 +0000] [39978] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39978] [INFO] Worker exiting (pid: 39978)
+[2025-06-26 09:19:56 +0000] [39993] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39993] [INFO] Worker exiting (pid: 39993)
+[2025-06-26 09:19:56 +0000] [39998] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:19:56 +0000] [39998] [INFO] Worker exiting (pid: 39998)
+[2025-06-26 09:19:56 +0000] [40104] [INFO] Booting worker with pid: 40104
+[2025-06-26 09:19:57 +0000] [40122] [INFO] Booting worker with pid: 40122
+[2025-06-26 09:19:57 +0000] [40123] [INFO] Booting worker with pid: 40123
+[2025-06-26 09:19:57 +0000] [40124] [INFO] Booting worker with pid: 40124
+[2025-06-26 09:25:57 +0000] [40099] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:57 +0000] [40099] [INFO] Worker exiting (pid: 40099)
+[2025-06-26 09:25:57 +0000] [40124] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:57 +0000] [40124] [INFO] Worker exiting (pid: 40124)
+[2025-06-26 09:25:57 +0000] [40123] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:57 +0000] [40123] [INFO] Worker exiting (pid: 40123)
+[2025-06-26 09:25:57 +0000] [40122] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:57 +0000] [40122] [INFO] Worker exiting (pid: 40122)
+[2025-06-26 09:25:57 +0000] [40630] [INFO] Booting worker with pid: 40630
+[2025-06-26 09:25:57 +0000] [40632] [INFO] Booting worker with pid: 40632
+[2025-06-26 09:25:57 +0000] [40100] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:57 +0000] [40100] [INFO] Worker exiting (pid: 40100)
+[2025-06-26 09:25:58 +0000] [40633] [INFO] Booting worker with pid: 40633
+[2025-06-26 09:25:58 +0000] [40634] [INFO] Booting worker with pid: 40634
+[2025-06-26 09:25:58 +0000] [40104] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:25:58 +0000] [40104] [INFO] Worker exiting (pid: 40104)
+[2025-06-26 09:25:58 +0000] [40644] [INFO] Booting worker with pid: 40644
+[2025-06-26 09:25:59 +0000] [40661] [INFO] Booting worker with pid: 40661
+[2025-06-26 09:26:10 +0000] [40632] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:10 +0000] [40632] [INFO] Worker exiting (pid: 40632)
+[2025-06-26 09:26:10 +0000] [40634] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:10 +0000] [40634] [INFO] Worker exiting (pid: 40634)
+[2025-06-26 09:26:10 +0000] [40633] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:10 +0000] [40633] [INFO] Worker exiting (pid: 40633)
+[2025-06-26 09:26:10 +0000] [40644] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:10 +0000] [40644] [INFO] Worker exiting (pid: 40644)
+[2025-06-26 09:26:11 +0000] [40726] [INFO] Booting worker with pid: 40726
+[2025-06-26 09:26:11 +0000] [40630] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:11 +0000] [40630] [INFO] Worker exiting (pid: 40630)
+[2025-06-26 09:26:11 +0000] [40727] [INFO] Booting worker with pid: 40727
+[2025-06-26 09:26:11 +0000] [40728] [INFO] Booting worker with pid: 40728
+[2025-06-26 09:26:11 +0000] [40729] [INFO] Booting worker with pid: 40729
+[2025-06-26 09:26:11 +0000] [40661] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:11 +0000] [40661] [INFO] Worker exiting (pid: 40661)
+[2025-06-26 09:26:11 +0000] [40745] [INFO] Booting worker with pid: 40745
+[2025-06-26 09:26:11 +0000] [40746] [INFO] Booting worker with pid: 40746
+[2025-06-26 09:26:26 +0000] [40745] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:26 +0000] [40745] [INFO] Worker exiting (pid: 40745)
+[2025-06-26 09:26:26 +0000] [40746] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:26 +0000] [40746] [INFO] Worker exiting (pid: 40746)
+[2025-06-26 09:26:26 +0000] [40825] [INFO] Booting worker with pid: 40825
+[2025-06-26 09:26:26 +0000] [40826] [INFO] Booting worker with pid: 40826
+[2025-06-26 09:26:26 +0000] [40728] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:26 +0000] [40728] [INFO] Worker exiting (pid: 40728)
+[2025-06-26 09:26:26 +0000] [40726] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:26 +0000] [40726] [INFO] Worker exiting (pid: 40726)
+[2025-06-26 09:26:27 +0000] [40727] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:27 +0000] [40727] [INFO] Worker exiting (pid: 40727)
+[2025-06-26 09:26:27 +0000] [40729] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:26:27 +0000] [40729] [INFO] Worker exiting (pid: 40729)
+[2025-06-26 09:26:27 +0000] [40830] [INFO] Booting worker with pid: 40830
+[2025-06-26 09:26:27 +0000] [40847] [INFO] Booting worker with pid: 40847
+[2025-06-26 09:26:27 +0000] [40848] [INFO] Booting worker with pid: 40848
+[2025-06-26 09:26:27 +0000] [40849] [INFO] Booting worker with pid: 40849
+[2025-06-26 09:44:51 +0000] [40830] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:51 +0000] [40830] [INFO] Worker exiting (pid: 40830)
+[2025-06-26 09:44:51 +0000] [40847] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:51 +0000] [40847] [INFO] Worker exiting (pid: 40847)
+[2025-06-26 09:44:52 +0000] [40826] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:52 +0000] [40826] [INFO] Worker exiting (pid: 40826)
+[2025-06-26 09:44:52 +0000] [40825] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:52 +0000] [40825] [INFO] Worker exiting (pid: 40825)
+[2025-06-26 09:44:52 +0000] [40848] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:52 +0000] [40848] [INFO] Worker exiting (pid: 40848)
+[2025-06-26 09:44:52 +0000] [40849] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:44:52 +0000] [40849] [INFO] Worker exiting (pid: 40849)
+[2025-06-26 09:44:52 +0000] [43129] [INFO] Booting worker with pid: 43129
+[2025-06-26 09:44:52 +0000] [43132] [INFO] Booting worker with pid: 43132
+[2025-06-26 09:44:52 +0000] [43140] [INFO] Booting worker with pid: 43140
+[2025-06-26 09:44:52 +0000] [43141] [INFO] Booting worker with pid: 43141
+[2025-06-26 09:44:52 +0000] [43142] [INFO] Booting worker with pid: 43142
+[2025-06-26 09:44:52 +0000] [43143] [INFO] Booting worker with pid: 43143
+[2025-06-26 09:46:38 +0000] [43141] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43141] [INFO] Worker exiting (pid: 43141)
+[2025-06-26 09:46:38 +0000] [43132] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43132] [INFO] Worker exiting (pid: 43132)
+[2025-06-26 09:46:38 +0000] [43143] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43143] [INFO] Worker exiting (pid: 43143)
+[2025-06-26 09:46:38 +0000] [43140] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43140] [INFO] Worker exiting (pid: 43140)
+[2025-06-26 09:46:38 +0000] [43142] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43142] [INFO] Worker exiting (pid: 43142)
+[2025-06-26 09:46:38 +0000] [43129] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:46:38 +0000] [43129] [INFO] Worker exiting (pid: 43129)
+[2025-06-26 09:46:38 +0000] [43346] [INFO] Booting worker with pid: 43346
+[2025-06-26 09:46:38 +0000] [43354] [INFO] Booting worker with pid: 43354
+[2025-06-26 09:46:39 +0000] [43359] [INFO] Booting worker with pid: 43359
+[2025-06-26 09:46:39 +0000] [43360] [INFO] Booting worker with pid: 43360
+[2025-06-26 09:46:39 +0000] [43361] [INFO] Booting worker with pid: 43361
+[2025-06-26 09:46:39 +0000] [43362] [INFO] Booting worker with pid: 43362
+[2025-06-26 09:49:34 +0000] [43346] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43346] [INFO] Worker exiting (pid: 43346)
+[2025-06-26 09:49:34 +0000] [43359] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43359] [INFO] Worker exiting (pid: 43359)
+[2025-06-26 09:49:34 +0000] [43354] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43354] [INFO] Worker exiting (pid: 43354)
+[2025-06-26 09:49:34 +0000] [43361] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43361] [INFO] Worker exiting (pid: 43361)
+[2025-06-26 09:49:34 +0000] [43360] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43360] [INFO] Worker exiting (pid: 43360)
+[2025-06-26 09:49:34 +0000] [43362] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:49:34 +0000] [43362] [INFO] Worker exiting (pid: 43362)
+[2025-06-26 09:49:34 +0000] [43890] [INFO] Booting worker with pid: 43890
+[2025-06-26 09:49:34 +0000] [43892] [INFO] Booting worker with pid: 43892
+[2025-06-26 09:49:34 +0000] [43899] [INFO] Booting worker with pid: 43899
+[2025-06-26 09:49:34 +0000] [43902] [INFO] Booting worker with pid: 43902
+[2025-06-26 09:49:35 +0000] [43905] [INFO] Booting worker with pid: 43905
+[2025-06-26 09:49:35 +0000] [43907] [INFO] Booting worker with pid: 43907
+[2025-06-26 09:52:22 +0000] [43899] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:22 +0000] [43899] [INFO] Worker exiting (pid: 43899)
+[2025-06-26 09:52:22 +0000] [43907] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:22 +0000] [43907] [INFO] Worker exiting (pid: 43907)
+[2025-06-26 09:52:22 +0000] [43905] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:22 +0000] [43905] [INFO] Worker exiting (pid: 43905)
+[2025-06-26 09:52:22 +0000] [44366] [INFO] Booting worker with pid: 44366
+[2025-06-26 09:52:22 +0000] [44367] [INFO] Booting worker with pid: 44367
+[2025-06-26 09:52:22 +0000] [44368] [INFO] Booting worker with pid: 44368
+[2025-06-26 09:52:22 +0000] [43902] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:22 +0000] [43902] [INFO] Worker exiting (pid: 43902)
+[2025-06-26 09:52:22 +0000] [43890] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:22 +0000] [43890] [INFO] Worker exiting (pid: 43890)
+[2025-06-26 09:52:23 +0000] [43892] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 09:52:23 +0000] [43892] [INFO] Worker exiting (pid: 43892)
+[2025-06-26 09:52:23 +0000] [44396] [INFO] Booting worker with pid: 44396
+[2025-06-26 09:52:23 +0000] [44398] [INFO] Booting worker with pid: 44398
+[2025-06-26 09:52:23 +0000] [44399] [INFO] Booting worker with pid: 44399

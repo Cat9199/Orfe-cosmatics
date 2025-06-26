@@ -1373,40 +1373,54 @@ def home():
             except ValueError:
                 flash('صيغة التاريخ غير صحيحة', 'error')
 
-        # Basic counts with error handling
+        # Initialize all statistics with default values
+        products_count = 0
+        categories_count = 0
+        active_products = 0
+        orders_count = 0
+        delivered_orders_count = 0
+        pending_orders_count = 0
+        shipped_orders_count = 0
+        returned_orders_count = 0
+        total_revenue = 0
+        monthly_revenue = 0
+        daily_revenue = 0
+        total_shipping_cost = 0
+        avg_order_value = 0
+        customers_count = 0
+        new_customers = 0
+        repeat_customers = 0
+        delivered_orders = []
+        pending_orders = []
+        
         try:
-            products_count = Product.query.count()
+            # Product and category statistics
+            products = Product.query.all()
+            products_count = len(products)
             categories_count = Category.query.count()
-            active_products = Product.query.filter(Product.stock > 0).count()
+            active_products = sum(1 for p in products if p.stock > 0)
         except Exception as e:
             app.logger.error(f'Error counting products: {str(e)}')
-            products_count = 0
-            categories_count = 0
-            active_products = 0
-            
+        
         try:
-            # Get all orders with their shipping status
+            # Order statistics using query filters for better performance
             orders_count = Order.query.count()
-            delivered_orders = Order.query.filter(Order.shipping_status == 'delivered').count()
-            pending_orders = Order.query.filter(Order.shipping_status == 'pending').count()
-            shipped_orders = Order.query.filter(Order.shipping_status == 'shipped').count()
-            returned_orders = Order.query.filter(Order.shipping_status == 'returned').count()
+            delivered_orders = Order.query.filter_by(shipping_status='delivered').all()
+            delivered_orders_count = len(delivered_orders)
+            pending_orders = Order.query.filter_by(shipping_status='pending').all()
+            pending_orders_count = len(pending_orders)
             
-            # Calculate average order value
-            total_delivered_amount = db.session.query(db.func.sum(Order.cod_amount)).filter(
-                Order.shipping_status == 'delivered'
-            ).scalar() or 0
-            avg_order_value = total_delivered_amount / delivered_orders if delivered_orders > 0 else 0
+            shipped_orders_count = Order.query.filter_by(shipping_status='shipped').count()
+            returned_orders_count = Order.query.filter_by(shipping_status='returned').count()
+            
+            # Update variables used in template
+            shipped_orders = shipped_orders_count
+            returned_orders = returned_orders_count
         except Exception as e:
-            app.logger.error(f'Error counting orders: {str(e)}')
-            orders_count = 0
-            delivered_orders = 0
-            pending_orders = 0
-            shipped_orders = 0
-            returned_orders = 0
-            avg_order_value = 0
-            
+            app.logger.error(f'Error calculating order statistics: {str(e)}')
+        
         try:
+            # Customer statistics
             customers_count = Gusts.query.count()
             new_customers = Gusts.query.filter(
                 Gusts.created_at >= datetime.now() - timedelta(days=30)
@@ -1417,86 +1431,53 @@ def home():
                 db.func.count(Order.id) > 1
             ).count()
         except Exception as e:
-            app.logger.error(f'Error counting customers: {str(e)}')
-            customers_count = 0
-            new_customers = 0
-            repeat_customers = 0
+            app.logger.error(f'Error calculating customer statistics: {str(e)}')
         
-        # Calculate total revenue with error handling
         try:
-            # Get all delivered orders with date filter
+            # Calculate revenue statistics for delivered orders
             delivered_query = base_query.filter(
                 Order.shipping_status == 'delivered',
                 Order.cod_amount.isnot(None)
             )
-            delivered_orders = delivered_query.all()
             
-            # Calculate total revenue by subtracting shipping costs
-            total_revenue = 0
-            total_shipping_cost = 0
-            for order in delivered_orders:
+            for order in delivered_query.all():
                 try:
-                    # Get shipping cost for the order's city
                     shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
                     shipping_price = float(shipping_cost.price) if shipping_cost else 0
                     total_shipping_cost += shipping_price
                     
-                    # Ensure cod_amount is a valid number
                     order_amount = float(order.cod_amount) if order.cod_amount else 0
-                    
-                    # Subtract shipping cost from order total
                     total_revenue += max(0, order_amount - shipping_price)
                 except (ValueError, TypeError, AttributeError) as e:
                     app.logger.error(f'Error processing order {order.id}: {str(e)}')
                     continue
             
-            # Calculate monthly revenue
-            monthly_revenue = 0
+            # Calculate average order value
+            avg_order_value = total_revenue / delivered_orders_count if delivered_orders_count > 0 else 0
+            
+            # Calculate monthly and daily revenue
             current_month = datetime.now().month
             current_year = datetime.now().year
-            monthly_orders = Order.query.filter(
-                Order.shipping_status == 'delivered',
-                Order.cod_amount.isnot(None),
-                db.extract('month', Order.created_at) == current_month,
-                db.extract('year', Order.created_at) == current_year
-            ).all()
-            
-            for order in monthly_orders:
-                try:
-                    shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
-                    shipping_price = float(shipping_cost.price) if shipping_cost else 0
-                    order_amount = float(order.cod_amount) if order.cod_amount else 0
-                    monthly_revenue += max(0, order_amount - shipping_price)
-                except (ValueError, TypeError, AttributeError) as e:
-                    app.logger.error(f'Error processing monthly order {order.id}: {str(e)}')
-                    continue
-            
-            # Calculate daily revenue
-            daily_revenue = 0
             today = datetime.now().date()
-            daily_orders = Order.query.filter(
-                Order.shipping_status == 'delivered',
-                Order.cod_amount.isnot(None),
-                db.func.date(Order.created_at) == today
-            ).all()
             
-            for order in daily_orders:
+            for order in delivered_query.all():
                 try:
                     shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
                     shipping_price = float(shipping_cost.price) if shipping_cost else 0
                     order_amount = float(order.cod_amount) if order.cod_amount else 0
-                    daily_revenue += max(0, order_amount - shipping_price)
-                except (ValueError, TypeError, AttributeError) as e:
-                    app.logger.error(f'Error processing daily order {order.id}: {str(e)}')
+                    revenue = max(0, order_amount - shipping_price)
+                    
+                    if order.created_at.date() == today:
+                        daily_revenue += revenue
+                    if order.created_at.month == current_month and order.created_at.year == current_year:
+                        monthly_revenue += revenue
+                except Exception as e:
+                    app.logger.error(f'Error processing revenue for order {order.id}: {str(e)}')
                     continue
-                
+                    
         except Exception as e:
-            app.logger.error(f'Error calculating revenue: {str(e)}')
-            total_revenue = 0
-            monthly_revenue = 0
-            daily_revenue = 0
-            total_shipping_cost = 0
-        
+            app.logger.error(f'Error calculating revenue statistics: {str(e)}')
+
         # Get recent orders with error handling
         try:
             recent_orders = Order.query.order_by(Order.created_at.desc()).limit(10).all()
@@ -1504,7 +1485,7 @@ def home():
             app.logger.error(f'Error fetching recent orders: {str(e)}')
             recent_orders = []
         
-        # Initialize chart data with empty values
+        # Initialize chart data
         revenue_chart = {'labels': [], 'data': []}
         orders_chart = {'labels': [], 'data': []}
         
@@ -1512,7 +1493,6 @@ def home():
             # Generate chart data for the last 6 months
             current_date = datetime.now()
             for i in range(6):
-                # Calculate the date for this month
                 month_date = current_date - timedelta(days=30*i)
                 month_name = month_date.strftime('%B')
                 
@@ -1532,13 +1512,12 @@ def home():
                 
                 revenue_chart['labels'].insert(0, month_name)
                 revenue_chart['data'].insert(0, monthly_revenue)
-                
                 orders_chart['labels'].insert(0, month_name)
                 orders_chart['data'].insert(0, monthly_orders)
         except Exception as e:
             app.logger.error(f'Error generating chart data: {str(e)}')
         
-        # Get top selling products with error handling - Only from delivered orders
+        # Get top selling products
         try:
             top_products = db.session.query(
                 Product,
@@ -1555,8 +1534,6 @@ def home():
         except Exception as e:
             app.logger.error(f'Error fetching top products: {str(e)}')
             top_products = []
-        
-        # Get shipping status distribution
         try:
             shipping_status_distribution = db.session.query(
                 Order.shipping_status,
@@ -1567,27 +1544,27 @@ def home():
             shipping_status_distribution = []
 
         return render_template('admin/index.html',
-                            products_count=products_count,
-                            categories_count=categories_count,
-                            active_products=active_products,
-                            orders_count=orders_count,
-                            delivered_orders=delivered_orders,
-                            pending_orders=pending_orders,
-                            shipped_orders=shipped_orders,
-                            returned_orders=returned_orders,
-                            customers_count=customers_count,
-                            new_customers=new_customers,
-                            repeat_customers=repeat_customers,
-                            total_revenue=total_revenue,
-                            monthly_revenue=monthly_revenue,
-                            daily_revenue=daily_revenue,
-                            total_shipping_cost=total_shipping_cost,
-                            avg_order_value=avg_order_value,
-                            recent_orders=recent_orders,
-                            revenue_chart=revenue_chart,
-                            orders_chart=orders_chart,
-                            top_products=top_products,
-                            shipping_status_distribution=shipping_status_distribution)
+            products_count=products_count,
+            categories_count=categories_count,
+            active_products=active_products,
+            orders_count=orders_count,
+            delivered_orders=delivered_orders,
+            pending_orders=pending_orders_count,
+            shipped_orders=shipped_orders_count,
+            returned_orders=returned_orders_count,
+            customers_count=customers_count,
+            new_customers=new_customers,
+            repeat_customers=repeat_customers,
+            total_revenue=total_revenue,
+            monthly_revenue=monthly_revenue,
+            daily_revenue=daily_revenue,
+            total_shipping_cost=total_shipping_cost,
+            avg_order_value=avg_order_value,
+            recent_orders=recent_orders,
+            revenue_chart=revenue_chart,
+            orders_chart=orders_chart,
+            top_products=top_products,
+            shipping_status_distribution=shipping_status_distribution)
                             
     except Exception as e:
         app.logger.error(f'Error in admin dashboard: {str(e)}')
@@ -1705,18 +1682,28 @@ def save_uploaded_file(file):
 @admin_required
 def add_category():
     try:
-        name = request.form['name']
+        name = request.form.get('name')
+        if not name:
+            flash('اسم التصنيف مطلوب!', 'error')
+            return redirect(url_for('admin.categories'))
+            
+        # Check if category already exists
+        existing_category = Category.query.filter_by(name=name).first()
+        if existing_category:
+            flash('تصنيف بهذا الاسم موجود بالفعل!', 'error')
+            return redirect(url_for('admin.categories'))
+            
         new_category = Category(name=name)
         db.session.add(new_category)
         db.session.commit()
-        flash('تمت إضافة القسم بنجاح!', 'success')
-        return redirect(request.referrer)
-
+        flash('تمت إضافة التصنيف بنجاح!', 'success')
+        
     except Exception as e:
         db.session.rollback()
-        print(f"Error: {e}")
-        flash('حدث خطأ أثناء إضافة القسم!', 'error')
-        return redirect(request.referrer)
+        print(f"Error adding category: {e}")
+        flash('حدث خطأ أثناء إضافة التصنيف!', 'error')
+        
+    return redirect(url_for('admin.categories'))
 
 @admin.route('/products')
 @admin_required
@@ -1778,8 +1765,13 @@ def edit_product(product_id):
 @admin.route('/categories', methods=['GET', 'POST'])
 @admin_required
 def categories():
-    categories = Category.query.all()
-    return render_template('admin/categories.html', categories=categories)
+    try:
+        categories = Category.query.order_by(Category.created_at.desc()).all()
+        return render_template('admin/categories.html', categories=categories)
+    except Exception as e:
+        print(f"Error loading categories: {e}")
+        flash('حدث خطأ أثناء تحميل التصنيفات!', 'error')
+        return render_template('admin/categories.html', categories=[])
 
 @admin.route('/delete_category/<int:category_id>', methods=['POST'])
 @admin_required
@@ -1891,7 +1883,7 @@ def orders():
     try:
         # Get page parameter from the request, default to 1 if not provided
         page = request.args.get('page', 1, type=int)
-        per_page = 50  # Show 50 orders per page
+        per_page = 12  # Show 12 orders per page for better grid layout
         
         # Get filter parameters from request
         search = request.args.get('search', '')
@@ -1972,7 +1964,8 @@ def orders():
                 'pending': 'قيد الانتظار',
                 'shipped': 'تم الشحن',
                 'delivered': 'تم التوصيل',
-                'cancelled': 'ملغي'
+                'cancelled': 'ملغي',
+                'returned': 'تم الإرجاع'
             }
             order.shipping_status_display = shipping_statuses.get(order.shipping_status, order.shipping_status)
             
@@ -2010,7 +2003,8 @@ def orders():
             {'value': 'pending', 'label': 'قيد الانتظار'},
             {'value': 'shipped', 'label': 'تم الشحن'},
             {'value': 'delivered', 'label': 'تم التوصيل'},
-            {'value': 'returned', 'label': 'تم الإرجاع'}
+            {'value': 'returned', 'label': 'تم الإرجاع'},
+            {'value': 'cancelled', 'label': 'ملغي'}
         ]
         
         return render_template('admin/orders.html', 
