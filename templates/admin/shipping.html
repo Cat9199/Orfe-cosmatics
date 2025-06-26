@@ -57,7 +57,7 @@
                             <div>
                                 <p class="text-sm text-slate-600">متوسط الشحن</p>
                                 <p class="text-xl font-bold text-slate-800">
-                                    {% set total_price = cities|selectattr('price')|map(attribute='price.0.price')|sum %} {% set cities_with_price = cities|selectattr('price')|list|length %} {{ "%.0f"|format(total_price / cities_with_price if cities_with_price > 0 else 0) }} ج.م
+                                    {{ "%.0f"|format(stats.avg_shipping_cost) }} ج.م
                                 </p>
                             </div>
                         </div>
@@ -124,15 +124,15 @@
                     <!-- Stats Row -->
                     <div class="grid grid-cols-3 gap-3">
                         <div class="text-center">
-                            <div class="text-2xl font-bold text-slate-800">{{ city.zones|length }}</div>
+                            <div class="text-2xl font-bold text-slate-800">{{ city.zones_count }}</div>
                             <div class="text-sm text-slate-600">منطقة</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-2xl font-bold text-slate-800">{{ city.districts|length }}</div>
+                            <div class="text-2xl font-bold text-slate-800">{{ city.districts_count }}</div>
                             <div class="text-sm text-slate-600">حي</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-2xl font-bold text-sage-600">{{ city.price[0].price if city.price else '100' }}</div>
+                            <div class="text-2xl font-bold text-sage-600">{{ city.shipping_price }}</div>
                             <div class="text-sm text-slate-600">ج.م</div>
                         </div>
                     </div>
@@ -182,8 +182,8 @@
                                 <span class="font-medium text-slate-700">تكلفة الشحن:</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span class="text-lg font-bold text-sage-700">{{ city.price[0].price if city.price else '100' }} ج.م</span>
-                                <button data-action="edit-shipping-cost" data-city-id="{{ city.city_id }}" data-current-price="{{ city.price[0].price if city.price else '100' }}" class="text-sage-600 hover:text-sage-800">
+                                <span class="text-lg font-bold text-sage-700">{{ city.shipping_price }} ج.م</span>
+                                <button data-action="edit-shipping-cost" data-city-id="{{ city.city_id }}" data-current-price="{{ city.shipping_price }}" class="text-sage-600 hover:text-sage-800">
                                     <i class='bx bx-edit-alt text-sm'></i>
                                 </button>
                             </div>

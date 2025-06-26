@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Icon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .icon-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .icon-item { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>PWA Icon Generator for Orfe Admin</h1>
+    <div id="icons" class="icon-container"></div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        const iconsContainer = document.getElementById('icons');
+
+        // Create a base canvas with logo
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Background with gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#8BA888');
+            gradient.addColorStop(1, '#A2C7A1');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Add border radius effect
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.1);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // Add text logo
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.2}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Orfe', size / 2, size / 2 - size * 0.05);
+            
+            ctx.font = `${size * 0.12}px Arial`;
+            ctx.fillText('Admin', size / 2, size / 2 + size * 0.1);
+            
+            return canvas;
+        }
+
+        // Generate all icon sizes
+        sizes.forEach(size => {
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'icon-item';
+            
+            const canvas = createIcon(size);
+            const label = document.createElement('p');
+            label.textContent = `${size}x${size}`;
+            
+            // Add download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = canvas.toDataURL();
+            downloadLink.download = `icon-${size}x${size}.png`;
+            downloadLink.textContent = 'Download';
+            downloadLink.style.display = 'block';
+            downloadLink.style.marginTop = '5px';
+            downloadLink.style.color = '#8BA888';
+            
+            iconDiv.appendChild(canvas);
+            iconDiv.appendChild(label);
+            iconDiv.appendChild(downloadLink);
+            iconsContainer.appendChild(iconDiv);
+        });
+
+        // Add download all button
+        const downloadAllBtn = document.createElement('button');
+        downloadAllBtn.textContent = 'Download All Icons';
+        downloadAllBtn.style.padding = '10px 20px';
+        downloadAllBtn.style.backgroundColor = '#8BA888';
+        downloadAllBtn.style.color = 'white';
+        downloadAllBtn.style.border = 'none';
+        downloadAllBtn.style.borderRadius = '5px';
+        downloadAllBtn.style.cursor = 'pointer';
+        downloadAllBtn.style.marginTop = '20px';
+        
+        downloadAllBtn.onclick = () => {
+            sizes.forEach(size => {
+                const canvas = createIcon(size);
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = `icon-${size}x${size}.png`;
+                link.click();
+            });
+        };
+        
+        document.body.appendChild(downloadAllBtn);
+    </script>
+</body>
+</html>

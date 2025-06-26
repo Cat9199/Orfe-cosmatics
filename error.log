@@ -7672,3 +7672,65 @@ SyntaxError: expected 'except' or 'finally' block
 [2025-06-26 09:54:39 +0000] [44907] [INFO] Booting worker with pid: 44907
 [2025-06-26 09:54:39 +0000] [44908] [INFO] Booting worker with pid: 44908
 [2025-06-26 09:54:39 +0000] [44909] [INFO] Booting worker with pid: 44909
+[2025-06-26 09:56:33 +0000] [44904] [INFO] Worker exiting (pid: 44904)
+[2025-06-26 09:56:33 +0000] [44900] [INFO] Worker exiting (pid: 44900)
+[2025-06-26 09:56:33 +0000] [27934] [INFO] Handling signal: term
+[2025-06-26 09:56:33 +0000] [44907] [INFO] Worker exiting (pid: 44907)
+[2025-06-26 09:56:33 +0000] [44908] [INFO] Worker exiting (pid: 44908)
+[2025-06-26 09:56:33 +0000] [44909] [INFO] Worker exiting (pid: 44909)
+[2025-06-26 09:56:33 +0000] [44906] [INFO] Worker exiting (pid: 44906)
+[2025-06-26 09:56:33 +0000] [27934] [ERROR] Worker (pid:44904) was sent SIGTERM!
+[2025-06-26 09:56:33 +0000] [27934] [ERROR] Worker (pid:44900) was sent SIGTERM!
+[2025-06-26 09:56:33 +0000] [27934] [INFO] Shutting down: Master
+[2025-06-26 09:56:34 +0000] [45484] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 09:56:34 +0000] [45484] [INFO] Listening at: http://127.0.0.1:1305 (45484)
+[2025-06-26 09:56:34 +0000] [45484] [INFO] Using worker: sync
+[2025-06-26 09:56:34 +0000] [45485] [INFO] Booting worker with pid: 45485
+[2025-06-26 09:56:34 +0000] [45486] [INFO] Booting worker with pid: 45486
+[2025-06-26 09:56:34 +0000] [45487] [INFO] Booting worker with pid: 45487
+[2025-06-26 09:56:34 +0000] [45488] [INFO] Booting worker with pid: 45488
+[2025-06-26 09:56:34 +0000] [45489] [INFO] Booting worker with pid: 45489
+[2025-06-26 09:56:34 +0000] [45490] [INFO] Booting worker with pid: 45490
+[2025-06-26 10:04:29 +0000] [45489] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:29 +0000] [45489] [INFO] Worker exiting (pid: 45489)
+[2025-06-26 10:04:30 +0000] [45486] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:30 +0000] [45486] [INFO] Worker exiting (pid: 45486)
+[2025-06-26 10:04:30 +0000] [45490] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:30 +0000] [45490] [INFO] Worker exiting (pid: 45490)
+[2025-06-26 10:04:30 +0000] [45487] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:30 +0000] [45487] [INFO] Worker exiting (pid: 45487)
+[2025-06-26 10:04:30 +0000] [52410] [INFO] Booting worker with pid: 52410
+[2025-06-26 10:04:30 +0000] [52411] [INFO] Booting worker with pid: 52411
+[2025-06-26 10:04:30 +0000] [52412] [INFO] Booting worker with pid: 52412
+[2025-06-26 10:04:30 +0000] [52413] [INFO] Booting worker with pid: 52413
+[2025-06-26 10:04:30 +0000] [45485] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:30 +0000] [45485] [INFO] Worker exiting (pid: 45485)
+[2025-06-26 10:04:30 +0000] [45488] [INFO] Worker reloading: /var/Orfe-cosmatics/app.py modified
+[2025-06-26 10:04:30 +0000] [45488] [INFO] Worker exiting (pid: 45488)
+[2025-06-26 10:04:31 +0000] [52431] [INFO] Booting worker with pid: 52431
+[2025-06-26 10:04:31 +0000] [52432] [INFO] Booting worker with pid: 52432
+[2025-06-26 10:04:40 +0000] [52410] [INFO] Worker exiting (pid: 52410)
+[2025-06-26 10:04:40 +0000] [45484] [INFO] Handling signal: term
+[2025-06-26 10:04:40 +0000] [52432] [INFO] Worker exiting (pid: 52432)
+[2025-06-26 10:04:40 +0000] [52413] [INFO] Worker exiting (pid: 52413)
+[2025-06-26 10:04:40 +0000] [52431] [INFO] Worker exiting (pid: 52431)
+[2025-06-26 10:04:40 +0000] [52412] [INFO] Worker exiting (pid: 52412)
+[2025-06-26 10:04:40 +0000] [52411] [INFO] Worker exiting (pid: 52411)
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52410) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52413) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52432) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52431) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52411) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [ERROR] Worker (pid:52412) was sent SIGTERM!
+[2025-06-26 10:04:40 +0000] [45484] [INFO] Shutting down: Master
+[2025-06-26 10:04:41 +0000] [52662] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 10:04:41 +0000] [52662] [INFO] Listening at: http://127.0.0.1:1305 (52662)
+[2025-06-26 10:04:41 +0000] [52662] [INFO] Using worker: sync
+[2025-06-26 10:04:41 +0000] [52663] [INFO] Booting worker with pid: 52663
+[2025-06-26 10:04:41 +0000] [52664] [INFO] Booting worker with pid: 52664
+[2025-06-26 10:04:41 +0000] [52665] [INFO] Booting worker with pid: 52665
+[2025-06-26 10:04:41 +0000] [52666] [INFO] Booting worker with pid: 52666
+[2025-06-26 10:04:41 +0000] [52667] [INFO] Booting worker with pid: 52667
+[2025-06-26 10:04:41 +0000] [52668] [INFO] Booting worker with pid: 52668
+[2025-06-26 10:04:49,458] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
+[2025-06-26 10:05:16,429] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
