@@ -7734,3 +7734,100 @@ SyntaxError: expected 'except' or 'finally' block
 [2025-06-26 10:04:41 +0000] [52668] [INFO] Booting worker with pid: 52668
 [2025-06-26 10:04:49,458] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
 [2025-06-26 10:05:16,429] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
+[2025-06-26 15:59:45 +0000] [52666] [INFO] Worker exiting (pid: 52666)
+[2025-06-26 15:59:45 +0000] [52667] [INFO] Worker exiting (pid: 52667)
+[2025-06-26 15:59:45 +0000] [52663] [INFO] Worker exiting (pid: 52663)
+[2025-06-26 15:59:45 +0000] [52665] [INFO] Worker exiting (pid: 52665)
+[2025-06-26 15:59:45 +0000] [52668] [INFO] Worker exiting (pid: 52668)
+[2025-06-26 15:59:45 +0000] [52664] [INFO] Worker exiting (pid: 52664)
+[2025-06-26 15:59:45 +0000] [52662] [INFO] Handling signal: term
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52664) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52666) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52667) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52665) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52663) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [ERROR] Worker (pid:52668) was sent SIGTERM!
+[2025-06-26 15:59:45 +0000] [52662] [INFO] Shutting down: Master
+[2025-06-26 17:33:25 +0000] [261743] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 17:33:25 +0000] [261743] [INFO] Listening at: http://127.0.0.1:1305 (261743)
+[2025-06-26 17:33:25 +0000] [261743] [INFO] Using worker: sync
+[2025-06-26 17:33:25 +0000] [261745] [INFO] Booting worker with pid: 261745
+[2025-06-26 17:33:25 +0000] [261746] [INFO] Booting worker with pid: 261746
+[2025-06-26 17:33:25 +0000] [261747] [INFO] Booting worker with pid: 261747
+[2025-06-26 17:33:25 +0000] [261748] [INFO] Booting worker with pid: 261748
+[2025-06-26 17:33:25 +0000] [261749] [INFO] Booting worker with pid: 261749
+[2025-06-26 17:33:26 +0000] [261750] [INFO] Booting worker with pid: 261750
+[2025-06-26 18:17:41 +0000] [261746] [INFO] Worker exiting (pid: 261746)
+[2025-06-26 18:17:41 +0000] [261747] [INFO] Worker exiting (pid: 261747)
+[2025-06-26 18:17:41 +0000] [261745] [INFO] Worker exiting (pid: 261745)
+[2025-06-26 18:17:41 +0000] [261743] [INFO] Handling signal: term
+[2025-06-26 18:17:41 +0000] [261748] [INFO] Worker exiting (pid: 261748)
+[2025-06-26 18:17:41 +0000] [261750] [INFO] Worker exiting (pid: 261750)
+[2025-06-26 18:17:41 +0000] [261749] [INFO] Worker exiting (pid: 261749)
+[2025-06-26 18:17:41 +0000] [261743] [ERROR] Worker (pid:261750) was sent SIGTERM!
+[2025-06-26 18:17:41 +0000] [261743] [ERROR] Worker (pid:261748) was sent SIGTERM!
+[2025-06-26 18:17:41 +0000] [261743] [INFO] Shutting down: Master
+[2025-06-26 19:08:25 +0000] [295841] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 19:08:25 +0000] [295841] [INFO] Listening at: http://127.0.0.1:1305 (295841)
+[2025-06-26 19:08:25 +0000] [295841] [INFO] Using worker: sync
+[2025-06-26 19:08:25 +0000] [295842] [INFO] Booting worker with pid: 295842
+[2025-06-26 19:08:25 +0000] [295843] [INFO] Booting worker with pid: 295843
+[2025-06-26 19:08:25 +0000] [295844] [INFO] Booting worker with pid: 295844
+[2025-06-26 19:08:25 +0000] [295845] [INFO] Booting worker with pid: 295845
+[2025-06-26 19:08:25 +0000] [295846] [INFO] Booting worker with pid: 295846
+[2025-06-26 19:08:25 +0000] [295847] [INFO] Booting worker with pid: 295847
+[2025-06-26 19:09:40,171] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
+[2025-06-26 19:09:41,520] ERROR in app: Error in shipping route: unsupported operand type(s) for +: 'int' and 'InstrumentedList'
+[2025-06-26 20:54:33 +0000] [305323] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 20:54:33 +0000] [305323] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 20:54:33 +0000] [305323] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 20:54:34 +0000] [305323] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 20:54:34 +0000] [305323] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 20:54:35 +0000] [305323] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 20:54:35 +0000] [305323] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 20:54:36 +0000] [305323] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 20:54:36 +0000] [305323] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 20:54:37 +0000] [305323] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 20:54:37 +0000] [305323] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 20:54:38 +0000] [305323] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-06-26 20:55:35 +0000] [295842] [INFO] Worker exiting (pid: 295842)
+[2025-06-26 20:55:35 +0000] [295841] [INFO] Handling signal: term
+[2025-06-26 20:55:35 +0000] [295843] [INFO] Worker exiting (pid: 295843)
+[2025-06-26 20:55:35 +0000] [295846] [INFO] Worker exiting (pid: 295846)
+[2025-06-26 20:55:35 +0000] [295845] [INFO] Worker exiting (pid: 295845)
+[2025-06-26 20:55:35 +0000] [295844] [INFO] Worker exiting (pid: 295844)
+[2025-06-26 20:55:35 +0000] [295847] [INFO] Worker exiting (pid: 295847)
+[2025-06-26 20:55:36 +0000] [295841] [INFO] Shutting down: Master
+[2025-06-26 21:01:29 +0000] [316464] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 21:01:29 +0000] [316464] [INFO] Listening at: http://127.0.0.1:1305 (316464)
+[2025-06-26 21:01:29 +0000] [316464] [INFO] Using worker: sync
+[2025-06-26 21:01:29 +0000] [316465] [INFO] Booting worker with pid: 316465
+[2025-06-26 21:01:30 +0000] [316466] [INFO] Booting worker with pid: 316466
+[2025-06-26 21:01:30 +0000] [316467] [INFO] Booting worker with pid: 316467
+[2025-06-26 21:01:30 +0000] [316468] [INFO] Booting worker with pid: 316468
+[2025-06-26 21:01:30 +0000] [316469] [INFO] Booting worker with pid: 316469
+[2025-06-26 21:01:30 +0000] [316470] [INFO] Booting worker with pid: 316470
+[2025-06-26 21:01:32 +0000] [316504] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 21:01:32 +0000] [316504] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:32 +0000] [316504] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:33 +0000] [316504] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:33 +0000] [316504] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:34 +0000] [316504] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:34 +0000] [316504] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:35 +0000] [316576] [INFO] Starting gunicorn 23.0.0
+[2025-06-26 21:01:35 +0000] [316576] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:35 +0000] [316576] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:35 +0000] [316504] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:35 +0000] [316504] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:36 +0000] [316576] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:36 +0000] [316576] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:36 +0000] [316504] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:36 +0000] [316504] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:37 +0000] [316576] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:37 +0000] [316576] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:37 +0000] [316504] [ERROR] Can't connect to ('127.0.0.1', 1305)
+[2025-06-26 21:01:38 +0000] [316576] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:38 +0000] [316576] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:39 +0000] [316576] [ERROR] Connection in use: ('127.0.0.1', 1305)
+[2025-06-26 21:01:39 +0000] [316576] [ERROR] connection to ('127.0.0.1', 1305) failed: [Errno 98] Address already in use
+[2025-06-26 21:01:40 +0000] [316576] [ERROR] Can't connect to ('127.0.0.1', 1305)
