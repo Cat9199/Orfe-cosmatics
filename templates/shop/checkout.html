@@ -259,30 +259,72 @@
             // No need to fetch districts here anymore
         });
 
-        // Handle Vodafone Cash payment
-        const vodafoneCashRadio = document.getElementById('vodafone_cash');
-        const checkoutForm = document.getElementById('checkoutForm');
-
-        vodafoneCashRadio.addEventListener('change', function() {
-            if (this.checked) {
-                // Submit the form first
-                checkoutForm.submit();
-
-                // After form submission, redirect to WhatsApp
-                setTimeout(function() {
-                    window.location.href = '{{ whatsapp_link }}';
-                }, 1000); // Small delay to ensure form submission completes
-            }
-        });
-
-        // Prevent default form submission for Vodafone Cash
-        checkoutForm.addEventListener('submit', function(e) {
-            if (vodafoneCashRadio.checked) {
-                e.preventDefault();
-                // The form will be submitted by the change event handler above
-            }
-        });
+        // Handle Vodafone Cash payment - moved to pixel events section
+        // Code moved to Facebook Pixel Events section below
     });
+</script>
+
+<!-- Facebook Pixel Events -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // InitiateCheckout Event - fires when page loads
+    if (typeof fbq !== 'undefined') {
+        var contentIds = [{% for item in cart_items %}'{{ item.product.id }}'{% if not loop.last %}, {% endif %}{% endfor %}];
+        var totalValue = {{ total }};
+        var numItems = {{ cart_items|length }};
+        
+        fbq('track', 'InitiateCheckout', {
+            content_ids: contentIds,
+            content_type: 'product',
+            num_items: numItems,
+            value: totalValue,
+            currency: 'EGP'
+        });
+        
+        console.log('Facebook Pixel InitiateCheckout event fired:', {
+            content_ids: contentIds,
+            value: totalValue,
+            num_items: numItems
+        });
+    }
+    
+    // Purchase Event - fires on form submission
+    const checkoutForm = document.getElementById('checkoutForm');
+    const originalFormSubmitHandler = checkoutForm.addEventListener;
+    
+    checkoutForm.addEventListener('submit', function(e) {
+        if (typeof fbq !== 'undefined') {
+            var contentIds = [{% for item in cart_items %}'{{ item.product.id }}'{% if not loop.last %}, {% endif %}{% endfor %}];
+            var totalValue = {{ total }};
+            var numItems = {{ cart_items|length }};
+            
+            fbq('track', 'Purchase', {
+                content_ids: contentIds,
+                content_type: 'product',
+                num_items: numItems,
+                value: totalValue,
+                currency: 'EGP'
+            });
+            
+            console.log('Facebook Pixel Purchase event fired:', {
+                content_ids: contentIds,
+                value: totalValue,
+                num_items: numItems
+            });
+        }
+        
+        // Handle Vodafone Cash payment redirect
+        const vodafoneCashRadio = document.getElementById('vodafone_cash');
+        if (vodafoneCashRadio && vodafoneCashRadio.checked) {
+            e.preventDefault();
+            // Submit form first, then redirect
+            setTimeout(function() {
+                checkoutForm.submit();
+                window.location.href = '{{ whatsapp_link }}';
+            }, 100);
+        }
+    });
+});
 </script>
 
 {% endblock %}

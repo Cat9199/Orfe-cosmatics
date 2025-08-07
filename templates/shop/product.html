@@ -76,8 +76,12 @@
                             <span class="text-decoration-line-through text-muted small">1072 L.E</span>
                             <span class="text-success fw-bold">{{ product.price }} L.E</span>
                         </div>
-
-
+                        {% elif product.id == 5 %}
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-danger rounded-pill">خصم 18%</span>
+                            <span class="text-decoration-line-through text-muted small">225 L.E</span>
+                            <span class="text-success fw-bold">{{ product.price }} L.E</span>
+                        </div>
                         {% else %}
 
                         <span class="text-dark fw-bold">{{ product.price }} L.E</span> {% endif %}
@@ -165,4 +169,38 @@
 </section>
 
 <!-- Related Products Section -->
-{% set section_id = "similar" %} {% set section_title = "You may also like" %} {% include "shop/components/product_section.html" %} {% endblock %}
+{% set section_id = "similar" %} {% set section_title = "You may also like" %} {% include "shop/components/product_section.html" %}
+
+<!-- Facebook Pixel AddToCart Event -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addToCartForm = document.querySelector('form[action="/cart/add/{{ product.id }}"]');
+    
+    if (addToCartForm && typeof fbq !== 'undefined') {
+        addToCartForm.addEventListener('submit', function(e) {
+            const quantityInput = document.getElementById('quantity');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            const price = {{ product.price }};
+            
+            fbq('track', 'AddToCart', {
+                content_ids: ['{{ product.id }}'],
+                content_type: 'product',
+                content_name: '{{ product.name }}',
+                content_category: '{{ product.category.name if product.category else "" }}',
+                value: price * quantity,
+                currency: 'EGP'
+            });
+            
+            console.log('Facebook Pixel AddToCart event fired:', {
+                product_id: '{{ product.id }}',
+                product_name: '{{ product.name }}',
+                quantity: quantity,
+                price: price,
+                total_value: price * quantity
+            });
+        });
+    }
+});
+</script>
+
+{% endblock %}

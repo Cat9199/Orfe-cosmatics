@@ -1281,6 +1281,11 @@ def cart():
         } for item in cart_query_result
     ]
     return render_template('shop/cart.html', cart_items=cart_items, total=total, all_last_orders=all_last_orders)
+
+@shop.route('/return-policy')
+def return_policy():
+    """Return policy page for Google Merchant Center verification"""
+    return render_template('shop/return-policy.html')
 # chang-quantity/plus/1
 @shop.route('/cart/change-quantity/<action>/<int:item_id>')
 def change_quantity(action, item_id):
