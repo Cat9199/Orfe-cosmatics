@@ -867,23 +867,28 @@ def handle_fawaterak_payment(order):
         return redirect(url_for('shop.checkout'))
     
 def send_discord_notification(order, order_items):
-    """Send enhanced order notification to Discord webhook with detailed information and direct links"""
+    """Send beautiful and enhanced order notification to Discord webhook"""
     try:
         webhook_url = "https://discord.com/api/webhooks/1406252907724144813/jaTVxOrXvRfYsD-twKNMod9pp3m-VnL-9WRbjubCHnVIykeSlHvwMeXUxQUMSetbcn0d"
         
-        # Get shipping cost
+        # Get shipping cost and city info
         shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
         shipping_price = shipping_cost.price if shipping_cost else 0
-        
-        # Get city name
         city = City.query.filter_by(city_id=order.city).first()
         city_name = city.name if city else "غير معروف"
         
-        # Calculate totals
+        # Calculate order totals and build product details
         total_amount = 0
         total_items = 0
-        items_details = []
-        product_list = []
+        product_details = []
+        product_emojis = {
+            'زيت': '🌿',
+            'سبراي': '💨', 
+            'سيروم': '✨',
+            'كريم': '🧴',
+            'شامبو': '🧴',
+            'بلسم': '💧'
+        }
         
         for item in order_items:
             product = Product.query.get(item.product_id)
@@ -892,110 +897,122 @@ def send_discord_notification(order, order_items):
                 total_amount += item_total
                 total_items += item.quantity
                 
-                # Format each product with emoji and detailed information
-                items_details.append(f"• **{product.name}** × {item.quantity} = {item_total:.2f} ج.م")
-                product_list.append(f"{product.name} × {item.quantity}")
+                # Get appropriate emoji for product
+                product_emoji = '🛍️'
+                for key, emoji in product_emojis.items():
+                    if key in product.name:
+                        product_emoji = emoji
+                        break
+                
+                product_details.append(
+                    f"{product_emoji} **{product.name}**\n"
+                    f"   └ الكمية: `{item.quantity}` × `{product.price:.0f} ج.م` = **{item_total:.0f} ج.م**"
+                )
         
-        # Add shipping cost to total
         total_with_shipping = total_amount + shipping_price
         
-        # Create a direct link to the admin view of the order
-        admin_order_url = f"http://orfe-cosmetics.com/admin/order/{order.id}"
-        
-        # Format payment method with appropriate emoji
-        payment_emoji = "💵"
-        if order.payment_method == 'visa':
-            payment_emoji = "💳"
-            payment_method_text = "الدفع بالفيزا"
-        elif order.payment_method == 'vodafone_cash':
-            payment_emoji = "📱"
-            payment_method_text = "فودافون كاش"
-        else:
-            payment_method_text = "الدفع عند الاستلام"
-        
-        # Create WhatsApp contact link
-        phone_number = order.phone.replace(" ", "").replace("+", "")
-        if not phone_number.startswith("2"):
-            # Add Egypt country code if not present
-            phone_number = "2" + phone_number
-        whatsapp_link = f"https://wa.me/{phone_number}"
-        
-        # Create message content with rich formatting
-        message = {
-            "embeds": [{
-                "title": f"🛍️ طلب جديد #{order.id}",
-                "description": f"تم استلام طلب جديد. [فتح تفاصيل الطلب]({admin_order_url})",
-                "color": 0x00c853,  # Bright green
-                "fields": [
-                    {
-                        "name": "👤 معلومات العميل",
-                        "value": (
-                            f"**الاسم:** {order.name}\n"
-                            f"**الهاتف:** [{order.phone}]({whatsapp_link}) [(واتساب)]({whatsapp_link})\n"
-                            f"**البريد الإلكتروني:** {order.email}\n"
-                            f"**المدينة:** {city_name}\n"
-                            f"**العنوان:** {order.address}"
-                        ),
-                        "inline": False
-                    },
-                    {
-                        "name": "📦 منتجات الطلب",
-                        "value": "\n".join(items_details) or "لا توجد منتجات",
-                        "inline": False
-                    },
-                    {
-                        "name": "💰 التفاصيل المالية",
-                        "value": (
-                            f"**قيمة المنتجات:** {total_amount:.2f} ج.م\n"
-                            f"**رسوم الشحن:** {shipping_price:.2f} ج.م\n"
-                            f"**الإجمالي:** {total_with_shipping:.2f} ج.م"
-                        ),
-                        "inline": True
-                    },
-                    {
-                        "name": "📋 تفاصيل الطلب",
-                        "value": (
-                            f"{payment_emoji} **طريقة الدفع:** {payment_method_text}\n"
-                            f"**عدد القطع:** {total_items}\n"
-                            f"**وقت الطلب:** {order.created_at.strftime('%Y-%m-%d %H:%M')}"
-                        ),
-                        "inline": True
-                    }
-                ],
-                "thumbnail": {
-                    "url": "https://i.imgur.com/PYbBhsm.png"  # Replace with your store logo URL
-                },
-                "timestamp": datetime.utcnow().isoformat(),
-                "footer": {
-                    "text": f"Orfe Cosmetics • Order #{order.id}"
-                }
-            }]
+        # Payment method formatting
+        payment_info = {
+            'visa': {'emoji': '💳', 'text': 'بطاقة ائتمان', 'color': 0x1e88e5},
+            'vodafone_cash': {'emoji': '📱', 'text': 'فودافون كاش', 'color': 0xe53935},
+            'cod': {'emoji': '💵', 'text': 'الدفع عند الاستلام', 'color': 0x43a047}
         }
         
-        # Add action buttons as components (Note: these don't work in normal webhooks without a bot)
-        message["components"] = [
-            {
-                "type": 1,
-                "components": [
-                    {
-                        "type": 2,
-                        "style": 5,  # Link button
-                        "label": "عرض الطلب",
-                        "url": admin_order_url
-                    }
-                ]
-            }
-        ]
+        payment_method = order.payment_method if order.payment_method in payment_info else 'cod'
+        payment = payment_info[payment_method]
         
-        # Send the request to Discord
+        # WhatsApp link
+        phone_clean = order.phone.replace(" ", "").replace("+", "")
+        if not phone_clean.startswith("2"):
+            phone_clean = "2" + phone_clean
+        whatsapp_link = f"https://wa.me/{phone_clean}"
+        
+        # Admin panel link
+        admin_url = f"http://orfe-cosmetics.com/admin/orders"
+        
+        # Create stunning Discord embed
+        embed = {
+            "title": f"🎉 طلب جديد وصل! #{order.id}",
+            "description": f"### 🌟 عميل جديد قام بطلب منتجاتنا الرائعة!\n\n> 💼 **[إدارة الطلبات]({admin_url})** | 📱 **[تواصل واتساب]({whatsapp_link})**",
+            "color": payment['color'],
+            "fields": [
+                {
+                    "name": "👨‍💼 بيانات العميل",
+                    "value": (
+                        f"```yaml\n"
+                        f"الاسم    : {order.name}\n"
+                        f"الهاتف   : {order.phone}\n"
+                        f"الإيميل  : {order.email or 'غير متوفر'}\n"
+                        f"المدينة  : {city_name}\n"
+                        f"العنوان  : {order.address}\n"
+                        f"```"
+                    ),
+                    "inline": False
+                },
+                {
+                    "name": "🛒 تفاصيل المنتجات",
+                    "value": "\n".join(product_details) if product_details else "❌ لا توجد منتجات",
+                    "inline": False
+                },
+                {
+                    "name": "💰 الملخص المالي",
+                    "value": (
+                        f"```diff\n"
+                        f"+ قيمة المنتجات: {total_amount:.0f} ج.م\n"
+                        f"+ رسوم الشحن  : {shipping_price:.0f} ج.م\n"
+                        f"- - - - - - - - - - - - - - -\n"
+                        f"= الإجمالي    : {total_with_shipping:.0f} ج.م\n"
+                        f"```"
+                    ),
+                    "inline": True
+                },
+                {
+                    "name": "📊 معلومات الطلب",
+                    "value": (
+                        f"{payment['emoji']} **الدفع:** {payment['text']}\n"
+                        f"📦 **عدد القطع:** {total_items}\n"
+                        f"🕐 **التوقيت:** {order.created_at.strftime('%d/%m/%Y - %H:%M')}\n"
+                        f"🆔 **رقم الطلب:** `#{order.id}`"
+                    ),
+                    "inline": True
+                }
+            ],
+            "thumbnail": {
+                "url": "https://cdn.discordapp.com/attachments/1234567890/logo.png"  # Replace with actual logo
+            },
+            "image": {
+                "url": "https://i.imgur.com/separator.png"  # Optional separator image
+            },
+            "timestamp": datetime.utcnow().isoformat(),
+            "footer": {
+                "text": "💎 Orfe Cosmetics - نحو جمال طبيعي",
+                "icon_url": "https://cdn.discordapp.com/attachments/1234567890/icon.png"
+            },
+            "author": {
+                "name": "نظام إدارة الطلبات",
+                "icon_url": "https://cdn.discordapp.com/emojis/bell.png"
+            }
+        }
+        
+        # Create the complete message
+        message = {
+            "username": "Orfe Cosmetics Bot",
+            "avatar_url": "https://cdn.discordapp.com/attachments/1234567890/avatar.png",
+            "content": f"@everyone 🔔 **طلب جديد #{order.id}** - عميل: **{order.name}** - المبلغ: **{total_with_shipping:.0f} ج.م**",
+            "embeds": [embed]
+        }
+        
+        # Send to Discord
         response = requests.post(
             webhook_url,
             json=message,
             headers={'Content-Type': 'application/json'}
         )
         
-        if response.status_code != 204:
-            app.logger.error(f"Failed to send Discord notification: {response.status_code} - {response.text}")
+        if response.status_code == 204:
+            app.logger.info(f"Discord notification sent successfully for order #{order.id}")
+        else:
+            app.logger.error(f"Discord notification failed: {response.status_code} - {response.text}")
             
     except Exception as e:
         app.logger.error(f"Error sending Discord notification: {str(e)}")
