@@ -34,7 +34,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-slate-600">المناطق</p>
-                                <p class="text-xl font-bold text-slate-800">{{ cities|sum(attribute='zones')|length }}</p>
+                                <p class="text-xl font-bold text-slate-800">{{ stats.total_zones }}</p>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-slate-600">الأحياء</p>
-                                <p class="text-xl font-bold text-slate-800">{{ cities|sum(attribute='districts')|length }}</p>
+                                <p class="text-xl font-bold text-slate-800">{{ stats.total_districts }}</p>
                             </div>
                         </div>
                     </div>

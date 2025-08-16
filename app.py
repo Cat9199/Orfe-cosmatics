@@ -869,7 +869,7 @@ def handle_fawaterak_payment(order):
 def send_discord_notification(order, order_items):
     """Send enhanced order notification to Discord webhook with detailed information and direct links"""
     try:
-        webhook_url = "https://discord.com/api/webhooks/1360629735406964903/eIUmFwXpnR_YwW4rjBjFH8380KrAGLSZFd5OxelQV27HImsjrJFv0Nn5lGyJNhsMyk8o"
+        webhook_url = "https://discord.com/api/webhooks/1406252907724144813/jaTVxOrXvRfYsD-twKNMod9pp3m-VnL-9WRbjubCHnVIykeSlHvwMeXUxQUMSetbcn0d"
         
         # Get shipping cost
         shipping_cost = ShippingCost.query.filter_by(city_id=order.city).first()
@@ -1733,39 +1733,111 @@ def delete_product(product_id):
     flash('تم حذف المنتج بنجاح!', 'success')
     return redirect(url_for('admin.products'))
 
+@admin.route('/product/<int:product_id>/edit', methods=['GET'])
+@admin_required
+def get_edit_product_form(product_id):
+    """Return the edit product form HTML for AJAX loading"""
+    product = Product.query.get_or_404(product_id)
+    categories = Category.query.all()
+    
+    return render_template('admin/edit_product.html', product=product, categories=categories)
+
 @admin.route('/edit_product/<int:product_id>', methods=['POST'])
 @admin_required
 def edit_product(product_id):
     product = Product.query.get_or_404(product_id)
     try:
-        if 'name' in request.form and request.form['name']:
-            product.name = request.form['name']
-        if 'description' in request.form and request.form['description']:
-            product.description = request.form['description']
-        if 'price' in request.form and request.form['price']:
-            product.price = float(request.form['price'])
-        if 'discount' in request.form and request.form['discount']:
-            product.discount = float(request.form['discount'])
-        if 'quantity' in request.form and request.form['quantity']:
-            product.stock = int(request.form['quantity'])
-        if 'category' in request.form and request.form['category']:
-            product.category_id = int(request.form['category'])
+        # Validate required fields
+        if not request.form.get('name'):
+            flash('اسم المنتج مطلوب!', 'error')
+            return redirect(url_for('admin.products'))
+        
+        if not request.form.get('price'):
+            flash('سعر المنتج مطلوب!', 'error')
+            return redirect(url_for('admin.products'))
+            
+        if not request.form.get('quantity'):
+            flash('كمية المنتج مطلوبة!', 'error')
+            return redirect(url_for('admin.products'))
+            
+        if not request.form.get('category'):
+            flash('تصنيف المنتج مطلوب!', 'error')
+            return redirect(url_for('admin.products'))
 
-        # Handle Image Upload
+        # Update product fields
+        product.name = request.form['name'].strip()
+        product.description = request.form.get('description', '').strip()
+        product.price = float(request.form['price'])
+        product.discount = float(request.form.get('discount', 0))
+        product.stock = int(request.form['quantity'])
+        product.category_id = int(request.form['category'])
+
+        # Handle Main Image Upload
         image_file = request.files.get('image')
         if image_file and image_file.filename != '':
-            filename = secure_filename(image_file.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image_file.save(image_path)
-            product.image = image_path
+            # Validate file type
+            allowed_extensions = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+            if '.' in image_file.filename and image_file.filename.rsplit('.', 1)[1].lower() in allowed_extensions:
+                filename = secure_filename(image_file.filename)
+                # Add timestamp to prevent filename conflicts
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S_')
+                filename = timestamp + filename
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image_file.save(image_path)
+                # Store relative path instead of full path
+                product.image = f"static/uploads/{filename}"
+            else:
+                flash('نوع الملف غير مدعوم! يرجى اختيار صورة بصيغة PNG, JPG, JPEG, GIF, أو WEBP', 'error')
+                return redirect(url_for('admin.products'))
+
+        # Handle Additional Images Upload
+        additional_images = request.files.getlist('additional_images')
+        for file in additional_images:
+            if file and file.filename != '' and allowed_file(file.filename):
+                filename = save_uploaded_file(file)
+                if filename:
+                    additional_image = AdditionalImage(
+                        image=f"static/uploads/{filename}",
+                        product_id=product.id
+                    )
+                    db.session.add(additional_image)
 
         db.session.commit()
         flash('تم تعديل المنتج بنجاح!', 'success')
+    except ValueError as e:
+        db.session.rollback()
+        flash('خطأ في البيانات المدخلة! تأكد من صحة الأرقام المدخلة.', 'error')
     except Exception as e:
         db.session.rollback()
-        print(f"Error: {e}")
+        app.logger.error(f"Error editing product {product_id}: {str(e)}")
         flash('حدث خطأ أثناء تعديل المنتج!', 'error')
     return redirect(url_for('admin.products'))
+
+@admin.route('/delete_additional_image/<int:image_id>', methods=['POST'])
+@admin_required
+def delete_additional_image(image_id):
+    """Delete an additional product image"""
+    try:
+        additional_image = AdditionalImage.query.get_or_404(image_id)
+        
+        # Delete the file from filesystem
+        try:
+            image_path = os.path.join(app.root_path, additional_image.image)
+            if os.path.exists(image_path):
+                os.remove(image_path)
+        except Exception as e:
+            app.logger.warning(f"Could not delete image file: {str(e)}")
+        
+        # Delete from database
+        db.session.delete(additional_image)
+        db.session.commit()
+        
+        return jsonify({'success': True, 'message': 'تم حذف الصورة بنجاح'})
+        
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"Error deleting additional image {image_id}: {str(e)}")
+        return jsonify({'success': False, 'message': 'حدث خطأ أثناء حذف الصورة'}), 500
 
 @admin.route('/categories', methods=['GET', 'POST'])
 @admin_required
@@ -1813,45 +1885,85 @@ def shipping():
         total_cities = len(cities)
         total_zones = 0
         total_districts = 0
-        total_shipping_cost = 0
+        total_shipping_cost = 0.0
         cities_with_shipping = 0
         
         # Process each city and prepare data
         for city in cities:
-            # Get shipping cost for this city
-            shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first()
-            if not shipping_cost:
-                # Create default shipping cost if it doesn't exist
-                shipping_cost = ShippingCost(city_id=city.city_id, price=100)
-                db.session.add(shipping_cost)
+            try:
+                # Get shipping cost for this city
+                shipping_cost = ShippingCost.query.filter_by(city_id=city.city_id).first()
+                if not shipping_cost:
+                    # Create default shipping cost if it doesn't exist
+                    shipping_cost = ShippingCost(city_id=city.city_id, price=100)
+                    db.session.add(shipping_cost)
+                    
+                # Count zones and districts with more robust handling
+                zones_count = 0
+                districts_count = 0
                 
-            # Count zones and districts
-            zones_count = len(city.zones) if city.zones else 0
-            districts_count = len(city.districts) if city.districts else 0
-            
-            total_zones += zones_count
-            total_districts += districts_count
-            
-            if shipping_cost:
-                total_shipping_cost += shipping_cost.price
-                cities_with_shipping += 1
-            
-            # Prepare city data
-            city_data = {
-                'id': city.id,
-                'name': city.name,
-                'city_id': city.city_id,
-                'created_at': city.created_at,
-                'zones_count': zones_count,
-                'districts_count': districts_count,
-                'zones': city.zones,
-                'districts': city.districts,
-                'shipping_price': shipping_cost.price if shipping_cost else 100
-            }
-            cities_data.append(city_data)
+                # Handle zones
+                if hasattr(city, 'zones') and city.zones is not None:
+                    try:
+                        if hasattr(city.zones, '__len__'):
+                            zones_count = len(city.zones)
+                        else:
+                            zones_count = city.zones.count() if hasattr(city.zones, 'count') else 0
+                    except Exception as zone_error:
+                        app.logger.warning(f"Error counting zones for city {city.id}: {zone_error}")
+                        zones_count = 0
+                
+                # Handle districts
+                if hasattr(city, 'districts') and city.districts is not None:
+                    try:
+                        if hasattr(city.districts, '__len__'):
+                            districts_count = len(city.districts)
+                        else:
+                            districts_count = city.districts.count() if hasattr(city.districts, 'count') else 0
+                    except Exception as district_error:
+                        app.logger.warning(f"Error counting districts for city {city.id}: {district_error}")
+                        districts_count = 0
+                
+                # Safely add to totals
+                total_zones += zones_count
+                total_districts += districts_count
+                
+                if shipping_cost and hasattr(shipping_cost, 'price'):
+                    total_shipping_cost += float(shipping_cost.price)
+                    cities_with_shipping += 1
+                
+                # Prepare city data
+                city_data = {
+                    'id': city.id,
+                    'name': city.name,
+                    'city_id': city.city_id,
+                    'created_at': city.created_at,
+                    'zones_count': zones_count,
+                    'districts_count': districts_count,
+                    'zones': [],  # Don't pass the actual relationship objects
+                    'districts': [],  # Don't pass the actual relationship objects
+                    'shipping_price': float(shipping_cost.price) if shipping_cost and hasattr(shipping_cost, 'price') else 100.0
+                }
+                cities_data.append(city_data)
+                
+            except Exception as city_error:
+                app.logger.error(f"Error processing city {city.id}: {city_error}")
+                # Add basic city data even if there's an error
+                city_data = {
+                    'id': city.id,
+                    'name': getattr(city, 'name', 'Unknown'),
+                    'city_id': getattr(city, 'city_id', ''),
+                    'created_at': getattr(city, 'created_at', datetime.now()),
+                    'zones_count': 0,
+                    'districts_count': 0,
+                    'zones': [],
+                    'districts': [],
+                    'shipping_price': 100.0
+                }
+                cities_data.append(city_data)
         
         # Calculate average shipping cost
-        avg_shipping_cost = total_shipping_cost / cities_with_shipping if cities_with_shipping > 0 else 0
+        avg_shipping_cost = total_shipping_cost / cities_with_shipping if cities_with_shipping > 0 else 0.0
         
         # Prepare statistics
         stats = {
@@ -1867,6 +1979,8 @@ def shipping():
     except Exception as e:
         db.session.rollback()
         app.logger.error(f'Error in shipping route: {str(e)}')
+        import traceback
+        app.logger.error(f'Full traceback: {traceback.format_exc()}')
         flash('حدث خطأ أثناء تحميل صفحة الشحن', 'error')
         return redirect(url_for('admin.home'))
 
@@ -2899,10 +3013,58 @@ def export_income_stats():
             download_name='إحصائيات الدخل.xlsx'
         )
         
+        return redirect(url_for('admin.home'))
+        
     except Exception as e:
         app.logger.error(f'Error exporting income statistics: {str(e)}')
         flash('حدث خطأ أثناء تصدير إحصائيات الدخل', 'error')
         return redirect(url_for('admin.home'))
+
+@admin.route('/api/recent-orders')
+@admin_required
+def get_recent_orders():
+    try:
+        # Get last 10 orders
+        recent_orders = Order.query.order_by(Order.created_at.desc()).limit(10).all()
+        
+        orders_data = []
+        for order in recent_orders:
+            orders_data.append({
+                'id': order.id,
+                'name': order.name,
+                'cod_amount': float(order.cod_amount),
+                'shipping_status': order.shipping_status,
+                'payment_status': order.payment_status,
+                'created_at': order.created_at.strftime('%Y-%m-%d %H:%M'),
+                'time_ago': get_time_ago(order.created_at)
+            })
+        
+        return jsonify({
+            'success': True,
+            'orders': orders_data,
+            'count': len(orders_data)
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+def get_time_ago(created_at):
+    from datetime import datetime, timedelta
+    now = datetime.now()
+    diff = now - created_at
+    
+    if diff.days > 0:
+        return f"منذ {diff.days} يوم"
+    elif diff.seconds > 3600:
+        hours = diff.seconds // 3600
+        return f"منذ {hours} ساعة"
+    elif diff.seconds > 60:
+        minutes = diff.seconds // 60
+        return f"منذ {minutes} دقيقة"
+    else:
+        return "منذ لحظات"
 
 @admin.route('/order/<int:order_id>/update-payment-method', methods=['POST'])
 @admin_required

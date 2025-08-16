@@ -561,19 +561,36 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
+                <!-- Notification Bell -->
                 <div class="relative group md:block hidden">
-                    <button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-sage-50 text-sage-600">
+                    <button id="notificationBtn" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-sage-50 text-sage-600">
                         <i class='bx bx-bell text-2xl'></i>
-                        <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">+0</span>
+                        <span id="notificationCount" class="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">+0</span>
                     </button>
-                    <!-- Notifications dropdown could be added here -->
+                    
+                    <!-- Notifications dropdown -->
+                    <div id="notificationDropdown" class="absolute left-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-gray-200 z-50 hidden">
+                        <div class="p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-gray-900 flex items-center">
+                                <i class='bx bx-bell mr-2 text-sage-600'></i>
+                                آخر الطلبات
+                            </h3>
+                        </div>
+                        <div id="notificationsList" class="max-h-96 overflow-y-auto">
+                            <!-- Orders will be loaded here -->
+                            <div class="p-4 text-center text-gray-500">
+                                <i class='bx bx-loader-alt animate-spin text-2xl mb-2'></i>
+                                <p>جاري التحميل...</p>
+                            </div>
+                        </div>
+                        <div class="p-4 border-t border-gray-200">
+                            <a href="{{ url_for('admin.orders') }}" class="block w-full text-center bg-sage-600 text-white py-2 px-4 rounded-lg hover:bg-sage-700 transition-colors">
+                                عرض جميع الطلبات
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
-                <button onclick="downloadBackup()" class="hidden md:flex bg-sage-600 text-white px-4 py-2 rounded-xl items-center gap-2 hover:bg-sage-700 transition-colors shadow-sm">
-                    <i class='bx bx-download'></i>
-                    <span> نسخ المشروع</span>
-                </button>
 
                 <button onclick="document.getElementById('productModal').classList.remove('hidden')" class="hidden md:flex bg-sage-600 text-white px-4 py-2 rounded-xl items-center gap-2 hover:bg-sage-700 transition-colors shadow-sm">
                     <i class='bx bx-plus'></i>
@@ -824,6 +841,122 @@
 
             document.getElementById('endDate').value = today.toISOString().split('T')[0];
             document.getElementById('startDate').value = thirtyDaysAgo.toISOString().split('T')[0];
+        });
+
+        // Notification functionality
+        let notificationDropdownOpen = false;
+        
+        function toggleNotificationDropdown() {
+            const dropdown = document.getElementById('notificationDropdown');
+            const btn = document.getElementById('notificationBtn');
+            
+            if (!notificationDropdownOpen) {
+                // Open dropdown and load orders
+                dropdown.classList.remove('hidden');
+                notificationDropdownOpen = true;
+                loadRecentOrders();
+                
+                // Close dropdown when clicking outside
+                setTimeout(() => {
+                    document.addEventListener('click', closeNotificationOnOutsideClick);
+                }, 100);
+            } else {
+                // Close dropdown
+                dropdown.classList.add('hidden');
+                notificationDropdownOpen = false;
+                document.removeEventListener('click', closeNotificationOnOutsideClick);
+            }
+        }
+        
+        function closeNotificationOnOutsideClick(event) {
+            const dropdown = document.getElementById('notificationDropdown');
+            const btn = document.getElementById('notificationBtn');
+            
+            if (!dropdown.contains(event.target) && !btn.contains(event.target)) {
+                dropdown.classList.add('hidden');
+                notificationDropdownOpen = false;
+                document.removeEventListener('click', closeNotificationOnOutsideClick);
+            }
+        }
+        
+        async function loadRecentOrders() {
+            const notificationsList = document.getElementById('notificationsList');
+            
+            try {
+                const response = await fetch('/admin/api/recent-orders');
+                const data = await response.json();
+                
+                if (data.orders && data.orders.length > 0) {
+                    // Update notification count
+                    const countElement = document.getElementById('notificationCount');
+                    if (data.total_orders > 10) {
+                        countElement.textContent = '+10';
+                        countElement.classList.remove('hidden');
+                    } else if (data.total_orders > 0) {
+                        countElement.textContent = data.total_orders;
+                        countElement.classList.remove('hidden');
+                    } else {
+                        countElement.classList.add('hidden');
+                    }
+                    
+                    // Build orders list HTML
+                    let ordersHTML = '';
+                    data.orders.forEach(order => {
+                        const statusClass = order.shipping_status === 'delivered' ? 'bg-green-100 text-green-800' : 
+                                          order.shipping_status === 'returned' ? 'bg-red-100 text-red-800' :
+                                          order.shipping_status === 'shipped' ? 'bg-blue-100 text-blue-800' :
+                                          'bg-yellow-100 text-yellow-800';
+                        
+                        const paymentClass = order.payment_status === 'paid' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800';
+                        
+                        ordersHTML += `
+                            <div class="p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-medium text-gray-900">${order.name}</div>
+                                    <div class="text-sm text-gray-500">${order.time_ago}</div>
+                                </div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="text-sm text-gray-600">${order.cod_amount} ج.م</div>
+                                    <div class="flex gap-2">
+                                        <span class="px-2 py-1 text-xs rounded-full ${statusClass}">${order.shipping_status}</span>
+                                        <span class="px-2 py-1 text-xs rounded-full ${paymentClass}">${order.payment_status}</span>
+                                    </div>
+                                </div>
+                                <div class="text-xs text-gray-500">${order.created_at}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    notificationsList.innerHTML = ordersHTML;
+                } else {
+                    notificationsList.innerHTML = `
+                        <div class="p-4 text-center text-gray-500">
+                            <i class='bx bx-inbox text-2xl mb-2'></i>
+                            <p>لا توجد طلبات حديثة</p>
+                        </div>
+                    `;
+                    document.getElementById('notificationCount').classList.add('hidden');
+                }
+            } catch (error) {
+                console.error('Error loading recent orders:', error);
+                notificationsList.innerHTML = `
+                    <div class="p-4 text-center text-red-500">
+                        <i class='bx bx-error text-2xl mb-2'></i>
+                        <p>خطأ في تحميل الطلبات</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize notification functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationBtn = document.getElementById('notificationBtn');
+            if (notificationBtn) {
+                notificationBtn.addEventListener('click', toggleNotificationDropdown);
+                
+                // Load initial count
+                loadRecentOrders();
+            }
         });
 
         // Backup functionality
