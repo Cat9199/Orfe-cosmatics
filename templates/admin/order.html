@@ -498,7 +498,7 @@
         function initializeFormHandlers() {
             document.querySelectorAll('[data-form]').forEach(form => {
                 form.addEventListener('submit', function(e) {
-                    const confirmMsg = this.querySelector('[data-confirm]') ? .dataset.confirm;
+                    const confirmMsg = this.querySelector('[data-confirm]')?.dataset.confirm;
                     if (confirmMsg && !confirm(confirmMsg)) {
                         e.preventDefault();
                         return false;
@@ -526,37 +526,40 @@
 
         // Modal handling
         function initializeModalHandlers() {
-            // Open modals
-            document.querySelectorAll('[data-modal]').forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
+            // Open modals - using event delegation for better reliability
+            document.addEventListener('click', function(e) {
+                const trigger = e.target.closest('[data-modal]');
+                if (trigger) {
                     e.preventDefault();
-                    const modalId = this.dataset.modal;
+                    const modalId = trigger.dataset.modal;
                     const modal = document.getElementById(modalId);
                     if (modal) {
+                        console.log('Opening modal:', modalId); // Debug log
                         showModal(modal);
+                    } else {
+                        console.error('Modal not found:', modalId); // Debug log
                     }
-                });
+                }
             });
 
-            // Close modals
-            document.querySelectorAll('[data-modal-close]').forEach(closeBtn => {
-                closeBtn.addEventListener('click', function(e) {
+            // Close modals - using event delegation
+            document.addEventListener('click', function(e) {
+                const closeBtn = e.target.closest('[data-modal-close]');
+                if (closeBtn) {
                     e.preventDefault();
-                    const modalId = this.dataset.modalClose;
+                    const modalId = closeBtn.dataset.modalClose;
                     const modal = document.getElementById(modalId);
                     if (modal) {
                         hideModal(modal);
                     }
-                });
+                }
             });
 
             // Close modal on backdrop click
-            document.querySelectorAll('.fixed.inset-0').forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        hideModal(this);
-                    }
-                });
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('fixed') && e.target.classList.contains('inset-0')) {
+                    hideModal(e.target);
+                }
             });
 
             // Close modal on Escape key
